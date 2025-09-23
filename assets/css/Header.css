@@ -32,15 +32,34 @@
   /* texte lisible sur image */
 }
 
-#hero .container {
-  /* position: relative; */
-  /* z-index: 2; */
-  /* au-dessus de l'image */
-}
-
-/* Logo */
-
 .hero-logo {
   max-width: 250px;
   height: auto;
+}
+
+/* La carte */
+
+.isotope-container {
+  column-count: 2;
+  display: grid;
+  column-gap: 20px;
+  max-height: 900px;
+}
+
+.isotope-container {
+  position: relative;
+}
+
+.isotope-container .grid-sizer,
+.isotope-container .menu-item {
+  width: 40%;
+  box-sizing: border-box;
+  padding: 12px;
+}
+
+@media (max-width: 992px) {
+  .isotope-container .grid-sizer,
+  .isotope-container .menu-item {
+    width: 100%;
+  }
 }
