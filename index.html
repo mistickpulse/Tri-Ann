@@ -46,7 +46,7 @@
 <body class="index-page">
     <header id="header" class="header fixed-top ">
 
-        <div class="branding d-flex align-items-cente ">
+        <div class="branding d-flex align-items-center">
 
             <div class="container position-relative d-flex align-items-center justify-content-between">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -121,7 +121,7 @@
                             </p>
                             <div class="d-flex mt-3" data-aos="fade-up" data-aos-delay="300">
                                 <a href="#menu" class="cta-btn">Notre Carte</a>
-                                <a href="#book-a-table" class="cta-btn">Book a Table</a>
+                                <a href="#nousTrouver" class="cta-btn">Nous trouver</a>
                             </div>
 
                         </div>
@@ -596,82 +596,87 @@
                             <p>Sur le parking de l'intermarche</p>
                             <!-- <p><a href="">0164440262</a></p> -->
                             <!-- <a href="" class="stretched-link"></a> -->
-                            <div class="d-flex mt-3">
-                                <a class="btn-book-a-table d-none d-xl-block" href="tel:0164440262">
+                            <div class="d-flex mt-3 justify-content-between">
+                                <a class="btn-book-a-table text-center " href="tel:0164440262">
                                     <i class="fa-solid fa-phone"></i> Appeler
                                 </a>
-                                <a class="btn-book-a-table d-none d-xl-block" href="https://maps.app.goo.gl/NTewa5eYFoegMDit8">
+                                <a class="btn-book-a-table text-center" href="https://maps.app.goo.gl/NTewa5eYFoegMDit8">
                                     <i class="fa-solid fa-route"></i> Y aller
                                 </a>
                             </div>
+
+
                             <div class="col text-center mb-5">
-                                <div class=" mb-2">
+                                <div class=" mb-2 mt-4">
                                     <p class="fw-bold">Horaires:</p>
                                 </div>
-
-                                <div class="row">
-                                    <p class="col-lg-2">Lundi</p>
-                                    <p class="col">
-                                        <i class="fa-solid fa-door-closed me-2"></i> Fermés
-                                    </p>
+                                <div class="row open-hours">
+                                    <div class="col-lg-2 open-hours-item-1 week-day">
+                                        <p>Dimanche</p>
+                                    </div>
+                                    <div class="col open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-closed me-2"></i> Fermé</p>
+                                    </div>
+                                </div>
+                                <div class="row open-hours d-flex justify-content-between">
+                                    <div class="col-lg-2 open-hours-item-1 week-day">
+                                        <p>Lundi</p>
+                                    </div>
+                                    <div class="col open-hours-item-2 week-time ">
+                                        <p>
+                                            <i class="fa-solid fa-door-closed me-2"></i>Fermé</p>
+                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-2">
+                                <div class="row open-hours">
+                                    <div class="col-lg-2 open-hours-item-1 align-items-center week-day">
                                         <p>Mardi</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-lg-6  open-hours-item-2 week-time">
                                         <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
                                         <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-2">
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
                                         <p>Mercredi</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col  open-hours-item-2 week-time">
                                         <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
                                         <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-2">
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
                                         <p>Jeudi</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-lg-10  open-hours-item-2 week-time">
                                         <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
-                                        <p><i class="fa-solid fa-door-open me-2"></i><i class="fa-solid fa-music me-2 fa-bounce"></i> 19h - 22h</p>
+                                        <p>
+                                            </i><i class="fa-solid fa-door-open me-2"></i></i> 19h - 22h</p>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-2">
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
                                         <p>Vendredi</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col  open-hours-item-2 week-time">
                                         <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
                                         <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-2">
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
                                         <p>Samedi</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col  open-hours-item-2 week-time">
                                         <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
                                         <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-2">
-                                    <p>Dimanche</p>
-                                    <p><i class="fa-solid fa-door-closed me-2"></i> Fermés</p>
-                                </div>
-                                <div class="col-12 mb-2">
-                                    <i class="fa-solid fa-music fa-bounce me-2"></i> soirées karaoké
                                 </div>
                             </div>
                         </div>
@@ -687,15 +692,92 @@
                                 <i class="fa-solid fa-location-dot"></i> <a href="https://maps.app.goo.gl/jCTwYwS6GMsvPXk69">Lagny-le-sec, 60330</a></h4>
                             <p>Sur le parking du Grand-Frais</p>
                             <p> </p>
-                            <div class="d-flex mt-3">
-                                <a class="btn-book-a-table d-none d-xl-block" href="tel:0344639849">
+                            <div class="d-flex mt-3 justify-content-between">
+                                <a class="btn-book-a-table text-center " href="tel:0344639849">
                                     <i class="fa-solid fa-phone"></i> Appeler
                                 </a>
-                                <a class="btn-book-a-table d-none d-xl-block" href="https://maps.app.goo.gl/jCTwYwS6GMsvPXk69">
+                                <a class="btn-book-a-table text-center" href="https://maps.app.goo.gl/jCTwYwS6GMsvPXk69">
                                     <i class="fa-solid fa-route"></i> Y aller
                                 </a>
                             </div>
+                            <div class="col text-center mb-5">
+                                <div class=" mb-2 mt-4">
+                                    <p class="fw-bold">Horaires:</p>
+                                </div>
+                                <div class="row open-hours">
+                                    <div class="col-lg-2 open-hours-item-1 week-day">
+                                        <p>Dimanche</p>
+                                    </div>
+                                    <div class="col open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-closed me-2"></i> Fermé</p>
+                                    </div>
+                                </div>
+                                <div class="row open-hours d-flex justify-content-between">
+                                    <div class="col-lg-2 open-hours-item-1 week-day">
+                                        <p>Lundi</p>
+                                    </div>
+                                    <div class="col open-hours-item-2 week-time ">
+                                        <p>
+                                            <i class="fa-solid fa-door-closed me-2"></i>Fermé</p>
+                                    </div>
+                                </div>
 
+                                <div class="row open-hours">
+                                    <div class="col-lg-2 open-hours-item-1 align-items-center week-day">
+                                        <p>Mardi</p>
+                                    </div>
+                                    <div class="col-lg-6  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Mercredi</p>
+                                    </div>
+                                    <div class="col  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Jeudi <i class="fa-solid fa-music fa-bounce " style="margin-left: 5px;"></i></p>
+                                    </div>
+                                    <div class="col-lg-10  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p>
+                                            </i><i class="fa-solid fa-door-open me-2"></i></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Vendredi</p>
+                                    </div>
+                                    <div class="col  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Samedi</p>
+                                    </div>
+                                    <div class="col  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="col">
+                                    <i class="fa-solid fa-music fa-bounce me-2 mt-4"></i> soirées karaoké
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- Fin Tri-Ann 2-->
@@ -708,15 +790,91 @@
                                 <i class="fa-solid fa-location-dot"></i> <a href="https://maps.app.goo.gl/udCtRELZ4VsUoMa58"> Saint Maximin, 60740 </a></h4>
                             <p>Zone commerciale saint maximin, proche du KFC</p>
                             <p> </p>
-                            <div class="d-flex mt-3">
-                                <a class="btn-book-a-table d-none d-xl-block" href="tel:0344258354">
+                            <div class="d-flex mt-3 justify-content-between">
+                                <a class="btn-book-a-table text-center" href="tel:0344258354">
                                     <i class="fa-solid fa-phone"></i> Appeler
                                 </a>
-                                <a class="btn-book-a-table d-none d-xl-block" href="https://maps.app.goo.gl/udCtRELZ4VsUoMa58">
+                                <a class="btn-book-a-table text-center" href="https://maps.app.goo.gl/udCtRELZ4VsUoMa58">
                                     <i class="fa-solid fa-route"></i> Y aller
                                 </a>
                             </div>
+                            <div class="col text-center mb-5">
+                                <div class=" mb-2 mt-4">
+                                    <p class="fw-bold">Horaires:</p>
+                                </div>
+                                <div class="row open-hours">
+                                    <div class="col-lg-2 open-hours-item-1 week-day">
+                                        <p>Dimanche</p>
+                                    </div>
+                                    <div class="col open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-closed me-2"></i> Fermé</p>
+                                    </div>
+                                </div>
+                                <div class="row open-hours d-flex justify-content-between ">
+                                    <div class="col-lg-2 open-hours-item-1 week-day">
+                                        <p>Lundi</p>
+                                    </div>
+                                    <div class="col open-hours-item-2 week-time ">
+                                        <p><i class="fa-solid fa-door-closed me-2"></i>Fermé</p>
+                                    </div>
+                                </div>
 
+                                <div class="row open-hours">
+                                    <div class="col-lg-2 open-hours-item-1 align-items-center week-day">
+                                        <p>Mardi</p>
+                                    </div>
+                                    <div class="col  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Mercredi</p>
+                                    </div>
+                                    <div class="col  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Jeudi <i class="fa-solid fa-music me-2 fa-bounce" style="margin-left: 5px;"></i></p>
+                                    </div>
+                                    <div class="col-lg-10  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p>
+                                            </i><i class="fa-solid fa-door-open me-2"></i></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Vendredi</p>
+                                    </div>
+                                    <div class="col  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+                                <div class="row open-hours">
+                                    <div class="col-lg-2  open-hours-item-1 week-day">
+                                        <p>Samedi</p>
+                                    </div>
+                                    <div class="col  open-hours-item-2 week-time">
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 12h - 14h</p>
+                                        <p><i class="fa-solid fa-door-open me-2"></i> 19h - 22h</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="col">
+                                    <i class="fa-solid fa-music fa-bounce me-2 mt-4"></i> soirées karaoké
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- Fin Tri-Ann 3-->
@@ -878,7 +1036,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Nos avis</h2>
-                <p> Ce que pense nos clients</p>
+                <p> Ce que pensent nos clients</p>
             </div>
             <!-- End Section Title -->
 
