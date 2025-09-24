@@ -1,65 +1,86 @@
 /* Image de fond en plein écran */
 
 .hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  /* en arrière-plan */
-  overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* en arrière-plan */
+    overflow: hidden;
 }
 
 .hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* occupe tout l'écran sans déformer */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* occupe tout l'écran sans déformer */
 }
+
 
 /* Le contenu doit passer par-dessus */
 
 #hero {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  /* prend toute la hauteur de l'écran */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  /* texte lisible sur image */
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /* prend toute la hauteur de l'écran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    /* texte lisible sur image */
 }
 
 .hero-logo {
-  max-width: 250px;
-  height: auto;
+    max-width: 250px;
+    height: auto;
 }
+
 
 /* La carte */
 
 .isotope-container {
-  column-count: 2;
-  display: grid;
-  column-gap: 20px;
-  max-height: 900px;
+    column-count: 2;
+    display: grid;
+    column-gap: 20px;
+    max-height: 900px;
 }
 
 .isotope-container {
-  position: relative;
+    position: relative;
 }
 
 .isotope-container .grid-sizer,
 .isotope-container .menu-item {
-  width: 40%;
-  box-sizing: border-box;
-  padding: 12px;
+    width: 40%;
+    box-sizing: border-box;
+    padding: 12px;
 }
 
 @media (max-width: 992px) {
-  .isotope-container .grid-sizer,
-  .isotope-container .menu-item {
-    width: 100%;
-  }
+    .isotope-container .grid-sizer,
+    .isotope-container .menu-item {
+        width: 100%;
+    }
+}
+
+.card-item .btn-book-a-table,
+.card-item .btn-book-a-table:focus {
+    justify-content: center;
+    color: var(--default-color);
+    border: 2px solid var(--accent-color);
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 6px 24px;
+    margin: 0 5px 0 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.card-item .btn-book-a-table,
+.card-item .btn-book-a-table:hover {
+    color: var(--default-color);
+    background: var(--accent-color);
 }
