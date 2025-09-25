@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Avis Google — Tri-Ann (3 établissements)</title>
+    <style>
+         :root {
+            --card-w: 780px;
+            --pad: 16px;
+            --radius: 14px;
+            --shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+            --muted: #6b7280;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 24px;
+            background: #fafafa;
+            color: #0f172a;
+        }
+        
+        .wrap {
+            max-width: var(--card-w);
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 20px;
+            margin: 0 0 12px;
+        }
+        
+        .hint {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        /* Carousel */
+        
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: #fff;
+            box-shadow: var(--shadow);
+            min-height: 210px;
+        }
+        
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            padding: calc(var(--pad) + 2px);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 10px;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .stars {
+            font-size: 14px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        
+        .place {
+            margin-left: auto;
+            font-weight: 600;
+            font-size: 14px;
+            color: #111827;
+        }
+        
+        .text {
+            font-size: 16px;
+            line-height: 1.45;
+        }
+        
+        .meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+        
+        .meta a {
+            color: inherit;
+            text-decoration: underline;
+        }
+        
+        .counter {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+        /* Tiny badge header */
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .badge {
+            background: #fff;
+            border-radius: 999px;
+            padding: 8px 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>Avis Google — Tri-Ann</h1>
+        <p class="hint">
+            Affichage de 5 avis pertinents par établissement (Google) — mélangés et affichés en boucle.
+        </p>
+
+        <div class="grid" id="stats">
+            <div class="badge" id="b1">Tri-Ann • —</div>
+            <div class="badge" id="b2">Tri-Ann 2 • —</div>
+            <div class="badge" id="b3">Tri-Ann 3 • —</div>
+        </div>
+
+        <div class="carousel" id="carousel">
+            <!-- slides injectées en JS -->
+        </div>
+        <div class="counter" id="counter"></div>
+    </div>
+
+    <script src="google.js"></script>
+</body>
+
+</html>

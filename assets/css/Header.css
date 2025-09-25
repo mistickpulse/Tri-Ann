@@ -1,113 +1,323 @@
 /* Image de fond en plein écran */
 
 .hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  /* en arrière-plan */
-  overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* en arrière-plan */
+    overflow: hidden;
 }
 
 .hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* occupe tout l'écran sans déformer */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* occupe tout l'écran sans déformer */
 }
+
 
 /* Le contenu doit passer par-dessus */
 
 #hero {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  /* prend toute la hauteur de l'écran */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  /* texte lisible sur image */
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /* prend toute la hauteur de l'écran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    /* texte lisible sur image */
 }
 
 .hero-logo {
-  max-width: 250px;
-  height: auto;
+    max-width: 250px;
+    height: auto;
 }
+
 
 /* La carte */
 
 .isotope-container {
-  column-count: 2;
-  display: grid;
-  column-gap: 20px;
-  max-height: 900px;
+    column-count: 2;
+    display: grid;
+    column-gap: 20px;
+    max-height: 900px;
 }
 
 .isotope-container {
-  position: relative;
+    position: relative;
 }
 
 .isotope-container .grid-sizer,
 .isotope-container .menu-item {
-  width: 40%;
-  box-sizing: border-box;
-  padding: 12px;
+    width: 40%;
+    box-sizing: border-box;
+    padding: 12px;
 }
 
 @media (max-width: 992px) {
-  .isotope-container .grid-sizer,
-  .isotope-container .menu-item {
-    width: 100%;
-  }
+    .isotope-container .grid-sizer,
+    .isotope-container .menu-item {
+        width: 100%;
+    }
 }
 
 .card-item .btn-book-a-table,
 .card-item .btn-book-a-table:focus {
-  justify-content: center;
-  color: var(--default-color);
-  border: 2px solid var(--accent-color);
-  text-transform: uppercase;
-  font-size: 14px;
-  padding: 6px 24px;
-  margin: 0 5px 0 10px;
-  border-radius: 50px;
-  transition: 0.3s;
-  width: 40%;
+    justify-content: center;
+    color: var(--default-color);
+    border: 2px solid var(--accent-color);
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 6px 24px;
+    margin: 0 5px 0 10px;
+    border-radius: 50px;
+    transition: 0.3s;
+    width: 40%;
 }
 
 .card-item .btn-book-a-table,
 .card-item .btn-book-a-table:hover {
-  color: var(--default-color);
-  background: var(--accent-color);
+    color: var(--default-color);
+    background: var(--accent-color);
 }
 
 .open-hours {
-  margin-bottom: 10px;
-  align-items: center;
-  /* display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    /* display: flex;
   justify-content: space-between; */
 }
 
 .open-hours-item-1 {
-  width: 50%;
-  /* display: flex; */
+    width: 40%;
+    /* display: flex; */
 }
 
 .open-hours-item-2 {
-  width: 50%;
-  align-items: flex-end;
-  /* display: flex; */
+    width: 60%;
+    align-items: flex-end;
+    /* display: flex; */
 }
 
 .week-day {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .week-time {
-  /* display: flex; */
-  /* justify-content: flex-start; */
+    /* display: flex; */
+    /* justify-content: flex-start; */
 }
+
+
+/* Badge avis Google */
+
+.badge {
+    /* background: #fff; */
+    border-radius: 999px;
+    padding: 8px 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    font-size: 13px;
+}
+
+
+/* Fin Badge avis Google */
+
+
+/* Caroussel Google */
+
+
+/* .carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    min-height: 1010px;
+    display: flex;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    padding: calc(var(--pad) + 2px);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    height: 100%;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.stars {
+    font-size: 14px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.place {
+    margin-left: auto;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.text {
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.meta a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.counter {
+    text-align: center;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* Chaque slide contient 3 avis */
+
+
+/* .slide-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    height: 100%;
+} */
+
+
+/* Carte individuelle d’un avis */
+
+
+/* .review-card {
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.review-card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.review-card .meta {
+    font-size: 12px;
+} */
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    /* Laisse la hauteur se caler sur la slide active (pos abs) via JS */
+    height: auto;
+    transition: height 0.3s ease;
+}
+
+
+/* Chaque slide garde le positionnement absolu pour l'effet de fondu,
+   mais on NE force PAS la hauteur */
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    padding: calc(var(--pad) + 2px);
+    display: block;
+    /* plus de grid ici */
+    /* height: 100%;  <- enlever */
+    pointer-events: none;
+    /* évite de cliquer sur les slides invisibles */
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+
+/* Slide = 3 cartes côte à côte */
+
+.slide-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    /* pas de height forcée, on laisse le contenu dicter la taille */
+    align-items: stretch;
+    /* étire les cartes */
+}
+
+
+/* Carte individuelle */
+
+.review-card {
+    border: 1px solid #cda45e;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* permet l’étirement vertical propre */
+    height: 100%;
+    min-height: 0;
+}
+
+.review-card .stars {
+    font-size: 14px;
+    color: #fbbf24;
+}
+
+.place {
+    text-align: right;
+    width: 50%;
+}
+
+.stars {
+    width: 50%;
+}
+
+
+/* Fin Caroussel Google */
