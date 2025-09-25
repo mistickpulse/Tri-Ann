@@ -1164,6 +1164,10 @@ section,
   padding: 30px 30px 70px 30px;
 }
 
+.why-us {
+  padding-top: 20px;
+}
+
 /* .why-us .card-item:hover span,
 .why-us .card-item:hover h4 a,
 .why-us .card-item:hover p {
@@ -1709,9 +1713,7 @@ section,
 --------------------------------------------------------------*/
 
 .contact {
-  background-color: color-mix(in srgb, var(--background-color) 90%, white 5%);
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--accent-color), transparent 90%);
+  background-color: color-mix(in srgb, var(--default-color), transparent 95%);
   padding-left: 10%;
   padding-right: 10%;
 }

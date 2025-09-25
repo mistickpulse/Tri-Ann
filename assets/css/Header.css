@@ -331,3 +331,29 @@
   /* poids normal */
   color: #cda45e;
 }
+
+.form-select {
+  /* background-color: #ffffed; */
+}
+
+.form-control {
+  /* background-color: #ffffed; */
+}
+
+.select-form {
+  font-size: 14px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  color: var(--default-color);
+  background-color: color-mix(
+    in srgb,
+    var(--background-color),
+    transparent 50%
+  );
+  border-color: color-mix(in srgb, var(--accent-color), transparent 70%);
+}
+
+.select-form :focus {
+  border-color: var(--accent-color);
+}
