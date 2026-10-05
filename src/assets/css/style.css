@@ -616,3 +616,10 @@ button.cal-cell:hover { border-color: var(--accent); }
 /* Allergènes des parfums de glace : affichés seulement avec l’interrupteur « Afficher les allergènes » */
 .flavour-allergens { display: none; }
 .show-allergens .flavour-allergens { display: inline; }
+
+/* Pictos des événements (micro, guitare…) */
+.up-ic { flex: none; align-self: center; margin-left: auto; display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-strong); }
+.cal-regular p { position: relative; padding-right: 52px; }
+.cal-regular .up-ic { position: absolute; top: 2px; right: 0; }
+.cal-event h4 { display: flex; align-items: center; gap: 8px; }
+.ev-ic { display: inline-grid; place-items: center; color: var(--accent-strong); }

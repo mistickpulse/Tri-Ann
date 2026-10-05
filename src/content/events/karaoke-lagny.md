@@ -2,6 +2,7 @@
 name: Soirée karaoké
 name_en: Karaoke night
 weekly: thu
+icon: mic
 time: Dès 19h45
 time_en: From 7:45 pm
 short: Karaoké

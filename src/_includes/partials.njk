@@ -93,7 +93,7 @@
     {%- if undated.length %}
     <div class="cal-regular">
       {%- for e in undated %}
-      <p><b>{{ e.name | tr(lang) }}</b><br>
+      <p>{% if e.icon %}<span class="up-ic">{{ e.icon | eventIcon }}</span>{% endif %}<b>{{ e.name | tr(lang) }}</b><br>
       <span class="muted small">{{ e.recurring | tr(lang) }}</span><br>
       <span class="cal-where">{% for r in e.restaurants %}<span class="cal-tag" style="--c:{{ r.color }}">{{ r.city }}</span>{% endfor %}</span></p>
       {%- endfor %}

@@ -2,6 +2,7 @@
 name: Soirées musicales et concerts
 name_en: Live music nights
 short: Concert
+icon: guitar
 short_en: Live music
 recurring: Régulièrement, dates annoncées sur nos réseaux
 recurring_en: Regularly, dates announced on our social media

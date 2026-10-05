@@ -3,6 +3,7 @@
 // Tout est calculé dans le navigateur à partir d'aujourd'hui : le calendrier ne vieillit pas entre deux mises en ligne.
 (() => {
   const DAY_KEYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+  const svg = (paths, size = 22) => (paths ? `<svg class="ic" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>` : "");
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -84,7 +85,7 @@
       detail.hidden = false;
       detail.innerHTML = `<h3>${esc(longDate(selected))}</h3>` + evs.map((e) => `
         <article class="cal-event">
-          <h4>${esc(t(e.name))}${e.time ? ` <span class="muted">· ${esc(t(e.time))}</span>` : ""}</h4>
+          <h4>${e.icon ? `<span class="ev-ic">${svg(e.icon, 18)}</span>` : ""}${esc(t(e.name))}${e.time ? ` <span class="muted">· ${esc(t(e.time))}</span>` : ""}</h4>
           ${e.desc ? `<p class="muted">${esc(t(e.desc))}</p>` : ""}
           <p class="cal-where">${where(e.restaurants)}</p>
           ${selected >= today ? book(e.restaurants) : ""}
@@ -107,6 +108,7 @@
             <button type="button" class="up-item" data-goto="${iso(d)}">
               <span class="up-date"><b>${d.getDate()}</b><small>${esc(d.toLocaleDateString(locale, { month: "short" }))}</small></span>
               <span class="up-body"><b>${esc(t(e.name))}</b><small class="muted">${esc(cap(d.toLocaleDateString(locale, { weekday: "long" })))}${e.time ? " · " + esc(t(e.time)) : ""}</small><span class="cal-where">${where(e.restaurants)}</span></span>
+              ${e.icon ? `<span class="up-ic">${svg(e.icon)}</span>` : ""}
             </button></li>`).join("")
         : `<li class="muted">${esc(root.dataset.empty)}</li>`;
     }

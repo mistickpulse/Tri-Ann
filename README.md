@@ -29,6 +29,7 @@ Le site est alors visible sur http://localhost:8081 et se recharge à chaque mod
 
 Les spécialités, événements et bandeaux acceptent un champ `etablissements` : `[tous]` ou une liste parmi `moussy-le-neuf`, `lagny-le-sec`, `saint-maximin`.
 Mettre `active: false` retire un élément du site sans supprimer le fichier.
+Un événement peut avoir un picto avec `icon:` : `mic` (karaoké), `guitar` (concert, groupe), `drum` (batterie), `music`, `party` (fête). La liste est dans `src/_data/eventIcons.json`.
 
 ## Documents
 

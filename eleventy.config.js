@@ -85,12 +85,19 @@ export default function (eleventyConfig) {
 
   // Données du calendrier : événements datés (date) ou hebdomadaires (weekly: mon…sun)
   const ymd = (d) => (d instanceof Date ? d.toISOString().slice(0, 10) : d ? String(d) : null);
+  const eventIcons = JSON.parse(readFileSync("src/_data/eventIcons.json", "utf8"));
+  const eventIconSvg = (name) => (eventIcons[name] && name !== "_info" ? eventIcons[name] : null);
+  eleventyConfig.addFilter("eventIcon", (name) => {
+    const svg = eventIconSvg(name);
+    return svg ? new nunjucks.runtime.SafeString(`<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg}</svg>`) : "";
+  });
   eleventyConfig.addFilter("calendarData", (events, restaurants) => {
     const all = restaurants.map((r) => r.slug);
     const bi = (d, k) => (d[k] ? { fr: d[k], en: d[k + "_en"] || d[k] } : null);
     const list = (events || []).map(({ data: d }) => ({
       name: bi(d, "name"),
       short: bi(d, "short"),
+      icon: eventIconSvg(d.icon),
       desc: bi(d, "description"),
       time: bi(d, "time"),
       date: ymd(d.date),
@@ -111,6 +118,7 @@ export default function (eleventyConfig) {
       .map(({ data: d }) => ({
         name: { fr: d.name, en: d.name_en || d.name },
         recurring: { fr: d.recurring || "", en: d.recurring_en || d.recurring || "" },
+        icon: d.icon || null,
         restaurants: restaurants.filter((r) => (!only || r.slug === only) && (!d.etablissements || d.etablissements.includes("tous") || d.etablissements.includes(r.slug))),
       }))
       .filter((e) => e.restaurants.length)
