@@ -33,7 +33,7 @@ Un événement peut avoir un picto avec `icon:` : `mic` (karaoké), `guitar` (co
 
 ## Documents
 
-- `docs/formulaires/` : les 4 formulaires que les directeurs envoient par mail (spécialités, événements, horaires, menus spéciaux).
+- `docs/formulaires/` : les 4 formulaires en texte brut, que les directeurs copient dans un mail (spécialités, événements, horaires, menus spéciaux).
 - `docs/textes-a-valider.md` : liste des textes numérotés (T1, T2…) de la version de relecture.
 - `docs/photos-a-fournir.md` : liste des photos et vidéos attendues, avec leur nom de fichier.
 
