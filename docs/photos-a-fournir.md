@@ -2,60 +2,42 @@
 
 Renomme chaque fichier avec le **nom de code** (l'extension n'a pas d'importance : `.jpg`, `.png`, `.heic`, `.mp4`, `.mov`…).
 S'il y a plusieurs photos pour le même nom, ajoute `-2`, `-3`… (ex. `moussy-salle-2.jpg`).
-Envoie les originaux, sans compression WhatsApp : je les redimensionne et les compresse moi-même.
+Envoie les originaux, sans passer par WhatsApp (qui les compresse) : je les recadre et les allège moi-même.
 
-## Règles générales
-- **Horizontal** (paysage), sauf mention contraire.
-- Lumière naturelle de préférence, pas de flash.
-- **Pas de clients reconnaissables** (droit à l'image). L'équipe peut apparaître si elle est d'accord.
-- Pas de photos trouvées sur internet (droits d'auteur).
+**Règles générales :** à l'horizontale (sauf mention contraire), lumière naturelle, pas de flash,
+pas de client reconnaissable, pas de photo trouvée sur internet.
 
-## Vidéo
-| Nom | Contenu | Format |
+---
+
+## 1. À remplacer en priorité (photos du modèle, ce ne sont pas les vôtres)
+
+| Nom de code | Où elle apparaît sur le site | Ce qu'il faut |
 |---|---|---|
-| `video-accueil` | Montage 10–15 s, en boucle : pâte étalée au rozell sur le billig → galette pliée → caramel versé sur une crêpe. Plans de 3–5 s, pas de visage de face. | Horizontal, 1080p minimum, sans son |
-| `video-accueil-mobile` | *(facultatif)* Même montage filmé à la verticale, pour les téléphones | Vertical 9:16 |
+| `accueil-fond` | **Grand visuel d'accueil (hero)**, aperçu quand on partage le lien (WhatsApp, Facebook), fiche Google | Une galette ou le billig en action, **à l'horizontale, au moins 2000 px de large**. Le texte s'affiche en bas à gauche : le plat doit plutôt être à droite ou au centre. Image assez sombre ou contrastée. |
+| `carte-galettes` | En-tête de la catégorie « Galettes » sur la carte | Une galette salée vue de dessus (format carré possible) |
+| `carte-crepes` | En-tête de la catégorie « Crêpes » | Une crêpe sucrée |
+| `carte-apercu` | Bloc « Toute la carte en un coup d'œil » de l'accueil | Une crêpe dessert bien présentée |
+| `carte-salades` | En-tête de la catégorie « Salades » | Une salade (ex. la Ouessant) |
 
-## Accueil
-| Nom | Contenu |
-|---|---|
-| `accueil-fond` | Une belle galette en gros plan, ou le billig en action. Sert d'image pendant le chargement de la vidéo et d'aperçu quand on partage le lien sur WhatsApp ou Facebook |
-| `savoir-faire` | Le geste au billig, la pâte, ou le caramel maison (format carré possible) |
-| `carte-apercu` | Une crêpe dessert bien présentée (bloc « Voir la carte ») |
+## 2. À améliorer (vos photos, mais pas dans le bon format)
 
-## Restaurants (une série par restaurant)
-| Nom | Contenu |
-|---|---|
-| `moussy-facade` | La devanture du Tri-Ann (Moussy-le-Neuf) |
-| `moussy-salle` | La salle, vide ou sans clients reconnaissables (2–3 photos) |
-| `lagny-facade` | La devanture du Tri-Ann 2 (Lagny-le-Sec) |
-| `lagny-salle` | La salle (2–3 photos) |
-| `lagny-mur-bouteilles` | **L'original rectangulaire** du mur de bouteilles (celle du site est découpée en rond) |
-| `saintmax-facade` | La devanture du Tri-Ann 3 (Saint-Maximin) |
-| `saintmax-salle` | La salle (2–3 photos) |
+| Nom de code | Où | Problème |
+|---|---|---|
+| `lagny-mur-bouteilles` | Haut de la page Lagny-le-Sec, catégorie « Boissons » | La photo actuelle est découpée en rond : il faut l'**original rectangulaire** |
+| `logo` | En-tête, pied de page, icône de l'onglet | Le logo actuel est une image floue : il faut un fichier **vectoriel** (`.svg`, `.ai`, `.pdf`, `.eps`) ou un PNG à fond transparent. Le graphiste ou l'imprimeur de la carte l'a sûrement. |
 
-## Carte (une photo en tête de chaque rubrique)
-| Nom | Contenu |
-|---|---|
-| `carte-galettes` | Une galette salée |
-| `carte-salades` | Une salade (ex. la Ouessant) |
-| `carte-crepes` | Une crêpe sucrée |
-| `carte-glaces` | Une coupe glacée |
-| `carte-boissons` | Un ou plusieurs cocktails |
+## 3. Emplacements encore vides
 
-## Incontournables (4 à 6 plats mis en avant)
-Choisis les plats que vous voulez mettre en avant et nomme chaque photo `plat-` + nom du plat, en minuscules et sans accents.
-Exemples : `plat-complete`, `plat-mont-darree`, `plat-saint-michel`, `plat-sphere`, `plat-mojito-breton`.
+| Nom de code | Où | Ce qu'il faut |
+|---|---|---|
+| `video-accueil` | Remplacerait la photo d'accueil | Montage de 10 à 15 s en boucle, sans son : pâte étalée sur le billig, galette pliée, caramel versé. Horizontal, 1080p minimum. *(facultatif, mais ce serait l'idéal)* |
+| `moussy-facade`, `moussy-salle` | Haut de la page Moussy-le-Neuf (aujourd'hui sans photo) | La devanture, puis la salle (2–3 photos) |
+| `saintmax-facade`, `saintmax-salle` | Haut de la page Saint-Maximin (aujourd'hui sans photo) | La devanture, puis la salle (2–3 photos) |
+| `lagny-facade`, `lagny-salle` | Galerie de la page Lagny-le-Sec | La devanture et la salle |
+| `carte-glaces` | En-tête de la catégorie « Glaces » (aujourd'hui sans photo) | Une coupe glacée |
+| `carte-boissons` | En-tête de la catégorie « Boissons » | Un ou plusieurs cocktails (sinon on garde le mur de bouteilles) |
 
-## Spéciales et événements en cours
-| Nom | Contenu |
-|---|---|
-| `speciale-savoyarde` | Seulement si la Savoyarde est toujours d'actualité |
-| `speciale-dame-helene` | Idem pour la Dame Hélène |
-| `speciale-framboyant` | Idem pour le Framboyant |
-| `event-karaoke` | Une soirée karaoké (ambiance, scène, sans visage reconnaissable) |
+## 4. Déjà en place, rien à faire
 
-## Logo
-| Nom | Contenu |
-|---|---|
-| `logo` | Le logo en **meilleure qualité possible** : fichier vectoriel (`.svg`, `.ai`, `.pdf`, `.eps`) ou PNG à fond transparent. Le graphiste ou l'imprimeur de la carte l'a sûrement. |
+Les 4 spécialités du moment (Vérone, Potimarron, Tatin, Pimprenelle) utilisent les photos de vos posts Instagram.
+Pour les prochaines spécialités, joignez la photo au formulaire 1.
