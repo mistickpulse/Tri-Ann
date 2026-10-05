@@ -17,7 +17,11 @@ scripts: ["/assets/js/menu.js"]
 
 {%- macro item(it, lang, sec, badges, restos) -%}
 {%- set unitPrice = it.price if it.price != null else (sec.price if sec.price else null) -%}
-<li class="dish" data-tags="{{ (it.tags or []) | join(' ') }}" data-allergens="{{ it.allergens | allergenAttr }}"{% if unitPrice %} data-price="{{ unitPrice }}" data-name="{{ it.name | tr(lang) }}"{% endif %}{% if restos %} data-restos="{{ restos }}"{% endif %}>
+<li class="dish" data-tags="{{ (it.tags or []) | join(' ') }}" data-allergens="{{ it.allergens | allergenAttr }}"{% if unitPrice %} data-price="{{ unitPrice }}" data-name="{{ it.name | tr(lang) }}"{% endif %}{% if restos %} data-restos="{{ restos }}"{% endif %}{% if it.image %} data-thumb{% endif %}>
+  {%- if it.image %}
+  <img class="dish-thumb" src="{{ it.image }}" alt="{{ it.name | tr(lang) }}" loading="lazy" width="96" height="96">
+  <div class="dish-main">
+  {%- endif %}
   <div class="dish-line">
     <span class="dish-name">{{ it.name | tr(lang) }}{% if badges == "vege" and it.tags and ("vege" in it.tags) %} <span class="veg-mark" title="{{ 'menu.vege' | t(lang) }}">{{ icon("leaf", 15) }}<span class="sr-only">{{ 'menu.vege' | t(lang) }}</span></span>{% endif %}</span>
     {%- if it.price != null %}<span class="dish-price">{{ it.price | price(lang) }}</span>{% endif %}
@@ -30,6 +34,9 @@ scripts: ["/assets/js/menu.js"]
     {%- elif (it.allergens | allergenAttr) == "none" %}{{ "menu.allergens" | t(lang) }} : —
     {%- else %}{{ "menu.allergensUnknown" | t(lang) }}{% endif -%}
   </p>
+  {%- if it.image %}
+  </div>
+  {%- endif %}
 </li>
 {%- endmacro -%}
 
@@ -52,7 +59,7 @@ scripts: ["/assets/js/menu.js"]
     {%- for g in sec.groups %}
     <div>
       <h4>{{ g.title | tr(lang) }}</h4>
-      <ul>{% for it in g.items %}<li>{{ it.name | tr(lang) }}{% if it.allergens.length %} <span class="muted small">· {{ allergenList(it.allergens, lang) }}</span>{% endif %}</li>{% endfor %}</ul>
+      <ul>{% for it in g.items %}<li>{{ it.name | tr(lang) }}{% if it.allergens.length %} <span class="muted small flavour-allergens">· {{ allergenList(it.allergens, lang) }}</span>{% endif %}</li>{% endfor %}</ul>
     </div>
     {%- endfor %}
   </div>

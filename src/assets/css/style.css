@@ -580,3 +580,39 @@ button.cal-cell:hover { border-color: var(--accent); }
 
 /* Boutons des cartes restaurant alignés en bas, quelle que soit la longueur du texte */
 .resto-card .actions { margin-top: auto; padding-top: 14px; }
+
+/* ---------- Spécialités du moment sur la carte : effets ---------- */
+/* 1. Liseré lumineux qui tourne lentement autour du cadre */
+@property --spin { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.special-section {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    conic-gradient(from var(--spin), var(--accent), #e3b341, var(--accent-strong), #e3b341 70%, var(--accent)) border-box;
+  box-shadow: 0 0 0 1px rgba(227,179,65,.08), 0 18px 50px rgba(227,179,65,.10);
+}
+.special-section::before { display: none; }
+.special-section .menu-section-head { background: linear-gradient(90deg, rgba(227,179,65,.14), var(--surface-2) 60%); }
+.special-section .menu-section-head .ic { color: #e3b341; }
+@media (prefers-reduced-motion: no-preference) {
+  .special-section { animation: special-spin 7s linear infinite; }
+}
+@keyframes special-spin { to { --spin: 360deg; } }
+
+/* 6. Photo ronde de la spécialité, qui grossit au survol */
+.dish[data-thumb] { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; align-items: start; }
+.dish-thumb { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(227,179,65,.55); box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: transform .25s ease, box-shadow .25s ease; }
+.dish[data-thumb]:hover .dish-thumb { transform: scale(1.08) rotate(-2deg); box-shadow: 0 10px 26px rgba(227,179,65,.25); }
+@media (max-width: 599px) {
+  .dish[data-thumb] { grid-template-columns: 64px minmax(0, 1fr); gap: 12px; }
+  .dish-thumb { width: 64px; height: 64px; }
+}
+
+/* 4. Apparition au défilement, plat par plat */
+.reveal-ready .special-section .dish { opacity: 0; transform: translateY(18px); }
+.reveal-ready .special-section.is-revealed .dish { animation: dish-in .55s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i, 0) * 110ms); }
+@keyframes dish-in { to { opacity: 1; transform: none; } }
+
+/* Allergènes des parfums de glace : affichés seulement avec l’interrupteur « Afficher les allergènes » */
+.flavour-allergens { display: none; }
+.show-allergens .flavour-allergens { display: inline; }

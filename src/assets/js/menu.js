@@ -290,3 +290,19 @@ window.addEventListener("hashchange", () => {
   applyFilters();
   scrollToResults(startY);
 });
+
+// Spécialités du moment : les plats apparaissent l'un après l'autre quand on arrive sur la rubrique
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("reveal-ready");
+  const revealer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("is-revealed");
+      revealer.unobserve(e.target);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll("[data-special-section]").forEach((sec) => {
+    sec.querySelectorAll(".dish").forEach((li, i) => li.style.setProperty("--i", i));
+    revealer.observe(sec);
+  });
+}
