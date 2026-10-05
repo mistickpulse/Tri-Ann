@@ -577,3 +577,6 @@ button.cal-cell:hover { border-color: var(--accent); }
 .review-bar { padding-right: 52px; }
 .review-close { position: absolute; top: 50%; right: 10px; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; border: 0; background: rgba(26,21,18,.15); color: #1a1512; font-size: 1.3rem; line-height: 1; cursor: pointer; }
 .review-close:hover { background: rgba(26,21,18,.3); }
+
+/* Boutons des cartes restaurant alignés en bas, quelle que soit la longueur du texte */
+.resto-card .actions { margin-top: auto; padding-top: 14px; }
