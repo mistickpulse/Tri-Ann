@@ -494,3 +494,7 @@ button.cal-cell:hover { border-color: var(--accent); }
 .specials-ask button:hover { background: var(--accent); color: var(--accent-ink); }
 .specials-ask button[data-specials-answer="oui"] { color: var(--accent-strong); }
 .specials-ask button[data-specials-answer="oui"]:hover { color: var(--accent-ink); }
+
+/* Liens du menu vers une section (#speciales, #restaurants, #evenements) :
+   on compense la marge intérieure de la section pour arriver directement sur son titre */
+.band[id] { scroll-margin-top: calc(-1 * clamp(56px, 8vw, 96px) + 8px); }
