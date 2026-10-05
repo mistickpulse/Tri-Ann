@@ -623,3 +623,12 @@ button.cal-cell:hover { border-color: var(--accent); }
 .cal-regular .up-ic { position: absolute; top: 2px; right: 0; }
 .cal-event h4 { display: flex; align-items: center; gap: 8px; }
 .ev-ic { display: inline-grid; place-items: center; color: var(--accent-strong); }
+
+/* Photos des spécialités en grand (remplace les petites vignettes rondes) */
+.dish[data-thumb] { grid-template-columns: 220px minmax(0, 1fr); gap: 22px; align-items: center; }
+.dish-thumb { width: 220px; height: 165px; border-radius: 14px; border: 2px solid rgba(227,179,65,.5); }
+.dish[data-thumb]:hover .dish-thumb { transform: scale(1.03); }
+@media (max-width: 599px) {
+  .dish[data-thumb] { grid-template-columns: 1fr; gap: 12px; }
+  .dish-thumb { width: 100%; height: auto; aspect-ratio: 4 / 3; }
+}
