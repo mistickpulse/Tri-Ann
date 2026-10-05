@@ -650,6 +650,14 @@
     "orderNote": {
       "fr": "Total indicatif, à confirmer par téléphone. Les suppléments sont à préciser au moment de la commande. Aucun paiement en ligne : vous réglez sur place.",
       "en": "Estimated total, to be confirmed by phone. Mention any extras when ordering. No online payment: you pay when you pick up."
+    },
+    "collapse": {
+      "fr": "Réduire le panier",
+      "en": "Collapse the order"
+    },
+    "hideOrder": {
+      "fr": "réduire",
+      "en": "collapse"
     }
   },
   "specials": {

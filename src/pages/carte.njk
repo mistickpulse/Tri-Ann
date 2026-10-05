@@ -203,7 +203,10 @@ scripts: ["/assets/js/menu.js"]
   <div class="order-panel" data-order-panel hidden>
     <div class="order-panel-head">
       <h2>{{ "takeaway.order" | t(lang) }}</h2>
-      <button class="link-btn" type="button" data-order-clear>{{ "takeaway.clear" | t(lang) }}</button>
+      <div class="order-panel-actions">
+        <button class="link-btn" type="button" data-order-clear>{{ "takeaway.clear" | t(lang) }}</button>
+        <button class="icon-btn order-close" type="button" data-order-collapse aria-label="{{ 'takeaway.collapse' | t(lang) }}" title="{{ 'takeaway.collapse' | t(lang) }}">{{ icon("close", 18) }}</button>
+      </div>
     </div>
     <ul class="order-list" data-order-list></ul>
     <p class="muted small">{{ "takeaway.orderNote" | t(lang) }} {{ "takeaway.orderNote" | rtag }}</p>
@@ -211,7 +214,8 @@ scripts: ["/assets/js/menu.js"]
   <div class="order-summary">
     <button class="order-toggle" type="button" aria-expanded="false" data-order-toggle>
       <span class="order-count" data-order-count>0</span>
-      <span><b data-order-total></b><small class="muted"> · {{ "takeaway.seeOrder" | t(lang) }}</small></span>
+      <span><b data-order-total></b><small class="muted"> · <span data-order-label-open hidden>{{ "takeaway.hideOrder" | t(lang) }}</span><span data-order-label-closed>{{ "takeaway.seeOrder" | t(lang) }}</span></small></span>
+      <span class="order-chevron" aria-hidden="true">{{ icon("chevronUp", 20) }}</span>
     </button>
     <a class="btn btn-primary" href="#" data-order-call>{{ icon("phone", 18) }} {{ "takeaway.callToOrder" | t(lang) }}</a>
   </div>

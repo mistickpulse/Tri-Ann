@@ -228,13 +228,19 @@ document.querySelector("[data-order-clear]")?.addEventListener("click", () => {
   order = [];
   saveOrder();
   renderOrder();
-  orderPanel.hidden = true;
-  orderToggle.setAttribute("aria-expanded", "false");
+  setOrderOpen(false);
 });
-orderToggle?.addEventListener("click", () => {
-  const open = orderPanel.hidden;
+// Ouvre / réduit le détail de la commande (flèche du bandeau, croix du panneau)
+function setOrderOpen(open) {
   orderPanel.hidden = !open;
   orderToggle.setAttribute("aria-expanded", String(open));
+  orderBar.classList.toggle("is-open", open);
+  document.querySelector("[data-order-label-open]").hidden = !open;
+  document.querySelector("[data-order-label-closed]").hidden = open;
+}
+document.querySelector("[data-order-collapse]")?.addEventListener("click", () => setOrderOpen(false));
+orderToggle?.addEventListener("click", () => {
+  setOrderOpen(orderPanel.hidden);
 });
 
 function setupTakeaway() {
