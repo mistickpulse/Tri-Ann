@@ -109,12 +109,7 @@ scripts: ["/assets/js/menu.js"]
         <button class="toggle-btn" type="button" data-open-filters>{{ icon("filter", 18) }} {{ "menu.allergensBtn" | t(lang) }}<span class="filter-count" data-allergen-count hidden></span></button>
         <button class="toggle-clear" type="button" data-clear-allergens aria-label="{{ 'menu.clearAllergens' | t(lang) }}" title="{{ 'menu.clearAllergens' | t(lang) }}" hidden>{{ icon("close", 16) }}</button>
       </span>
-      <span class="specials-ask" role="group" aria-label="{{ 'specials.ask' | t(lang) }}" data-specials-ask hidden>
-        <span class="specials-ask-q">{{ icon("star", 18) }} {{ "specials.ask" | t(lang) }}</span>
-        <button type="button" data-specials-answer="oui">{{ "specials.yes" | t(lang) }}</button>
-        <button type="button" data-specials-answer="aucune">{{ "specials.no" | t(lang) }}</button>
-      </span>
-      <button class="toggle-btn specials-toggle" type="button" aria-pressed="false" data-specials-toggle hidden title="{{ 'specials.toggleHelp' | t(lang) }}">{{ icon("star", 18) }} {{ "specials.toggle" | t(lang) }}</button>
+      <button class="toggle-btn specials-toggle" type="button" aria-pressed="true" data-specials-toggle title="{{ 'specials.toggleHelp' | t(lang) }}">{{ icon("star", 18) }} {{ "specials.toggle" | t(lang) }}</button>
     </div>
     <p class="butter-hint small" data-butter-hint hidden>{{ icon("info", 16) }} <span>{{ "menu.butterHint" | t(lang) }} {{ "menu.butterHint" | rtag }}</span></p>
     <label class="switch show-allergens-switch"><input type="checkbox" name="showAllergens" data-show-allergens><span class="switch-track" aria-hidden="true"></span> {{ "menu.showAllergens" | t(lang) }}</label>

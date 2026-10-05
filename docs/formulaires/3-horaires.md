@@ -1,0 +1,27 @@
+# Formulaire 3 – Horaires et fermetures
+
+**Objet du mail :** Site Tri-Ann – Horaires – [Restaurant]
+
+---
+
+**Restaurant(s) :** Moussy-le-Neuf / Lagny-le-Sec / Saint-Maximin / Les 3
+
+### Fermeture exceptionnelle ou congés
+- Du (date) :
+- Au (date incluse) :
+- Message à afficher sur le site (ex. « Fermé pour congés, réouverture le mardi 3 ») :
+
+### Ouverture exceptionnelle
+- Date :
+- Horaires (midi / soir) :
+
+### Changement d'horaires habituels
+- À partir du (date) :
+- Nouveaux horaires, jour par jour :
+  - Lundi :
+  - Mardi :
+  - Mercredi :
+  - Jeudi :
+  - Vendredi :
+  - Samedi :
+  - Dimanche :

@@ -105,14 +105,15 @@ export default function (eleventyConfig) {
     }).replace(/</g, "\\u003c");
   });
   // Événements sans date ni jour fixe (ex. concerts annoncés sur les réseaux)
-  eleventyConfig.addFilter("undatedEvents", (events, restaurants) =>
+  eleventyConfig.addFilter("undatedEvents", (events, restaurants, only) =>
     (events || [])
       .filter((e) => !e.data.date && !e.data.weekly)
       .map(({ data: d }) => ({
         name: { fr: d.name, en: d.name_en || d.name },
         recurring: { fr: d.recurring || "", en: d.recurring_en || d.recurring || "" },
-        restaurants: restaurants.filter((r) => !d.etablissements || d.etablissements.includes("tous") || d.etablissements.includes(r.slug)),
+        restaurants: restaurants.filter((r) => (!only || r.slug === only) && (!d.etablissements || d.etablissements.includes("tous") || d.etablissements.includes(r.slug))),
       }))
+      .filter((e) => e.restaurants.length)
   );
   eleventyConfig.addFilter("takeawayData", (restaurants) =>
     JSON.stringify(restaurants.map(({ slug, city, phone, phoneIntl }) => ({ slug, city, phone, phoneIntl }))).replace(/</g, "\\u003c")

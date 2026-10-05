@@ -1,0 +1,26 @@
+# Formulaire 1 – Spécialités du moment
+
+**Objet du mail :** Site Tri-Ann – Spécialité – [Restaurant]
+
+---
+
+**Restaurant(s) :** Moussy-le-Neuf / Lagny-le-Sec / Saint-Maximin / Les 3
+
+### Spécialité salée (galette)
+- Nom :
+- Ingrédients / description :
+- Prix :
+- Remplace la spécialité salée actuelle ? Oui / Non
+- Photo jointe ? Oui / Non
+
+### Spécialité sucrée (crêpe)
+- Nom :
+- Ingrédients / description :
+- Prix :
+- Remplace la spécialité sucrée actuelle ? Oui / Non
+- Photo jointe ? Oui / Non
+
+### À retirer
+- (ex. « la Vérone n'est plus servie à Saint-Maximin »)
+
+*Rappel : la spécialité sucrée n'est pas proposée à emporter.*

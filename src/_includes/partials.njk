@@ -2,9 +2,14 @@
 
 {%- macro mapsUrl(r) -%}https://www.google.com/maps/search/?api=1&query={{ ('Tri-Ann ' + r.city) | urlencode }}&query_place_id={{ r.placeId }}{%- endmacro -%}
 
-{%- macro restoCard(r, lang, site) -%}
+{%- macro restoCard(r, lang, site, withRating) -%}
 <article class="resto-card" data-hours='{{ r.hours | json }}'>
   <h3><a href="{{ site.routes | route('restaurant', lang, r.slug) }}">{{ r.city }}</a></h3>
+  {%- if withRating %}
+  <a class="rating-mini" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener" data-place="{{ r.placeId }}" data-label="{{ r.city }}">
+    <b data-score>–</b><span class="stars" data-stars aria-hidden="true">★★★★★</span><small class="muted"><span data-count></span> {{ "reviews.count" | t(lang) }} Google</small>
+  </a>
+  {%- endif %}
   <p class="status" data-status data-lang="{{ lang }}"></p>
   <p class="muted">{{ r.landmark | tr(lang) }}</p>
   <p class="muted small">{{ r.hours | hoursSummary(lang) }}</p>
@@ -84,7 +89,7 @@
     <div class="cal-detail" data-cal-detail aria-live="polite" hidden></div>
     <h3 class="cal-side-title" data-cal-side-title>{{ "calendar.upcoming" | t(lang) }}</h3>
     <ul class="cal-upcoming" data-cal-upcoming></ul>
-    {%- set undated = events | undatedEvents(restaurants) %}
+    {%- set undated = events | undatedEvents(restaurants, only) %}
     {%- if undated.length %}
     <div class="cal-regular">
       {%- for e in undated %}

@@ -50,10 +50,6 @@
       "fr": "Bienvenue au Tri-Ann",
       "en": "Welcome to Tri-Ann"
     },
-    "heroText": {
-      "fr": "Pour les amoureux des crêpes, des galettes et de la Bretagne. Trois crêperies, une même carte, et tout est fait maison.",
-      "en": "For lovers of crêpes, galettes and Brittany. Three crêperies, one menu, and everything is homemade."
-    },
     "specialsEyebrow": {
       "fr": "En ce moment",
       "en": "Right now"
@@ -66,13 +62,9 @@
       "fr": "Pas de spécialité en ce moment dans ce restaurant : toute la carte vous attend !",
       "en": "No special at this restaurant right now, but the whole menu is waiting for you!"
     },
-    "restosEyebrow": {
-      "fr": "Nos crêperies",
-      "en": "Our crêperies"
-    },
     "restosTitle": {
-      "fr": "Trois crêperies, une même carte",
-      "en": "Three crêperies, one menu"
+      "fr": "Nos trois crêperies",
+      "en": "Our three crêperies"
     },
     "servicesEyebrow": {
       "fr": "Services",
@@ -87,7 +79,7 @@
       "en": "What's on"
     },
     "eventsTitle": {
-      "fr": "Le calendrier de nos soirées",
+      "fr": "Le calendrier de nos événements",
       "en": "Our events calendar"
     },
     "noEvents": {
@@ -133,6 +125,14 @@
     "aboutText2": {
       "fr": "On vient chez nous pour bien manger, mais aussi pour passer un bon moment, en famille ou entre amis. Tout au long de l'année : karaoké le jeudi, soirées bretonnes, scène ouverte avec instruments à disposition, concerts, et les fêtes de Noël, d'Halloween ou de la Saint-Valentin.",
       "en": "People come to us to eat well, but also to have a good time with family or friends. All year round: karaoke on Thursdays, Breton evenings, open stage with instruments available, live music, and Christmas, Halloween and Valentine's Day celebrations."
+    },
+    "heroLine1": {
+      "fr": "Pour les amoureux des crêpes, des galettes et de la Bretagne.",
+      "en": "For lovers of crêpes, galettes and Brittany."
+    },
+    "heroLine2": {
+      "fr": "Trois crêperies où tout est fait maison.",
+      "en": "Three crêperies where everything is homemade."
     }
   },
   "craft": [
@@ -142,8 +142,8 @@
         "en": "100% buckwheat batter, rested for 72 hours"
       },
       "text": {
-        "fr": "Notre farine de blé noir est moulue à la meule de pierre par le Moulin de la Fatigue. La pâte repose 72 heures avant d'être tirée.",
-        "en": "Our buckwheat flour is stone-ground by the Moulin de la Fatigue. The batter rests for 72 hours before cooking."
+        "fr": "Notre farine de blé noir de Bretagne IGP est moulue à la meule de pierre par le Moulin de la Fatigue. La pâte repose 72 heures avant d'être tirée.",
+        "en": "Our Brittany PGI buckwheat flour is stone-ground by the Moulin de la Fatigue. The batter rests for 72 hours before cooking."
       }
     },
     {
@@ -162,8 +162,8 @@
         "en": "Homemade"
       },
       "text": {
-        "fr": "Chantilly, caramel beurre salé, chocolat, meringue et crémeux au mascarpone sont préparés sur place par notre chef pâtissier.",
-        "en": "Whipped cream, salted butter caramel, chocolate, meringue and mascarpone cheese creams are made on site by our pastry chef."
+        "fr": "Chantilly, caramel beurre salé, meringue et crémeux au mascarpone sont préparés sur place par notre chef pâtissier, tout comme notre chocolat, à base de chocolat Valrhona.",
+        "en": "Whipped cream, salted butter caramel, meringue and mascarpone cheese creams are made on site by our pastry chef, as is our chocolate sauce, made with Valrhona chocolate."
       }
     },
     {
@@ -182,8 +182,8 @@
         "en": "Artisan ice cream"
       },
       "text": {
-        "fr": "Toutes nos glaces et nos sorbets sont réalisés par un maître glacier.",
-        "en": "All our ice creams and sorbets are made by a master ice-cream maker."
+        "fr": "Nos glaces et nos sorbets sont réalisés par un artisan glacier réputé : Glaces des Alpes.",
+        "en": "Our ice creams and sorbets are made by a renowned artisan ice-cream maker: Glaces des Alpes."
       }
     },
     {

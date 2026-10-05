@@ -5,7 +5,7 @@
       "id": "galettes",
       "group": "plats",
       "title": { "fr": "Galettes de blé noir", "en": "Buckwheat galettes" },
-      "intro": { "fr":"Notre pâte 100 % sarrasin est maturée 72 h, avec une farine de blé noir moulue à la meule de pierre par le Moulin de la Fatigue. Les galettes sont tirées sur le billig et cuites au saindoux (au beurre sur demande, pour un plat végétarien ou sans porc). Elles sont toutes servies avec une salade verte et notre vinaigrette au sésame.", "en":"Our 100% buckwheat batter rests for 72 hours and is made with stone-ground flour from the Moulin de la Fatigue. Galettes are cooked on the billig in lard (in butter on request, for a vegetarian or pork-free dish), and all come with a green salad and our sesame dressing." },
+      "intro": { "fr": "Notre pâte 100 % sarrasin est maturée 72 h, avec une farine de blé noir de Bretagne IGP moulue à la meule de pierre par le Moulin de la Fatigue. Les galettes sont tirées sur le billig et cuites au saindoux (au beurre sur demande, pour un plat végétarien ou sans porc). Elles sont toutes servies avec une salade verte et notre vinaigrette au sésame.", "en": "Our 100% buckwheat batter rests for 72 hours and is made with Brittany PGI buckwheat flour, stone-ground by the Moulin de la Fatigue. Galettes are cooked on the billig in lard (in butter on request, for a vegetarian or pork-free dish), and all come with a green salad and our sesame dressing." },
       "image": "galette-sarasin.jpg",
       "sections": [
         {
@@ -360,7 +360,7 @@
       "id": "crepes",
       "group": "desserts",
       "title": { "fr": "Crêpes au froment", "en": "Sweet wheat crêpes" },
-      "intro": { "fr":"Préparées à la minute. Chantilly, caramel beurre salé, chocolat et meringue sont faits sur place par notre chef pâtissier.", "en":"Made to order. Whipped cream, salted butter caramel, chocolate and meringue are made on site by our pastry chef." },
+      "intro": { "fr": "Préparées à la minute. Chantilly, caramel beurre salé et meringue sont faits sur place par notre chef pâtissier, tout comme notre chocolat, à base de chocolat Valrhona.", "en": "Made to order. Whipped cream, salted butter caramel and meringue are made on site by our pastry chef, as is our chocolate sauce, made with Valrhona chocolate." },
       "image": "crepe-dessert.png",
       "sections": [
         {
@@ -621,7 +621,7 @@
       "id": "glaces",
       "group": "desserts",
       "title": { "fr": "Glaces", "en": "Ice cream" },
-      "intro": { "fr":"Toutes nos glaces et nos sorbets sont réalisés par un maître glacier.", "en":"All our ice creams and sorbets are made by a master ice-cream maker." },
+      "intro": { "fr": "Nos glaces et nos sorbets sont réalisés par un artisan glacier réputé : Glaces des Alpes.", "en": "Our ice creams and sorbets are made by a renowned artisan ice-cream maker: Glaces des Alpes." },
       "sections": [
         {
           "id": "coupes-glacees",

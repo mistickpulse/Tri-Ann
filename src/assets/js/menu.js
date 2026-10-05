@@ -24,7 +24,8 @@ let takeaway = restaurants.find((r) => r.slug === params.get("emporter")) || nul
 // ---------- Spécialités du moment ----------
 // La question Oui / Non est posée à chaque arrivée sur la carte,
 // sauf depuis le lien « Voir dans la carte » de l'accueil (?speciales) : spécialités affichées d'office.
-let specialsChoice = params.has("speciales") ? "oui" : ""; // "" = pas encore répondu, "oui" ou "aucune"
+// Spécialités affichées par défaut ; le bouton permet de les masquer
+let specialsChoice = "oui"; // "oui" ou "aucune"
 function setSpecials(choice) {
   specialsChoice = choice;
   renderSpecialsUi();
@@ -34,17 +35,13 @@ function renderSpecialsUi() {
   const btn = document.querySelector("[data-specials-toggle]");
   // Tant qu'on n'a pas répondu : la question Oui / Non ; ensuite : le bouton bascule
   // (en mode à emporter, les spécialités du restaurant sont déjà affichées : ni l'un ni l'autre)
-  document.querySelector("[data-specials-ask]").hidden = !!takeaway || !!specialsChoice;
-  btn.hidden = !!takeaway || !specialsChoice;
+  btn.hidden = !!takeaway;
   btn.setAttribute("aria-pressed", String(specialsChoice === "oui"));
   // En mode à emporter, le restaurant est connu : le tag de disponibilité devient inutile
   document.querySelectorAll("[data-avail]").forEach((el) => (el.hidden = !!takeaway));
 }
 document.querySelector("[data-specials-toggle]")?.addEventListener("click", () => setSpecials(specialsChoice === "oui" ? "aucune" : "oui"));
-document.querySelectorAll("[data-specials-answer]").forEach((b) => b.addEventListener("click", () => {
-  setSpecials(b.dataset.specialsAnswer);
-  document.querySelector("[data-specials-toggle]").focus();
-}));
+
 
 
 // ---------- Panneau allergènes ----------
@@ -271,6 +268,14 @@ setupTakeaway();
 renderSpecialsUi();
 applyFilters();
 if (selectedCat) requestAnimationFrame(scrollToResults);
+if (params.has("speciales") && !selectedCat) {
+  requestAnimationFrame(() => {
+    const target = document.querySelector("[data-special-section]:not([hidden])");
+    if (!target) return;
+    const headerH = document.querySelector("[data-header]")?.offsetHeight || 0;
+    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - headerH - menuNav.offsetHeight - 16, behavior: "smooth" });
+  });
+}
 window.addEventListener("hashchange", () => {
   const id = location.hash.slice(1);
   if (!categories.some((c) => c.id === id)) return;

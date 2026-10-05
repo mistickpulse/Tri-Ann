@@ -87,9 +87,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
   <div class="wrap">
     <p class="eyebrow">{{ "home.eventsEyebrow" | t(lang) }}</p>
     <h2>{{ "resto.events" | t(lang) }}</h2>
-    {%- if events.length %}
     {{ eventsCalendar(events, lang, restaurants, r.slug) }}
-    {%- else %}<p class="muted">{{ "home.noEvents" | t(lang) }}</p>{% endif %}
   </div>
 </section>
 

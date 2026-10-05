@@ -19,18 +19,11 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
   <img class="hero-media" src="/assets/img/galette-sarasin.jpg" alt="" width="1080" height="665" fetchpriority="high">
   <div class="wrap hero-content">
     <h1>{{ "home.heroTitle" | t(lang) }}</h1>
-    <p>{{ "home.heroText" | t(lang) }} {{ "home.heroText" | rtag }}</p>
+    <p>{{ "home.heroLine1" | t(lang) }}<br>{{ "home.heroLine2" | t(lang) }} {{ "home.heroText" | rtag }}</p>
     <div class="ctas">
       <a class="btn btn-primary btn-lg" href="{{ site.routes | route('menu', lang) }}">{{ icon("book", 20) }} {{ "home.seeMenu" | t(lang) }}</a>
       <a class="btn btn-ghost btn-lg on-dark" href="#restaurants">{{ icon("pin", 20) }} {{ "nav.restaurants" | t(lang) }}</a>
     </div>
-  </div>
-</section>
-
-<section class="band band-alt" aria-labelledby="reviews-title">
-  <div class="wrap">
-    <h2 id="reviews-title" class="sr-only">{{ "reviews.title" | t(lang) }}</h2>
-    {{ reviewsBlock(["moussy-le-neuf", "lagny-le-sec", "saint-maximin"], lang, restaurants) }}
   </div>
 </section>
 
@@ -41,7 +34,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
     <div class="specials-bar">
     <div class="tabs" role="tablist" data-tabs>
       {%- for r in restaurants %}
-      <button role="tab" id="tab-{{ r.slug }}" aria-controls="panel-{{ r.slug }}" aria-selected="{{ 'true' if loop.first else 'false' }}"{% if not loop.first %} tabindex="-1"{% endif %}>{{ r.city }}</button>
+      <button role="tab" id="tab-{{ r.slug }}" aria-controls="panel-{{ r.slug }}" aria-selected="{{ 'true' if r.slug == site.defaultSpecialsRestaurant else 'false' }}"{% if r.slug != site.defaultSpecialsRestaurant %} tabindex="-1"{% endif %}>{{ r.city }}</button>
       {%- endfor %}
     </div>
     <div class="specials-more">
@@ -51,7 +44,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
     </div>
     {%- for r in restaurants %}
     {%- set specials = collections.specials | forRestaurant(r.slug) %}
-    <div class="tab-panel" role="tabpanel" id="panel-{{ r.slug }}" aria-labelledby="tab-{{ r.slug }}"{% if not loop.first %} hidden{% endif %}>
+    <div class="tab-panel" role="tabpanel" id="panel-{{ r.slug }}" aria-labelledby="tab-{{ r.slug }}"{% if r.slug != site.defaultSpecialsRestaurant %} hidden{% endif %}>
       {%- if specials.length %}
       <div class="grid-cards">
         {%- for s in specials %}{{ specialCard(s, lang) }}{% endfor %}
@@ -64,13 +57,24 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
   </div>
 </section>
 
-<section class="band" id="restaurants" aria-labelledby="restos-title">
-  <div class="wrap">
-    <p class="eyebrow">{{ "home.restosEyebrow" | t(lang) }}</p>
+<section class="band menu-cta" style="padding-top:0">
+  <div class="wrap menu-cta-inner">
+    <div>
+      <h2>{{ "home.menuCtaTitle" | t(lang) }}</h2>
+      <p class="muted">{{ "home.menuCtaText" | t(lang) }} {{ "home.menuCtaText" | rtag }}</p>
+      <a class="btn btn-primary btn-lg" href="{{ site.routes | route('menu', lang) }}">{{ icon("book", 20) }} {{ "home.seeMenu" | t(lang) }}</a>
+    </div>
+    <img src="/assets/img/crepe-dessert.png" alt="" loading="lazy" width="609" height="609">
+  </div>
+</section>
+
+<section class="band band-alt" id="restaurants" aria-labelledby="restos-title">
+  <div class="wrap" data-reviews data-lang="{{ lang }}">
     <h2 id="restos-title">{{ "home.restosTitle" | t(lang) }}</h2>
     <div class="grid-cards">
-      {%- for r in restaurants %}{{ restoCard(r, lang, site) }}{% endfor %}
+      {%- for r in restaurants %}{{ restoCard(r, lang, site, true) }}{% endfor %}
     </div>
+    <div class="quotes" data-quotes aria-live="polite" aria-label="{{ 'reviews.title' | t(lang) }}"></div>
     <div class="booking-note">
       {{ icon("phone", 20) }}
       <p><b>{{ "home.bookingAll" | t(lang) }}</b><br>
@@ -79,14 +83,22 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
   </div>
 </section>
 
-<section class="band menu-cta">
-  <div class="wrap menu-cta-inner">
-    <div>
-      <h2>{{ "home.menuCtaTitle" | t(lang) }}</h2>
-      <p class="muted">{{ "home.menuCtaText" | t(lang) }} {{ "home.menuCtaText" | rtag }}</p>
-      <a class="btn btn-primary btn-lg" href="{{ site.routes | route('menu', lang) }}">{{ icon("book", 20) }} {{ "home.seeMenu" | t(lang) }}</a>
+<section class="band" id="occasions" aria-labelledby="services-title">
+  <div class="wrap">
+    <p class="eyebrow">{{ "home.servicesEyebrow" | t(lang) }}</p>
+    <h2 id="services-title">{{ "home.servicesTitle" | t(lang) }}</h2>
+    <div class="grid-services">
+      {%- for s in i18n.services %}
+      <article class="service">
+        <span class="service-ic">{{ icon(s.icon, 24) }}</span>
+        <h3>{{ s.title | tr(lang) }}</h3>
+        <p class="muted">{{ s.text | tr(lang) }}{% if s.link %} <a href="{{ site.routes | route('contact', lang) }}">{{ s.link | tr(lang) }}</a>.{% endif %} {{ ("services." + loop.index0) | rtag }}</p>
+        {%- if s.action == "takeaway" %}
+        <button class="btn btn-ghost service-btn" type="button" data-open-dialog="takeaway-dialog">{{ icon("bag", 18) }} {{ s.actionLabel | tr(lang) }}</button>
+        {%- endif %}
+      </article>
+      {%- endfor %}
     </div>
-    <img src="/assets/img/crepe-dessert.png" alt="" loading="lazy" width="609" height="609">
   </div>
 </section>
 
@@ -106,26 +118,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
   </div>
 </section>
 
-<section class="band" aria-labelledby="services-title">
-  <div class="wrap">
-    <p class="eyebrow">{{ "home.servicesEyebrow" | t(lang) }}</p>
-    <h2 id="services-title">{{ "home.servicesTitle" | t(lang) }}</h2>
-    <div class="grid-services">
-      {%- for s in i18n.services %}
-      <article class="service">
-        <span class="service-ic">{{ icon(s.icon, 24) }}</span>
-        <h3>{{ s.title | tr(lang) }}</h3>
-        <p class="muted">{{ s.text | tr(lang) }}{% if s.link %} <a href="{{ site.routes | route('contact', lang) }}">{{ s.link | tr(lang) }}</a>.{% endif %} {{ ("services." + loop.index0) | rtag }}</p>
-        {%- if s.action == "takeaway" %}
-        <button class="btn btn-ghost service-btn" type="button" data-open-dialog="takeaway-dialog">{{ icon("bag", 18) }} {{ s.actionLabel | tr(lang) }}</button>
-        {%- endif %}
-      </article>
-      {%- endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="band band-alt" id="evenements" aria-labelledby="events-title">
+<section class="band" id="evenements" aria-labelledby="events-title">
   <div class="wrap">
     <p class="eyebrow">{{ "home.eventsEyebrow" | t(lang) }}</p>
     <h2 id="events-title">{{ "home.eventsTitle" | t(lang) }}</h2>

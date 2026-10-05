@@ -36,7 +36,15 @@ document.querySelectorAll("[data-tabs]").forEach((list) => {
       const on = t === tab;
       t.setAttribute("aria-selected", String(on));
       t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      const panel = document.getElementById(t.getAttribute("aria-controls"));
+      const wasHidden = panel.hidden;
+      panel.hidden = !on;
+      // Petite animation d'apparition quand on change de restaurant
+      if (on && wasHidden) {
+        panel.classList.remove("is-entering");
+        void panel.offsetWidth;
+        panel.classList.add("is-entering");
+      }
     });
   };
   tabs.forEach((t, i) => {

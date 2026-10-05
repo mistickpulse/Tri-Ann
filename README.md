@@ -32,7 +32,8 @@ Mettre `active: false` retire un élément du site sans supprimer le fichier.
 
 ## Documents
 
-- `docs/formulaire-modification.md` : modèle de mail que les restaurants envoient pour demander une modification.
+- `docs/formulaires/` : les 4 formulaires que les directeurs envoient par mail (spécialités, événements, horaires, menus spéciaux).
+- `docs/textes-a-valider.md` : liste des textes numérotés (T1, T2…) de la version de relecture.
 - `docs/photos-a-fournir.md` : liste des photos et vidéos attendues, avec leur nom de fichier.
 
 ## Mise en ligne
