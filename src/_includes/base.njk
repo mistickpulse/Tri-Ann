@@ -30,9 +30,10 @@
 <body class="page-{{ pageKey }}">
   <a class="skip" href="#main">{{ "nav.skip" | t(lang) }}</a>
   {%- if site.reviewMode %}
-  <div class="review-bar" role="note">
+  <div class="review-bar" role="note" data-review-bar>
     <b>Version de relecture</b>
     <span>Chaque texte à valider porte un numéro (T1, T2…). Pour proposer une modification, envoyez le numéro et votre remarque dans le groupe. Un clic sur un numéro le copie.</span>
+    <button class="review-close" type="button" data-review-close aria-label="Fermer le bandeau de relecture" title="Fermer">&times;</button>
   </div>
   {%- endif %}
 

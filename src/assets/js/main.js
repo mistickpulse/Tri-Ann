@@ -168,3 +168,13 @@ document.addEventListener("click", (e) => {
     setTimeout(() => tag.classList.remove("is-copied"), 1200);
   });
 });
+
+// Bandeau de relecture : fermé avec la croix, il reste masqué le temps de la visite
+const reviewBar = document.querySelector("[data-review-bar]");
+if (reviewBar) {
+  try { if (sessionStorage.getItem("triann-relecture-fermee")) reviewBar.remove(); } catch { /* navigation privée */ }
+  reviewBar.querySelector("[data-review-close]")?.addEventListener("click", () => {
+    reviewBar.remove();
+    try { sessionStorage.setItem("triann-relecture-fermee", "1"); } catch { /* navigation privée */ }
+  });
+}

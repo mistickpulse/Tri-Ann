@@ -285,7 +285,8 @@ dialog.filter-panel::backdrop { background: rgba(0,0,0,.65); backdrop-filter: bl
 .dish:last-child { border-bottom: 0; padding-bottom: 0; }
 .dish-line { display: flex; align-items: baseline; gap: 12px; }
 .dish-name { font-weight: 700; font-size: 1.05rem; }
-.dish-line::after { content: ""; flex: 1; order: 1; border-bottom: 1px dotted #4a4038; transform: translateY(-5px); min-width: 16px; }
+/* Espace entre le nom et le prix (sans pointillés) */
+.dish-line::after { content: ""; flex: 1; order: 1; min-width: 16px; }
 .dish-price { order: 2; font-weight: 700; color: var(--accent-strong); white-space: nowrap; }
 .dish-line:not(:has(.dish-price))::after { display: none; }
 .dish-desc { margin: 4px 0 0; color: var(--muted); font-size: .97rem; line-height: 1.55; max-width: 52ch; }
@@ -572,3 +573,7 @@ button.cal-cell:hover { border-color: var(--accent); }
 .order-chevron { display: inline-grid; place-items: center; margin-left: auto; width: 32px; height: 32px; border-radius: 50%; background: rgba(20,17,16,.12); transition: transform .2s; }
 .order-bar.is-open .order-chevron { transform: rotate(180deg); }
 .order-toggle { align-items: center; }
+
+.review-bar { padding-right: 52px; }
+.review-close { position: absolute; top: 50%; right: 10px; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; border: 0; background: rgba(26,21,18,.15); color: #1a1512; font-size: 1.3rem; line-height: 1; cursor: pointer; }
+.review-close:hover { background: rgba(26,21,18,.3); }
