@@ -498,3 +498,30 @@ button.cal-cell:hover { border-color: var(--accent); }
 /* Liens du menu vers une section (#speciales, #restaurants, #evenements) :
    on compense la marge intérieure de la section pour arriver directement sur son titre */
 .band[id] { scroll-margin-top: calc(-1 * clamp(56px, 8vw, 96px) + 8px); }
+
+/* Réservation depuis le calendrier (par téléphone) */
+.cal-book { position: relative; margin-top: 14px; padding: 14px 14px 12px; border: 1px solid var(--accent); border-radius: 12px; background: var(--accent-soft); display: grid; gap: 8px; }
+.cal-book-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cal-book-title { margin: 0; font-weight: 700; }
+.cal-book-close { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: 1.1rem; line-height: 1; cursor: pointer; }
+.cal-book-close:hover { color: var(--ink); border-color: var(--accent); }
+.cal-book-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; font-weight: 600; }
+.cal-book-row:hover { border-color: var(--accent); color: var(--ink); }
+.cal-book-city { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.cal-book-phone { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; color: var(--accent-strong); }
+.cal-book .muted { margin: 0; }
+
+/* ---------- L'univers Tri-Ann ---------- */
+.about { display: grid; gap: 40px; align-items: start; }
+@media (min-width: 960px) { .about { grid-template-columns: 1fr 1.15fr; gap: 64px; } .about-intro { position: sticky; top: calc(var(--header-h) + 24px); } }
+.about-intro p { max-width: 56ch; }
+.about .craft-list { margin-top: 0; gap: 22px; }
+
+/* ---------- Version de relecture (numéros de textes) ---------- */
+.review-bar { position: relative; z-index: 80; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; padding: 8px 16px; background: #e3b341; color: #1a1512; font-size: .85rem; }
+.page-home .review-bar { position: fixed; inset: auto 0 0; z-index: 90; }
+@media (max-width: 899px) { .page-home .review-bar { bottom: 84px; left: 12px; right: 12px; border-radius: 12px; } }
+.rtag { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; margin-left: 4px; padding: 1px 7px 1px 6px; border-radius: 6px; background: #e3b341; color: #1a1512; font: 700 .72rem/1.5 var(--font-body); letter-spacing: .02em; cursor: copy; white-space: nowrap; user-select: all; }
+.rtag small { font-size: .62rem; font-weight: 600; opacity: .75; text-transform: uppercase; letter-spacing: .04em; }
+.rtag.is-copied { background: var(--ok); }
+.rtag.is-copied small::after { content: " · copié"; }

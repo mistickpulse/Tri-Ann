@@ -45,7 +45,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
         </tr>
         {%- endfor %}
       </table>
-      <p class="muted small">{{ "resto.booking" | t(lang) }}</p>
+      <p class="muted small">{{ "resto.booking" | t(lang) }} {{ "resto.booking" | rtag }}</p>
     </div>
     <div class="info-card">
       <h2 class="h3">{{ icon("pin", 20) }} {{ "resto.map" | t(lang) }}</h2>
@@ -107,7 +107,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
     <article class="service">
       <span class="service-ic">{{ icon(s.icon, 24) }}</span>
       <h3>{{ s.title | tr(lang) }}</h3>
-      <p class="muted">{{ s.text | tr(lang) }}{% if s.link %} <a href="{{ site.routes | route('contact', lang) }}">{{ s.link | tr(lang) }}</a>.{% endif %}</p>
+      <p class="muted">{{ s.text | tr(lang) }}{% if s.link %} <a href="{{ site.routes | route('contact', lang) }}">{{ s.link | tr(lang) }}</a>.{% endif %} {{ ("services." + loop.index0) | rtag }}</p>
         {%- if s.action == "takeaway" %}
         <a class="btn btn-ghost service-btn" href="{{ site.routes | route('menu', lang) }}?emporter={{ r.slug }}">{{ icon("bag", 18) }} {{ s.actionLabel | tr(lang) }}</a>
         {%- endif %}

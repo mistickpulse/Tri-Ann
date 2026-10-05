@@ -149,3 +149,14 @@ document.querySelectorAll("[data-newsletter]").forEach((form) => {
     }
   });
 });
+
+// Version de relecture : un clic sur un numéro (T1, T2…) le copie
+document.addEventListener("click", (e) => {
+  const tag = e.target.closest("[data-rtag]");
+  if (!tag) return;
+  e.preventDefault();
+  navigator.clipboard?.writeText(tag.dataset.rtag).then(() => {
+    tag.classList.add("is-copied");
+    setTimeout(() => tag.classList.remove("is-copied"), 1200);
+  });
+});

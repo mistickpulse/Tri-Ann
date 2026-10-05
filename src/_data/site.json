@@ -112,5 +112,6 @@
   "newsletter": {
     "provider": "Brevo",
     "action": "https://a582d9de.sibforms.com/serve/MUIFAOrNetQ-B9ufsUUNKFDyEMXxwUsEHhE1oKoOJYelY5W9wer5bKDaX1RXnwq5Y23vUFrVeNWjgpeQd-3PzYqVFo41PKOPEXhUMkl4PPwlgF5IiayQ-QAp0xb35iBiSmn1UXAmY6FUsu3XBSxO_E8q0JYK3koX-A-dUM-BdWJXmDACObpZfafjk7rE67xqAbFX_cV9Nwd2gzwh1w=="
-  }
+  },
+  "reviewMode": true
 }

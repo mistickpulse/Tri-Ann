@@ -6,5 +6,5 @@ description_en: Buckwheat galette with melted reblochon, caramelised onions, pot
 price: 15.90
 etablissements: [tous]
 image: /assets/img/galette-sarasin.jpg
-active: true
+active: false
 ---

@@ -6,5 +6,5 @@ description_en: Rum, lime and raspberry purée.
 price: 9.90
 etablissements: [tous]
 image: /assets/img/mur-de-bouteille.png
-active: true
+active: false
 ---

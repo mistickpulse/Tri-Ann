@@ -5,29 +5,68 @@
       "id": "galettes",
       "group": "plats",
       "title": { "fr": "Galettes de blé noir", "en": "Buckwheat galettes" },
-      "intro": {
-        "fr": "Tirées selon la tradition bretonne sur un billig et cuites au saindoux. Cuisson au beurre sur demande, pour un plat végétarien ou sans porc. Toutes nos galettes sont servies avec une salade verte.",
-        "en": "Made the Breton way on a billig and cooked in lard. Cooked in butter on request, for a vegetarian or pork-free dish. All our galettes come with a green salad."
-      },
+      "intro": { "fr":"Notre pâte 100 % sarrasin est maturée 72 h, avec une farine de blé noir moulue à la meule de pierre par le Moulin de la Fatigue. Les galettes sont tirées sur le billig et cuites au saindoux (au beurre sur demande, pour un plat végétarien ou sans porc). Elles sont toutes servies avec une salade verte et notre vinaigrette au sésame.", "en":"Our 100% buckwheat batter rests for 72 hours and is made with stone-ground flour from the Moulin de la Fatigue. Galettes are cooked on the billig in lard (in butter on request, for a vegetarian or pork-free dish), and all come with a green salad and our sesame dressing." },
       "image": "galette-sarasin.jpg",
       "sections": [
         {
           "id": "galettes-aperitives",
           "title": { "fr": "Galettes apéritives", "en": "Appetiser galettes" },
           "items": [
-            { "name": { "fr": "Emmental", "en": "Emmental" }, "price": 5.9, "tags": ["vege"], "allergens": null },
-            { "name": { "fr": "Emmental chorizo ou Emmental jambon", "en": "Emmental & chorizo or Emmental & ham" }, "price": 6.5, "tags": ["viande", "porc"], "allergens": null }
+            {
+              "name": { "fr": "Emmental", "en": "Emmental" },
+              "price": 5.9,
+              "tags": ["vege"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": { "fr": "Emmental chorizo ou Emmental jambon", "en": "Emmental & chorizo or Emmental & ham" },
+              "price": 6.5,
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            }
           ]
         },
         {
           "id": "galettes-simples",
           "title": { "fr": "Les simples", "en": "Simple" },
           "items": [
-            { "name": { "fr": "Galette nature", "en": "Plain galette" }, "price": 5.0, "tags": ["vege"], "allergens": null },
-            { "name": { "fr": "Galette beurre", "en": "Butter galette" }, "price": 5.5, "tags": ["vege"], "allergens": null },
-            { "name": { "fr": "Emmental, jambon", "en": "Emmental, ham" }, "price": 7.4, "tags": ["viande", "porc"], "allergens": null },
-            { "name": { "fr": "Œuf, jambon", "en": "Egg, ham" }, "price": 7.4, "tags": ["viande", "porc"], "allergens": null },
-            { "name": { "fr": "Œuf, emmental", "en": "Egg, Emmental" }, "price": 7.4, "tags": ["vege"], "allergens": null }
+            {
+              "name": { "fr": "Galette nature", "en": "Plain galette" },
+              "price": 5,
+              "tags": ["vege"],
+              "allergens": ["soja", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": { "fr": "Galette beurre", "en": "Butter galette" },
+              "price": 5.5,
+              "tags": ["vege"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": { "fr": "Emmental, jambon", "en": "Emmental, ham" },
+              "price": 7.4,
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": { "fr": "Œuf, jambon", "en": "Egg, ham" },
+              "price": 7.4,
+              "tags": ["viande", "porc"],
+              "allergens": ["oeufs", "soja", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": { "fr": "Œuf, emmental", "en": "Egg, Emmental" },
+              "price": 7.4,
+              "tags": ["vege"],
+              "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            }
           ]
         },
         {
@@ -35,12 +74,47 @@
           "title": { "fr": "Les basiques", "en": "The basics" },
           "price": 9.9,
           "items": [
-            { "name": "La Complète", "desc": { "fr": "Œuf, emmental, jambon", "en": "Egg, Emmental, ham" }, "tags": ["viande", "porc"], "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "EJC", "desc": { "fr": "Emmental, jambon, champignons persillés", "en": "Emmental, ham, parsley mushrooms" }, "tags": ["viande", "porc"], "allergens": null },
-            { "name": "EOJ", "desc": { "fr": "Emmental, oignons caramélisés, jambon", "en": "Emmental, caramelised onions, ham" }, "tags": ["viande", "porc"], "allergens": null },
-            { "name": "CLC", "desc": { "fr": "Champignons persillés, lardons, crème", "en": "Parsley mushrooms, bacon lardons, cream" }, "tags": ["viande", "porc"], "allergens": null },
-            { "name": "OLC", "desc": { "fr": "Oignons caramélisés, lardons, crème", "en": "Caramelised onions, bacon lardons, cream" }, "tags": ["viande", "porc"], "allergens": null },
-            { "name": "EOC", "desc": { "fr": "Emmental, œuf, champignons persillés", "en": "Emmental, egg, parsley mushrooms" }, "tags": ["vege"], "allergens": null }
+            {
+              "name": "La Complète",
+              "desc": { "fr": "Œuf, emmental, jambon", "en": "Egg, Emmental, ham" },
+              "tags": ["viande", "porc"],
+              "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "EJC",
+              "desc": { "fr": "Emmental, jambon, champignons persillés", "en": "Emmental, ham, parsley mushrooms" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": "EOJ",
+              "desc": { "fr": "Emmental, oignons caramélisés, jambon", "en": "Emmental, caramelised onions, ham" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": "CLC",
+              "desc": { "fr": "Champignons persillés, lardons, crème", "en": "Parsley mushrooms, bacon lardons, cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": "OLC",
+              "desc": { "fr": "Oignons caramélisés, lardons, crème", "en": "Caramelised onions, bacon lardons, cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": "EOC",
+              "desc": { "fr": "Emmental, œuf, champignons persillés", "en": "Emmental, egg, parsley mushrooms" },
+              "tags": ["vege"],
+              "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"],
+              "inferred": true
+            }
           ]
         },
         {
@@ -48,10 +122,30 @@
           "title": { "fr": "Les classiques", "en": "The classics" },
           "price": 11.5,
           "items": [
-            { "name": "La Combourg", "desc": { "fr": "Champignons persillés, œuf, jambon, crémeux morbier", "en": "Parsley mushrooms, egg, ham, Morbier cheese cream" }, "tags": ["viande", "porc"], "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Paimpol", "desc": { "fr": "Emmental, lardons, champignons persillés, crème", "en": "Emmental, bacon lardons, parsley mushrooms, cream" }, "tags": ["viande", "porc"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Saint-Brieuc", "desc": { "fr": "Emmental, lardons, courgettes grillées, crème", "en": "Emmental, bacon lardons, grilled courgettes, cream" }, "tags": ["viande", "porc"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Guémené", "desc": { "fr": "Emmental, œuf, andouille de Guémené", "en": "Emmental, egg, Guémené andouille sausage" }, "tags": ["viande", "porc"], "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"] }
+            {
+              "name": "La Combourg",
+              "desc": { "fr": "Champignons persillés, œuf, jambon, crémeux morbier", "en": "Parsley mushrooms, egg, ham, Morbier cheese cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Paimpol",
+              "desc": { "fr": "Emmental, lardons, champignons persillés, crème", "en": "Emmental, bacon lardons, parsley mushrooms, cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Saint-Brieuc",
+              "desc": { "fr": "Emmental, lardons, courgettes grillées, crème", "en": "Emmental, bacon lardons, grilled courgettes, cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Guémené",
+              "desc": { "fr": "Emmental, œuf, andouille de Guémené", "en": "Emmental, egg, Guémené andouille sausage" },
+              "tags": ["viande", "porc"],
+              "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"]
+            }
           ]
         },
         {
@@ -59,14 +153,63 @@
           "title": { "fr": "Les gourmandes", "en": "Gourmet" },
           "note": { "fr": "Tous nos crémeux sont faits maison, à base de mascarpone.", "en": "All our cheese creams are homemade with mascarpone." },
           "items": [
-            { "name": "La Concarneau", "price": 12.9, "desc": { "fr": "Lardons, oignons caramélisés, pommes de terre, crémeux St Albray", "en": "Bacon lardons, caramelised onions, potatoes, St Albray cheese cream" }, "tags": ["viande", "porc"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Port-Aubry", "price": 12.9, "desc": { "fr": "Chèvre, lardons, noix, miel, salade", "en": "Goat's cheese, bacon lardons, walnuts, honey, salad" }, "tags": ["viande", "porc"], "allergens": ["gluten", "soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"], "verify": true },
-            { "name": "La Végétarienne", "price": 12.9, "desc": { "fr": "4 ingrédients au choix, salade, tomates", "en": "4 ingredients of your choice, salad, tomatoes" }, "tags": ["vege"], "allergens": null },
-            { "name": "La Mont-Geoffroy", "price": 12.9, "desc": { "fr": "Œuf, comté, pommes de terre, jambon", "en": "Egg, Comté cheese, potatoes, ham" }, "tags": ["viande", "porc"], "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Saint-Nazaire", "price": 13.9, "desc": { "fr": "Saumon fumé, crème à l'aneth, rondelle de citron, pommes de terre, salade", "en": "Smoked salmon, dill cream, lemon slice, potatoes, salad" }, "tags": ["poisson"], "allergens": ["poisson", "soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Cheverny", "price": 14.9, "desc": { "fr": "Emmental, magret de canard fumé, gésiers de volaille, tomates, salade", "en": "Emmental, smoked duck breast, poultry gizzards, tomatoes, salad" }, "tags": ["viande"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Sancy", "price": 14.9, "desc": { "fr": "Andouille de Guémené, pommes de terre, oignons caramélisés, crémeux moutarde", "en": "Guémené andouille sausage, potatoes, caramelised onions, mustard cream" }, "tags": ["viande", "porc"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Saint-Mickael", "price": 14.9, "desc": { "fr": "Fromage à raclette, emmental, comté, chèvre", "en": "Raclette cheese, Emmental, Comté, goat's cheese" }, "tags": ["vege"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] }
+            {
+              "name": "La Concarneau",
+              "price": 12.9,
+              "desc": { "fr": "Lardons, oignons caramélisés, pommes de terre, crémeux St Albray", "en": "Bacon lardons, caramelised onions, potatoes, St Albray cheese cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Port-Aubry",
+              "price": 12.9,
+              "desc": { "fr": "Chèvre, lardons, noix, miel, salade", "en": "Goat's cheese, bacon lardons, walnuts, honey, salad" },
+              "tags": ["viande", "porc"],
+              "allergens": ["gluten", "soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"],
+              "verify": true
+            },
+            {
+              "name": "La Végétarienne",
+              "price": 12.9,
+              "desc": { "fr": "4 ingrédients au choix, salade, tomates", "en": "4 ingredients of your choice, salad, tomatoes" },
+              "tags": ["vege"],
+              "allergens": null
+            },
+            {
+              "name": "La Mont-Geoffroy",
+              "price": 12.9,
+              "desc": { "fr": "Œuf, comté, pommes de terre, jambon", "en": "Egg, Comté cheese, potatoes, ham" },
+              "tags": ["viande", "porc"],
+              "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Saint-Nazaire",
+              "price": 13.9,
+              "desc": { "fr": "Saumon fumé, crème à l'aneth, rondelle de citron, pommes de terre, salade", "en": "Smoked salmon, dill cream, lemon slice, potatoes, salad" },
+              "tags": ["poisson"],
+              "allergens": ["poisson", "soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Cheverny",
+              "price": 14.9,
+              "desc": { "fr": "Emmental, magret de canard fumé, gésiers de volaille, tomates, salade", "en": "Emmental, smoked duck breast, poultry gizzards, tomatoes, salad" },
+              "tags": ["viande"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Sancy",
+              "price": 14.9,
+              "desc": { "fr": "Andouille de Guémené, pommes de terre, oignons caramélisés, crémeux moutarde", "en": "Guémené andouille sausage, potatoes, caramelised onions, mustard cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Saint-Mickael",
+              "price": 14.9,
+              "desc": { "fr": "Fromage à raclette, emmental, comté, chèvre", "en": "Raclette cheese, Emmental, Comté, goat's cheese" },
+              "tags": ["vege"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            }
           ]
         },
         {
@@ -74,12 +217,43 @@
           "title": { "fr": "Les spéciales", "en": "Specials" },
           "price": 15.9,
           "items": [
-            { "name": "La Mont d'Arrée", "desc": { "fr": "Œuf, fromage à raclette, pommes de terre, chorizo (parfumé mais non piquant)", "en": "Egg, raclette cheese, potatoes, chorizo (flavourful, not spicy)" }, "tags": ["viande", "porc"], "allergens": ["oeufs", "soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"], "verify": true },
-            { "name": "La Tarascon", "desc": { "fr": "Saucisse de Bretagne au sel de Guérande, oignons caramélisés, pommes de terre, crémeux moutarde", "en": "Breton sausage with Guérande salt, caramelised onions, potatoes, mustard cream" }, "tags": ["viande", "porc"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Pie Noir", "desc": { "fr": "Emmental, champignons persillés, pommes de terre, steak haché, crémeux poivre (parfumé mais non piquant)", "en": "Emmental, parsley mushrooms, potatoes, beef patty, pepper cream (flavourful, not spicy)" }, "tags": ["viande"], "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Breizhopouale", "desc": { "fr": "Emmental, poulet, noix, Boursin®, pommes de terre", "en": "Emmental, chicken, walnuts, Boursin®, potatoes" }, "tags": ["viande"], "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Saint-Thurien", "desc": { "fr": "Comté, thon, œuf, pommes de terre, crème fraîche", "en": "Comté cheese, tuna, egg, potatoes, crème fraîche" }, "tags": ["poisson"], "allergens": ["oeufs", "poisson", "soja", "lait", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Novarra", "desc": { "fr": "Pommes de terre, courgettes grillées, jambon cru, crémeux gorgonzola, noix", "en": "Potatoes, grilled courgettes, cured ham, Gorgonzola cream, walnuts" }, "tags": ["viande", "porc"], "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"] }
+            {
+              "name": "La Mont d'Arrée",
+              "desc": { "fr": "Œuf, fromage à raclette, pommes de terre, chorizo (parfumé mais non piquant)", "en": "Egg, raclette cheese, potatoes, chorizo (flavourful, not spicy)" },
+              "tags": ["viande", "porc"],
+              "allergens": ["oeufs", "soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"],
+              "verify": true
+            },
+            {
+              "name": "La Tarascon",
+              "desc": { "fr": "Saucisse de Bretagne au sel de Guérande, oignons caramélisés, pommes de terre, crémeux moutarde", "en": "Breton sausage with Guérande salt, caramelised onions, potatoes, mustard cream" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Pie Noir",
+              "desc": { "fr": "Emmental, champignons persillés, pommes de terre, steak haché, crémeux poivre (parfumé mais non piquant)", "en": "Emmental, parsley mushrooms, potatoes, beef patty, pepper cream (flavourful, not spicy)" },
+              "tags": ["viande"],
+              "allergens": ["soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Breizhopouale",
+              "desc": { "fr": "Emmental, poulet, noix, Boursin®, pommes de terre", "en": "Emmental, chicken, walnuts, Boursin®, potatoes" },
+              "tags": ["viande"],
+              "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Saint-Thurien",
+              "desc": { "fr": "Comté, thon, œuf, pommes de terre, crème fraîche", "en": "Comté cheese, tuna, egg, potatoes, crème fraîche" },
+              "tags": ["poisson"],
+              "allergens": ["oeufs", "poisson", "soja", "lait", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Novarra",
+              "desc": { "fr": "Pommes de terre, courgettes grillées, jambon cru, crémeux gorgonzola, noix", "en": "Potatoes, grilled courgettes, cured ham, Gorgonzola cream, walnuts" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"]
+            }
           ]
         },
         {
@@ -87,11 +261,26 @@
           "title": { "fr": "Suppléments", "en": "Extras" },
           "type": "supplements",
           "items": [
-            { "price": 2.0, "name": { "fr": "Salade, tomate", "en": "Salad, tomato" } },
-            { "price": 2.5, "name": { "fr": "Courgettes, champignons persillés, œuf, oignons, pommes de terre", "en": "Courgettes, parsley mushrooms, egg, onions, potatoes" } },
-            { "price": 3.0, "name": { "fr": "Crème, emmental, jambon blanc, lardons, chèvre", "en": "Cream, Emmental, ham, bacon lardons, goat's cheese" } },
-            { "price": 3.5, "name": { "fr": "Fromage à raclette, comté, crémeux maison", "en": "Raclette cheese, Comté, homemade cheese cream" } },
-            { "price": 3.9, "name": { "fr": "Saumon, steak haché, andouille de Guémené, magret de canard fumé, poulet, saucisse, chorizo, gésiers de volaille, thon", "en": "Salmon, beef patty, Guémené andouille, smoked duck breast, chicken, sausage, chorizo, poultry gizzards, tuna" } }
+            {
+              "price": 2,
+              "name": { "fr": "Salade, tomate", "en": "Salad, tomato" }
+            },
+            {
+              "price": 2.5,
+              "name": { "fr": "Courgettes, champignons persillés, œuf, oignons, pommes de terre", "en": "Courgettes, parsley mushrooms, egg, onions, potatoes" }
+            },
+            {
+              "price": 3,
+              "name": { "fr": "Crème, emmental, jambon blanc, lardons, chèvre", "en": "Cream, Emmental, ham, bacon lardons, goat's cheese" }
+            },
+            {
+              "price": 3.5,
+              "name": { "fr": "Fromage à raclette, comté, crémeux maison", "en": "Raclette cheese, Comté, homemade cheese cream" }
+            },
+            {
+              "price": 3.9,
+              "name": { "fr": "Saumon, steak haché, andouille de Guémené, magret de canard fumé, poulet, saucisse, chorizo, gésiers de volaille, thon", "en": "Salmon, beef patty, Guémené andouille, smoked duck breast, chicken, sausage, chorizo, poultry gizzards, tuna" }
+            }
           ]
         }
       ]
@@ -99,6 +288,7 @@
     {
       "id": "salades",
       "group": "plats",
+      "intro": { "fr":"Des salades généreuses, souvent servies sur une galette de sarrasin qui s'imprègne de notre vinaigrette au sésame.", "en":"Generous salads, often served on a buckwheat galette that soaks up our sesame dressing." },
       "title": { "fr": "Les salades", "en": "Salads" },
       "image": "salade.png",
       "sections": [
@@ -106,11 +296,38 @@
           "id": "salades-liste",
           "price": 12.9,
           "items": [
-            { "name": "La Pontivy", "desc": { "fr": "Galette sarrasin, salade, tomates, comté, gésiers de volaille, magret de canard fumé, noix", "en": "Buckwheat galette, salad, tomatoes, Comté, poultry gizzards, smoked duck breast, walnuts" }, "tags": ["viande"], "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Ouessant", "desc": { "fr": "Salade, tomates, lardons, toasts de chèvre chaud au sarrasin, noix", "en": "Salad, tomatoes, bacon lardons, warm goat's cheese on buckwheat toast, walnuts" }, "tags": ["viande", "porc"], "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Quiberon", "desc": { "fr": "Galette sarrasin, salade, tomates, concombres, saumon fumé, œuf dur", "en": "Buckwheat galette, salad, tomatoes, cucumber, smoked salmon, hard-boiled egg" }, "tags": ["poisson"], "allergens": ["oeufs", "poisson", "soja", "moutarde", "sesame", "sulfites"] },
-            { "name": "La Quimper", "desc": { "fr": "Galette sarrasin, salade, tomates, comté, thon, œuf dur", "en": "Buckwheat galette, salad, tomatoes, Comté, tuna, hard-boiled egg" }, "tags": ["poisson"], "allergens": ["oeufs", "poisson", "soja", "moutarde", "sesame", "sulfites"], "verify": true },
-            { "name": "La Pleyben", "desc": { "fr": "Galette sarrasin, salade, tomates, comté, filet de poulet, œuf dur", "en": "Buckwheat galette, salad, tomatoes, Comté, chicken fillet, hard-boiled egg" }, "tags": ["viande"], "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"] }
+            {
+              "name": "La Pontivy",
+              "desc": { "fr": "Galette sarrasin, salade, tomates, comté, gésiers de volaille, magret de canard fumé, noix", "en": "Buckwheat galette, salad, tomatoes, Comté, poultry gizzards, smoked duck breast, walnuts" },
+              "tags": ["viande"],
+              "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Ouessant",
+              "desc": { "fr": "Salade, tomates, lardons, toasts de chèvre chaud au sarrasin, noix", "en": "Salad, tomatoes, bacon lardons, warm goat's cheese on buckwheat toast, walnuts" },
+              "tags": ["viande", "porc"],
+              "allergens": ["soja", "lait", "fruits-a-coque", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Quiberon",
+              "desc": { "fr": "Galette sarrasin, salade, tomates, concombres, saumon fumé, œuf dur", "en": "Buckwheat galette, salad, tomatoes, cucumber, smoked salmon, hard-boiled egg" },
+              "tags": ["poisson"],
+              "allergens": ["oeufs", "poisson", "soja", "moutarde", "sesame", "sulfites"]
+            },
+            {
+              "name": "La Quimper",
+              "desc": { "fr": "Galette sarrasin, salade, tomates, comté, thon, œuf dur", "en": "Buckwheat galette, salad, tomatoes, Comté, tuna, hard-boiled egg" },
+              "tags": ["poisson"],
+              "allergens": ["oeufs", "poisson", "soja", "lait", "moutarde", "sesame", "sulfites"],
+              "verify": true,
+              "corrected": ["lait"]
+            },
+            {
+              "name": "La Pleyben",
+              "desc": { "fr": "Galette sarrasin, salade, tomates, comté, filet de poulet, œuf dur", "en": "Buckwheat galette, salad, tomatoes, Comté, chicken fillet, hard-boiled egg" },
+              "tags": ["viande"],
+              "allergens": ["oeufs", "soja", "lait", "moutarde", "sesame", "sulfites"]
+            }
           ]
         }
       ]
@@ -123,8 +340,18 @@
         {
           "id": "enfants-liste",
           "items": [
-            { "name": { "fr": "Assiette pommes de terre + jambon", "en": "Potatoes + ham" }, "price": 5.9, "tags": ["viande", "porc"], "allergens": null },
-            { "name": { "fr": "Assiette pommes de terre + steak haché (90 g), saucisse ou poulet (90 g)", "en": "Potatoes + beef patty (90 g), sausage or chicken (90 g)" }, "price": 7.4, "tags": ["viande"], "allergens": null }
+            {
+              "name": { "fr": "Assiette pommes de terre + jambon", "en": "Potatoes + ham" },
+              "price": 5.9,
+              "tags": ["viande", "porc"],
+              "allergens": null
+            },
+            {
+              "name": { "fr": "Assiette pommes de terre + steak haché (90 g), saucisse ou poulet (90 g)", "en": "Potatoes + beef patty (90 g), sausage or chicken (90 g)" },
+              "price": 7.4,
+              "tags": ["viande"],
+              "allergens": null
+            }
           ]
         }
       ]
@@ -133,21 +360,46 @@
       "id": "crepes",
       "group": "desserts",
       "title": { "fr": "Crêpes au froment", "en": "Sweet wheat crêpes" },
-      "intro": {
-        "fr": "Chantilly, caramel, chocolat et meringue sont fabriqués sur place par notre chef pâtissier.",
-        "en": "Whipped cream, caramel, chocolate and meringue are made in-house by our pastry chef."
-      },
+      "intro": { "fr":"Préparées à la minute. Chantilly, caramel beurre salé, chocolat et meringue sont faits sur place par notre chef pâtissier.", "en":"Made to order. Whipped cream, salted butter caramel, chocolate and meringue are made on site by our pastry chef." },
       "image": "crepe-dessert.png",
       "sections": [
         {
           "id": "crepes-simples",
           "title": { "fr": "Les simples", "en": "Simple" },
           "items": [
-            { "name": { "fr": "Crêpe nature", "en": "Plain crêpe" }, "price": 5.0, "tags": ["vege"], "allergens": null },
-            { "name": { "fr": "Sucre", "en": "Sugar" }, "price": 5.5, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": { "fr": "Beurre-sucre", "en": "Butter & sugar" }, "price": 5.9, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": { "fr": "Citron-sucre", "en": "Lemon & sugar" }, "price": 5.9, "tags": ["vege"], "allergens": null },
-            { "name": { "fr": "Cannelle-sucre", "en": "Cinnamon & sugar" }, "price": 5.9, "tags": ["vege"], "allergens": null }
+            {
+              "name": { "fr": "Crêpe nature", "en": "Plain crêpe" },
+              "price": 5,
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": { "fr": "Sucre", "en": "Sugar" },
+              "price": 5.5,
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": { "fr": "Beurre-sucre", "en": "Butter & sugar" },
+              "price": 5.9,
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": { "fr": "Citron-sucre", "en": "Lemon & sugar" },
+              "price": 5.9,
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"],
+              "inferred": true
+            },
+            {
+              "name": { "fr": "Cannelle-sucre", "en": "Cinnamon & sugar" },
+              "price": 5.9,
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"],
+              "inferred": true
+            }
           ]
         },
         {
@@ -155,14 +407,46 @@
           "title": { "fr": "Les basiques", "en": "The basics" },
           "price": 7.3,
           "items": [
-            { "name": { "fr": "Crème de marron", "en": "Chestnut cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": { "fr": "Chocolat (maison)", "en": "Chocolate (homemade)" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": { "fr": "Miel", "en": "Honey" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": { "fr": "Eau de fleur d'oranger", "en": "Orange blossom water" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": { "fr": "Caramel beurre salé (maison)", "en": "Salted butter caramel (homemade)" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": { "fr": "Confiture (fraise, framboise, abricot, myrtille)", "en": "Jam (strawberry, raspberry, apricot, blueberry)" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "Nutella®", "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque", "sulfites"] },
-            { "name": { "fr": "Sirop d'érable", "en": "Maple syrup" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] }
+            {
+              "name": { "fr": "Crème de marron", "en": "Chestnut cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": { "fr": "Chocolat (maison)", "en": "Chocolate (homemade)" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": { "fr": "Miel", "en": "Honey" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": { "fr": "Eau de fleur d'oranger", "en": "Orange blossom water" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": { "fr": "Caramel beurre salé (maison)", "en": "Salted butter caramel (homemade)" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": { "fr": "Confiture (fraise, framboise, abricot, myrtille)", "en": "Jam (strawberry, raspberry, apricot, blueberry)" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "Nutella®",
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque", "sulfites"]
+            },
+            {
+              "name": { "fr": "Sirop d'érable", "en": "Maple syrup" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            }
           ]
         },
         {
@@ -170,10 +454,32 @@
           "title": { "fr": "Les classiques", "en": "The classics" },
           "price": 7.9,
           "items": [
-            { "name": "La Guenièvre", "desc": { "fr": "Chocolat ou Nutella®, noix de coco, chantilly", "en": "Chocolate or Nutella®, coconut, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"], "allergensNote": { "fr": "Fruits à coque si Nutella®", "en": "Tree nuts with Nutella®" } },
-            { "name": "La Viviane", "desc": { "fr": "Chocolat ou Nutella®, banane, chantilly", "en": "Chocolate or Nutella®, banana, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"], "allergensNote": { "fr": "Fruits à coque si Nutella®", "en": "Tree nuts with Nutella®" } },
-            { "name": "La Carnac", "desc": { "fr": "Compotée de pommes caramélisées, sucre glace, chantilly", "en": "Caramelised apple compote, icing sugar, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Marie-Morgane", "desc": { "fr": "Miel, noix, chantilly", "en": "Honey, walnuts, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque", "sulfites"] }
+            {
+              "name": "La Guenièvre",
+              "desc": { "fr": "Chocolat ou Nutella®, noix de coco, chantilly", "en": "Chocolate or Nutella®, coconut, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"],
+              "allergensNote": { "fr": "Fruits à coque si Nutella®", "en": "Tree nuts with Nutella®" }
+            },
+            {
+              "name": "La Viviane",
+              "desc": { "fr": "Chocolat ou Nutella®, banane, chantilly", "en": "Chocolate or Nutella®, banana, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"],
+              "allergensNote": { "fr": "Fruits à coque si Nutella®", "en": "Tree nuts with Nutella®" }
+            },
+            {
+              "name": "La Carnac",
+              "desc": { "fr": "Compotée de pommes caramélisées, sucre glace, chantilly", "en": "Caramelised apple compote, icing sugar, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Marie-Morgane",
+              "desc": { "fr": "Miel, noix, chantilly", "en": "Honey, walnuts, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque", "sulfites"]
+            }
           ]
         },
         {
@@ -181,12 +487,42 @@
           "title": { "fr": "Les gourmandes", "en": "Gourmet" },
           "price": 9.2,
           "items": [
-            { "name": "La Korrigan", "desc": { "fr": "Glace café, Baileys (2 cl), chantilly", "en": "Coffee ice cream, Baileys (2 cl), whipped cream" }, "tags": ["vege", "alcool"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "L'Hermine", "desc": { "fr": "Glace nougat, chocolat, chantilly", "en": "Nougat ice cream, chocolate, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque", "sulfites"] },
-            { "name": "La Sainte-Marie", "desc": { "fr": "Glace vanille, chocolat, chantilly", "en": "Vanilla ice cream, chocolate, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Lannion", "desc": { "fr": "Glace framboise, coulis de fruits rouges, chantilly", "en": "Raspberry sorbet, red berry coulis, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Chocogwiniz", "desc": { "fr": "Glace chocolat, chocolat, chantilly", "en": "Chocolate ice cream, chocolate, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Dinan", "desc": { "fr": "Flambée, sucre, Grand-Marnier, rhum ou calvados", "en": "Flambéed, sugar, Grand Marnier, rum or Calvados" }, "tags": ["vege", "alcool"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] }
+            {
+              "name": "La Korrigan",
+              "desc": { "fr": "Glace café, Baileys (2 cl), chantilly", "en": "Coffee ice cream, Baileys (2 cl), whipped cream" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "L'Hermine",
+              "desc": { "fr": "Glace nougat, chocolat, chantilly", "en": "Nougat ice cream, chocolate, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque", "sulfites"]
+            },
+            {
+              "name": "La Sainte-Marie",
+              "desc": { "fr": "Glace vanille, chocolat, chantilly", "en": "Vanilla ice cream, chocolate, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Lannion",
+              "desc": { "fr": "Glace framboise, coulis de fruits rouges, chantilly", "en": "Raspberry sorbet, red berry coulis, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Chocogwiniz",
+              "desc": { "fr": "Glace chocolat, chocolat, chantilly", "en": "Chocolate ice cream, chocolate, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Dinan",
+              "desc": { "fr": "Flambée, sucre, Grand-Marnier, rhum ou calvados", "en": "Flambéed, sugar, Grand Marnier, rum or Calvados" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            }
           ]
         },
         {
@@ -194,10 +530,30 @@
           "title": { "fr": "Les spéciales", "en": "Specials" },
           "price": 9.9,
           "items": [
-            { "name": "La Saint-Michel", "desc": { "fr": "Glace caramel beurre salé, compotée de pommes caramélisées, caramel beurre salé, chantilly", "en": "Salted caramel ice cream, caramelised apple compote, salted butter caramel, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Saint-Nicolas", "desc": { "fr": "Glace spéculoos, caramel beurre salé, brisures de spéculoos, chantilly", "en": "Speculoos ice cream, salted butter caramel, speculoos crumbs, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "soja", "lait", "fruits-a-coque", "sulfites"] },
-            { "name": "La Mont-Blanc", "desc": { "fr": "Glace vanille, crème de marron, chocolat, chantilly", "en": "Vanilla ice cream, chestnut cream, chocolate, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Saint-Bernard", "desc": { "fr": "Glace vanille, coulis de fruits rouges, griottes alcoolisées, chantilly", "en": "Vanilla ice cream, red berry coulis, morello cherries in liqueur, whipped cream" }, "tags": ["vege", "alcool"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] }
+            {
+              "name": "La Saint-Michel",
+              "desc": { "fr": "Glace caramel beurre salé, compotée de pommes caramélisées, caramel beurre salé, chantilly", "en": "Salted caramel ice cream, caramelised apple compote, salted butter caramel, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Saint-Nicolas",
+              "desc": { "fr": "Glace spéculoos, caramel beurre salé, brisures de spéculoos, chantilly", "en": "Speculoos ice cream, salted butter caramel, speculoos crumbs, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "soja", "lait", "fruits-a-coque", "sulfites"]
+            },
+            {
+              "name": "La Mont-Blanc",
+              "desc": { "fr": "Glace vanille, crème de marron, chocolat, chantilly", "en": "Vanilla ice cream, chestnut cream, chocolate, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Saint-Bernard",
+              "desc": { "fr": "Glace vanille, coulis de fruits rouges, griottes alcoolisées, chantilly", "en": "Vanilla ice cream, red berry coulis, morello cherries in liqueur, whipped cream" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            }
           ]
         },
         {
@@ -205,18 +561,58 @@
           "noTakeaway": true,
           "title": { "fr": "Desserts sur assiette", "en": "Plated desserts" },
           "items": [
-            { "name": "La Trianon", "price": 10.9, "desc": { "fr": "Glace citron, meringue maison, crêpe, coulis de fruits rouges, chantilly", "en": "Lemon sorbet, homemade meringue, crêpe, red berry coulis, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Cassiopée", "price": 10.9, "desc": { "fr": "Glace vanille, meringue maison, crêpe, chocolat, chantilly", "en": "Vanilla ice cream, homemade meringue, crêpe, chocolate, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Sphère", "price": 11.9, "desc": { "fr": "Sphère en chocolat, glace Grand-Marnier, crêpe aux agrumes, framboises, chantilly", "en": "Chocolate sphere, Grand Marnier ice cream, citrus crêpe, raspberries, whipped cream" }, "tags": ["vege", "alcool"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] },
-            { "name": "La Cocosphère", "price": 11.9, "desc": { "fr": "Sphère en chocolat, glace noix de coco, crêpe à la noix de coco râpée, framboises, chantilly", "en": "Chocolate sphere, coconut ice cream, crêpe with grated coconut, raspberries, whipped cream" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "sulfites"] }
+            {
+              "name": "La Trianon",
+              "price": 10.9,
+              "desc": { "fr": "Glace citron, meringue maison, crêpe, coulis de fruits rouges, chantilly", "en": "Lemon sorbet, homemade meringue, crêpe, red berry coulis, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Cassiopée",
+              "price": 10.9,
+              "desc": { "fr": "Glace vanille, meringue maison, crêpe, chocolat, chantilly", "en": "Vanilla ice cream, homemade meringue, crêpe, chocolate, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Sphère",
+              "price": 11.9,
+              "desc": { "fr": "Sphère en chocolat, glace Grand-Marnier, crêpe aux agrumes, framboises, chantilly", "en": "Chocolate sphere, Grand Marnier ice cream, citrus crêpe, raspberries, whipped cream" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            },
+            {
+              "name": "La Cocosphère",
+              "price": 11.9,
+              "desc": { "fr": "Sphère en chocolat, glace noix de coco, crêpe à la noix de coco râpée, framboises, chantilly", "en": "Chocolate sphere, coconut ice cream, crêpe with grated coconut, raspberries, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"]
+            }
           ]
         },
         {
           "id": "gourmands",
           "title": { "fr": "Café & thé gourmand", "en": "Coffee & tea treats" },
           "items": [
-            { "name": { "fr": "Café gourmand", "en": "Café gourmand" }, "price": 8.9, "desc": { "fr": "Une boule de glace au choix, une « bébé » crêpe, café, chantilly", "en": "A scoop of ice cream, a mini crêpe, coffee, whipped cream" }, "tags": ["vege"], "allergens": null },
-            { "name": { "fr": "Thé gourmand", "en": "Thé gourmand" }, "price": 8.9, "desc": { "fr": "Une boule de glace au choix, une « bébé » crêpe, thé, chantilly", "en": "A scoop of ice cream, a mini crêpe, tea, whipped cream" }, "tags": ["vege"], "allergens": null }
+            {
+              "name": { "fr": "Café gourmand", "en": "Café gourmand" },
+              "price": 8.9,
+              "desc": { "fr": "Une boule de glace au choix, une « bébé » crêpe, café, chantilly", "en": "A scoop of ice cream, a mini crêpe, coffee, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"],
+              "inferred": true,
+              "allergensNote": { "fr": "+ allergènes du parfum de glace choisi", "en": "+ allergens of the chosen ice-cream flavour" }
+            },
+            {
+              "name": { "fr": "Thé gourmand", "en": "Thé gourmand" },
+              "price": 8.9,
+              "desc": { "fr": "Une boule de glace au choix, une « bébé » crêpe, thé, chantilly", "en": "A scoop of ice cream, a mini crêpe, tea, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "sulfites"],
+              "inferred": true,
+              "allergensNote": { "fr": "+ allergènes du parfum de glace choisi", "en": "+ allergens of the chosen ice-cream flavour" }
+            }
           ]
         }
       ]
@@ -225,28 +621,91 @@
       "id": "glaces",
       "group": "desserts",
       "title": { "fr": "Glaces", "en": "Ice cream" },
-      "intro": {
-        "fr": "Toutes nos glaces sont réalisées de manière artisanale par un maître glacier.",
-        "en": "All our ice creams are handmade by a master ice-cream maker."
-      },
+      "intro": { "fr":"Toutes nos glaces et nos sorbets sont réalisés par un maître glacier.", "en":"All our ice creams and sorbets are made by a master ice-cream maker." },
       "sections": [
         {
           "id": "coupes-glacees",
           "title": { "fr": "Les coupes glacées", "en": "Ice cream sundaes" },
           "price": 9.4,
           "items": [
-            { "name": "L'Angevine", "desc": { "fr": "Pistache, framboise, coulis de fruits rouges, chantilly, amandes effilées", "en": "Pistachio, raspberry, red berry coulis, whipped cream, flaked almonds" }, "tags": ["vege"], "allergens": ["oeufs", "soja", "lait", "fruits-a-coque"], "verify": true },
-            { "name": "La Cancale", "desc": { "fr": "Vanille, café, Baileys (2 cl), chantilly, amandes effilées", "en": "Vanilla, coffee, Baileys (2 cl), whipped cream, flaked almonds" }, "tags": ["vege", "alcool"], "allergens": ["oeufs", "lait", "fruits-a-coque", "sulfites"] },
-            { "name": "La Rennes", "desc": { "fr": "Fraise, citron, coulis de fruits rouges, chantilly, amandes effilées", "en": "Strawberry, lemon, red berry coulis, whipped cream, flaked almonds" }, "tags": ["vege"], "allergens": ["lait", "fruits-a-coque"] },
-            { "name": "La Capétienne", "desc": { "fr": "Grand-Marnier, vanille, pommes caramélisées, chantilly, amandes effilées", "en": "Grand Marnier, vanilla, caramelised apples, whipped cream, flaked almonds" }, "tags": ["vege", "alcool"], "allergens": ["oeufs", "lait", "fruits-a-coque", "sulfites"] },
-            { "name": "Le Café Liégeois", "desc": { "fr": "2 boules café, café froid, chantilly, amandes effilées", "en": "2 scoops of coffee, iced coffee, whipped cream, flaked almonds" }, "tags": ["vege"], "allergens": ["oeufs", "lait", "fruits-a-coque"], "verify": true },
-            { "name": "Le Chocolat Liégeois", "desc": { "fr": "2 boules chocolat, chocolat, chantilly, amandes effilées", "en": "2 scoops of chocolate, chocolate sauce, whipped cream, flaked almonds" }, "tags": ["vege"], "allergens": ["oeufs", "lait", "fruits-a-coque"], "verify": true },
-            { "name": "Le Caramel Liégeois", "desc": { "fr": "2 boules caramel, caramel, chantilly, amandes effilées", "en": "2 scoops of caramel, caramel sauce, whipped cream, flaked almonds" }, "tags": ["vege"], "allergens": ["oeufs", "lait", "fruits-a-coque"] },
-            { "name": "La Baie des Anges", "desc": { "fr": "Framboise, nougat, coulis de fruits rouges, chantilly, amandes effilées", "en": "Raspberry, nougat, red berry coulis, whipped cream, flaked almonds" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque"] },
-            { "name": "La Belle-Île", "desc": { "fr": "Mangue, ananas, banane, chocolat, chantilly", "en": "Mango, pineapple, banana, chocolate, whipped cream" }, "tags": ["vege"], "allergens": ["lait"] },
-            { "name": "La Ploemeur", "desc": { "fr": "Pomme, vanille, spéculoos, chantilly, amandes effilées", "en": "Apple, vanilla, speculoos, whipped cream, flaked almonds" }, "tags": ["vege"], "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque"], "verify": true },
-            { "name": "La Bréhat", "desc": { "fr": "Mangue, noix de coco, meringue maison, coulis de fruits rouges, chantilly", "en": "Mango, coconut, homemade meringue, red berry coulis, whipped cream" }, "tags": ["vege"], "allergens": ["oeufs", "lait"] },
-            { "name": "La Dame Blanche", "desc": { "fr": "2 boules vanille, chocolat, chantilly", "en": "2 scoops of vanilla, chocolate sauce, whipped cream" }, "tags": ["vege"], "allergens": ["oeufs", "lait"], "verify": true }
+            {
+              "name": "L'Angevine",
+              "desc": { "fr": "Pistache, framboise, coulis de fruits rouges, chantilly, amandes effilées", "en": "Pistachio, raspberry, red berry coulis, whipped cream, flaked almonds" },
+              "tags": ["vege"],
+              "allergens": ["oeufs", "soja", "lait", "fruits-a-coque"],
+              "verify": true
+            },
+            {
+              "name": "La Cancale",
+              "desc": { "fr": "Vanille, café, Baileys (2 cl), chantilly, amandes effilées", "en": "Vanilla, coffee, Baileys (2 cl), whipped cream, flaked almonds" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["oeufs", "lait", "fruits-a-coque", "sulfites"]
+            },
+            {
+              "name": "La Rennes",
+              "desc": { "fr": "Fraise, citron, coulis de fruits rouges, chantilly, amandes effilées", "en": "Strawberry, lemon, red berry coulis, whipped cream, flaked almonds" },
+              "tags": ["vege"],
+              "allergens": ["lait", "fruits-a-coque"]
+            },
+            {
+              "name": "La Capétienne",
+              "desc": { "fr": "Grand-Marnier, vanille, pommes caramélisées, chantilly, amandes effilées", "en": "Grand Marnier, vanilla, caramelised apples, whipped cream, flaked almonds" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["oeufs", "lait", "fruits-a-coque", "sulfites"]
+            },
+            {
+              "name": "Le Café Liégeois",
+              "desc": { "fr": "2 boules café, café froid, chantilly, amandes effilées", "en": "2 scoops of coffee, iced coffee, whipped cream, flaked almonds" },
+              "tags": ["vege"],
+              "allergens": ["oeufs", "lait", "fruits-a-coque"],
+              "verify": true
+            },
+            {
+              "name": "Le Chocolat Liégeois",
+              "desc": { "fr": "2 boules chocolat, chocolat, chantilly, amandes effilées", "en": "2 scoops of chocolate, chocolate sauce, whipped cream, flaked almonds" },
+              "tags": ["vege"],
+              "allergens": ["oeufs", "lait", "fruits-a-coque"],
+              "verify": true
+            },
+            {
+              "name": "Le Caramel Liégeois",
+              "desc": { "fr": "2 boules caramel, caramel, chantilly, amandes effilées", "en": "2 scoops of caramel, caramel sauce, whipped cream, flaked almonds" },
+              "tags": ["vege"],
+              "allergens": ["oeufs", "lait", "fruits-a-coque"]
+            },
+            {
+              "name": "La Baie des Anges",
+              "desc": { "fr": "Framboise, nougat, coulis de fruits rouges, chantilly, amandes effilées", "en": "Raspberry, nougat, red berry coulis, whipped cream, flaked almonds" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque"]
+            },
+            {
+              "name": "La Belle-Île",
+              "desc": { "fr": "Mangue, ananas, banane, chocolat, chantilly", "en": "Mango, pineapple, banana, chocolate, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["lait"]
+            },
+            {
+              "name": "La Ploemeur",
+              "desc": { "fr": "Pomme, vanille, spéculoos, chantilly, amandes effilées", "en": "Apple, vanilla, speculoos, whipped cream, flaked almonds" },
+              "tags": ["vege"],
+              "allergens": ["gluten", "oeufs", "lait", "fruits-a-coque", "sulfites"],
+              "verify": true,
+              "corrected": ["sulfites"]
+            },
+            {
+              "name": "La Bréhat",
+              "desc": { "fr": "Mangue, noix de coco, meringue maison, coulis de fruits rouges, chantilly", "en": "Mango, coconut, homemade meringue, red berry coulis, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["oeufs", "lait"]
+            },
+            {
+              "name": "La Dame Blanche",
+              "desc": { "fr": "2 boules vanille, chocolat, chantilly", "en": "2 scoops of vanilla, chocolate sauce, whipped cream" },
+              "tags": ["vege"],
+              "allergens": ["oeufs", "lait"],
+              "verify": true
+            }
           ]
         },
         {
@@ -255,21 +714,66 @@
           "note": { "fr": "Glaces digestives alcoolisées. Simple : 1 boule + 2 cl (7,40 €). Double : 2 boules + 2 cl (8,90 €).", "en": "Ice cream with a dash of spirit. Single: 1 scoop + 2 cl (€7.40). Double: 2 scoops + 2 cl (€8.90)." },
           "priceLabel": { "fr": "7,40 € / 8,90 €", "en": "€7.40 / €8.90" },
           "items": [
-            { "name": "La Grand-Marnier", "desc": { "fr": "Glace Grand-Marnier, Grand-Marnier", "en": "Grand Marnier ice cream, Grand Marnier" }, "tags": ["vege", "alcool"], "allergens": ["sulfites"], "verify": true },
-            { "name": "La Calva", "desc": { "fr": "Glace pomme, calvados", "en": "Apple sorbet, Calvados" }, "tags": ["vege", "alcool"], "allergens": ["sulfites"] },
-            { "name": "La Vodka", "desc": { "fr": "Glace citron, vodka", "en": "Lemon sorbet, vodka" }, "tags": ["vege", "alcool"], "allergens": ["sulfites"] },
-            { "name": "La Baileys", "desc": { "fr": "Glace vanille, Baileys", "en": "Vanilla ice cream, Baileys" }, "tags": ["vege", "alcool"], "allergens": [], "verify": true },
-            { "name": "La Réunionnaise", "desc": { "fr": "Glace rhum-raisin, rhum St James", "en": "Rum & raisin ice cream, St James rum" }, "tags": ["vege", "alcool"], "allergens": ["sulfites"], "verify": true }
+            {
+              "name": "La Grand-Marnier",
+              "desc": { "fr": "Glace Grand-Marnier, Grand-Marnier", "en": "Grand Marnier ice cream, Grand Marnier" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["oeufs", "lait", "sulfites"],
+              "verify": true,
+              "corrected": ["oeufs", "lait"]
+            },
+            {
+              "name": "La Calva",
+              "desc": { "fr": "Glace pomme, calvados", "en": "Apple sorbet, Calvados" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["sulfites"]
+            },
+            {
+              "name": "La Vodka",
+              "desc": { "fr": "Glace citron, vodka", "en": "Lemon sorbet, vodka" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["sulfites"]
+            },
+            {
+              "name": "La Baileys",
+              "desc": { "fr": "Glace vanille, Baileys", "en": "Vanilla ice cream, Baileys" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["lait"],
+              "verify": true,
+              "corrected": ["lait"]
+            },
+            {
+              "name": "La Réunionnaise",
+              "desc": { "fr": "Glace rhum-raisin, rhum St James", "en": "Rum & raisin ice cream, St James rum" },
+              "tags": ["vege", "alcool"],
+              "allergens": ["oeufs", "lait", "sulfites"],
+              "verify": true,
+              "corrected": ["oeufs", "lait"]
+            }
           ]
         },
         {
           "id": "coupes-a-composer",
           "title": { "fr": "Coupes à composer", "en": "Build your own" },
           "items": [
-            { "name": { "fr": "Coupe 1 boule", "en": "1 scoop" }, "price": 3.5 },
-            { "name": { "fr": "Coupe 2 boules", "en": "2 scoops" }, "price": 6.4 },
-            { "name": { "fr": "Coupe 3 boules", "en": "3 scoops" }, "price": 7.4 },
-            { "name": { "fr": "Chantilly (maison)", "en": "Whipped cream (homemade)" }, "price": 1.5 }
+            {
+              "name": { "fr": "Coupe 1 boule", "en": "1 scoop" },
+              "price": 3.5
+            },
+            {
+              "name": { "fr": "Coupe 2 boules", "en": "2 scoops" },
+              "price": 6.4
+            },
+            {
+              "name": { "fr": "Coupe 3 boules", "en": "3 scoops" },
+              "price": 7.4
+            },
+            {
+              "name": { "fr": "Chantilly (maison)", "en": "Whipped cream (homemade)" },
+              "price": 1.5,
+              "allergens": ["lait"],
+              "inferred": true
+            }
           ]
         },
         {
@@ -280,27 +784,75 @@
             {
               "title": { "fr": "Crèmes glacées", "en": "Ice creams" },
               "items": [
-                { "name": { "fr": "Vanille", "en": "Vanilla" }, "allergens": ["lait"] },
-                { "name": { "fr": "Chocolat", "en": "Chocolate" }, "allergens": ["lait"] },
-                { "name": { "fr": "Café", "en": "Coffee" }, "allergens": ["lait"] },
-                { "name": { "fr": "Caramel beurre salé", "en": "Salted caramel" }, "allergens": ["oeufs", "lait"] },
-                { "name": { "fr": "Pistache", "en": "Pistachio" }, "allergens": ["lait", "fruits-a-coque"] },
-                { "name": { "fr": "Spéculoos", "en": "Speculoos" }, "allergens": ["gluten", "lait"] },
-                { "name": { "fr": "Nougat", "en": "Nougat" }, "allergens": ["oeufs", "lait", "fruits-a-coque"] },
-                { "name": { "fr": "Grand-Marnier", "en": "Grand Marnier" }, "allergens": ["oeufs", "lait"] },
-                { "name": { "fr": "Rhum-raisins", "en": "Rum & raisin" }, "allergens": ["oeufs", "lait"] },
-                { "name": { "fr": "Noix de coco", "en": "Coconut" }, "allergens": [] }
+                {
+                  "name": { "fr": "Vanille", "en": "Vanilla" },
+                  "allergens": ["lait"]
+                },
+                {
+                  "name": { "fr": "Chocolat", "en": "Chocolate" },
+                  "allergens": ["lait"]
+                },
+                {
+                  "name": { "fr": "Café", "en": "Coffee" },
+                  "allergens": ["lait"]
+                },
+                {
+                  "name": { "fr": "Caramel beurre salé", "en": "Salted caramel" },
+                  "allergens": ["oeufs", "lait"]
+                },
+                {
+                  "name": { "fr": "Pistache", "en": "Pistachio" },
+                  "allergens": ["lait", "fruits-a-coque"]
+                },
+                {
+                  "name": { "fr": "Spéculoos", "en": "Speculoos" },
+                  "allergens": ["gluten", "lait"]
+                },
+                {
+                  "name": { "fr": "Nougat", "en": "Nougat" },
+                  "allergens": ["oeufs", "lait", "fruits-a-coque"]
+                },
+                {
+                  "name": { "fr": "Grand-Marnier", "en": "Grand Marnier" },
+                  "allergens": ["oeufs", "lait"]
+                },
+                {
+                  "name": { "fr": "Rhum-raisins", "en": "Rum & raisin" },
+                  "allergens": ["oeufs", "lait"]
+                },
+                {
+                  "name": { "fr": "Noix de coco", "en": "Coconut" },
+                  "allergens": []
+                }
               ]
             },
             {
               "title": { "fr": "Sorbets", "en": "Sorbets" },
               "items": [
-                { "name": { "fr": "Framboise", "en": "Raspberry" }, "allergens": [] },
-                { "name": { "fr": "Citron", "en": "Lemon" }, "allergens": [] },
-                { "name": { "fr": "Mangue", "en": "Mango" }, "allergens": [] },
-                { "name": { "fr": "Pomme", "en": "Apple" }, "allergens": ["sulfites"] },
-                { "name": { "fr": "Ananas", "en": "Pineapple" }, "allergens": [] },
-                { "name": { "fr": "Fraise", "en": "Strawberry" }, "allergens": [] }
+                {
+                  "name": { "fr": "Framboise", "en": "Raspberry" },
+                  "allergens": []
+                },
+                {
+                  "name": { "fr": "Citron", "en": "Lemon" },
+                  "allergens": []
+                },
+                {
+                  "name": { "fr": "Mangue", "en": "Mango" },
+                  "allergens": []
+                },
+                {
+                  "name": { "fr": "Pomme", "en": "Apple" },
+                  "allergens": ["sulfites"]
+                },
+                {
+                  "name": { "fr": "Ananas", "en": "Pineapple" },
+                  "allergens": []
+                },
+                {
+                  "name": { "fr": "Fraise", "en": "Strawberry" },
+                  "allergens": []
+                }
               ]
             }
           ]
@@ -310,10 +862,22 @@
           "title": { "fr": "Suppléments", "en": "Extras" },
           "type": "supplements",
           "items": [
-            { "price": 1.5, "name": { "fr": "Chocolat, caramel, coulis de fruits rouges, spéculoos, chantilly, noix, amandes effilées, noix de coco", "en": "Chocolate, caramel, red berry coulis, speculoos, whipped cream, walnuts, flaked almonds, coconut" } },
-            { "price": 2.0, "name": { "fr": "Pommes caramélisées, Nutella®, meringue (maison), crème de marron, banane, miel, sirop d'érable", "en": "Caramelised apples, Nutella®, homemade meringue, chestnut cream, banana, honey, maple syrup" } },
-            { "price": 2.8, "name": { "fr": "En saison : fraise, framboise (fruits), griottes alcoolisées", "en": "In season: fresh strawberries, raspberries, morello cherries in liqueur" } },
-            { "price": 3.0, "name": { "fr": "Boule de glace", "en": "Scoop of ice cream" } }
+            {
+              "price": 1.5,
+              "name": { "fr": "Chocolat, caramel, coulis de fruits rouges, spéculoos, chantilly, noix, amandes effilées, noix de coco", "en": "Chocolate, caramel, red berry coulis, speculoos, whipped cream, walnuts, flaked almonds, coconut" }
+            },
+            {
+              "price": 2,
+              "name": { "fr": "Pommes caramélisées, Nutella®, meringue (maison), crème de marron, banane, miel, sirop d'érable", "en": "Caramelised apples, Nutella®, homemade meringue, chestnut cream, banana, honey, maple syrup" }
+            },
+            {
+              "price": 2.8,
+              "name": { "fr": "En saison : fraise, framboise (fruits), griottes alcoolisées", "en": "In season: fresh strawberries, raspberries, morello cherries in liqueur" }
+            },
+            {
+              "price": 3,
+              "name": { "fr": "Boule de glace", "en": "Scoop of ice cream" }
+            }
           ]
         }
       ]

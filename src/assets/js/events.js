@@ -41,6 +41,18 @@
 
     const dots = (slugs) => slugs.map((s) => `<span class="cal-dot" style="--c:${restos[s].color}" title="${esc(restos[s].city)}"></span>`).join("");
     const where = (slugs) => slugs.map((s) => `<span class="cal-tag" style="--c:${restos[s].color}">${esc(restos[s].city)}</span>`).join("");
+    // Réservation par téléphone : un bouton par restaurant où a lieu l'événement
+    // Bloc refermable (croix) ; il réapparaît à chaque nouveau clic sur un événement, car le détail est redessiné
+    const book = (slugs) => `<div class="cal-book">
+      <div class="cal-book-head">
+        <p class="cal-book-title">${esc(root.dataset.bookTitle)}</p>
+        <button type="button" class="cal-book-close" data-book-close aria-label="${esc(root.dataset.bookClose)}">&times;</button>
+      </div>
+      ${slugs.map((s) => `<a class="cal-book-row" href="tel:${restos[s].phoneIntl}" aria-label="${esc(root.dataset.bookLabel)} ${esc(restos[s].city)} : ${esc(restos[s].phone)}">
+        <span class="cal-book-city"><span class="cal-dot" style="--c:${restos[s].color}"></span>${esc(restos[s].city)}</span>
+        <span class="cal-book-phone"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>${esc(restos[s].phone)}</span></a>`).join("")}
+      <p class="muted small">${esc(root.dataset.bookNote)}</p>
+    </div>`;
     const longDate = (d) => cap(d.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" }));
 
     function renderGrid() {
@@ -75,6 +87,7 @@
           <h4>${esc(t(e.name))}${e.time ? ` <span class="muted">· ${esc(t(e.time))}</span>` : ""}</h4>
           ${e.desc ? `<p class="muted">${esc(t(e.desc))}</p>` : ""}
           <p class="cal-where">${where(e.restaurants)}</p>
+          ${selected >= today ? book(e.restaurants) : ""}
         </article>`).join("");
     }
 
@@ -100,6 +113,9 @@
 
     function render() { renderGrid(); renderDetail(); renderUpcoming(); }
 
+    detail.addEventListener("click", (e) => {
+      if (e.target.closest("[data-book-close]")) e.target.closest(".cal-book").remove();
+    });
     grid.addEventListener("click", (e) => {
       const b = e.target.closest("[data-day]");
       if (!b) return;

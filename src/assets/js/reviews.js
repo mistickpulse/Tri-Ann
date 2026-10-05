@@ -5,7 +5,17 @@ const FIELDS = "rating,userRatingCount,reviews.rating,reviews.text,reviews.origi
 
 const escapeHtml = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
+// Les réponses sont gardées le temps de la visite : chaque visiteur ne coûte qu'un appel par restaurant,
+// ce qui limite la consommation du quota Google.
 async function fetchPlace(placeId, lang) {
+  const key = `triann-avis-${placeId}-${lang}`;
+  try { const cached = sessionStorage.getItem(key); if (cached) return JSON.parse(cached); } catch { /* navigation privée */ }
+  const data = await fetchPlaceFromGoogle(placeId, lang);
+  try { sessionStorage.setItem(key, JSON.stringify(data)); } catch { /* navigation privée */ }
+  return data;
+}
+
+async function fetchPlaceFromGoogle(placeId, lang) {
   const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}?languageCode=${lang}`, {
     headers: { "X-Goog-Api-Key": API_KEY, "X-Goog-FieldMask": FIELDS },
   });

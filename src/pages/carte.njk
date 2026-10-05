@@ -41,7 +41,7 @@ scripts: ["/assets/js/menu.js"]
     {%- if sec.price %}<span class="section-price">{{ sec.price | price(lang) }}</span>{% elif sec.priceLabel %}<span class="section-price">{{ sec.priceLabel | tr(lang) }}</span>{% endif %}
   </header>
   {%- endif %}
-  {%- if sec.note %}<p class="muted small">{{ sec.note | tr(lang) }}</p>{% endif %}
+  {%- if sec.note %}<p class="muted small">{{ sec.note | tr(lang) }} {{ ("menu." + sec.id) | rtag }}</p>{% endif %}
   {%- if sec.noTakeaway %}<p class="no-takeaway-note small">{{ icon("info", 16) }} {{ "takeaway.notAvailable" | t(lang) }}</p>{% endif %}
   {%- if sec.type == "supplements" %}
   <ul class="supplements">
@@ -81,7 +81,7 @@ scripts: ["/assets/js/menu.js"]
 <form id="filters" data-filters>
   <div class="page-head wrap menu-head">
     <h1>{{ "menu.title" | t(lang) }}</h1>
-    <p class="muted">{{ "menu.intro" | t(lang) }}</p>
+    <p class="muted">{{ "menu.intro" | t(lang) }} {{ "menu.intro" | rtag }}</p>
 
     <div class="takeaway-cta" data-takeaway-cta>
       <button class="btn btn-ghost" type="button" data-open-dialog="takeaway-dialog">{{ icon("bag", 18) }} {{ "takeaway.cta" | t(lang) }}</button>
@@ -91,7 +91,7 @@ scripts: ["/assets/js/menu.js"]
         <span class="takeaway-ic">{{ icon("bag", 22) }}</span>
         <div>
           <p class="takeaway-title"><b>{{ "takeaway.mode" | t(lang) }}</b> · <span data-takeaway-city></span></p>
-          <p class="muted small">{{ "takeaway.help" | t(lang) }}</p>
+          <p class="muted small">{{ "takeaway.help" | t(lang) }} {{ "takeaway.help" | rtag }}</p>
         </div>
       </div>
       <div class="takeaway-actions">
@@ -116,7 +116,7 @@ scripts: ["/assets/js/menu.js"]
       </span>
       <button class="toggle-btn specials-toggle" type="button" aria-pressed="false" data-specials-toggle hidden title="{{ 'specials.toggleHelp' | t(lang) }}">{{ icon("star", 18) }} {{ "specials.toggle" | t(lang) }}</button>
     </div>
-    <p class="butter-hint small" data-butter-hint hidden>{{ icon("info", 16) }} <span>{{ "menu.butterHint" | t(lang) }}</span></p>
+    <p class="butter-hint small" data-butter-hint hidden>{{ icon("info", 16) }} <span>{{ "menu.butterHint" | t(lang) }} {{ "menu.butterHint" | rtag }}</span></p>
     <label class="switch show-allergens-switch"><input type="checkbox" name="showAllergens" data-show-allergens><span class="switch-track" aria-hidden="true"></span> {{ "menu.showAllergens" | t(lang) }}</label>
     <p class="filter-summary small" data-filter-summary hidden>
       <span data-summary-text></span>
@@ -130,13 +130,13 @@ scripts: ["/assets/js/menu.js"]
       <button class="icon-btn" type="button" data-close-filters aria-label="{{ 'menu.close' | t(lang) }}">{{ icon("close", 22) }}</button>
     </header>
     <div class="filter-panel-body">
-      <p class="muted small">{{ "menu.allergensHelp" | t(lang) }}</p>
+      <p class="muted small">{{ "menu.allergensHelp" | t(lang) }} {{ "menu.allergensHelp" | rtag }}</p>
       <div class="allergen-grid">
         {%- for a in site.allergens %}
         <label class="allergen-tile"><input type="checkbox" name="allergen" value="{{ a.id }}"><span>{{ a[lang] }}</span></label>
         {%- endfor %}
       </div>
-      <p class="disclaimer small">{{ icon("info", 16) }} <span>{{ "menu.allergensDisclaimer" | t(lang) }}</span></p>
+      <p class="disclaimer small">{{ icon("info", 16) }} <span>{{ "menu.allergensDisclaimer" | t(lang) }} {{ "menu.allergensDisclaimer" | rtag }}</span></p>
     </div>
     <footer class="filter-panel-foot">
       <button class="btn btn-ghost" type="button" data-clear-allergens>{{ "menu.clear" | t(lang) }}</button>
@@ -170,7 +170,7 @@ scripts: ["/assets/js/menu.js"]
     <header class="menu-category-head{% if cat.image %} has-image{% endif %}">
       <div>
         <h2 id="{{ cat.id }}-title">{{ cat.title | tr(lang) }}</h2>
-        {%- if cat.intro %}<p class="muted">{{ cat.intro | tr(lang) }}</p>{% endif %}
+        {%- if cat.intro %}<p class="muted">{{ cat.intro | tr(lang) }} {{ ("menu." + cat.id) | rtag }}</p>{% endif %}
       </div>
       {%- if cat.image %}<img src="/assets/img/{{ cat.image }}" alt="" loading="lazy" width="160" height="160">{% endif %}
     </header>
@@ -186,7 +186,7 @@ scripts: ["/assets/js/menu.js"]
     <header class="menu-category-head has-image">
       <div>
       <h2 id="boissons-title">{{ "menu.boissons" | t(lang) }}</h2>
-      <p class="muted">{{ drinks.comingSoon | tr(lang) }}</p>
+      <p class="muted">{{ drinks.comingSoon | tr(lang) }} {{ "drinks.comingSoon" | rtag }}</p>
       </div>
       <img src="/assets/img/mur-de-bouteille.png" alt="" loading="lazy" width="160" height="160">
     </header>
@@ -197,10 +197,10 @@ scripts: ["/assets/js/menu.js"]
     <p class="muted small">{{ "menu.drinkResponsibly" | t(lang) }}</p>
   </section>
 
-  <p class="disclaimer small">{{ icon("info", 16) }} <span>{{ "menu.allergensDisclaimer" | t(lang) }}</span></p>
+  <p class="disclaimer small">{{ icon("info", 16) }} <span>{{ "menu.allergensDisclaimer" | t(lang) }} {{ "menu.allergensDisclaimer" | rtag }}</span></p>
 
   <ul class="footnotes muted small">
-    {%- for n in menu.footnotes %}<li>{{ n | tr(lang) }}</li>{% endfor %}
+    {%- for n in menu.footnotes %}<li>{{ n | tr(lang) }}{% if loop.first %} {{ "menu.footnotes" | rtag }}{% endif %}</li>{% endfor %}
   </ul>
 </div>
 
@@ -211,7 +211,7 @@ scripts: ["/assets/js/menu.js"]
       <button class="link-btn" type="button" data-order-clear>{{ "takeaway.clear" | t(lang) }}</button>
     </div>
     <ul class="order-list" data-order-list></ul>
-    <p class="muted small">{{ "takeaway.orderNote" | t(lang) }}</p>
+    <p class="muted small">{{ "takeaway.orderNote" | t(lang) }} {{ "takeaway.orderNote" | rtag }}</p>
   </div>
   <div class="order-summary">
     <button class="order-toggle" type="button" aria-expanded="false" data-order-toggle>

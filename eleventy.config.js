@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import nunjucks from "nunjucks";
 
 export default function (eleventyConfig) {
   // Sous-dossier GitHub Pages (ex. "/Tri-Ann/"). Avec un nom de domaine perso, mettre "/".
@@ -30,6 +31,19 @@ export default function (eleventyConfig) {
   eleventyConfig.on("eleventy.before", () => {
     dict = JSON.parse(readFileSync("src/_data/i18n.json", "utf8"));
   });
+  // Numéros de relecture (T1, T2…) : affichés seulement si reviewMode vaut true dans site.json
+  let reviewIds = {}, reviewMode = false;
+  eleventyConfig.on("eleventy.before", () => {
+    reviewMode = JSON.parse(readFileSync("src/_data/site.json", "utf8")).reviewMode === true;
+    const { keys } = JSON.parse(readFileSync("src/_data/reviewTags.json", "utf8"));
+    reviewIds = Object.fromEntries(keys.map((k, i) => [k, "T" + (i + 1)]));
+  });
+  eleventyConfig.addNunjucksFilter("rtag", (key) => {
+    const id = reviewIds[key];
+    if (!reviewMode || !id) return "";
+    return new nunjucks.runtime.SafeString(`<span class="rtag" data-rtag="${id}" title="Texte à valider : envoyez « ${id} » dans le groupe pour en discuter">${id}<small>à valider</small></span>`);
+  });
+
   eleventyConfig.addFilter("t", (key, lang) => {
     const entry = key.split(".").reduce((o, k) => (o ? o[k] : undefined), dict);
     if (!entry) return key;
@@ -86,7 +100,7 @@ export default function (eleventyConfig) {
       restaurants: !d.etablissements || d.etablissements.includes("tous") ? all : d.etablissements,
     }));
     return JSON.stringify({
-      restaurants: restaurants.map(({ slug, city, color }) => ({ slug, city, color })),
+      restaurants: restaurants.map(({ slug, city, color, phone, phoneIntl }) => ({ slug, city, color, phone, phoneIntl })),
       events: list.filter((e) => e.date || e.weekly),
     }).replace(/</g, "\\u003c");
   });

@@ -19,7 +19,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
   <img class="hero-media" src="/assets/img/galette-sarasin.jpg" alt="" width="1080" height="665" fetchpriority="high">
   <div class="wrap hero-content">
     <h1>{{ "home.heroTitle" | t(lang) }}</h1>
-    <p>{{ "home.heroText" | t(lang) }}</p>
+    <p>{{ "home.heroText" | t(lang) }} {{ "home.heroText" | rtag }}</p>
     <div class="ctas">
       <a class="btn btn-primary btn-lg" href="{{ site.routes | route('menu', lang) }}">{{ icon("book", 20) }} {{ "home.seeMenu" | t(lang) }}</a>
       <a class="btn btn-ghost btn-lg on-dark" href="#restaurants">{{ icon("pin", 20) }} {{ "nav.restaurants" | t(lang) }}</a>
@@ -74,7 +74,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
     <div class="booking-note">
       {{ icon("phone", 20) }}
       <p><b>{{ "home.bookingAll" | t(lang) }}</b><br>
-      <span class="muted">{{ "home.bookingGroup" | t(lang) }} <a href="{{ site.routes | route('contact', lang) }}">{{ "home.bookingGroupLink" | t(lang) }}</a>.</span></p>
+      <span class="muted">{{ "home.bookingGroup" | t(lang) }} <a href="{{ site.routes | route('contact', lang) }}">{{ "home.bookingGroupLink" | t(lang) }}</a>.</span> {{ "home.bookingNote" | rtag }}</p>
     </div>
   </div>
 </section>
@@ -83,25 +83,26 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
   <div class="wrap menu-cta-inner">
     <div>
       <h2>{{ "home.menuCtaTitle" | t(lang) }}</h2>
-      <p class="muted">{{ "home.menuCtaText" | t(lang) }}</p>
+      <p class="muted">{{ "home.menuCtaText" | t(lang) }} {{ "home.menuCtaText" | rtag }}</p>
       <a class="btn btn-primary btn-lg" href="{{ site.routes | route('menu', lang) }}">{{ icon("book", 20) }} {{ "home.seeMenu" | t(lang) }}</a>
     </div>
     <img src="/assets/img/crepe-dessert.png" alt="" loading="lazy" width="609" height="609">
   </div>
 </section>
 
-<section class="band band-alt" aria-labelledby="craft-title">
-  <div class="wrap split">
-    <div>
-      <p class="eyebrow">{{ "home.craftEyebrow" | t(lang) }}</p>
-      <h2 id="craft-title">{{ "home.craftTitle" | t(lang) }}</h2>
-      <ol class="craft-list">
-        {%- for c in i18n.craft %}
-        <li><b>{{ c.title | tr(lang) }}</b><span class="muted">{{ c.text | tr(lang) }}</span></li>
-        {%- endfor %}
-      </ol>
+<section class="band band-alt" id="univers" aria-labelledby="about-title">
+  <div class="wrap about">
+    <div class="about-intro">
+      <p class="eyebrow">{{ "home.aboutEyebrow" | t(lang) }}</p>
+      <h2 id="about-title">{{ "home.aboutTitle" | t(lang) }}</h2>
+      <p>{{ "home.aboutText1" | t(lang) }} {{ "home.aboutText1" | rtag }}</p>
+      <p class="muted">{{ "home.aboutText2" | t(lang) }} {{ "home.aboutText2" | rtag }}</p>
     </div>
-    <img class="rounded" src="/assets/img/salade.png" alt="" loading="lazy" width="959" height="959">
+    <ol class="craft-list">
+      {%- for c in i18n.craft %}
+      <li><b>{{ c.title | tr(lang) }}</b><span class="muted">{{ c.text | tr(lang) }} {{ ("craft." + loop.index0) | rtag }}</span></li>
+      {%- endfor %}
+    </ol>
   </div>
 </section>
 
@@ -114,7 +115,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
       <article class="service">
         <span class="service-ic">{{ icon(s.icon, 24) }}</span>
         <h3>{{ s.title | tr(lang) }}</h3>
-        <p class="muted">{{ s.text | tr(lang) }}{% if s.link %} <a href="{{ site.routes | route('contact', lang) }}">{{ s.link | tr(lang) }}</a>.{% endif %}</p>
+        <p class="muted">{{ s.text | tr(lang) }}{% if s.link %} <a href="{{ site.routes | route('contact', lang) }}">{{ s.link | tr(lang) }}</a>.{% endif %} {{ ("services." + loop.index0) | rtag }}</p>
         {%- if s.action == "takeaway" %}
         <button class="btn btn-ghost service-btn" type="button" data-open-dialog="takeaway-dialog">{{ icon("bag", 18) }} {{ s.actionLabel | tr(lang) }}</button>
         {%- endif %}

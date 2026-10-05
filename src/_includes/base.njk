@@ -29,6 +29,12 @@
 </head>
 <body class="page-{{ pageKey }}">
   <a class="skip" href="#main">{{ "nav.skip" | t(lang) }}</a>
+  {%- if site.reviewMode %}
+  <div class="review-bar" role="note">
+    <b>Version de relecture</b>
+    <span>Chaque texte à valider porte un numéro (T1, T2…). Pour proposer une modification, envoyez le numéro et votre remarque dans le groupe. Un clic sur un numéro le copie.</span>
+  </div>
+  {%- endif %}
 
   <header class="site-header{% if pageKey == 'home' %} is-over-hero{% endif %}" data-header>
     <div class="wrap header-inner">
@@ -69,7 +75,7 @@
     <div class="wrap footer-grid">
       <div>
         <a class="brand" href="{{ site.routes | route('home', lang) }}"><img src="/assets/img/logo-tri-ann.jpg" alt="" width="48" height="48"><span>Tri-Ann</span></a>
-        <p class="muted">{{ "footer.tagline" | t(lang) }}</p>
+        <p class="muted">{{ "footer.tagline" | t(lang) }} {{ "footer.tagline" | rtag }}</p>
       </div>
       {%- for r in restaurants %}
       <div>
@@ -102,7 +108,7 @@
     {%- for r in restaurants %}
     <a class="sheet-row" href="tel:{{ r.phoneIntl }}"><b>{{ r.city }}</b><span>{{ r.phone }}</span></a>
     {%- endfor %}
-    <p class="muted small">{{ "resto.booking" | t(lang) }}</p>
+    <p class="muted small">{{ "resto.booking" | t(lang) }} {{ "resto.booking" | rtag }}</p>
     <form method="dialog"><button class="btn btn-ghost">{{ icon("close", 18) }} OK</button></form>
   </dialog>
   <dialog class="sheet" id="go-dialog" aria-labelledby="go-title">
@@ -124,7 +130,7 @@
 
   <dialog class="sheet newsletter-dialog" id="newsletter-dialog" aria-labelledby="newsletter-title">
     <h2 id="newsletter-title">{{ "newsletter.title" | t(lang) }}</h2>
-    <p class="muted small">{{ "newsletter.text" | t(lang) }}</p>
+    <p class="muted small">{{ "newsletter.text" | t(lang) }} {{ "newsletter.text" | rtag }}</p>
     <form class="newsletter-form" method="POST" action="{{ site.newsletter.action }}" target="_blank" data-newsletter
           data-msg-sending="{{ 'newsletter.sending' | t(lang) }}" data-msg-ok="{{ 'newsletter.ok' | t(lang) }}" data-msg-error="{{ 'newsletter.error' | t(lang) }}">
       <label class="field"><span>{{ "contact.email" | t(lang) }}</span><input type="email" name="EMAIL" autocomplete="email" required></label>

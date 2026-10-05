@@ -43,16 +43,16 @@
       "en": "Breton crêperie in Moussy-le-Neuf, Lagny-le-Sec and Saint-Maximin"
     },
     "description": {
-      "fr": "Galettes de sarrasin et crêpes tirées sur le billig, tout fait maison. 3 crêperies Tri-Ann : Moussy-le-Neuf (77), Lagny-le-Sec et Saint-Maximin (60).",
-      "en": "Buckwheat galettes and crêpes made on the billig, all homemade. 3 Tri-Ann crêperies: Moussy-le-Neuf, Lagny-le-Sec and Saint-Maximin, north of Paris."
+      "fr": "Crêperies Tri-Ann à Moussy-le-Neuf, Lagny-le-Sec et Saint-Maximin : galettes 100 % sarrasin à la pâte maturée 72 h, crêpes et desserts faits maison. Réservation par téléphone.",
+      "en": "Tri-Ann crêperies in Moussy-le-Neuf, Lagny-le-Sec and Saint-Maximin: 100% buckwheat galettes made with a batter rested for 72 hours, homemade crêpes and desserts. Bookings by phone."
     },
     "heroTitle": {
-      "fr": "La vraie galette bretonne, faite devant vous",
-      "en": "Authentic Breton galettes, made before your eyes"
+      "fr": "Bienvenue au Tri-Ann",
+      "en": "Welcome to Tri-Ann"
     },
     "heroText": {
-      "fr": "Galettes de sarrasin et crêpes au froment tirées sur le billig. Tout est fait maison, dans nos 3 crêperies.",
-      "en": "Buckwheat galettes and wheat crêpes made on the billig. Everything is homemade, in our 3 crêperies."
+      "fr": "Pour les amoureux des crêpes, des galettes et de la Bretagne. Trois crêperies, une même carte, et tout est fait maison.",
+      "en": "For lovers of crêpes, galettes and Brittany. Three crêperies, one menu, and everything is homemade."
     },
     "specialsEyebrow": {
       "fr": "En ce moment",
@@ -63,24 +63,16 @@
       "en": "Current specials"
     },
     "noSpecials": {
-      "fr": "Pas de spéciale en ce moment : toute la carte vous attend !",
-      "en": "No special right now, but the whole menu is waiting for you!"
+      "fr": "Pas de spécialité en ce moment dans ce restaurant : toute la carte vous attend !",
+      "en": "No special at this restaurant right now, but the whole menu is waiting for you!"
     },
     "restosEyebrow": {
       "fr": "Nos crêperies",
       "en": "Our crêperies"
     },
     "restosTitle": {
-      "fr": "3 restaurants, la même carte",
-      "en": "3 restaurants, one menu"
-    },
-    "craftEyebrow": {
-      "fr": "Notre savoir-faire",
-      "en": "Our craft"
-    },
-    "craftTitle": {
-      "fr": "Fait maison, à la bretonne",
-      "en": "Homemade, the Breton way"
+      "fr": "Trois crêperies, une même carte",
+      "en": "Three crêperies, one menu"
     },
     "servicesEyebrow": {
       "fr": "Services",
@@ -103,12 +95,12 @@
       "en": "No events scheduled yet. Follow us on social media!"
     },
     "menuCtaTitle": {
-      "fr": "Toute la carte, en un coup d’œil",
+      "fr": "Toute la carte en un coup d'œil",
       "en": "The whole menu at a glance"
     },
     "menuCtaText": {
-      "fr": "Plus de 40 galettes et crêpes, des salades, des glaces artisanales et des cocktails bretons. Filtres végétarien, sans porc et allergènes.",
-      "en": "Over 40 galettes and crêpes, salads, artisan ice cream and Breton cocktails. Vegetarian, pork-free and allergen filters."
+      "fr": "Galettes, salades, crêpes, glaces artisanales et cocktails, avec des filtres pour trouver facilement les plats végétariens, sans porc ou adaptés à vos allergies.",
+      "en": "Galettes, salads, crêpes, artisan ice cream and cocktails, with filters to easily find vegetarian or pork-free dishes, or dishes that suit your allergies."
     },
     "seeMenu": {
       "fr": "Voir la carte",
@@ -125,47 +117,83 @@
     "bookingGroupLink": {
       "fr": "formulaire de contact",
       "en": "contact form"
+    },
+    "aboutEyebrow": {
+      "fr": "L'univers Tri-Ann",
+      "en": "The Tri-Ann spirit"
+    },
+    "aboutTitle": {
+      "fr": "Simple, convivial et fait maison",
+      "en": "Simple, friendly and homemade"
+    },
+    "aboutText1": {
+      "fr": "Le Tri-Ann, c'est une crêperie bretonne où l'on mise sur la simplicité et la convivialité. Nos recettes sont préparées sur place avec des produits frais. Nous restons fidèles aux traditions, avec une touche personnelle dans chaque assiette.",
+      "en": "Tri-Ann is a Breton crêperie built on simplicity and good company. Our recipes are made on site with fresh ingredients. We stay true to tradition, with a personal touch on every plate."
+    },
+    "aboutText2": {
+      "fr": "On vient chez nous pour bien manger, mais aussi pour passer un bon moment, en famille ou entre amis. Tout au long de l'année : karaoké le jeudi, soirées bretonnes, scène ouverte avec instruments à disposition, concerts, et les fêtes de Noël, d'Halloween ou de la Saint-Valentin.",
+      "en": "People come to us to eat well, but also to have a good time with family or friends. All year round: karaoke on Thursdays, Breton evenings, open stage with instruments available, live music, and Christmas, Halloween and Valentine's Day celebrations."
     }
   },
   "craft": [
     {
       "title": {
+        "fr": "Une pâte 100 % sarrasin, maturée 72 h",
+        "en": "100% buckwheat batter, rested for 72 hours"
+      },
+      "text": {
+        "fr": "Notre farine de blé noir est moulue à la meule de pierre par le Moulin de la Fatigue. La pâte repose 72 heures avant d'être tirée.",
+        "en": "Our buckwheat flour is stone-ground by the Moulin de la Fatigue. The batter rests for 72 hours before cooking."
+      }
+    },
+    {
+      "title": {
         "fr": "Tirées sur le billig",
-        "en": "Made on the billig"
+        "en": "Cooked on the billig"
       },
       "text": {
-        "fr": "Nos galettes sont cuites au saindoux selon la tradition. Cuisson au beurre sur demande, pour un plat végétarien ou sans porc.",
-        "en": "Our galettes are cooked in lard, as tradition demands. Cooked in butter on request, for a vegetarian or pork-free dish."
+        "fr": "Galettes et crêpes sont tirées une à une, à la minute, et cuites au saindoux comme en Bretagne. Au beurre sur demande, pour un plat végétarien ou sans porc.",
+        "en": "Galettes and crêpes are made one by one, to order, and cooked in lard the Breton way. In butter on request, for a vegetarian or pork-free dish."
       }
     },
     {
       "title": {
-        "fr": "Pâtes faites sur place",
-        "en": "Batter made on site"
+        "fr": "Fait maison",
+        "en": "Homemade"
       },
       "text": {
-        "fr": "Toutes nos pâtes sont préparées artisanalement, chaque jour.",
-        "en": "All our batters are handmade every day."
+        "fr": "Chantilly, caramel beurre salé, chocolat, meringue et crémeux au mascarpone sont préparés sur place par notre chef pâtissier.",
+        "en": "Whipped cream, salted butter caramel, chocolate, meringue and mascarpone cheese creams are made on site by our pastry chef."
       }
     },
     {
       "title": {
-        "fr": "Tout est fait maison",
-        "en": "Everything homemade"
+        "fr": "Des produits frais",
+        "en": "Fresh ingredients"
       },
       "text": {
-        "fr": "Chantilly, caramel, chocolat, meringue et crémeux sont préparés par nos soins.",
-        "en": "Whipped cream, caramel, chocolate, meringue and cheese creams are all made in-house."
+        "fr": "Fruits et légumes frais, coupés et cuits par nos soins, œufs de poules élevées en plein air, et une salade servie avec notre vinaigrette au sésame.",
+        "en": "Fresh fruit and vegetables cut and cooked by us, free-range eggs, and a side salad with our sesame dressing."
       }
     },
     {
       "title": {
-        "fr": "Glaces artisanales",
+        "fr": "Des glaces artisanales",
         "en": "Artisan ice cream"
       },
       "text": {
-        "fr": "Toutes nos glaces sont réalisées par un maître glacier.",
-        "en": "All our ice creams are made by a master ice-cream maker."
+        "fr": "Toutes nos glaces et nos sorbets sont réalisés par un maître glacier.",
+        "en": "All our ice creams and sorbets are made by a master ice-cream maker."
+      }
+    },
+    {
+      "title": {
+        "fr": "Des cidres bretons",
+        "en": "Breton ciders"
+      },
+      "text": {
+        "fr": "Nous travaillons avec deux maisons bretonnes, les cidres Sorre et Kystin, et proposons aussi un cidre à la pression, doux ou brut.",
+        "en": "We work with two Breton cider makers, Sorre and Kystin, and also serve draught cider, sweet or dry."
       }
     }
   ],
@@ -177,8 +205,8 @@
         "en": "Birthdays"
       },
       "text": {
-        "fr": "« Bon anniversaire » écrit en chocolat sur l'assiette, et une bougie scintillante apportée au dessert. Prévenez-nous à l'avance par téléphone, ou à votre arrivée.",
-        "en": "\"Happy birthday\" written in chocolate on the plate and a sparkler candle brought with dessert. Let us know in advance by phone, or when you arrive."
+        "fr": "Vous fêtez un anniversaire ? Prévenez-nous en réservant ou à votre arrivée : nous écrivons un petit mot en chocolat sur l'assiette du dessert, offert par la maison, et nous l'apportons avec une bougie scintillante.",
+        "en": "Celebrating a birthday? Let us know when you book or when you arrive: we write a little message in chocolate on the dessert plate, on the house, and bring it out with a sparkler candle."
       }
     },
     {
@@ -188,8 +216,8 @@
         "en": "Groups"
       },
       "text": {
-        "fr": "15 personnes ou plus ? Appelez directement le restaurant, ou écrivez-nous via le",
-        "en": "15 people or more? Call the restaurant directly, or write to us using the"
+        "fr": "À partir de 15 personnes, appelez directement le restaurant ou écrivez-nous via le",
+        "en": "For 15 people or more, call the restaurant directly or write to us using the"
       },
       "link": {
         "fr": "formulaire de contact",
@@ -203,8 +231,8 @@
         "en": "Takeaway"
       },
       "text": {
-        "fr": "Toute la carte au même prix, sauf la spéciale sucrée et les desserts sur assiette. Préparez votre commande sur la carte, puis appelez le restaurant.",
-        "en": "The whole menu at the same price, except the sweet special and plated desserts. Prepare your order on the menu, then call the restaurant."
+        "fr": "Toute la carte au même prix, sauf la spécialité sucrée et les desserts sur assiette. Composez votre commande sur la carte, puis appelez le restaurant pour la passer.",
+        "en": "The whole menu at the same price, except the sweet special and plated desserts. Put your order together on the menu, then call the restaurant to place it."
       },
       "action": "takeaway",
       "actionLabel": {
@@ -219,8 +247,8 @@
         "en": "Gift vouchers"
       },
       "text": {
-        "fr": "En vente directement dans nos restaurants. Valables 1 an.",
-        "en": "Available in our restaurants. Valid for 1 year."
+        "fr": "Faites plaisir avec un bon cadeau, en vente directement dans nos restaurants et valable 1 an.",
+        "en": "Treat someone with a gift voucher, available in our restaurants and valid for 1 year."
       }
     }
   ],
@@ -322,8 +350,8 @@
       "en": "The full Tri-Ann crêperie menu: buckwheat galettes, salads, crêpes, artisan ice cream and Breton cocktails."
     },
     "intro": {
-      "fr": "La même carte dans nos 3 restaurants, aussi à emporter au même prix.",
-      "en": "The same menu in all 3 restaurants, also available to take away at the same price."
+      "fr": "La même carte dans nos trois crêperies, également disponible à emporter, au même prix.",
+      "en": "The same menu in all three crêperies, also available to take away at the same price."
     },
     "plats": {
       "fr": "Galettes & salades",
@@ -514,8 +542,8 @@
   },
   "footer": {
     "tagline": {
-      "fr": "Galettes & crêpes bretonnes, faites maison.",
-      "en": "Homemade Breton galettes & crêpes."
+      "fr": "Pour les amoureux des crêpes, des galettes et de la Bretagne.",
+      "en": "For lovers of crêpes, galettes and Brittany."
     },
     "legal": {
       "fr": "Mentions légales",
@@ -686,6 +714,14 @@
     "noneThisMonth": {
       "fr": "Aucun événement prévu ce mois-ci.",
       "en": "No events planned this month."
+    },
+    "bookTitle": {
+      "fr": "Réserver pour cette soirée",
+      "en": "Book for this evening"
+    },
+    "book": {
+      "fr": "Réserver",
+      "en": "Book"
     }
   },
   "newsletter": {
@@ -694,8 +730,8 @@
       "en": "Stay in the loop"
     },
     "text": {
-      "fr": "Nouvelles spécialités, soirées karaoké, concerts : recevez les actualités de nos 3 crêperies par e-mail.",
-      "en": "New specials, karaoke nights, live music: get news from our 3 crêperies by email."
+      "fr": "Nouvelles spécialités, soirées karaoké, concerts : recevez par e-mail les nouvelles de nos trois crêperies.",
+      "en": "New specials, karaoke nights, live music: get news from our three crêperies by email."
     },
     "cta": {
       "fr": "Me tenir informé",

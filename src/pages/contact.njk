@@ -15,12 +15,12 @@ scripts: ["https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js", "
 
 <div class="page-head wrap">
   <h1>{{ "contact.title" | t(lang) }}</h1>
-  <p class="muted">{{ "contact.description" | t(lang) }}</p>
+  <p class="muted">{{ "contact.description" | t(lang) }} {{ "contact.description" | rtag }}</p>
 </div>
 
 <div class="wrap contact-layout band" style="padding-top:0">
   <div>
-    <p class="disclaimer">{{ icon("info", 18) }} <span><b>{{ "contact.rules" | t(lang) }}</b></span></p>
+    <p class="disclaimer">{{ icon("info", 18) }} <span><b>{{ "contact.rules" | t(lang) }}</b> {{ "contact.rules" | rtag }}</span></p>
 
     <form class="contact-form" data-contact-form
           data-public-key="{{ site.emailjs.publicKey }}"

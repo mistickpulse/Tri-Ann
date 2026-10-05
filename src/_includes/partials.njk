@@ -60,7 +60,7 @@
 {%- endmacro -%}
 
 {%- macro eventsCalendar(events, lang, restaurants, only) -%}
-<div class="calendar" data-calendar data-lang="{{ lang }}" data-only="{{ only or '' }}" data-empty="{{ 'calendar.noneThisMonth' | t(lang) }}" data-title-current="{{ 'calendar.upcoming' | t(lang) }}" data-title-month="{{ 'calendar.inMonth' | t(lang) }}">
+<div class="calendar" data-calendar data-lang="{{ lang }}" data-only="{{ only or '' }}" data-empty="{{ 'calendar.noneThisMonth' | t(lang) }}" data-title-current="{{ 'calendar.upcoming' | t(lang) }}" data-title-month="{{ 'calendar.inMonth' | t(lang) }}" data-book-title="{{ 'calendar.bookTitle' | t(lang) }}" data-book-label="{{ 'calendar.book' | t(lang) }}" data-book-note="{{ 'resto.booking' | t(lang) }}" data-book-close="{{ 'menu.close' | t(lang) }}">
   <div class="cal-main">
     <div class="cal-head">
       <button class="icon-btn" type="button" data-cal-prev aria-label="{{ 'calendar.prev' | t(lang) }}">{{ icon("arrow", 18) }}</button>
@@ -105,7 +105,7 @@
   <span class="newsletter-ic">{{ icon("mail", 24) }}</span>
   <div>
     <h3>{{ "newsletter.title" | t(lang) }}</h3>
-    <p class="muted">{{ "newsletter.text" | t(lang) }}</p>
+    <p class="muted">{{ "newsletter.text" | t(lang) }} {{ "newsletter.text" | rtag }}</p>
   </div>
   <button class="btn btn-primary" type="button" data-open-dialog="newsletter-dialog">{{ icon("mail", 18) }} {{ "newsletter.cta" | t(lang) }}</button>
 </div>

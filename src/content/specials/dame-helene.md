@@ -6,5 +6,5 @@ description_en: Rolled crêpe, pear poached in vanilla syrup, homemade chocolate
 price: 11.90
 etablissements: [tous]
 image: /assets/img/crepe-dessert.png
-active: true
+active: false
 ---
