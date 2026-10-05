@@ -1,0 +1,116 @@
+{
+  "name": "Tri-Ann Crêperie",
+  "url": "https://mistickpulse.github.io/Tri-Ann",
+  "langs": [
+    "fr",
+    "en"
+  ],
+  "routes": {
+    "home": {
+      "fr": "/",
+      "en": "/en/"
+    },
+    "menu": {
+      "fr": "/carte/",
+      "en": "/en/menu/"
+    },
+    "restaurant": {
+      "fr": "/restaurants/:slug/",
+      "en": "/en/restaurants/:slug/"
+    },
+    "contact": {
+      "fr": "/contact/",
+      "en": "/en/contact/"
+    },
+    "legal": {
+      "fr": "/mentions-legales/",
+      "en": "/en/legal-notice/"
+    }
+  },
+  "allergens": [
+    {
+      "id": "gluten",
+      "fr": "Gluten",
+      "en": "Gluten"
+    },
+    {
+      "id": "crustaces",
+      "fr": "Crustacés",
+      "en": "Crustaceans"
+    },
+    {
+      "id": "oeufs",
+      "fr": "Œufs",
+      "en": "Eggs"
+    },
+    {
+      "id": "poisson",
+      "fr": "Poisson",
+      "en": "Fish"
+    },
+    {
+      "id": "arachides",
+      "fr": "Arachides",
+      "en": "Peanuts"
+    },
+    {
+      "id": "soja",
+      "fr": "Soja",
+      "en": "Soy"
+    },
+    {
+      "id": "lait",
+      "fr": "Lait",
+      "en": "Milk"
+    },
+    {
+      "id": "fruits-a-coque",
+      "fr": "Fruits à coque",
+      "en": "Tree nuts"
+    },
+    {
+      "id": "celeri",
+      "fr": "Céleri",
+      "en": "Celery"
+    },
+    {
+      "id": "moutarde",
+      "fr": "Moutarde",
+      "en": "Mustard"
+    },
+    {
+      "id": "sesame",
+      "fr": "Sésame",
+      "en": "Sesame"
+    },
+    {
+      "id": "sulfites",
+      "fr": "Sulfites",
+      "en": "Sulphites"
+    },
+    {
+      "id": "lupin",
+      "fr": "Lupin",
+      "en": "Lupin"
+    },
+    {
+      "id": "mollusques",
+      "fr": "Mollusques",
+      "en": "Molluscs"
+    }
+  ],
+  "googleApiKey": "AIzaSyD7EnTd_ASgJkjDXofEj81B2fZh129i4x0",
+  "emailjs": {
+    "publicKey": "rSyNef6BemMVhqFTu",
+    "serviceId": "service_yyznncj",
+    "templates": {
+      "triann_moussy": "A_CREER",
+      "triann_lagny": "A_CREER",
+      "triann_saintmax": "A_CREER"
+    }
+  },
+  "newsletter": {
+    "provider": "Brevo",
+    "action": "https://a582d9de.sibforms.com/serve/MUIFAOrNetQ-B9ufsUUNKFDyEMXxwUsEHhE1oKoOJYelY5W9wer5bKDaX1RXnwq5Y23vUFrVeNWjgpeQd-3PzYqVFo41PKOPEXhUMkl4PPwlgF5IiayQ-QAp0xb35iBiSmn1UXAmY6FUsu3XBSxO_E8q0JYK3koX-A-dUM-BdWJXmDACObpZfafjk7rE67xqAbFX_cV9Nwd2gzwh1w=="
+  }
+}

@@ -1,0 +1,225 @@
+---
+layout: base.njk
+pagination:
+  data: site.langs
+  size: 1
+  alias: lang
+permalink: "{{ site.routes.menu[lang] }}"
+pageKey: menu
+eleventyComputed:
+  title: "{{ 'menu.title' | t(lang) }}"
+  description: "{{ 'menu.description' | t(lang) }}"
+scripts: ["/assets/js/menu.js"]
+---
+{%- from "icons.njk" import icon -%}
+
+{%- macro allergenList(ids, lang) -%}{{ ids | allergenNames(site.allergens, lang) }}{%- endmacro -%}
+
+{%- macro item(it, lang, sec, badges, restos) -%}
+{%- set unitPrice = it.price if it.price != null else (sec.price if sec.price else null) -%}
+<li class="dish" data-tags="{{ (it.tags or []) | join(' ') }}" data-allergens="{{ it.allergens | allergenAttr }}"{% if unitPrice %} data-price="{{ unitPrice }}" data-name="{{ it.name | tr(lang) }}"{% endif %}{% if restos %} data-restos="{{ restos }}"{% endif %}>
+  <div class="dish-line">
+    <span class="dish-name">{{ it.name | tr(lang) }}{% if badges == "vege" and it.tags and ("vege" in it.tags) %} <span class="veg-mark" title="{{ 'menu.vege' | t(lang) }}">{{ icon("leaf", 15) }}<span class="sr-only">{{ 'menu.vege' | t(lang) }}</span></span>{% endif %}</span>
+    {%- if it.price != null %}<span class="dish-price">{{ it.price | price(lang) }}</span>{% endif %}
+    {%- if unitPrice %}<button class="add-btn" type="button" data-add aria-label="{{ 'takeaway.add' | t(lang) }} : {{ it.name | tr(lang) }}">{{ icon("plus", 18) }}</button>{% endif %}
+  </div>
+  {%- if it.desc %}<p class="dish-desc">{{ it.desc | tr(lang) }}</p>{% endif %}
+  {%- if it.availability %}<p class="avail-tag{% if it.availability.all %} is-all{% endif %}" data-avail>{{ icon("pin", 14) }} {{ it.availability | tr(lang) }}</p>{% endif %}
+  <p class="dish-allergens small">
+    {%- if not ((it.allergens | allergenAttr) in ["unknown", "none"]) %}{{ "menu.allergens" | t(lang) }} : {{ allergenList(it.allergens, lang) }}{% if it.allergensNote %} ({{ it.allergensNote | tr(lang) }}){% endif %}
+    {%- elif (it.allergens | allergenAttr) == "none" %}{{ "menu.allergens" | t(lang) }} : —
+    {%- else %}{{ "menu.allergensUnknown" | t(lang) }}{% endif -%}
+  </p>
+</li>
+{%- endmacro -%}
+
+{%- macro section(sec, lang, badges) -%}
+<section class="menu-section" id="{{ sec.id }}"{% if sec.noTakeaway %} data-no-takeaway{% endif %}>
+  {%- if sec.title %}
+  <header class="menu-section-head">
+    <h3>{{ sec.title | tr(lang) }}</h3>
+    {%- if sec.price %}<span class="section-price">{{ sec.price | price(lang) }}</span>{% elif sec.priceLabel %}<span class="section-price">{{ sec.priceLabel | tr(lang) }}</span>{% endif %}
+  </header>
+  {%- endif %}
+  {%- if sec.note %}<p class="muted small">{{ sec.note | tr(lang) }}</p>{% endif %}
+  {%- if sec.noTakeaway %}<p class="no-takeaway-note small">{{ icon("info", 16) }} {{ "takeaway.notAvailable" | t(lang) }}</p>{% endif %}
+  {%- if sec.type == "supplements" %}
+  <ul class="supplements">
+    {%- for it in sec.items %}<li><span class="section-price">{{ it.price | price(lang) }}</span><span>{{ it.name | tr(lang) }}</span></li>{% endfor %}
+  </ul>
+  {%- elif sec.type == "flavours" %}
+  <div class="flavours">
+    {%- for g in sec.groups %}
+    <div>
+      <h4>{{ g.title | tr(lang) }}</h4>
+      <ul>{% for it in g.items %}<li>{{ it.name | tr(lang) }}{% if it.allergens.length %} <span class="muted small">· {{ allergenList(it.allergens, lang) }}</span>{% endif %}</li>{% endfor %}</ul>
+    </div>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <ul class="dishes">
+    {%- for it in sec.items %}{{ item(it, lang, sec, badges) }}{% endfor %}
+  </ul>
+  {%- endif %}
+</section>
+{%- endmacro -%}
+
+{%- macro specialSection(list, type, lang) -%}
+{%- if list.length %}
+<section class="menu-section special-section" id="speciale-{{ type }}" data-special-section{% if type == "sucree" %} data-no-takeaway{% endif %}>
+  <header class="menu-section-head">
+    <h3>{{ icon("star", 20) }} {{ "specials.sectionTitle" | t(lang) }}</h3>
+  </header>
+  {%- if type == "sucree" %}<p class="no-takeaway-note small">{{ icon("info", 16) }} {{ "takeaway.notAvailable" | t(lang) }}</p>{% endif %}
+  <ul class="dishes">
+    {%- for s in list %}{{ item(s, lang, {}, "vege" if type == "salee" else "alcool", s.restos) }}{% endfor %}
+  </ul>
+</section>
+{%- endif %}
+{%- endmacro -%}
+
+<form id="filters" data-filters>
+  <div class="page-head wrap menu-head">
+    <h1>{{ "menu.title" | t(lang) }}</h1>
+    <p class="muted">{{ "menu.intro" | t(lang) }}</p>
+
+    <div class="takeaway-cta" data-takeaway-cta>
+      <button class="btn btn-ghost" type="button" data-open-dialog="takeaway-dialog">{{ icon("bag", 18) }} {{ "takeaway.cta" | t(lang) }}</button>
+    </div>
+    <div class="takeaway-banner" data-takeaway-banner hidden>
+      <div class="takeaway-banner-main">
+        <span class="takeaway-ic">{{ icon("bag", 22) }}</span>
+        <div>
+          <p class="takeaway-title"><b>{{ "takeaway.mode" | t(lang) }}</b> · <span data-takeaway-city></span></p>
+          <p class="muted small">{{ "takeaway.help" | t(lang) }}</p>
+        </div>
+      </div>
+      <div class="takeaway-actions">
+        <a class="btn btn-primary" href="#" data-takeaway-call>{{ icon("phone", 18) }} <span data-takeaway-phone></span></a>
+        <button class="btn btn-ghost" type="button" data-open-dialog="takeaway-dialog">{{ "takeaway.change" | t(lang) }}</button>
+        <button class="link-btn" type="button" data-takeaway-exit>{{ "takeaway.exit" | t(lang) }}</button>
+      </div>
+    </div>
+
+    <div class="quick-filters" role="group" aria-label="{{ 'menu.filters' | t(lang) }}">
+      <label class="toggle"><input type="checkbox" name="vege"><span>{{ icon("leaf", 18) }} {{ "menu.vege" | t(lang) }}</span></label>
+      <label class="toggle"><input type="checkbox" name="noPork"><span>{{ icon("noPork", 18) }} {{ "menu.noPork" | t(lang) }}</span></label>
+      <label class="toggle"><input type="checkbox" name="noAlcohol"><span>{{ icon("noAlcohol", 18) }} {{ "menu.noAlcohol" | t(lang) }}</span></label>
+      <span class="toggle-group" data-allergen-group>
+        <button class="toggle-btn" type="button" data-open-filters>{{ icon("filter", 18) }} {{ "menu.allergensBtn" | t(lang) }}<span class="filter-count" data-allergen-count hidden></span></button>
+        <button class="toggle-clear" type="button" data-clear-allergens aria-label="{{ 'menu.clearAllergens' | t(lang) }}" title="{{ 'menu.clearAllergens' | t(lang) }}" hidden>{{ icon("close", 16) }}</button>
+      </span>
+      <span class="specials-ask" role="group" aria-label="{{ 'specials.ask' | t(lang) }}" data-specials-ask hidden>
+        <span class="specials-ask-q">{{ icon("star", 18) }} {{ "specials.ask" | t(lang) }}</span>
+        <button type="button" data-specials-answer="oui">{{ "specials.yes" | t(lang) }}</button>
+        <button type="button" data-specials-answer="aucune">{{ "specials.no" | t(lang) }}</button>
+      </span>
+      <button class="toggle-btn specials-toggle" type="button" aria-pressed="false" data-specials-toggle hidden title="{{ 'specials.toggleHelp' | t(lang) }}">{{ icon("star", 18) }} {{ "specials.toggle" | t(lang) }}</button>
+    </div>
+    <p class="butter-hint small" data-butter-hint hidden>{{ icon("info", 16) }} <span>{{ "menu.butterHint" | t(lang) }}</span></p>
+    <label class="switch show-allergens-switch"><input type="checkbox" name="showAllergens" data-show-allergens><span class="switch-track" aria-hidden="true"></span> {{ "menu.showAllergens" | t(lang) }}</label>
+    <p class="filter-summary small" data-filter-summary hidden>
+      <span data-summary-text></span>
+      <button class="link-btn" type="reset">{{ "menu.reset" | t(lang) }}</button>
+    </p>
+  </div>
+
+  <dialog class="filter-panel" aria-labelledby="filter-panel-title" data-filter-panel>
+    <header class="filter-panel-head">
+      <h2 id="filter-panel-title">{{ "menu.allergensTitle" | t(lang) }}</h2>
+      <button class="icon-btn" type="button" data-close-filters aria-label="{{ 'menu.close' | t(lang) }}">{{ icon("close", 22) }}</button>
+    </header>
+    <div class="filter-panel-body">
+      <p class="muted small">{{ "menu.allergensHelp" | t(lang) }}</p>
+      <div class="allergen-grid">
+        {%- for a in site.allergens %}
+        <label class="allergen-tile"><input type="checkbox" name="allergen" value="{{ a.id }}"><span>{{ a[lang] }}</span></label>
+        {%- endfor %}
+      </div>
+      <p class="disclaimer small">{{ icon("info", 16) }} <span>{{ "menu.allergensDisclaimer" | t(lang) }}</span></p>
+    </div>
+    <footer class="filter-panel-foot">
+      <button class="btn btn-ghost" type="button" data-clear-allergens>{{ "menu.clear" | t(lang) }}</button>
+      <button class="btn btn-primary" type="button" data-close-filters><span data-result-count></span></button>
+    </footer>
+  </dialog>
+</form>
+
+<nav class="menu-nav" aria-label="{{ 'menu.categories' | t(lang) }}">
+  <div class="wrap menu-nav-inner">
+    <div class="chips" role="group" aria-label="{{ 'menu.categories' | t(lang) }}">
+      <button type="button" data-cat="" aria-pressed="true">{{ "menu.all" | t(lang) }}</button>
+      {%- for cat in menu.categories %}
+      <button type="button" data-cat="{{ cat.id }}" aria-pressed="false">{{ cat.title | tr(lang) }}</button>
+      {%- endfor %}
+      <button type="button" data-cat="boissons" aria-pressed="false">{{ "menu.boissons" | t(lang) }}</button>
+    </div>
+    <button class="active-filters" type="button" data-open-filters data-active-pill hidden>{{ icon("filter", 16) }} <span data-active-count></span></button>
+  </div>
+</nav>
+
+<div class="wrap menu-body" data-menu>
+  <div class="no-results" hidden>
+    <h2>{{ "menu.noResultTitle" | t(lang) }}</h2>
+    <p class="muted">{{ "menu.noResult" | t(lang) }}</p>
+    <button class="btn btn-primary" type="reset" form="filters">{{ "menu.reset" | t(lang) }}</button>
+  </div>
+
+  {%- for cat in menu.categories %}
+  <section class="menu-category" id="{{ cat.id }}" aria-labelledby="{{ cat.id }}-title">
+    <header class="menu-category-head{% if cat.image %} has-image{% endif %}">
+      <div>
+        <h2 id="{{ cat.id }}-title">{{ cat.title | tr(lang) }}</h2>
+        {%- if cat.intro %}<p class="muted">{{ cat.intro | tr(lang) }}</p>{% endif %}
+      </div>
+      {%- if cat.image %}<img src="/assets/img/{{ cat.image }}" alt="" loading="lazy" width="160" height="160">{% endif %}
+    </header>
+    <div class="menu-columns">
+      {%- set specialType = {"galettes": "salee", "crepes": "sucree"}[cat.id] %}
+      {%- if specialType %}{{ specialSection(collections.specials | specialsOfType(specialType, restaurants), specialType, lang) }}{% endif %}
+      {%- for sec in cat.sections %}{{ section(sec, lang, "vege" if cat.group == "plats" else "alcool") }}{% endfor %}
+    </div>
+  </section>
+  {%- endfor %}
+
+  <section class="menu-category" id="boissons" aria-labelledby="boissons-title">
+    <header class="menu-category-head has-image">
+      <div>
+      <h2 id="boissons-title">{{ "menu.boissons" | t(lang) }}</h2>
+      <p class="muted">{{ drinks.comingSoon | tr(lang) }}</p>
+      </div>
+      <img src="/assets/img/mur-de-bouteille.png" alt="" loading="lazy" width="160" height="160">
+    </header>
+    <div class="menu-columns">
+      {{ specialSection(collections.specials | specialsOfType("cocktail", restaurants), "cocktail", lang) }}
+      {%- for sec in drinks.sections %}{{ section(sec, lang) }}{% endfor %}
+    </div>
+    <p class="muted small">{{ "menu.drinkResponsibly" | t(lang) }}</p>
+  </section>
+
+  <p class="disclaimer small">{{ icon("info", 16) }} <span>{{ "menu.allergensDisclaimer" | t(lang) }}</span></p>
+
+  <ul class="footnotes muted small">
+    {%- for n in menu.footnotes %}<li>{{ n | tr(lang) }}</li>{% endfor %}
+  </ul>
+</div>
+
+<aside class="order-bar" data-order hidden aria-label="{{ 'takeaway.order' | t(lang) }}">
+  <div class="order-panel" data-order-panel hidden>
+    <div class="order-panel-head">
+      <h2>{{ "takeaway.order" | t(lang) }}</h2>
+      <button class="link-btn" type="button" data-order-clear>{{ "takeaway.clear" | t(lang) }}</button>
+    </div>
+    <ul class="order-list" data-order-list></ul>
+    <p class="muted small">{{ "takeaway.orderNote" | t(lang) }}</p>
+  </div>
+  <div class="order-summary">
+    <button class="order-toggle" type="button" aria-expanded="false" data-order-toggle>
+      <span class="order-count" data-order-count>0</span>
+      <span><b data-order-total></b><small class="muted"> · {{ "takeaway.seeOrder" | t(lang) }}</small></span>
+    </button>
+    <a class="btn btn-primary" href="#" data-order-call>{{ icon("phone", 18) }} {{ "takeaway.callToOrder" | t(lang) }}</a>
+  </div>
+</aside>
+
+<script type="application/json" id="takeaway-data">{{ restaurants | takeawayData | safe }}</script>

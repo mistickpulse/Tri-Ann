@@ -1,0 +1,117 @@
+---
+layout: base.njk
+pagination:
+  data: restaurantPages
+  size: 1
+  alias: p
+permalink: "{{ site.routes.restaurant[p.lang] | replace(':slug', p.resto.slug) }}"
+pageKey: restaurant
+eleventyComputed:
+  lang: "{{ p.lang }}"
+  slug: "{{ p.resto.slug }}"
+  title: "Crêperie Tri-Ann {{ p.resto.city }}"
+  description: "{{ 'Crêperie bretonne Tri-Ann à ' if p.lang == 'fr' else 'Tri-Ann Breton crêperie in ' }}{{ p.resto.city }} ({{ p.resto.postalCode }}) : {{ p.resto.landmark[p.lang] }}. {{ p.resto.hours | hoursSummary(p.lang) }}."
+scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
+---
+{%- from "icons.njk" import icon -%}
+{%- from "partials.njk" import specialCard, reviewsBlock, mapsUrl, eventsCalendar, newsletterCta -%}
+{%- set r = p.resto -%}
+{%- set dayKeys = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] -%}
+
+<section class="resto-hero{% if r.photos.length %} has-photo{% endif %}">
+  {%- if r.photos.length %}<img class="resto-hero-media" src="{{ r.photos[0].src }}" alt="{{ r.photos[0].alt | tr(lang) }}" width="1200" height="800" fetchpriority="high">{% endif %}
+  <div class="wrap resto-hero-content">
+    <p class="eyebrow">{{ r.name }}</p>
+    <h1>{{ r.city }}</h1>
+    <p class="lead">{{ r.landmark | tr(lang) }}</p>
+    <div class="ctas">
+      <a class="btn btn-primary btn-lg" href="tel:{{ r.phoneIntl }}">{{ icon("phone", 20) }} {{ r.phone }}</a>
+      <a class="btn btn-ghost btn-lg" href="{{ mapsUrl(r) }}" target="_blank" rel="noopener">{{ icon("pin", 20) }} {{ "nav.directions" | t(lang) }}</a>
+      <a class="btn btn-ghost btn-lg" href="{{ site.routes | route('menu', lang) }}">{{ icon("book", 20) }} {{ "nav.menu" | t(lang) }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap resto-info">
+    <div class="info-card" data-hours='{{ r.hours | json }}'>
+      <h2 class="h3">{{ icon("clock", 20) }} {{ "resto.hours" | t(lang) }}</h2>
+      <p class="status" data-status data-lang="{{ lang }}"></p>
+      <table class="hours">
+        {%- for d in dayKeys %}
+        <tr data-day="{{ d }}">
+          <th scope="row">{{ ("days." + d) | t(lang) }}</th>
+          <td>{% if r.hours[d].length %}{% for s in r.hours[d] %}{{ s[0] | replace(":00", "h") if lang == "fr" else s[0] }}–{{ s[1] | replace(":00", "h") if lang == "fr" else s[1] }}{% if not loop.last %} · {% endif %}{% endfor %}{% else %}<span class="muted">{{ "resto.closed" | t(lang) }}</span>{% endif %}</td>
+        </tr>
+        {%- endfor %}
+      </table>
+      <p class="muted small">{{ "resto.booking" | t(lang) }}</p>
+    </div>
+    <div class="info-card">
+      <h2 class="h3">{{ icon("pin", 20) }} {{ "resto.map" | t(lang) }}</h2>
+      <address>{{ r.name }}<br>{{ r.street }}<br>{{ r.postalCode }} {{ r.city }}</address>
+      <p class="muted">{{ r.landmark | tr(lang) }}</p>
+      <div class="map-embed" data-map-src="https://www.google.com/maps?q={{ ('Tri-Ann ' + r.street + ' ' + r.postalCode + ' ' + r.city) | urlencode }}&output=embed">
+        <button class="btn btn-ghost" type="button" data-load-map>{{ icon("pin", 18) }} {{ "Afficher le plan" if lang == "fr" else "Show map" }}</button>
+      </div>
+      <h2 class="h3 follow">{{ "resto.follow" | t(lang) }}</h2>
+      <p class="socials">
+        <a href="{{ r.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">{{ icon("facebook") }}</a>
+        <a href="{{ r.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon("instagram") }}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="band band-alt">
+  <div class="wrap">
+    <h2>{{ "reviews.title" | t(lang) }}</h2>
+    {{ reviewsBlock([r.slug], lang, restaurants) }}
+  </div>
+</section>
+
+{%- set specials = collections.specials | forRestaurant(r.slug) %}
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">{{ "home.specialsEyebrow" | t(lang) }}</p>
+    <h2>{{ "resto.specials" | t(lang) }}</h2>
+    {%- if specials.length %}
+    <div class="grid-cards">{% for s in specials %}{{ specialCard(s, lang) }}{% endfor %}</div>
+    {%- else %}<p class="muted">{{ "home.noSpecials" | t(lang) }}</p>{% endif %}
+    {{ newsletterCta(lang) }}
+  </div>
+</section>
+
+{%- set events = collections.events | forRestaurant(r.slug) %}
+<section class="band band-alt">
+  <div class="wrap">
+    <p class="eyebrow">{{ "home.eventsEyebrow" | t(lang) }}</p>
+    <h2>{{ "resto.events" | t(lang) }}</h2>
+    {%- if events.length %}
+    {{ eventsCalendar(events, lang, restaurants, r.slug) }}
+    {%- else %}<p class="muted">{{ "home.noEvents" | t(lang) }}</p>{% endif %}
+  </div>
+</section>
+
+{%- if r.photos.length > 1 %}
+<section class="band">
+  <div class="wrap gallery">
+    {%- for ph in r.photos %}{% if not loop.first %}<img src="{{ ph.src }}" alt="{{ ph.alt | tr(lang) }}" loading="lazy">{% endif %}{% endfor %}
+  </div>
+</section>
+{%- endif %}
+
+<section class="band">
+  <div class="wrap grid-services">
+    {%- for s in i18n.services %}
+    <article class="service">
+      <span class="service-ic">{{ icon(s.icon, 24) }}</span>
+      <h3>{{ s.title | tr(lang) }}</h3>
+      <p class="muted">{{ s.text | tr(lang) }}{% if s.link %} <a href="{{ site.routes | route('contact', lang) }}">{{ s.link | tr(lang) }}</a>.{% endif %}</p>
+        {%- if s.action == "takeaway" %}
+        <a class="btn btn-ghost service-btn" href="{{ site.routes | route('menu', lang) }}?emporter={{ r.slug }}">{{ icon("bag", 18) }} {{ s.actionLabel | tr(lang) }}</a>
+        {%- endif %}
+    </article>
+    {%- endfor %}
+  </div>
+</section>

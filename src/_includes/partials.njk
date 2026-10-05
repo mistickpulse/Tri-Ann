@@ -1,0 +1,112 @@
+{%- from "icons.njk" import icon -%}
+
+{%- macro mapsUrl(r) -%}https://www.google.com/maps/search/?api=1&query={{ ('Tri-Ann ' + r.city) | urlencode }}&query_place_id={{ r.placeId }}{%- endmacro -%}
+
+{%- macro restoCard(r, lang, site) -%}
+<article class="resto-card" data-hours='{{ r.hours | json }}'>
+  <h3><a href="{{ site.routes | route('restaurant', lang, r.slug) }}">{{ r.city }}</a></h3>
+  <p class="status" data-status data-lang="{{ lang }}"></p>
+  <p class="muted">{{ r.landmark | tr(lang) }}</p>
+  <p class="muted small">{{ r.hours | hoursSummary(lang) }}</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="tel:{{ r.phoneIntl }}">{{ icon("phone", 18) }} {{ "nav.call" | t(lang) }}</a>
+    <a class="btn btn-ghost" href="{{ mapsUrl(r) }}" target="_blank" rel="noopener">{{ icon("pin", 18) }} {{ "nav.directions" | t(lang) }}</a>
+  </div>
+  <a class="more" href="{{ site.routes | route('restaurant', lang, r.slug) }}">{{ "resto.more" | t(lang) }} {{ icon("arrow", 16) }}</a>
+</article>
+{%- endmacro -%}
+
+{%- macro specialCard(s, lang) -%}
+<article class="special-card">
+  {%- if s.data.image %}<img src="{{ s.data.image }}" alt="" loading="lazy" width="600" height="450">{% endif %}
+  <div class="body">
+    <span class="tag">{{ ("specialTypes." + s.data.type) | t(lang) }}</span>
+    <h3>{{ s.data.name }}</h3>
+    <p class="muted">{{ s.data.description_en if lang == "en" and s.data.description_en else s.data.description }}</p>
+    {%- if s.data.price %}<p class="price">{{ s.data.price | price(lang) }}</p>{% endif %}
+  </div>
+</article>
+{%- endmacro -%}
+
+{%- macro eventRow(e, lang, restaurants) -%}
+<article class="event-row">
+  <div class="event-when">
+    {%- if e.data.date %}<time datetime="{{ e.data.date | dateIso }}">{{ e.data.date | dateShort(lang) }}</time>
+    {%- else %}<span>{{ e.data.recurring_en if lang == "en" and e.data.recurring_en else e.data.recurring }}</span>{% endif %}
+  </div>
+  <div>
+    <h3>{{ e.data.name_en if lang == "en" and e.data.name_en else e.data.name }}</h3>
+    <p class="muted">{{ e.data.description_en if lang == "en" and e.data.description_en else e.data.description }}</p>
+    <p class="small where">{{ icon("pin", 14) }}
+      {%- if not e.data.restaurants or ("tous" in e.data.restaurants) %} Moussy-le-Neuf, Lagny-le-Sec, Saint-Maximin
+      {%- else %} {% for s in e.data.restaurants %}{% for r in restaurants %}{% if r.slug == s %}{{ r.city }}{% endif %}{% endfor %}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+    </p>
+  </div>
+</article>
+{%- endmacro -%}
+
+{%- macro reviewsBlock(places, lang, restaurants) -%}
+<div class="reviews" data-reviews data-lang="{{ lang }}">
+  <div class="ratings">
+    {%- for r in restaurants %}{% if r.slug in places %}
+    <a class="rating" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener" data-place="{{ r.placeId }}" data-label="{{ r.city }}">
+      <span class="score" data-score>–</span>
+      <span><span class="stars" data-stars aria-hidden="true">★★★★★</span><b>{{ r.city }}</b><small class="muted"><span data-count></span> {{ "reviews.count" | t(lang) }} Google</small></span>
+    </a>
+    {%- endif %}{% endfor %}
+  </div>
+  <div class="quotes" data-quotes aria-live="polite"></div>
+</div>
+{%- endmacro -%}
+
+{%- macro eventsCalendar(events, lang, restaurants, only) -%}
+<div class="calendar" data-calendar data-lang="{{ lang }}" data-only="{{ only or '' }}" data-empty="{{ 'calendar.noneThisMonth' | t(lang) }}" data-title-current="{{ 'calendar.upcoming' | t(lang) }}" data-title-month="{{ 'calendar.inMonth' | t(lang) }}">
+  <div class="cal-main">
+    <div class="cal-head">
+      <button class="icon-btn" type="button" data-cal-prev aria-label="{{ 'calendar.prev' | t(lang) }}">{{ icon("arrow", 18) }}</button>
+      <h3 class="cal-title" data-cal-title aria-live="polite"></h3>
+      <button class="icon-btn" type="button" data-cal-next aria-label="{{ 'calendar.next' | t(lang) }}">{{ icon("arrow", 18) }}</button>
+    </div>
+    {%- if not only %}
+    <div class="cal-legend" role="group" aria-label="{{ 'calendar.filter' | t(lang) }}">
+      <button type="button" data-cal-filter="" aria-pressed="true">{{ "calendar.all" | t(lang) }}</button>
+      {%- for r in restaurants %}
+      <button type="button" data-cal-filter="{{ r.slug }}" aria-pressed="false"><span class="cal-dot" style="--c:{{ r.color }}"></span>{{ r.city }}</button>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+    <div class="cal-weekdays" aria-hidden="true">
+      {%- for d in ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] %}<span>{{ (("days." + d) | t(lang)) | truncate(3, true, "") }}</span>{% endfor %}
+    </div>
+    <div class="cal-grid" data-cal-grid></div>
+  </div>
+  <aside class="cal-side">
+    <div class="cal-detail" data-cal-detail aria-live="polite" hidden></div>
+    <h3 class="cal-side-title" data-cal-side-title>{{ "calendar.upcoming" | t(lang) }}</h3>
+    <ul class="cal-upcoming" data-cal-upcoming></ul>
+    {%- set undated = events | undatedEvents(restaurants) %}
+    {%- if undated.length %}
+    <div class="cal-regular">
+      {%- for e in undated %}
+      <p><b>{{ e.name | tr(lang) }}</b><br>
+      <span class="muted small">{{ e.recurring | tr(lang) }}</span><br>
+      <span class="cal-where">{% for r in e.restaurants %}<span class="cal-tag" style="--c:{{ r.color }}">{{ r.city }}</span>{% endfor %}</span></p>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </aside>
+  <script type="application/json" data-calendar-data>{{ events | calendarData(restaurants) | safe }}</script>
+  <noscript><p class="muted">{{ "calendar.noscript" | t(lang) }}</p></noscript>
+</div>
+{%- endmacro -%}
+
+{%- macro newsletterCta(lang) -%}
+<div class="newsletter-cta">
+  <span class="newsletter-ic">{{ icon("mail", 24) }}</span>
+  <div>
+    <h3>{{ "newsletter.title" | t(lang) }}</h3>
+    <p class="muted">{{ "newsletter.text" | t(lang) }}</p>
+  </div>
+  <button class="btn btn-primary" type="button" data-open-dialog="newsletter-dialog">{{ icon("mail", 18) }} {{ "newsletter.cta" | t(lang) }}</button>
+</div>
+{%- endmacro -%}

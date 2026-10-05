@@ -1,0 +1,244 @@
+[
+  {
+    "slug": "moussy-le-neuf",
+    "name": "Tri-Ann",
+    "city": "Moussy-le-Neuf",
+    "street": "6 rue Bonneret",
+    "postalCode": "77230",
+    "landmark": {
+      "fr": "Sur le parking de l'Intermarché",
+      "en": "In the Intermarché car park"
+    },
+    "phone": "01 64 44 02 62",
+    "phoneIntl": "+33164440262",
+    "placeId": "ChIJdes350U85kcR2FT72aMj_sQ",
+    "facebook": "https://www.facebook.com/TriAnnMoussyLeNeuf/",
+    "instagram": "https://www.instagram.com/triann.moussyleneuf/",
+    "emailTemplate": "triann_moussy",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "sun": []
+    },
+    "photos": [],
+    "company": {
+      "name": "TRI-ANN",
+      "form": "SARL",
+      "siren": "812 944 767"
+    },
+    "color": "#8fa8b5"
+  },
+  {
+    "slug": "lagny-le-sec",
+    "name": "Tri-Ann 2",
+    "city": "Lagny-le-Sec",
+    "street": "Rue de la Briqueterie, ZI Baranfosse",
+    "postalCode": "60330",
+    "landmark": {
+      "fr": "Sur le parking du Grand Frais",
+      "en": "In the Grand Frais car park"
+    },
+    "phone": "03 44 63 98 49",
+    "phoneIntl": "+33344639849",
+    "placeId": "ChIJOZjFiUoj5kcRIqxFP_bk3y8",
+    "facebook": "https://www.facebook.com/pages/Tri-Ann%202/468672863680617/",
+    "instagram": "https://www.instagram.com/triann.lagnylesec/",
+    "emailTemplate": "triann_lagny",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "sun": []
+    },
+    "photos": [
+      {
+        "src": "/assets/img/mur-de-bouteille.png",
+        "alt": {
+          "fr": "Le mur de bouteilles du Tri-Ann 2",
+          "en": "The bottle wall at Tri-Ann 2"
+        }
+      }
+    ],
+    "company": {
+      "name": "TRI-ANN 2",
+      "form": "",
+      "siren": "848 107 983"
+    },
+    "color": "#e0a06a"
+  },
+  {
+    "slug": "saint-maximin",
+    "name": "Tri-Ann 3",
+    "city": "Saint-Maximin",
+    "street": "192 rue Louis Saint-Just",
+    "postalCode": "60740",
+    "landmark": {
+      "fr": "Zone commerciale, près du KFC",
+      "en": "Retail park, next to KFC"
+    },
+    "phone": "03 44 25 83 54",
+    "phoneIntl": "+33344258354",
+    "placeId": "ChIJnaRD1iFJ5kcREJP5F2zEmqQ",
+    "facebook": "https://www.facebook.com/TriAnnSaintMaximin/",
+    "instagram": "https://www.instagram.com/triann.stmaximin/",
+    "emailTemplate": "triann_saintmax",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "12:00",
+          "14:00"
+        ],
+        [
+          "19:00",
+          "22:00"
+        ]
+      ],
+      "sun": []
+    },
+    "photos": [],
+    "company": {
+      "name": "TRI-ANN 3",
+      "form": "",
+      "siren": "942 859 414"
+    },
+    "color": "#b9a2e0"
+  }
+]

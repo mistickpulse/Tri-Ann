@@ -1,0 +1,66 @@
+---
+layout: base.njk
+pagination:
+  data: site.langs
+  size: 1
+  alias: lang
+permalink: "{{ site.routes.contact[lang] }}"
+pageKey: contact
+eleventyComputed:
+  title: "{{ 'contact.title' | t(lang) }}"
+  description: "{{ 'contact.description' | t(lang) }}"
+scripts: ["https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js", "/assets/js/contact.js"]
+---
+{%- from "icons.njk" import icon -%}
+
+<div class="page-head wrap">
+  <h1>{{ "contact.title" | t(lang) }}</h1>
+  <p class="muted">{{ "contact.description" | t(lang) }}</p>
+</div>
+
+<div class="wrap contact-layout band" style="padding-top:0">
+  <div>
+    <p class="disclaimer">{{ icon("info", 18) }} <span><b>{{ "contact.rules" | t(lang) }}</b></span></p>
+
+    <form class="contact-form" data-contact-form
+          data-public-key="{{ site.emailjs.publicKey }}"
+          data-service="{{ site.emailjs.serviceId }}"
+          data-templates='{{ site.emailjs.templates | json }}'
+          data-msg-sending="{{ 'contact.sending' | t(lang) }}"
+          data-msg-sent="{{ 'contact.sent' | t(lang) }}"
+          data-msg-error="{{ 'contact.error' | t(lang) }}">
+      <label class="field">
+        <span>{{ "contact.restaurant" | t(lang) }} *</span>
+        <select name="restaurant" required>
+          <option value="">{{ "contact.choose" | t(lang) }}</option>
+          {%- for r in restaurants %}
+          <option value="{{ r.emailTemplate }}" data-label="{{ r.name }} – {{ r.city }}">{{ r.city }}</option>
+          {%- endfor %}
+        </select>
+      </label>
+      <div class="field-row">
+        <label class="field"><span>{{ "contact.name" | t(lang) }} *</span><input name="from_name" autocomplete="name" required></label>
+        <label class="field"><span>{{ "contact.email" | t(lang) }} *</span><input type="email" name="reply_to" autocomplete="email" required></label>
+      </div>
+      <label class="field"><span>{{ "contact.phone" | t(lang) }}</span><input type="tel" name="phone" autocomplete="tel"></label>
+      <label class="field"><span>{{ "contact.subject" | t(lang) }} *</span><input name="subject" required maxlength="120"></label>
+      <label class="field"><span>{{ "contact.message" | t(lang) }} *</span><textarea name="message" rows="6" required maxlength="3000"></textarea></label>
+      {#- Piège à robots : champ invisible qu'un humain ne remplit pas #}
+      <label class="hp" aria-hidden="true">Site web<input name="website" tabindex="-1" autocomplete="off"></label>
+      <input type="hidden" name="restaurant_label">
+      <label class="check"><input type="checkbox" name="consent" required> <span class="small">{{ "contact.consent" | t(lang) }}</span></label>
+      <button class="btn btn-primary btn-lg" type="submit">{{ icon("mail", 18) }} {{ "contact.send" | t(lang) }}</button>
+      <p class="form-status" role="status" data-status-msg></p>
+    </form>
+  </div>
+
+  <aside class="contact-aside">
+    {%- for r in restaurants %}
+    <div class="info-card">
+      <h2 class="h3">{{ r.city }}</h2>
+      <p class="muted small">{{ r.street }}, {{ r.postalCode }} {{ r.city }}</p>
+      <a class="btn btn-ghost" href="tel:{{ r.phoneIntl }}">{{ icon("phone", 18) }} {{ r.phone }}</a>
+    </div>
+    {%- endfor %}
+  </aside>
+</div>

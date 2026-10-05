@@ -1,0 +1,149 @@
+{%- from "icons.njk" import icon -%}
+{%- set otherLang = "en" if lang == "fr" else "fr" -%}
+{%- set selfPath = site.routes | route(pageKey, lang, slug) -%}
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}{% if pageKey != "home" %} · Tri-Ann Crêperie{% endif %}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="{{ site.url }}{{ selfPath }}">
+  {%- for l in site.langs %}
+  <link rel="alternate" hreflang="{{ l }}" href="{{ site.url }}{{ site.routes | route(pageKey, l, slug) }}">
+  {%- endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ site.routes | route(pageKey, 'fr', slug) }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tri-Ann Crêperie">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ site.url }}{{ selfPath }}">
+  <meta property="og:image" content="{{ site.url }}/assets/img/galette-sarasin.jpg">
+  <meta property="og:locale" content="{{ 'fr_FR' if lang == 'fr' else 'en_GB' }}">
+  <meta name="theme-color" content="#141110">
+  <link rel="icon" href="/assets/img/logo-tri-ann.jpg">
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="application/ld+json">{{ restaurants | restaurantsLd(site, lang) | safe }}</script>
+</head>
+<body class="page-{{ pageKey }}">
+  <a class="skip" href="#main">{{ "nav.skip" | t(lang) }}</a>
+
+  <header class="site-header{% if pageKey == 'home' %} is-over-hero{% endif %}" data-header>
+    <div class="wrap header-inner">
+      <a class="brand" href="{{ site.routes | route('home', lang) }}" aria-label="Tri-Ann Crêperie">
+        <img src="/assets/img/logo-tri-ann.jpg" alt="" width="48" height="48">
+        <span>Tri-Ann</span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation">
+        <a href="{{ site.routes | route('menu', lang) }}"{% if pageKey == 'menu' %} aria-current="page"{% endif %}>{{ "nav.menu" | t(lang) }}</a>
+        <a href="{{ site.routes | route('home', lang) }}#speciales">{{ "nav.specials" | t(lang) }}</a>
+        <a href="{{ site.routes | route('home', lang) }}#restaurants">{{ "nav.restaurants" | t(lang) }}</a>
+        <a href="{{ site.routes | route('home', lang) }}#evenements">{{ "nav.events" | t(lang) }}</a>
+        <a href="{{ site.routes | route('contact', lang) }}"{% if pageKey == 'contact' %} aria-current="page"{% endif %}>{{ "nav.contact" | t(lang) }}</a>
+        <a class="lang-switch" href="{{ site.routes | route(pageKey, otherLang, slug) }}" hreflang="{{ otherLang }}" lang="{{ otherLang }}">{{ "langSwitch" | t(lang) }}</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+        {{ icon("menu", 26) }}<span class="sr-only">{{ "nav.open" | t(lang) }}</span>
+      </button>
+    </div>
+  </header>
+
+  {%- set notices = collections.notices %}
+  {%- if notices.length %}
+  <div class="notices">
+    {%- for n in notices %}
+    <p class="notice" data-until="{{ n.data.until }}">{{ icon("info", 18) }}
+      <span>{% if n.data.etablissements and not ("tous" in n.data.etablissements) %}<b>{% for s in n.data.etablissements %}{% for r in restaurants %}{% if r.slug == s %}{{ r.city }}{% endif %}{% endfor %}{% if not loop.last %}, {% endif %}{% endfor %} :</b> {% endif %}{{ n.data.message_en if lang == "en" and n.data.message_en else n.data.message }}</span>
+    </p>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand" href="{{ site.routes | route('home', lang) }}"><img src="/assets/img/logo-tri-ann.jpg" alt="" width="48" height="48"><span>Tri-Ann</span></a>
+        <p class="muted">{{ "footer.tagline" | t(lang) }}</p>
+      </div>
+      {%- for r in restaurants %}
+      <div>
+        <h2 class="footer-title"><a href="{{ site.routes | route('restaurant', lang, r.slug) }}">{{ r.city }}</a></h2>
+        <p class="muted">{{ r.street }}<br>{{ r.postalCode }} {{ r.city }}</p>
+        <p><a href="tel:{{ r.phoneIntl }}">{{ r.phone }}</a></p>
+        <p class="socials">
+          <a href="{{ r.facebook }}" target="_blank" rel="noopener" aria-label="Facebook {{ r.city }}">{{ icon("facebook") }}</a>
+          <a href="{{ r.instagram }}" target="_blank" rel="noopener" aria-label="Instagram {{ r.city }}">{{ icon("instagram") }}</a>
+        </p>
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="wrap footer-bottom muted">
+      <span>© {{ year }} Tri-Ann Crêperie</span>
+      <a href="{{ site.routes | route('legal', lang) }}">{{ "footer.legal" | t(lang) }}</a>
+      <a href="{{ site.routes | route('contact', lang) }}">{{ "nav.contact" | t(lang) }}</a>
+      <button class="link-btn" type="button" data-open-dialog="newsletter-dialog">{{ "newsletter.cta" | t(lang) }}</button>
+    </div>
+  </footer>
+
+  <nav class="quick-bar" aria-label="{{ 'nav.open' | t(lang) }}">
+    <a href="{{ site.routes | route('menu', lang) }}">{{ icon("book", 22) }}<span>{{ "nav.menu" | t(lang) }}</span></a>
+    <button type="button" data-open-dialog="call-dialog">{{ icon("phone", 22) }}<span>{{ "nav.call" | t(lang) }}</span></button>
+    <button type="button" data-open-dialog="go-dialog">{{ icon("pin", 22) }}<span>{{ "nav.directions" | t(lang) }}</span></button>
+  </nav>
+
+  <dialog class="sheet" id="call-dialog" aria-labelledby="call-title">
+    <h2 id="call-title">{{ "nav.call" | t(lang) }}</h2>
+    {%- for r in restaurants %}
+    <a class="sheet-row" href="tel:{{ r.phoneIntl }}"><b>{{ r.city }}</b><span>{{ r.phone }}</span></a>
+    {%- endfor %}
+    <p class="muted small">{{ "resto.booking" | t(lang) }}</p>
+    <form method="dialog"><button class="btn btn-ghost">{{ icon("close", 18) }} OK</button></form>
+  </dialog>
+  <dialog class="sheet" id="go-dialog" aria-labelledby="go-title">
+    <h2 id="go-title">{{ "nav.directions" | t(lang) }}</h2>
+    {%- for r in restaurants %}
+    <a class="sheet-row" href="https://www.google.com/maps/search/?api=1&query={{ ('Tri-Ann ' + r.city) | urlencode }}&query_place_id={{ r.placeId }}" target="_blank" rel="noopener"><b>{{ r.city }}</b><span>{{ r.landmark | tr(lang) }}</span></a>
+    {%- endfor %}
+    <form method="dialog"><button class="btn btn-ghost">{{ icon("close", 18) }} OK</button></form>
+  </dialog>
+
+  <dialog class="sheet" id="takeaway-dialog" aria-labelledby="takeaway-title">
+    <h2 id="takeaway-title">{{ "takeaway.choose" | t(lang) }}</h2>
+    <p class="muted small">{{ "takeaway.chooseHelp" | t(lang) }}</p>
+    {%- for r in restaurants %}
+    <a class="sheet-row" href="{{ site.routes | route('menu', lang) }}?emporter={{ r.slug }}"><b>{{ r.city }}</b><span>{{ r.phone }}</span></a>
+    {%- endfor %}
+    <form method="dialog"><button class="btn btn-ghost">{{ icon("close", 18) }} {{ "menu.close" | t(lang) }}</button></form>
+  </dialog>
+
+  <dialog class="sheet newsletter-dialog" id="newsletter-dialog" aria-labelledby="newsletter-title">
+    <h2 id="newsletter-title">{{ "newsletter.title" | t(lang) }}</h2>
+    <p class="muted small">{{ "newsletter.text" | t(lang) }}</p>
+    <form class="newsletter-form" method="POST" action="{{ site.newsletter.action }}" target="_blank" data-newsletter
+          data-msg-sending="{{ 'newsletter.sending' | t(lang) }}" data-msg-ok="{{ 'newsletter.ok' | t(lang) }}" data-msg-error="{{ 'newsletter.error' | t(lang) }}">
+      <label class="field"><span>{{ "contact.email" | t(lang) }}</span><input type="email" name="EMAIL" autocomplete="email" required></label>
+      {#- Champs attendus par Brevo (piège à robots compris) #}
+      <input type="text" name="email_address_check" value="" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="locale" value="{{ lang }}">
+      <input type="hidden" name="html_type" value="simple">
+      <label class="check"><input type="checkbox" required> <span class="small">{{ "newsletter.consent" | t(lang) }} <a href="{{ site.routes | route('legal', lang) }}#{{ 'confidentialite' if lang == 'fr' else 'privacy' }}">{{ "newsletter.privacy" | t(lang) }}</a></span></label>
+      <div class="newsletter-actions">
+        <button class="btn btn-primary" type="submit">{{ "newsletter.submit" | t(lang) }}</button>
+        <button class="btn btn-ghost" type="button" data-close-dialog>{{ "menu.close" | t(lang) }}</button>
+      </div>
+      <p class="form-status" role="status" data-newsletter-status></p>
+    </form>
+  </dialog>
+
+  <script src="/assets/js/main.js" defer></script>
+  {%- for s in scripts %}
+  <script src="{{ s }}" defer></script>
+  {%- endfor %}
+</body>
+</html>

@@ -1,0 +1,361 @@
+{
+  "_info": "Ingrédients seulement, jamais les doses. price: null = prix à renseigner.",
+  "sections": [
+    {
+      "id": "cocktails-maison",
+      "title": {
+        "fr": "Cocktails maison",
+        "en": "House cocktails"
+      },
+      "items": [
+        {
+          "name": "Valériane",
+          "desc": {
+            "fr": "Vodka, liqueur de litchi Soho, sirop de rose, Schweppes, citron, griottes",
+            "en": "Vodka, Soho lychee liqueur, rose syrup, tonic, lemon, morello cherries"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Edelweiss",
+          "desc": {
+            "fr": "Gin, sirop de violette, Schweppes, citron, griotte",
+            "en": "Gin, violet syrup, tonic, lemon, morello cherry"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Maïwenn",
+          "desc": {
+            "fr": "Gin, sirop de mangue et d'ananas, Schweppes, citron",
+            "en": "Gin, mango & pineapple syrup, tonic, lemon"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Passiflore",
+          "desc": {
+            "fr": "Rhum, sirop de coco, grenadine, jus d'ananas",
+            "en": "Rum, coconut syrup, grenadine, pineapple juice"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Breizh Aperol",
+          "desc": {
+            "fr": "Aperol, cidre doux, orange",
+            "en": "Aperol, sweet cider, orange"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Brocéliande",
+          "desc": {
+            "fr": "Chouchen, rhum, cidre brut, citron",
+            "en": "Chouchen (Breton mead), rum, dry cider, lemon"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Loc Maria",
+          "desc": {
+            "fr": "Gin, sirop de framboise, cidre rosé",
+            "en": "Gin, raspberry syrup, rosé cider"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Lauran",
+          "desc": {
+            "fr": "Rhum, sirop de framboise, menthe fraîche, cidre rosé",
+            "en": "Rum, raspberry syrup, fresh mint, rosé cider"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Gin tonic",
+          "desc": {
+            "fr": "Gin, Schweppes, citron",
+            "en": "Gin, tonic, lemon"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Ti-punch",
+          "desc": {
+            "fr": "Rhum, sirop de canne, citron vert, cassonade",
+            "en": "Rum, cane syrup, lime, brown sugar"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mojitos",
+      "title": {
+        "fr": "Les mojitos",
+        "en": "Mojitos"
+      },
+      "items": [
+        {
+          "name": {
+            "fr": "Mojito breton",
+            "en": "Breton mojito"
+          },
+          "desc": {
+            "fr": "Rhum, menthe fraîche, citron vert, cidre brut",
+            "en": "Rum, fresh mint, lime, dry cider"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Mojito classique",
+            "en": "Classic mojito"
+          },
+          "desc": {
+            "fr": "Rhum, menthe fraîche, citron vert, limonade",
+            "en": "Rum, fresh mint, lime, lemonade"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Virgin Mojito",
+          "desc": {
+            "fr": "Menthe fraîche, citron vert, limonade (sans alcool)",
+            "en": "Fresh mint, lime, lemonade (alcohol-free)"
+          },
+          "price": null,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "cocktails-biere",
+      "title": {
+        "fr": "Cocktails de bière",
+        "en": "Beer cocktails"
+      },
+      "note": {
+        "fr": "Servis en pinte.",
+        "en": "Served by the pint."
+      },
+      "items": [
+        {
+          "name": "Lorient",
+          "desc": {
+            "fr": "Bière rousse, rhum, sirop de canne",
+            "en": "Amber beer, rum, cane syrup"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Brest",
+          "desc": {
+            "fr": "Bière blonde, rhum, banane",
+            "en": "Lager, rum, banana"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Saint-Malo",
+          "desc": {
+            "fr": "Bière blanche, rhum, limoncello",
+            "en": "Wheat beer, rum, limoncello"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Dinard",
+          "desc": {
+            "fr": "Bière blonde, rhum, mangue",
+            "en": "Lager, rum, mango"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Port-Croisic",
+          "desc": {
+            "fr": "Bière blanche, rhum, pêche",
+            "en": "Wheat beer, rum, peach"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Aval-Anna",
+          "desc": {
+            "fr": "Bière blanche, rhum, ananas",
+            "en": "Wheat beer, rum, pineapple"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Fougères",
+          "desc": {
+            "fr": "Bière au blé noir, gin, fraise",
+            "en": "Buckwheat beer, gin, strawberry"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Médicis",
+          "desc": {
+            "fr": "La Chouffe, rhum, framboise, griottes",
+            "en": "La Chouffe beer, rum, raspberry, morello cherries"
+          },
+          "price": null,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sans-alcool",
+      "title": {
+        "fr": "Cocktails sans alcool",
+        "en": "Alcohol-free cocktails"
+      },
+      "items": [
+        {
+          "name": "Tutti Frutti",
+          "desc": {
+            "fr": "Sirop de coco, grenadine, jus d'orange ou d'ananas",
+            "en": "Coconut syrup, grenadine, orange or pineapple juice"
+          },
+          "price": null,
+          "tags": []
+        },
+        {
+          "name": "Pod'pêche",
+          "desc": {
+            "fr": "Sirop de pêche, ginger ale, citron",
+            "en": "Peach syrup, ginger ale, lemon"
+          },
+          "price": null,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "vins",
+      "title": {
+        "fr": "Vins",
+        "en": "Wines"
+      },
+      "items": [
+        {
+          "name": "Chardonnay",
+          "price": null,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "Jurançon",
+          "price": null,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "Côtes-du-Rhône",
+          "price": null,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "Pays d'Oc",
+          "price": null,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "Bordeaux",
+          "price": null,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        }
+      ]
+    }
+  ],
+  "comingSoon": {
+    "fr": "Prix des boissons, softs, bières, cidres, cafés et digestifs : bientôt en ligne.",
+    "en": "Drink prices, soft drinks, beers, ciders, coffees and digestifs: coming soon."
+  }
+}

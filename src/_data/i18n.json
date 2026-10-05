@@ -1,0 +1,729 @@
+{
+  "nav": {
+    "menu": {
+      "fr": "La carte",
+      "en": "Menu"
+    },
+    "restaurants": {
+      "fr": "Nos restaurants",
+      "en": "Our restaurants"
+    },
+    "events": {
+      "fr": "Événements",
+      "en": "Events"
+    },
+    "contact": {
+      "fr": "Contact",
+      "en": "Contact"
+    },
+    "call": {
+      "fr": "Appeler",
+      "en": "Call"
+    },
+    "directions": {
+      "fr": "Y aller",
+      "en": "Directions"
+    },
+    "skip": {
+      "fr": "Aller au contenu",
+      "en": "Skip to content"
+    },
+    "open": {
+      "fr": "Menu",
+      "en": "Menu"
+    },
+    "specials": {
+      "fr": "Spécialités du moment",
+      "en": "Current specials"
+    }
+  },
+  "home": {
+    "title": {
+      "fr": "Crêperie bretonne à Moussy-le-Neuf, Lagny-le-Sec et Saint-Maximin",
+      "en": "Breton crêperie in Moussy-le-Neuf, Lagny-le-Sec and Saint-Maximin"
+    },
+    "description": {
+      "fr": "Galettes de sarrasin et crêpes tirées sur le billig, tout fait maison. 3 crêperies Tri-Ann : Moussy-le-Neuf (77), Lagny-le-Sec et Saint-Maximin (60).",
+      "en": "Buckwheat galettes and crêpes made on the billig, all homemade. 3 Tri-Ann crêperies: Moussy-le-Neuf, Lagny-le-Sec and Saint-Maximin, north of Paris."
+    },
+    "heroTitle": {
+      "fr": "La vraie galette bretonne, faite devant vous",
+      "en": "Authentic Breton galettes, made before your eyes"
+    },
+    "heroText": {
+      "fr": "Galettes de sarrasin et crêpes au froment tirées sur le billig. Tout est fait maison, dans nos 3 crêperies.",
+      "en": "Buckwheat galettes and wheat crêpes made on the billig. Everything is homemade, in our 3 crêperies."
+    },
+    "specialsEyebrow": {
+      "fr": "En ce moment",
+      "en": "Right now"
+    },
+    "specialsTitle": {
+      "fr": "Les spécialités du moment",
+      "en": "Current specials"
+    },
+    "noSpecials": {
+      "fr": "Pas de spéciale en ce moment : toute la carte vous attend !",
+      "en": "No special right now, but the whole menu is waiting for you!"
+    },
+    "restosEyebrow": {
+      "fr": "Nos crêperies",
+      "en": "Our crêperies"
+    },
+    "restosTitle": {
+      "fr": "3 restaurants, la même carte",
+      "en": "3 restaurants, one menu"
+    },
+    "craftEyebrow": {
+      "fr": "Notre savoir-faire",
+      "en": "Our craft"
+    },
+    "craftTitle": {
+      "fr": "Fait maison, à la bretonne",
+      "en": "Homemade, the Breton way"
+    },
+    "servicesEyebrow": {
+      "fr": "Services",
+      "en": "Services"
+    },
+    "servicesTitle": {
+      "fr": "Pour toutes les occasions",
+      "en": "For every occasion"
+    },
+    "eventsEyebrow": {
+      "fr": "Agenda",
+      "en": "What's on"
+    },
+    "eventsTitle": {
+      "fr": "Le calendrier de nos soirées",
+      "en": "Our events calendar"
+    },
+    "noEvents": {
+      "fr": "Aucun événement programmé pour l'instant. Suivez-nous sur les réseaux !",
+      "en": "No events scheduled yet. Follow us on social media!"
+    },
+    "menuCtaTitle": {
+      "fr": "Toute la carte, en un coup d’œil",
+      "en": "The whole menu at a glance"
+    },
+    "menuCtaText": {
+      "fr": "Plus de 40 galettes et crêpes, des salades, des glaces artisanales et des cocktails bretons. Filtres végétarien, sans porc et allergènes.",
+      "en": "Over 40 galettes and crêpes, salads, artisan ice cream and Breton cocktails. Vegetarian, pork-free and allergen filters."
+    },
+    "seeMenu": {
+      "fr": "Voir la carte",
+      "en": "See the menu"
+    },
+    "bookingAll": {
+      "fr": "Réservation uniquement par téléphone, dans nos 3 établissements.",
+      "en": "Bookings by phone only, in all 3 restaurants."
+    },
+    "bookingGroup": {
+      "fr": "Pour un groupe de 15 personnes ou plus, vous pouvez aussi passer par le",
+      "en": "For groups of 15 or more, you can also use our"
+    },
+    "bookingGroupLink": {
+      "fr": "formulaire de contact",
+      "en": "contact form"
+    }
+  },
+  "craft": [
+    {
+      "title": {
+        "fr": "Tirées sur le billig",
+        "en": "Made on the billig"
+      },
+      "text": {
+        "fr": "Nos galettes sont cuites au saindoux selon la tradition. Cuisson au beurre sur demande, pour un plat végétarien ou sans porc.",
+        "en": "Our galettes are cooked in lard, as tradition demands. Cooked in butter on request, for a vegetarian or pork-free dish."
+      }
+    },
+    {
+      "title": {
+        "fr": "Pâtes faites sur place",
+        "en": "Batter made on site"
+      },
+      "text": {
+        "fr": "Toutes nos pâtes sont préparées artisanalement, chaque jour.",
+        "en": "All our batters are handmade every day."
+      }
+    },
+    {
+      "title": {
+        "fr": "Tout est fait maison",
+        "en": "Everything homemade"
+      },
+      "text": {
+        "fr": "Chantilly, caramel, chocolat, meringue et crémeux sont préparés par nos soins.",
+        "en": "Whipped cream, caramel, chocolate, meringue and cheese creams are all made in-house."
+      }
+    },
+    {
+      "title": {
+        "fr": "Glaces artisanales",
+        "en": "Artisan ice cream"
+      },
+      "text": {
+        "fr": "Toutes nos glaces sont réalisées par un maître glacier.",
+        "en": "All our ice creams are made by a master ice-cream maker."
+      }
+    }
+  ],
+  "services": [
+    {
+      "icon": "cake",
+      "title": {
+        "fr": "Anniversaires",
+        "en": "Birthdays"
+      },
+      "text": {
+        "fr": "« Bon anniversaire » écrit en chocolat sur l'assiette, et une bougie scintillante apportée au dessert. Prévenez-nous à l'avance par téléphone, ou à votre arrivée.",
+        "en": "\"Happy birthday\" written in chocolate on the plate and a sparkler candle brought with dessert. Let us know in advance by phone, or when you arrive."
+      }
+    },
+    {
+      "icon": "group",
+      "title": {
+        "fr": "Groupes",
+        "en": "Groups"
+      },
+      "text": {
+        "fr": "15 personnes ou plus ? Appelez directement le restaurant, ou écrivez-nous via le",
+        "en": "15 people or more? Call the restaurant directly, or write to us using the"
+      },
+      "link": {
+        "fr": "formulaire de contact",
+        "en": "contact form"
+      }
+    },
+    {
+      "icon": "bag",
+      "title": {
+        "fr": "À emporter",
+        "en": "Takeaway"
+      },
+      "text": {
+        "fr": "Toute la carte au même prix, sauf la spéciale sucrée et les desserts sur assiette. Préparez votre commande sur la carte, puis appelez le restaurant.",
+        "en": "The whole menu at the same price, except the sweet special and plated desserts. Prepare your order on the menu, then call the restaurant."
+      },
+      "action": "takeaway",
+      "actionLabel": {
+        "fr": "Commander à emporter",
+        "en": "Order for takeaway"
+      }
+    },
+    {
+      "icon": "gift",
+      "title": {
+        "fr": "Bons cadeaux",
+        "en": "Gift vouchers"
+      },
+      "text": {
+        "fr": "En vente directement dans nos restaurants. Valables 1 an.",
+        "en": "Available in our restaurants. Valid for 1 year."
+      }
+    }
+  ],
+  "resto": {
+    "openNow": {
+      "fr": "Ouvert",
+      "en": "Open"
+    },
+    "closedNow": {
+      "fr": "Fermé",
+      "en": "Closed"
+    },
+    "closesAt": {
+      "fr": "ferme à",
+      "en": "closes at"
+    },
+    "opensAt": {
+      "fr": "ouvre",
+      "en": "opens"
+    },
+    "hours": {
+      "fr": "Horaires",
+      "en": "Opening hours"
+    },
+    "closed": {
+      "fr": "Fermé",
+      "en": "Closed"
+    },
+    "booking": {
+      "fr": "Réservation uniquement par téléphone.",
+      "en": "Bookings by phone only."
+    },
+    "more": {
+      "fr": "Voir le restaurant",
+      "en": "See the restaurant"
+    },
+    "reviews": {
+      "fr": "Avis Google",
+      "en": "Google reviews"
+    },
+    "seeReviews": {
+      "fr": "Voir tous les avis",
+      "en": "See all reviews"
+    },
+    "follow": {
+      "fr": "Suivez-nous",
+      "en": "Follow us"
+    },
+    "specials": {
+      "fr": "Les spéciales du moment",
+      "en": "Current specials"
+    },
+    "events": {
+      "fr": "Événements",
+      "en": "Events"
+    },
+    "map": {
+      "fr": "Plan",
+      "en": "Map"
+    }
+  },
+  "days": {
+    "mon": {
+      "fr": "Lundi",
+      "en": "Monday"
+    },
+    "tue": {
+      "fr": "Mardi",
+      "en": "Tuesday"
+    },
+    "wed": {
+      "fr": "Mercredi",
+      "en": "Wednesday"
+    },
+    "thu": {
+      "fr": "Jeudi",
+      "en": "Thursday"
+    },
+    "fri": {
+      "fr": "Vendredi",
+      "en": "Friday"
+    },
+    "sat": {
+      "fr": "Samedi",
+      "en": "Saturday"
+    },
+    "sun": {
+      "fr": "Dimanche",
+      "en": "Sunday"
+    }
+  },
+  "menu": {
+    "title": {
+      "fr": "La carte",
+      "en": "Our menu"
+    },
+    "description": {
+      "fr": "La carte complète de la crêperie Tri-Ann : galettes de sarrasin, salades, crêpes, glaces artisanales et cocktails bretons.",
+      "en": "The full Tri-Ann crêperie menu: buckwheat galettes, salads, crêpes, artisan ice cream and Breton cocktails."
+    },
+    "intro": {
+      "fr": "La même carte dans nos 3 restaurants, aussi à emporter au même prix.",
+      "en": "The same menu in all 3 restaurants, also available to take away at the same price."
+    },
+    "plats": {
+      "fr": "Galettes & salades",
+      "en": "Galettes & salads"
+    },
+    "desserts": {
+      "fr": "Crêpes & glaces",
+      "en": "Crêpes & ice cream"
+    },
+    "boissons": {
+      "fr": "Boissons",
+      "en": "Drinks"
+    },
+    "filters": {
+      "fr": "Filtrer",
+      "en": "Filter"
+    },
+    "vege": {
+      "fr": "Végétarien",
+      "en": "Vegetarian"
+    },
+    "noPork": {
+      "fr": "Sans porc",
+      "en": "No pork"
+    },
+    "noAlcohol": {
+      "fr": "Sans alcool",
+      "en": "Alcohol-free"
+    },
+    "without": {
+      "fr": "Sans :",
+      "en": "Without:"
+    },
+    "reset": {
+      "fr": "Tout réafficher",
+      "en": "Show everything"
+    },
+    "noResult": {
+      "fr": "Aucun plat ne correspond à tous ces critères. Essayez d'en retirer un.",
+      "en": "No dish matches all these filters. Try removing one."
+    },
+    "allergens": {
+      "fr": "Allergènes",
+      "en": "Allergens"
+    },
+    "allergensUnknown": {
+      "fr": "Allergènes : demandez à l'équipe",
+      "en": "Allergens: please ask our staff"
+    },
+    "allergensDisclaimer": {
+      "fr": "Les allergènes sont donnés à titre indicatif : signalez toujours une allergie à l'équipe avant de commander. Nos galettes sont cuites au saindoux : demandez une cuisson au beurre pour un plat végétarien ou sans porc.",
+      "en": "Allergen information is for guidance only: always tell our staff about any allergy before ordering. Our galettes are cooked in lard: ask for butter for a vegetarian or pork-free dish."
+    },
+    "download": {
+      "fr": "Télécharger la carte (PDF)",
+      "en": "Download the menu (PDF)"
+    },
+    "each": {
+      "fr": "chacune",
+      "en": "each"
+    },
+    "priceSoon": {
+      "fr": "prix bientôt en ligne",
+      "en": "price coming soon"
+    },
+    "drinkResponsibly": {
+      "fr": "L'abus d'alcool est dangereux pour la santé. À consommer avec modération.",
+      "en": "Excessive drinking is bad for your health. Please drink responsibly."
+    },
+    "allergensBtn": {
+      "fr": "Allergènes",
+      "en": "Allergens"
+    },
+    "allergensTitle": {
+      "fr": "Filtrer par allergène",
+      "en": "Filter by allergen"
+    },
+    "allergensHelp": {
+      "fr": "Touchez les allergènes à éviter : les plats qui en contiennent seront masqués, ainsi que ceux dont la composition n’est pas encore renseignée.",
+      "en": "Tap the allergens you avoid: dishes containing them are hidden, as well as dishes whose allergens are not listed yet."
+    },
+    "showAllergens": {
+      "fr": "Afficher les allergènes",
+      "en": "Show allergens"
+    },
+    "clear": {
+      "fr": "Tout effacer",
+      "en": "Clear all"
+    },
+    "close": {
+      "fr": "Fermer",
+      "en": "Close"
+    },
+    "categories": {
+      "fr": "Rubriques de la carte",
+      "en": "Menu sections"
+    },
+    "resultOne": {
+      "fr": "Voir 1 plat",
+      "en": "Show 1 dish"
+    },
+    "resultMany": {
+      "fr": "Voir {n} plats",
+      "en": "Show {n} dishes"
+    },
+    "summary": {
+      "fr": "{n} plats affichés",
+      "en": "{n} dishes shown"
+    },
+    "noResultTitle": {
+      "fr": "Aucun plat trouvé",
+      "en": "No dish found"
+    },
+    "butterHint": {
+      "fr": "Pensez à demander une cuisson au beurre : nos galettes sont cuites au saindoux par défaut.",
+      "en": "Remember to ask for your galette to be cooked in butter: we use lard by default."
+    },
+    "all": {
+      "fr": "Toute la carte",
+      "en": "Full menu"
+    },
+    "clearAllergens": {
+      "fr": "Retirer les filtres allergènes",
+      "en": "Remove allergen filters"
+    }
+  },
+  "contact": {
+    "title": {
+      "fr": "Nous contacter",
+      "en": "Contact us"
+    },
+    "description": {
+      "fr": "Une question, une demande de groupe ? Écrivez au restaurant Tri-Ann de votre choix.",
+      "en": "A question or a group booking? Write to the Tri-Ann restaurant of your choice."
+    },
+    "rules": {
+      "fr": "Les réservations se font uniquement par téléphone, dans nos 3 établissements. Le formulaire est réservé aux questions et aux demandes de groupe (15 personnes ou plus).",
+      "en": "Bookings are by phone only, in all 3 restaurants. This form is for questions and group requests (15 people or more)."
+    },
+    "restaurant": {
+      "fr": "Restaurant",
+      "en": "Restaurant"
+    },
+    "choose": {
+      "fr": "Choisissez un restaurant",
+      "en": "Choose a restaurant"
+    },
+    "name": {
+      "fr": "Votre nom",
+      "en": "Your name"
+    },
+    "email": {
+      "fr": "Votre e-mail",
+      "en": "Your email"
+    },
+    "phone": {
+      "fr": "Votre téléphone (facultatif)",
+      "en": "Your phone (optional)"
+    },
+    "subject": {
+      "fr": "Objet",
+      "en": "Subject"
+    },
+    "message": {
+      "fr": "Message",
+      "en": "Message"
+    },
+    "consent": {
+      "fr": "J'accepte que mes données soient utilisées uniquement pour répondre à ma demande.",
+      "en": "I agree that my data will only be used to reply to my request."
+    },
+    "send": {
+      "fr": "Envoyer",
+      "en": "Send"
+    },
+    "sending": {
+      "fr": "Envoi en cours…",
+      "en": "Sending…"
+    },
+    "sent": {
+      "fr": "Merci ! Votre message a bien été envoyé au restaurant.",
+      "en": "Thank you! Your message has been sent to the restaurant."
+    },
+    "error": {
+      "fr": "L'envoi a échoué. Réessayez ou appelez directement le restaurant.",
+      "en": "Sending failed. Please try again or call the restaurant."
+    }
+  },
+  "footer": {
+    "tagline": {
+      "fr": "Galettes & crêpes bretonnes, faites maison.",
+      "en": "Homemade Breton galettes & crêpes."
+    },
+    "legal": {
+      "fr": "Mentions légales",
+      "en": "Legal notice"
+    }
+  },
+  "reviews": {
+    "title": {
+      "fr": "Ce que disent nos clients",
+      "en": "What our guests say"
+    },
+    "count": {
+      "fr": "avis",
+      "en": "reviews"
+    },
+    "fallback": {
+      "fr": "Lire les avis sur Google",
+      "en": "Read our reviews on Google"
+    }
+  },
+  "langSwitch": {
+    "fr": "English",
+    "en": "Français"
+  },
+  "specialTypes": {
+    "salee": {
+      "fr": "Galette salée",
+      "en": "Savoury galette"
+    },
+    "sucree": {
+      "fr": "Crêpe sucrée",
+      "en": "Sweet crêpe"
+    },
+    "cocktail": {
+      "fr": "Cocktail",
+      "en": "Cocktail"
+    }
+  },
+  "takeaway": {
+    "cta": {
+      "fr": "Commander à emporter",
+      "en": "Order for takeaway"
+    },
+    "choose": {
+      "fr": "À emporter : quel restaurant ?",
+      "en": "Takeaway: which restaurant?"
+    },
+    "chooseHelp": {
+      "fr": "Toute la carte au même prix. Préparez votre commande sur la carte, puis appelez le restaurant.",
+      "en": "The whole menu at the same price. Prepare your order on the menu, then call the restaurant."
+    },
+    "mode": {
+      "fr": "À emporter",
+      "en": "Takeaway"
+    },
+    "help": {
+      "fr": "Ajoutez vos plats avec le bouton +, puis appelez pour commander. Même prix que sur place.",
+      "en": "Add dishes with the + button, then call to order. Same price as eating in."
+    },
+    "change": {
+      "fr": "Changer de restaurant",
+      "en": "Change restaurant"
+    },
+    "exit": {
+      "fr": "Quitter le mode à emporter",
+      "en": "Leave takeaway mode"
+    },
+    "notAvailable": {
+      "fr": "Non disponible à emporter.",
+      "en": "Not available for takeaway."
+    },
+    "add": {
+      "fr": "Ajouter",
+      "en": "Add"
+    },
+    "order": {
+      "fr": "Ma commande",
+      "en": "My order"
+    },
+    "seeOrder": {
+      "fr": "voir le détail",
+      "en": "see details"
+    },
+    "clear": {
+      "fr": "Tout vider",
+      "en": "Clear all"
+    },
+    "callToOrder": {
+      "fr": "Appeler pour commander",
+      "en": "Call to order"
+    },
+    "qtyLess": {
+      "fr": "Retirer un",
+      "en": "Remove one"
+    },
+    "qtyMore": {
+      "fr": "Ajouter un",
+      "en": "Add one"
+    },
+    "added": {
+      "fr": "ajouté à votre commande",
+      "en": "added to your order"
+    },
+    "orderNote": {
+      "fr": "Total indicatif, à confirmer par téléphone. Les suppléments sont à préciser au moment de la commande. Aucun paiement en ligne : vous réglez sur place.",
+      "en": "Estimated total, to be confirmed by phone. Mention any extras when ordering. No online payment: you pay when you pick up."
+    }
+  },
+  "specials": {
+    "sectionTitle": {
+      "fr": "Spécialités du moment",
+      "en": "Current specials"
+    },
+    "seeInMenu": {
+      "fr": "Voir dans la carte",
+      "en": "See in the menu"
+    },
+    "toggle": {
+      "fr": "Spécialités du moment",
+      "en": "Current specials"
+    },
+    "toggleHelp": {
+      "fr": "Ajouter les spécialités du moment à la carte",
+      "en": "Add current specials to the menu"
+    },
+    "ask": {
+      "fr": "Afficher les spécialités du moment ?",
+      "en": "Show current specials?"
+    },
+    "yes": {
+      "fr": "Oui",
+      "en": "Yes"
+    },
+    "no": {
+      "fr": "Non",
+      "en": "No"
+    }
+  },
+  "calendar": {
+    "prev": {
+      "fr": "Mois précédent",
+      "en": "Previous month"
+    },
+    "next": {
+      "fr": "Mois suivant",
+      "en": "Next month"
+    },
+    "filter": {
+      "fr": "Filtrer par restaurant",
+      "en": "Filter by restaurant"
+    },
+    "all": {
+      "fr": "Les 3 restaurants",
+      "en": "All 3 restaurants"
+    },
+    "upcoming": {
+      "fr": "Ce mois-ci",
+      "en": "This month"
+    },
+    "noscript": {
+      "fr": "Activez JavaScript pour afficher le calendrier, ou consultez nos réseaux sociaux.",
+      "en": "Enable JavaScript to see the calendar, or check our social media."
+    },
+    "inMonth": {
+      "fr": "Événements en {m}",
+      "en": "Events in {m}"
+    },
+    "noneThisMonth": {
+      "fr": "Aucun événement prévu ce mois-ci.",
+      "en": "No events planned this month."
+    }
+  },
+  "newsletter": {
+    "title": {
+      "fr": "Restez informé",
+      "en": "Stay in the loop"
+    },
+    "text": {
+      "fr": "Nouvelles spécialités, soirées karaoké, concerts : recevez les actualités de nos 3 crêperies par e-mail.",
+      "en": "New specials, karaoke nights, live music: get news from our 3 crêperies by email."
+    },
+    "cta": {
+      "fr": "Me tenir informé",
+      "en": "Keep me posted"
+    },
+    "submit": {
+      "fr": "Je m'inscris",
+      "en": "Subscribe"
+    },
+    "consent": {
+      "fr": "J'accepte de recevoir les actualités de Tri-Ann par e-mail. Désinscription possible à tout moment.",
+      "en": "I agree to receive Tri-Ann news by email. I can unsubscribe at any time."
+    },
+    "privacy": {
+      "fr": "Confidentialité",
+      "en": "Privacy"
+    },
+    "sending": {
+      "fr": "Inscription en cours…",
+      "en": "Subscribing…"
+    },
+    "ok": {
+      "fr": "C'est noté ! Vérifiez votre boîte mail pour confirmer votre inscription.",
+      "en": "Done! Check your inbox to confirm your subscription."
+    },
+    "error": {
+      "fr": "L'inscription n'a pas fonctionné. Réessayez dans un instant.",
+      "en": "Subscription failed. Please try again in a moment."
+    }
+  }
+}

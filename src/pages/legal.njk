@@ -1,0 +1,58 @@
+---
+layout: base.njk
+pagination:
+  data: site.langs
+  size: 1
+  alias: lang
+permalink: "{{ site.routes.legal[lang] }}"
+pageKey: legal
+eleventyComputed:
+  title: "{{ 'Mentions légales et confidentialité' if lang == 'fr' else 'Legal notice and privacy' }}"
+  description: "{{ 'Mentions légales et politique de confidentialité du site Tri-Ann Crêperie.' if lang == 'fr' else 'Legal notice and privacy policy of the Tri-Ann Crêperie website.' }}"
+---
+<div class="wrap prose band">
+{%- if lang == "fr" %}
+  <h1>Mentions légales</h1>
+
+  <h2>Éditeurs du site</h2>
+  <p>Ce site présente les trois crêperies Tri-Ann, chacune exploitée par sa propre société :</p>
+  <ul>
+    {%- for r in restaurants %}
+    <li><b>{{ r.company.name }}</b>{% if r.company.form %} ({{ r.company.form }}){% endif %}, SIREN {{ r.company.siren }} : {{ r.street }}, {{ r.postalCode }} {{ r.city }}, {{ r.phone }}</li>
+    {%- endfor %}
+  </ul>
+  <p>Directeur de la publication : Sébastien Le Maux<br>
+  Contact : via le <a href="{{ site.routes | route('contact', lang) }}">formulaire de contact</a>.</p>
+
+  <h2>Hébergement</h2>
+  <p>GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>Les textes, photos, logos et la carte présents sur ce site appartiennent à Tri-Ann. Toute reproduction sans autorisation est interdite.</p>
+
+  <h1 id="confidentialite">Confidentialité</h1>
+  <h2>Formulaire de contact</h2>
+  <p>Les informations saisies dans le formulaire (nom, e-mail, téléphone, message) sont transmises par le service EmailJS au restaurant choisi, uniquement pour répondre à votre demande. Elles ne sont ni revendues ni utilisées à des fins publicitaires, et sont supprimées une fois la demande traitée.</p>
+  <h2>Newsletter</h2>
+  <p>Si vous vous inscrivez à la newsletter, votre adresse e-mail est conservée par notre prestataire Brevo, uniquement pour vous envoyer les actualités de Tri-Ann (spécialités, événements). Chaque e-mail contient un lien de désinscription.</p>
+  <h2>Cookies et services tiers</h2>
+  <p>Ce site n'utilise aucun cookie publicitaire ni de suivi. Les avis sont chargés depuis Google. Le plan Google Maps ne s'affiche que si vous cliquez sur « Afficher le plan ».</p>
+  <h2>Vos droits</h2>
+  <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données via le <a href="{{ site.routes | route('contact', lang) }}">formulaire de contact</a>. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
+{%- else %}
+  <h1>Legal notice</h1>
+  <h2>Publishers</h2>
+  <p>This website presents the three Tri-Ann crêperies, each run by its own company:</p>
+  <ul>
+    {%- for r in restaurants %}
+    <li><b>{{ r.company.name }}</b>, SIREN {{ r.company.siren }}: {{ r.street }}, {{ r.postalCode }} {{ r.city }}, France, {{ r.phone }}</li>
+    {%- endfor %}
+  </ul>
+  <p>Publication director: Sébastien Le Maux<br>
+  Contact: via the <a href="{{ site.routes | route('contact', lang) }}">contact form</a>.</p>
+  <h2>Hosting</h2>
+  <p>GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.</p>
+  <h1 id="privacy">Privacy</h1>
+  <p>Information entered in the contact form (name, email, phone, message) is sent through EmailJS to the restaurant you choose, solely to reply to your request, and deleted once it has been handled. If you subscribe to the newsletter, your email address is stored by our provider Brevo solely to send you Tri-Ann news; every email includes an unsubscribe link. This website uses no advertising or tracking cookies. Reviews are loaded from Google; the Google map is only loaded if you click “Show map”. Under the GDPR you may request access to, correction or deletion of your data via the <a href="{{ site.routes | route('contact', lang) }}">contact form</a>.</p>
+{%- endif %}
+</div>
