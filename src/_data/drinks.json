@@ -33,7 +33,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -51,7 +55,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -69,7 +77,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -83,7 +95,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -97,7 +113,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -115,7 +135,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -129,7 +153,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -143,7 +171,11 @@
           ],
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         }
       ]
     },
@@ -167,7 +199,11 @@
           "price": 13.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -181,7 +217,11 @@
           "price": 14.4,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -195,7 +235,11 @@
           "price": 14.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         }
       ]
     },
@@ -219,7 +263,11 @@
           "price": 15.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -233,7 +281,11 @@
           "price": 15.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": "Édouard Le Généreux",
@@ -244,7 +296,11 @@
           "price": 18.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -258,7 +314,11 @@
           "price": 17.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -272,7 +332,11 @@
           "price": 21.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -286,7 +350,11 @@
           "price": 21.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         }
       ]
     },
@@ -310,7 +378,8 @@
           "price": 7.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Gyn Secret Kystin 40 %",
@@ -321,7 +390,8 @@
           "price": 7.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         }
       ]
     },
@@ -350,7 +420,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Monaco",
@@ -367,7 +438,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -387,7 +459,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         }
       ]
     },
@@ -411,7 +484,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Sainte Colombe Dorée",
@@ -425,7 +499,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Sainte Colombe Ambrée",
@@ -439,7 +514,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         }
       ]
     },
@@ -463,7 +539,8 @@
           "price": 8.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Sant Erwann Blonde",
@@ -477,7 +554,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Sant Erwann India Pale Ale",
@@ -491,7 +569,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Chouffe Cherry",
@@ -505,7 +584,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         }
       ]
     },
@@ -712,7 +792,8 @@
           ],
           "allergens": [
             "sulfites"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -729,7 +810,8 @@
           ],
           "allergens": [
             "sulfites"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -746,7 +828,8 @@
           ],
           "allergens": [
             "sulfites"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -763,7 +846,8 @@
           ],
           "allergens": [
             "sulfites"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Kir royal",
@@ -777,7 +861,8 @@
           ],
           "allergens": [
             "sulfites"
-          ]
+          ],
+          "inferred": true
         }
       ]
     },
@@ -801,7 +886,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Brest",
@@ -815,7 +901,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Saint-Malo",
@@ -829,7 +916,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Dinard",
@@ -843,7 +931,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Port Croisic",
@@ -857,7 +946,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Aval-Anna",
@@ -871,7 +961,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Fougères",
@@ -885,7 +976,8 @@
           ],
           "allergens": [
             "gluten"
-          ]
+          ],
+          "inferred": true
         },
         {
           "name": "Médicis",
@@ -897,9 +989,7 @@
           "tags": [
             "alcool"
           ],
-          "allergens": [
-            "gluten"
-          ]
+          "allergens": null
         }
       ]
     },
@@ -920,7 +1010,8 @@
           "price": 10.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "L'Edelweiss",
@@ -931,7 +1022,8 @@
           "price": 10.4,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Le Maïwenn",
@@ -942,7 +1034,8 @@
           "price": 10.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Le Passiflore",
@@ -953,7 +1046,9 @@
           "price": 10.4,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Le Breizh Apérol",
@@ -964,7 +1059,11 @@
           "price": 9.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": "Le Brocéliande",
@@ -975,7 +1074,11 @@
           "price": 9.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -989,7 +1092,11 @@
           "price": 9.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": "Le Loc Maria",
@@ -1000,7 +1107,11 @@
           "price": 9.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": "Le Lauran",
@@ -1011,7 +1122,11 @@
           "price": 9.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "inferred": true
         },
         {
           "name": "Le Gin Tonic",
@@ -1022,7 +1137,9 @@
           "price": 8.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Le Ti Punch",
@@ -1033,7 +1150,9 @@
           "price": 8.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [],
+          "inferred": true
         }
       ]
     },
@@ -1052,7 +1171,9 @@
             "en": "Pineapple or orange juice, coconut syrup, grenadine"
           },
           "price": 8.5,
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Le Virgin Mojito",
@@ -1061,7 +1182,9 @@
             "en": "Mint, lime, lemonade"
           },
           "price": 8.5,
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Le Pod'Pêche",
@@ -1070,7 +1193,9 @@
             "en": "Peach syrup, lime, ginger ale"
           },
           "price": 8.5,
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         }
       ]
     },
@@ -1087,7 +1212,8 @@
           "price": 7.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Chouchen",
@@ -1098,7 +1224,8 @@
           "price": 5.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Kenavo",
@@ -1109,7 +1236,8 @@
           "price": 5.4,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Martini",
@@ -1120,42 +1248,48 @@
           "price": 5.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Limoncello",
           "price": 5.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Pommeau de Bretagne",
           "price": 6.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Get 27, Baileys",
           "price": 6.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Calvados, Cognac, Armagnac",
           "price": 7.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Vodka Poliakov, Gin Gibson's",
           "price": 7.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": {
@@ -1165,7 +1299,8 @@
           "price": 7.5,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         }
       ]
     },
@@ -1186,7 +1321,8 @@
           "price": 6.4,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Armorik",
@@ -1197,7 +1333,8 @@
           "price": 7.4,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": {
@@ -1211,7 +1348,8 @@
           "price": 7.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Eddu Grey Rock",
@@ -1222,7 +1360,8 @@
           "price": 7.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Eddu Grey Rock « Green »",
@@ -1233,7 +1372,8 @@
           "price": 8.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         }
       ]
     },
@@ -1254,7 +1394,8 @@
           "price": 9.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Eddu « Green »",
@@ -1265,7 +1406,8 @@
           "price": 10.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         },
         {
           "name": "Eddu « Gold »",
@@ -1276,7 +1418,8 @@
           "price": 11.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": null
         }
       ]
     },
@@ -1298,7 +1441,9 @@
             4.5
           ],
           "tags": [],
-          "takeaway": true
+          "takeaway": true,
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1310,7 +1455,9 @@
             4.5
           ],
           "tags": [],
-          "takeaway": true
+          "takeaway": true,
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1322,7 +1469,9 @@
             4.5
           ],
           "tags": [],
-          "takeaway": true
+          "takeaway": true,
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1334,7 +1483,9 @@
             4.5
           ],
           "tags": [],
-          "takeaway": true
+          "takeaway": true,
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1346,7 +1497,9 @@
             4.5
           ],
           "tags": [],
-          "takeaway": true
+          "takeaway": true,
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Breizh Tea",
@@ -1355,7 +1508,9 @@
             4.5
           ],
           "tags": [],
-          "takeaway": true
+          "takeaway": true,
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Diabolo",
@@ -1363,7 +1518,9 @@
             4.3,
             null
           ],
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1378,7 +1535,9 @@
             4.4,
             null
           ],
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1393,7 +1552,9 @@
             2.3,
             null
           ],
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         }
       ]
     },
@@ -1417,7 +1578,9 @@
             3.5,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1428,7 +1591,9 @@
             3.5,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         }
       ]
     },
@@ -1445,7 +1610,9 @@
             "en": "Malongo coffee"
           },
           "price": 2.2,
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1453,7 +1620,9 @@
             "en": "Double espresso"
           },
           "price": 4.1,
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1461,7 +1630,9 @@
             "en": "Decaf"
           },
           "price": 2.3,
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": {
@@ -1469,7 +1640,11 @@
             "en": "Macchiato"
           },
           "price": 2.3,
-          "tags": []
+          "tags": [],
+          "allergens": [
+            "lait"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -1477,7 +1652,11 @@
             "en": "White coffee"
           },
           "price": 3.9,
-          "tags": []
+          "tags": [],
+          "allergens": [
+            "lait"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -1485,7 +1664,11 @@
             "en": "Viennese coffee (whipped cream)"
           },
           "price": 5.5,
-          "tags": []
+          "tags": [],
+          "allergens": [
+            "lait"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -1497,7 +1680,11 @@
             "en": "Whipped cream +€1.40"
           },
           "price": 5.5,
-          "tags": []
+          "tags": [],
+          "allergens": [
+            "lait"
+          ],
+          "inferred": true
         },
         {
           "name": {
@@ -1505,7 +1692,9 @@
             "en": "Teas & herbal teas"
           },
           "price": 3.9,
-          "tags": []
+          "tags": [],
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Irish Coffee",
@@ -1516,7 +1705,11 @@
           "price": 8.9,
           "tags": [
             "alcool"
-          ]
+          ],
+          "allergens": [
+            "lait"
+          ],
+          "inferred": true
         }
       ]
     }

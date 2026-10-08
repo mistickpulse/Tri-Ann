@@ -5,5 +5,8 @@ description: Crêpe de froment au coulis de chocolat, framboises fraîches et ch
 description_en: Wheat crêpe with chocolate coulis, fresh raspberries and homemade whipped cream, topped with a chocolate half-sphere filled with homemade meringue and chocolate mousse, and speculoos crumbs.
 etablissements: [saint-maximin]
 image: /assets/img/speciales/pimprenelle.jpg
+allergens: [gluten, oeufs, soja, lait, sulfites]
+# Allergènes déduits des ingrédients : à valider en cuisine
+allergensInferred: true
 active: true
 ---

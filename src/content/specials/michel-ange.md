@@ -5,5 +5,8 @@ description: Crêpes de froment roulées, abricots, éclats de pistache, boule d
 description_en: Rolled wheat crêpes with apricots, crushed pistachios, a scoop of vanilla ice cream, a drizzle of chocolate and homemade whipped cream.
 etablissements: [moussy-le-neuf, lagny-le-sec]
 image: /assets/img/speciales/michel-ange.jpg
+allergens: [gluten, oeufs, lait, fruits-a-coque, sulfites]
+# Allergènes déduits des ingrédients : à valider en cuisine
+allergensInferred: true
 active: true
 ---

@@ -218,7 +218,7 @@ export default function (eleventyConfig) {
           price: s.data.price,
           desc: { fr: s.data.description, en: s.data.description_en || s.data.description },
           tags: s.data.tags || [],
-          allergens: null,
+          allergens: s.data.allergens ?? null,
           image: s.data.image || null,
           restos: !r || !r.length || r.includes("tous") ? "tous" : r.join(" "),
           availability: availability(r, restaurants),
