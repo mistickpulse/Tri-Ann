@@ -294,14 +294,14 @@ dialog.filter-panel::backdrop { background: rgba(0,0,0,.65); backdrop-filter: bl
 .dish-line:not(:has(.dish-price, .dish-prices))::after { display: none; }
 /* Boissons : une colonne de prix par contenance (alignée sur l'en-tête de section) */
 .dish-prices { order: 2; display: flex; gap: 6px; font-weight: 700; color: var(--accent-strong); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.dish-prices > span { width: 4.6em; text-align: right; }
+.dish-prices > span { width: 4.6rem; text-align: center; }
 .dish-line:has(.dish-prices) { flex-wrap: wrap; row-gap: 4px; }
 .dish-line:has(.dish-prices) .dish-name { flex: 1 1 13em; }
 .dish-line:has(.dish-prices)::after { display: none; }
 .dish-line .dish-prices { margin-left: auto; }
 .dish-prices.sizes { font-size: .85rem; font-weight: 600; color: var(--muted); }
 .size-label { font-size: .9rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
-@media (max-width: 420px) { .dish-prices { gap: 2px; font-size: .9rem; } .dish-prices > span { width: 4.1em; } }
+@media (max-width: 420px) { .dish-prices { gap: 2px; font-size: .9rem; } .dish-prices > span { width: 4.1rem; } }
 .dish-desc { margin: 4px 0 0; color: var(--muted); font-size: .97rem; line-height: 1.55; max-width: 52ch; }
 .veg-mark { display: inline-flex; vertical-align: -2px; color: var(--ok); margin-left: 4px; }
 .dish-allergens { display: none; margin: 8px 0 0; color: var(--muted); font-size: .85rem; }
