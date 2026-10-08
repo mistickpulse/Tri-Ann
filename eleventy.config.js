@@ -256,7 +256,9 @@ export default function (eleventyConfig) {
       url: route("restaurant", r.slug),
       hasMenu: route("menu"),
       acceptsReservations: true,
-      image: `${site.url}/assets/img/galette-sarasin.jpg`,
+      // Photos du restaurant (salle, façade) puis une galette ; logo pour la fiche Google
+      image: [...(r.photos || []).map((p) => site.url + p.src), `${site.url}/assets/img/photos/partage-galette.jpg`],
+      logo: `${site.url}/assets/img/logo-512.jpg`,
       address: { "@type": "PostalAddress", streetAddress: r.street, postalCode: r.postalCode, addressLocality: r.city, addressCountry: "FR" },
       sameAs: [r.facebook, r.instagram],
       openingHoursSpecification: Object.entries(r.hours).flatMap(([d, slots]) =>

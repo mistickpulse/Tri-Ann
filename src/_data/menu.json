@@ -290,7 +290,7 @@
       "group": "plats",
       "intro": { "fr":"Des salades généreuses, souvent servies sur une galette de sarrasin qui s'imprègne de notre vinaigrette au sésame.", "en":"Generous salads, often served on a buckwheat galette that soaks up our sesame dressing." },
       "title": { "fr": "Les salades", "en": "Salads" },
-      "image": "salade.png",
+      "image": "photos/cat-salades.jpg",
       "sections": [
         {
           "id": "salades-liste",
