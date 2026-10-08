@@ -16,7 +16,7 @@ scripts: ["/assets/js/menu.js"]
 {%- macro allergenList(ids, lang) -%}{{ ids | allergenNames(site.allergens, lang) }}{%- endmacro -%}
 
 {%- macro item(it, lang, sec, badges, restos) -%}
-{%- set unitPrice = it.price if it.price != null else (sec.price if sec.price else null) -%}
+{%- set unitPrice = (it.price if it.price != null else (sec.price if sec.price else null)) if badges != "drinks" else null -%}
 <li class="dish" data-tags="{{ (it.tags or []) | join(' ') }}" data-allergens="{{ it.allergens | allergenAttr }}"{% if unitPrice %} data-price="{{ unitPrice }}" data-name="{{ it.name | tr(lang) }}"{% endif %}{% if restos %} data-restos="{{ restos }}"{% endif %}{% if it.image %} data-thumb{% endif %}>
   {%- if it.image %}
   <img class="dish-thumb" src="{{ it.image }}" alt="{{ it.name | tr(lang) }}" loading="lazy" width="96" height="96">
@@ -24,7 +24,8 @@ scripts: ["/assets/js/menu.js"]
   {%- endif %}
   <div class="dish-line">
     <span class="dish-name">{{ it.name | tr(lang) }}{% if badges == "vege" and it.tags and ("vege" in it.tags) %} <span class="veg-mark" title="{{ 'menu.vege' | t(lang) }}">{{ icon("leaf", 15) }}<span class="sr-only">{{ 'menu.vege' | t(lang) }}</span></span>{% endif %}</span>
-    {%- if it.price != null %}<span class="dish-price">{{ it.price | price(lang) }}</span>{% endif %}
+    {%- if it.prices %}<span class="dish-prices">{% for pr in it.prices %}<span>{{ (pr | price(lang)) if pr != null else "–" }}</span>{% endfor %}</span>
+    {%- elif it.price != null %}<span class="dish-price">{{ it.price | price(lang) }}</span>{% endif %}
     {%- if unitPrice %}<button class="add-btn" type="button" data-add aria-label="{{ 'takeaway.add' | t(lang) }} : {{ it.name | tr(lang) }}">{{ icon("plus", 18) }}</button>{% endif %}
   </div>
   {%- if it.desc %}<p class="dish-desc">{{ it.desc | tr(lang) }}</p>{% endif %}
@@ -45,7 +46,9 @@ scripts: ["/assets/js/menu.js"]
   {%- if sec.title %}
   <header class="menu-section-head">
     <h3>{{ sec.title | tr(lang) }}</h3>
-    {%- if sec.price %}<span class="section-price">{{ sec.price | price(lang) }}</span>{% elif sec.priceLabel %}<span class="section-price">{{ sec.priceLabel | tr(lang) }}</span>{% endif %}
+    {%- if sec.sizes %}<span class="dish-prices sizes">{% for z in sec.sizes %}<span>{{ z }}</span>{% endfor %}</span>
+    {%- elif sec.size %}<span class="size-label">{{ sec.size }}</span>
+    {%- elif sec.price %}<span class="section-price">{{ sec.price | price(lang) }}</span>{% elif sec.priceLabel %}<span class="section-price">{{ sec.priceLabel | tr(lang) }}</span>{% endif %}
   </header>
   {%- endif %}
   {%- if sec.note %}<p class="muted small">{{ sec.note | tr(lang) }} {{ ("menu." + sec.id) | rtag }}</p>{% endif %}
@@ -188,15 +191,15 @@ scripts: ["/assets/js/menu.js"]
     <header class="menu-category-head has-image">
       <div>
       <h2 id="boissons-title">{{ "menu.boissons" | t(lang) }}</h2>
-      <p class="muted">{{ drinks.comingSoon | tr(lang) }} {{ "drinks.comingSoon" | rtag }}</p>
+      <p class="muted">{{ drinks.intro | tr(lang) }} {{ "drinks.comingSoon" | rtag }}</p>
       </div>
-      <img src="/assets/img/mur-de-bouteille.png" alt="" loading="lazy" width="160" height="160">
+      <img src="/assets/img/photos/boissons-320.jpg" alt="" loading="lazy" width="160" height="160">
     </header>
     <div class="menu-columns">
       {{ specialSection(collections.specials | specialsOfType("cocktail", restaurants), "cocktail", lang) }}
-      {%- for sec in drinks.sections %}{{ section(sec, lang) }}{% endfor %}
+      {%- for sec in drinks.sections %}{{ section(sec, lang, "drinks") }}{% endfor %}
     </div>
-    <p class="muted small">{{ "menu.drinkResponsibly" | t(lang) }}</p>
+    <p class="muted small">{{ drinks.sulfitesNote | tr(lang) }} {{ "menu.drinkResponsibly" | t(lang) }}</p>
   </section>
 
   <p class="disclaimer small">{{ icon("info", 16) }} <span>{{ "menu.allergensDisclaimer" | t(lang) }} {{ "menu.allergensDisclaimer" | rtag }}</span></p>

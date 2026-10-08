@@ -69,7 +69,39 @@
       ],
       "sun": []
     },
-    "photos": [],
+    "photos": [
+      {
+        "src": "/assets/img/photos/t1-ext-1-1600.jpg",
+        "alt": {
+          "fr": "La façade du Tri-Ann à Moussy-le-Neuf",
+          "en": "Tri-Ann's frontage in Moussy-le-Neuf"
+        },
+        "focus": "50% 50%",
+        "focusMobile": "0% 50%",
+        "srcSmall": "/assets/img/photos/t1-ext-1-800.jpg"
+      },
+      {
+        "src": "/assets/img/photos/t1-int-1-800.jpg",
+        "alt": {
+          "fr": "La salle du Tri-Ann à Moussy-le-Neuf",
+          "en": "The dining room at Tri-Ann, Moussy-le-Neuf"
+        }
+      },
+      {
+        "src": "/assets/img/photos/t1-int-3-800.jpg",
+        "alt": {
+          "fr": "La salle du Tri-Ann à Moussy-le-Neuf",
+          "en": "The dining room at Tri-Ann, Moussy-le-Neuf"
+        }
+      },
+      {
+        "src": "/assets/img/photos/t1-mur-2-800.jpg",
+        "alt": {
+          "fr": "Le mur de bouteilles du Tri-Ann à Moussy-le-Neuf",
+          "en": "The bottle wall at Tri-Ann, Moussy-le-Neuf"
+        }
+      }
+    ],
     "company": {
       "name": "TRI-ANN",
       "form": "SARL",
@@ -233,7 +265,53 @@
       ],
       "sun": []
     },
-    "photos": [],
+    "photos": [
+      {
+        "src": "/assets/img/photos/t3-int-5-1600.jpg",
+        "alt": {
+          "fr": "La salle du Tri-Ann 3 à Saint-Maximin",
+          "en": "The dining room at Tri-Ann 3, Saint-Maximin"
+        },
+        "focus": "50% 50%",
+        "focusMobile": "52% 50%",
+        "srcSmall": "/assets/img/photos/t3-int-5-800.jpg"
+      },
+      {
+        "src": "/assets/img/photos/t3-mur-bouteille-1-800.jpg",
+        "alt": {
+          "fr": "Le mur de bouteilles du Tri-Ann 3",
+          "en": "The bottle wall at Tri-Ann 3"
+        }
+      },
+      {
+        "src": "/assets/img/photos/t3-mur-bouteille-4-800.jpg",
+        "alt": {
+          "fr": "Le mur de bouteilles du Tri-Ann 3",
+          "en": "The bottle wall at Tri-Ann 3"
+        }
+      },
+      {
+        "src": "/assets/img/photos/t3-int-4-800.jpg",
+        "alt": {
+          "fr": "La salle du Tri-Ann 3 à Saint-Maximin",
+          "en": "The dining room at Tri-Ann 3, Saint-Maximin"
+        }
+      },
+      {
+        "src": "/assets/img/photos/t3-int-1-800.jpg",
+        "alt": {
+          "fr": "La salle du Tri-Ann 3 à Saint-Maximin",
+          "en": "The dining room at Tri-Ann 3, Saint-Maximin"
+        }
+      },
+      {
+        "src": "/assets/img/photos/t3-ext-1-800.jpg",
+        "alt": {
+          "fr": "Le Tri-Ann 3 vu de l'extérieur",
+          "en": "Tri-Ann 3 from outside"
+        }
+      }
+    ],
     "company": {
       "name": "TRI-ANN 3",
       "form": "",

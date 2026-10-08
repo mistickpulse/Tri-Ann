@@ -1,119 +1,146 @@
 {
-  "_info": "Ingrédients seulement, jamais les doses. price: null = prix à renseigner.",
+  "_info": "Recopié de la carte des boissons de Tri-Ann 3 (octobre 2026). size = contenance commune à la section ; sizes + prices = plusieurs contenances (null = pas proposé dans ce format).",
+  "intro": {
+    "fr": "Cidres bretons, bières, vins, cocktails maison et boissons chaudes.",
+    "en": "Breton ciders, beers, wines, house cocktails and hot drinks."
+  },
   "sections": [
     {
-      "id": "cocktails-maison",
+      "id": "cidres",
       "title": {
-        "fr": "Cocktails maison",
-        "en": "House cocktails"
+        "fr": "La cave à cidres",
+        "en": "Cider cellar"
       },
+      "sizes": [
+        "20 cl",
+        "50 cl",
+        "75 cl"
+      ],
       "items": [
         {
-          "name": "Valériane",
-          "desc": {
-            "fr": "Vodka, liqueur de litchi Soho, sirop de rose, Schweppes, citron, griottes",
-            "en": "Vodka, Soho lychee liqueur, rose syrup, tonic, lemon, morello cherries"
+          "name": {
+            "fr": "La Bolée",
+            "en": "Bolée (cider bowl)"
           },
-          "price": null,
+          "desc": {
+            "fr": "Brut ou doux",
+            "en": "Dry or sweet"
+          },
+          "prices": [
+            3.9,
+            null,
+            null
+          ],
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Edelweiss",
-          "desc": {
-            "fr": "Gin, sirop de violette, Schweppes, citron, griotte",
-            "en": "Gin, violet syrup, tonic, lemon, morello cherry"
+          "name": {
+            "fr": "Le Pichet",
+            "en": "Jug"
           },
-          "price": null,
+          "desc": {
+            "fr": "Brut ou doux",
+            "en": "Dry or sweet"
+          },
+          "prices": [
+            null,
+            7.9,
+            null
+          ],
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Maïwenn",
-          "desc": {
-            "fr": "Gin, sirop de mangue et d'ananas, Schweppes, citron",
-            "en": "Gin, mango & pineapple syrup, tonic, lemon"
+          "name": {
+            "fr": "Cidre « Bouché »",
+            "en": "« Bouché » cider"
           },
-          "price": null,
+          "desc": {
+            "fr": "Brut ou doux",
+            "en": "Dry or sweet"
+          },
+          "prices": [
+            null,
+            null,
+            11.9
+          ],
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Passiflore",
-          "desc": {
-            "fr": "Rhum, sirop de coco, grenadine, jus d'ananas",
-            "en": "Rum, coconut syrup, grenadine, pineapple juice"
+          "name": {
+            "fr": "Cidre « Bio » sec et fruité",
+            "en": "Organic cider, dry and fruity"
           },
-          "price": null,
+          "prices": [
+            null,
+            null,
+            12.9
+          ],
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Breizh Aperol",
-          "desc": {
-            "fr": "Aperol, cidre doux, orange",
-            "en": "Aperol, sweet cider, orange"
+          "name": {
+            "fr": "Cidre « Bio » doux et fruité",
+            "en": "Organic cider, sweet and fruity"
           },
-          "price": null,
+          "prices": [
+            null,
+            null,
+            12.9
+          ],
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Brocéliande",
-          "desc": {
-            "fr": "Chouchen, rhum, cidre brut, citron",
-            "en": "Chouchen (Breton mead), rum, dry cider, lemon"
+          "name": {
+            "fr": "Cidre « Dan Armor »",
+            "en": "« Dan Armor » cider"
           },
-          "price": null,
+          "desc": {
+            "fr": "Cidre artisanal brut",
+            "en": "Craft dry cider"
+          },
+          "prices": [
+            null,
+            null,
+            12.9
+          ],
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Loc Maria",
-          "desc": {
-            "fr": "Gin, sirop de framboise, cidre rosé",
-            "en": "Gin, raspberry syrup, rosé cider"
+          "name": {
+            "fr": "Cidre « Rosé »",
+            "en": "Rosé cider"
           },
-          "price": null,
+          "prices": [
+            null,
+            null,
+            13.4
+          ],
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Lauran",
-          "desc": {
-            "fr": "Rhum, sirop de framboise, menthe fraîche, cidre rosé",
-            "en": "Rum, raspberry syrup, fresh mint, rosé cider"
+          "name": {
+            "fr": "Bouché « Poiré »",
+            "en": "« Poiré » (perry)"
           },
-          "price": null,
-          "tags": [
-            "alcool"
-          ]
-        },
-        {
-          "name": "Gin tonic",
-          "desc": {
-            "fr": "Gin, Schweppes, citron",
-            "en": "Gin, tonic, lemon"
-          },
-          "price": null,
-          "tags": [
-            "alcool"
-          ]
-        },
-        {
-          "name": "Ti-punch",
-          "desc": {
-            "fr": "Rhum, sirop de canne, citron vert, cassonade",
-            "en": "Rum, cane syrup, lime, brown sugar"
-          },
-          "price": null,
+          "prices": [
+            null,
+            null,
+            12.9
+          ],
           "tags": [
             "alcool"
           ]
@@ -121,146 +148,889 @@
       ]
     },
     {
-      "id": "mojitos",
+      "id": "cidres-superieurs",
       "title": {
-        "fr": "Les mojitos",
-        "en": "Mojitos"
+        "fr": "Les cidres supérieurs",
+        "en": "Premium ciders"
       },
+      "size": "75 cl",
       "items": [
         {
           "name": {
-            "fr": "Mojito breton",
-            "en": "Breton mojito"
+            "fr": "Cidre « Guillevic »",
+            "en": "« Guillevic » cider"
           },
           "desc": {
-            "fr": "Rhum, menthe fraîche, citron vert, cidre brut",
-            "en": "Rum, fresh mint, lime, dry cider"
+            "fr": "Doux, au goût de pomme prononcé",
+            "en": "Sweet, with a strong apple taste"
           },
-          "price": null,
+          "price": 13.9,
           "tags": [
             "alcool"
           ]
         },
         {
           "name": {
-            "fr": "Mojito classique",
-            "en": "Classic mojito"
+            "fr": "Cidre « Opalyne »",
+            "en": "« Opalyne » cider"
           },
           "desc": {
-            "fr": "Rhum, menthe fraîche, citron vert, limonade",
-            "en": "Rum, fresh mint, lime, lemonade"
+            "fr": "Brut et fruité, saveur de miel, cidre velouté",
+            "en": "Dry and fruity, honey flavour, smooth"
           },
-          "price": null,
+          "price": 14.4,
           "tags": [
             "alcool"
           ]
         },
         {
-          "name": "Virgin Mojito",
-          "desc": {
-            "fr": "Menthe fraîche, citron vert, limonade (sans alcool)",
-            "en": "Fresh mint, lime, lemonade (alcohol-free)"
+          "name": {
+            "fr": "Cidre bio « Son Ar Chistr »",
+            "en": "« Son Ar Chistr » organic cider"
           },
-          "price": null,
-          "tags": []
+          "desc": {
+            "fr": "Le chant du cidre : élaboré à partir de 25 variétés de pommes",
+            "en": "“The song of cider”: made from 25 apple varieties"
+          },
+          "price": 14.9,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cidres-exception",
+      "title": {
+        "fr": "Les cidres d'exception",
+        "en": "Exceptional ciders"
+      },
+      "size": "75 cl",
+      "items": [
+        {
+          "name": {
+            "fr": "Cidre « Kalysie »",
+            "en": "« Kalysie » cider"
+          },
+          "desc": {
+            "fr": "Saveur de citron épicé et de gingembre, sur une robe cristalline",
+            "en": "Spiced lemon and ginger, crystal-clear"
+          },
+          "price": 15.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Cidre « Kystin »",
+            "en": "« Kystin » cider"
+          },
+          "desc": {
+            "fr": "Saveur de confiseries, notes pâtissières, de châtaignes et amandes",
+            "en": "Notes of sweets, pastry, chestnut and almond"
+          },
+          "price": 15.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Édouard Le Généreux",
+          "desc": {
+            "fr": "Notes fraîches (agrumes) et lactées. Frais et fruité, équilibre entre acidité et sucrosité. Une effervescence tonique !",
+            "en": "Fresh citrus and milky notes. Fresh and fruity, balancing acidity and sweetness, with lively bubbles!"
+          },
+          "price": 18.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Cidre au sarrasin et blé noir",
+            "en": "Buckwheat cider"
+          },
+          "desc": {
+            "fr": "Maison Kystin",
+            "en": "Maison Kystin"
+          },
+          "price": 17.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Cuvée Réserve",
+            "en": "Cuvée Réserve"
+          },
+          "desc": {
+            "fr": "Cidre vieilli en fût de chêne d'Armagnac ou de whisky. Fabuleux et exceptionnel !",
+            "en": "Cider aged in Armagnac or whisky oak casks. Fabulous and exceptional!"
+          },
+          "price": 21.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Cidre « Spiritus » brut",
+            "en": "« Spiritus » dry cider"
+          },
+          "desc": {
+            "fr": "Cidre monastique en provenance des réserves de Saint-Malo",
+            "en": "Monastic cider from the Saint-Malo cellars"
+          },
+          "price": 21.9,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spiritueux-cidre",
+      "title": {
+        "fr": "Les spiritueux",
+        "en": "Cider spirits"
+      },
+      "size": "4 cl",
+      "items": [
+        {
+          "name": {
+            "fr": "Cidre de glace 10 %",
+            "en": "Ice cider 10%"
+          },
+          "desc": {
+            "fr": "Cryoextraction : presse de pommes givrées, saveur de sucre avec une belle acidité, la récolte du nectar !",
+            "en": "Cryo-extraction: pressed frozen apples, sweet with a fine acidity — pure nectar!"
+          },
+          "price": 7.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Gyn Secret Kystin 40 %",
+          "desc": {
+            "fr": "Frais et angélique : notes de poivre de Kampot, coriandre, agrumes et poudre d'amande",
+            "en": "Fresh and delicate: notes of Kampot pepper, coriander, citrus and ground almond"
+          },
+          "price": 7.9,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bieres-pression",
+      "title": {
+        "fr": "Les bières pression",
+        "en": "Draught beers"
+      },
+      "sizes": [
+        "25 cl",
+        "50 cl"
+      ],
+      "items": [
+        {
+          "name": {
+            "fr": "Dremmwel blonde / rousse",
+            "en": "Dremmwel lager / amber"
+          },
+          "prices": [
+            6.1,
+            8.8
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "name": "Monaco",
+          "desc": {
+            "fr": "Bière blonde, limonade, grenadine",
+            "en": "Lager, lemonade, grenadine"
+          },
+          "prices": [
+            6.1,
+            8.7
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Panaché",
+            "en": "Shandy"
+          },
+          "desc": {
+            "fr": "Bière blonde, limonade",
+            "en": "Lager, lemonade"
+          },
+          "prices": [
+            6.1,
+            8.7
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bieres-superieures",
+      "title": {
+        "fr": "Bières bouteille : les supérieures",
+        "en": "Bottled beers: premium"
+      },
+      "size": "33 cl",
+      "items": [
+        {
+          "name": "Sainte Colombe Blanche",
+          "desc": {
+            "fr": "Notes acidulées, fruitées et épicées",
+            "en": "Tangy, fruity and spicy"
+          },
+          "price": 7.4,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "name": "Sainte Colombe Dorée",
+          "desc": {
+            "fr": "Douce, aux notes fleuries et légèrement fruitées (poire, banane) et épicées (clou de girofle)",
+            "en": "Mellow, floral, lightly fruity (pear, banana) and spiced (clove)"
+          },
+          "price": 7.4,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "name": "Sainte Colombe Ambrée",
+          "desc": {
+            "fr": "Notes caramélisées et maltées",
+            "en": "Caramel and malty notes"
+          },
+          "price": 7.9,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bieres-exceptions",
+      "title": {
+        "fr": "Bières bouteille : les exceptions",
+        "en": "Bottled beers: specials"
+      },
+      "size": "33 cl",
+      "items": [
+        {
+          "name": {
+            "fr": "Dremmwel ambrée bio",
+            "en": "Dremmwel organic amber"
+          },
+          "desc": {
+            "fr": "Au blé noir, sans gluten",
+            "en": "Buckwheat beer, gluten-free"
+          },
+          "price": 8.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Sant Erwann Blonde",
+          "desc": {
+            "fr": "Type abbaye brassée avec 7 céréales, forte et florale, attaque puissante, notes de biscuit",
+            "en": "Abbey-style, brewed with 7 cereals: strong, floral, biscuit notes"
+          },
+          "price": 8.9,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "name": "Sant Erwann India Pale Ale",
+          "desc": {
+            "fr": "Un équilibre subtil et une amertume contenue",
+            "en": "Subtle balance, gentle bitterness"
+          },
+          "price": 8.9,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "name": "Chouffe Cherry",
+          "desc": {
+            "fr": "Notes d'amandes, cerises et fruits des bois",
+            "en": "Almond, cherry and wild berry notes"
+          },
+          "price": 6.9,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vins-rouges",
+      "title": {
+        "fr": "Vins rouges",
+        "en": "Red wines"
+      },
+      "sizes": [
+        "14 cl",
+        "50 cl",
+        "75 cl"
+      ],
+      "items": [
+        {
+          "name": "Côtes-du-Rhône Villages Sainte Cécile AOP",
+          "desc": {
+            "fr": "Les Jarlotiers. Vin bio. Robe rubis intense, nez de fruits rouges et noirs mûrs avec une touche d'épices, tanins soyeux.",
+            "en": "Les Jarlotiers. Organic. Deep ruby, ripe red and black fruit with a hint of spice, silky tannins."
+          },
+          "prices": [
+            5.5,
+            16.9,
+            24.9
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "IGP Pays d'Oc",
+          "desc": {
+            "fr": "Domaine de la Clapière Gatefer. Merlot et cabernet sauvignon : complexe et puissant, arômes de fruits noirs et d'épices, boisé vanillé élégant. Terra Vitis.",
+            "en": "Domaine de la Clapière Gatefer. Merlot and Cabernet Sauvignon: complex and powerful, black fruit and spice, elegant vanilla oak. Terra Vitis."
+          },
+          "prices": [
+            5.9,
+            19.9,
+            25.9
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "Cadillac Côtes de Bordeaux AOC",
+          "desc": {
+            "fr": "Château Latour Camblanes. Seigneurie de Camblanes. Robe rubis, fruits rouges juteux, notes de cacao et de cardamome, tanins tout en finesse. Terra Vitis.",
+            "en": "Château Latour Camblanes. Seigneurie de Camblanes. Ruby red, juicy red fruit, cocoa and cardamom notes, fine tannins. Terra Vitis."
+          },
+          "prices": [
+            6.5,
+            20.4,
+            27.9
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vins-blancs",
+      "title": {
+        "fr": "Vins blancs",
+        "en": "White wines"
+      },
+      "sizes": [
+        "14 cl",
+        "50 cl",
+        "75 cl"
+      ],
+      "items": [
+        {
+          "name": "IGP Pays d'Oc Chardonnay",
+          "desc": {
+            "fr": "Maison Castel Grande Réserve. Arômes de fruits exotiques (mangue, ananas) et notes grillées, bouche ample et fraîche, finale vanillée.",
+            "en": "Maison Castel Grande Réserve. Exotic fruit (mango, pineapple) and toasty notes, rich and fresh, vanilla finish."
+          },
+          "prices": [
+            4.8,
+            15.5,
+            22.5
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "Jurançon doux AOP",
+          "desc": {
+            "fr": "Les Amours de la Reine. Vin moelleux : fruits exotiques, agrumes confits, abricot et miel, notes de cannelle et d'épices. Terra Vitis.",
+            "en": "Les Amours de la Reine. Sweet wine: exotic fruit, candied citrus, apricot and honey, hints of cinnamon and spice. Terra Vitis."
+          },
+          "prices": [
+            6.4,
+            17.9,
+            23.9
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vins-roses",
+      "title": {
+        "fr": "Vin rosé",
+        "en": "Rosé wine"
+      },
+      "sizes": [
+        "14 cl",
+        "50 cl",
+        "75 cl"
+      ],
+      "items": [
+        {
+          "name": "Côtes de Provence AOP",
+          "desc": {
+            "fr": "Masfleurey. Robe saumonée, fruits rouges et notes florales, bouche ample et bien équilibrée.",
+            "en": "Masfleurey. Pale salmon, red fruit and floral notes, full and well balanced."
+          },
+          "prices": [
+            5.4,
+            17.9,
+            23.9
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "champagne",
+      "title": {
+        "fr": "Champagne",
+        "en": "Champagne"
+      },
+      "sizes": [
+        "12 cl",
+        "75 cl"
+      ],
+      "items": [
+        {
+          "name": "Champagne brut AOP",
+          "prices": [
+            8.9,
+            55
+          ],
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ],
+          "desc": {
+            "fr": "Nicolas Feuillatte",
+            "en": "Nicolas Feuillatte"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kirs",
+      "title": {
+        "fr": "Nos kirs",
+        "en": "Kirs"
+      },
+      "size": "12 cl",
+      "items": [
+        {
+          "name": {
+            "fr": "Kir breton",
+            "en": "Breton kir"
+          },
+          "desc": {
+            "fr": "Cassis, mûre, framboise ou pêche",
+            "en": "Blackcurrant, blackberry, raspberry or peach"
+          },
+          "price": 4.3,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Kir breton",
+            "en": "Breton kir"
+          },
+          "desc": {
+            "fr": "Violette ou litchi",
+            "en": "Violet or lychee"
+          },
+          "price": 4.6,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Kir breton",
+            "en": "Breton kir"
+          },
+          "desc": {
+            "fr": "Pommeau et griotte",
+            "en": "Pommeau and morello cherry"
+          },
+          "price": 5.5,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Kir vin blanc",
+            "en": "White wine kir"
+          },
+          "desc": {
+            "fr": "Chardonnay",
+            "en": "Chardonnay"
+          },
+          "price": 4.9,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
+        },
+        {
+          "name": "Kir royal",
+          "desc": {
+            "fr": "Champagne Nicolas Feuillatte",
+            "en": "Nicolas Feuillatte champagne"
+          },
+          "price": 9.4,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "sulfites"
+          ]
         }
       ]
     },
     {
       "id": "cocktails-biere",
       "title": {
-        "fr": "Cocktails de bière",
+        "fr": "Nos cocktails de bière",
         "en": "Beer cocktails"
       },
-      "note": {
-        "fr": "Servis en pinte.",
-        "en": "Served by the pint."
-      },
+      "size": "40 cl",
       "items": [
         {
           "name": "Lorient",
           "desc": {
-            "fr": "Bière rousse, rhum, sirop de canne",
-            "en": "Amber beer, rum, cane syrup"
+            "fr": "Bière rousse, rhum (2 cl), sucre de canne",
+            "en": "Amber beer, rum (2 cl), cane sugar"
           },
-          "price": null,
+          "price": 9.5,
           "tags": [
             "alcool"
+          ],
+          "allergens": [
+            "gluten"
           ]
         },
         {
           "name": "Brest",
           "desc": {
-            "fr": "Bière blonde, rhum, banane",
-            "en": "Lager, rum, banana"
+            "fr": "Bière blonde, rhum (2 cl), liqueur de banane",
+            "en": "Lager, rum (2 cl), banana liqueur"
           },
-          "price": null,
+          "price": 9.5,
           "tags": [
             "alcool"
+          ],
+          "allergens": [
+            "gluten"
           ]
         },
         {
           "name": "Saint-Malo",
           "desc": {
-            "fr": "Bière blanche, rhum, limoncello",
-            "en": "Wheat beer, rum, limoncello"
+            "fr": "Bière blanche, rhum (2 cl), limoncello",
+            "en": "Wheat beer, rum (2 cl), limoncello"
           },
-          "price": null,
+          "price": 9.5,
           "tags": [
             "alcool"
+          ],
+          "allergens": [
+            "gluten"
           ]
         },
         {
           "name": "Dinard",
           "desc": {
-            "fr": "Bière blonde, rhum, mangue",
-            "en": "Lager, rum, mango"
+            "fr": "Bière blonde, rhum (2 cl), liqueur de mangue",
+            "en": "Lager, rum (2 cl), mango liqueur"
           },
-          "price": null,
+          "price": 9.5,
           "tags": [
             "alcool"
+          ],
+          "allergens": [
+            "gluten"
           ]
         },
         {
-          "name": "Port-Croisic",
+          "name": "Port Croisic",
           "desc": {
-            "fr": "Bière blanche, rhum, pêche",
-            "en": "Wheat beer, rum, peach"
+            "fr": "Bière blanche, rhum (2 cl), liqueur de pêche",
+            "en": "Wheat beer, rum (2 cl), peach liqueur"
           },
-          "price": null,
+          "price": 9.5,
           "tags": [
             "alcool"
+          ],
+          "allergens": [
+            "gluten"
           ]
         },
         {
           "name": "Aval-Anna",
           "desc": {
-            "fr": "Bière blanche, rhum, ananas",
-            "en": "Wheat beer, rum, pineapple"
+            "fr": "Bière blanche, rhum (2 cl), liqueur d'ananas",
+            "en": "Wheat beer, rum (2 cl), pineapple liqueur"
           },
-          "price": null,
+          "price": 9.5,
           "tags": [
             "alcool"
+          ],
+          "allergens": [
+            "gluten"
           ]
         },
         {
           "name": "Fougères",
           "desc": {
-            "fr": "Bière au blé noir, gin, fraise",
-            "en": "Buckwheat beer, gin, strawberry"
+            "fr": "Bière brune, gin (2 cl), liqueur de fraise",
+            "en": "Dark beer, gin (2 cl), strawberry liqueur"
           },
-          "price": null,
+          "price": 9.5,
           "tags": [
             "alcool"
+          ],
+          "allergens": [
+            "gluten"
           ]
         },
         {
           "name": "Médicis",
           "desc": {
-            "fr": "La Chouffe, rhum, framboise, griottes",
-            "en": "La Chouffe beer, rum, raspberry, morello cherries"
+            "fr": "Bière aux fruits rouges, rhum (2 cl), crème de fruits rouges, griottes",
+            "en": "Red berry beer, rum (2 cl), red berry liqueur, morello cherries"
           },
-          "price": null,
+          "price": 9.5,
+          "tags": [
+            "alcool"
+          ],
+          "allergens": [
+            "gluten"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cocktails-maison",
+      "title": {
+        "fr": "Nos cocktails maison avec alcool",
+        "en": "House cocktails"
+      },
+      "size": "20 cl",
+      "items": [
+        {
+          "name": "Le Valériane",
+          "desc": {
+            "fr": "Vodka (4 cl), liqueur rose et litchi, Schweppes et griottes",
+            "en": "Vodka (4 cl), rose & lychee liqueur, tonic, morello cherries"
+          },
+          "price": 10.5,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "L'Edelweiss",
+          "desc": {
+            "fr": "Gin (4 cl), tonic, liqueur de violette, griottes",
+            "en": "Gin (4 cl), tonic, violet liqueur, morello cherries"
+          },
+          "price": 10.4,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Maïwenn",
+          "desc": {
+            "fr": "Gin (4 cl), liqueur d'ananas, liqueur de mangue, tonic, rondelle de citron",
+            "en": "Gin (4 cl), pineapple liqueur, mango liqueur, tonic, lemon slice"
+          },
+          "price": 10.5,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Passiflore",
+          "desc": {
+            "fr": "Rhum (4 cl), jus d'ananas, grenadine, sirop de coco",
+            "en": "Rum (4 cl), pineapple juice, grenadine, coconut syrup"
+          },
+          "price": 10.4,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Breizh Apérol",
+          "desc": {
+            "fr": "Apérol (6 cl), cidre, rondelle d'orange",
+            "en": "Aperol (6 cl), cider, orange slice"
+          },
+          "price": 9.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Brocéliande",
+          "desc": {
+            "fr": "Rhum (2 cl), chouchen, cidre, rondelle",
+            "en": "Rum (2 cl), chouchen (Breton mead), cider, citrus slice"
+          },
+          "price": 9.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Mojito breton / classique",
+            "en": "Breton / classic mojito"
+          },
+          "desc": {
+            "fr": "Rhum (4 cl), menthe, citron vert, cidre ou limonade",
+            "en": "Rum (4 cl), mint, lime, cider or lemonade"
+          },
+          "price": 9.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Loc Maria",
+          "desc": {
+            "fr": "Gin (4 cl), crème de framboise, cidre rosé",
+            "en": "Gin (4 cl), raspberry liqueur, rosé cider"
+          },
+          "price": 9.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Lauran",
+          "desc": {
+            "fr": "Rhum (4 cl), crème de framboise, menthe, cidre rosé",
+            "en": "Rum (4 cl), raspberry liqueur, mint, rosé cider"
+          },
+          "price": 9.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Gin Tonic",
+          "desc": {
+            "fr": "Gin (4 cl), tonic, rondelle",
+            "en": "Gin (4 cl), tonic, citrus slice"
+          },
+          "price": 8.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Le Ti Punch",
+          "desc": {
+            "fr": "7 cl · rhum blanc (4 cl) ou brun (4 cl, +1 €), citron vert, sucre de canne",
+            "en": "7 cl · white rum (4 cl) or dark rum (4 cl, +€1), lime, cane sugar"
+          },
+          "price": 8.9,
           "tags": [
             "alcool"
           ]
@@ -270,92 +1040,483 @@
     {
       "id": "sans-alcool",
       "title": {
-        "fr": "Cocktails sans alcool",
+        "fr": "Nos cocktails maison sans alcool",
         "en": "Alcohol-free cocktails"
       },
+      "size": "20 cl",
       "items": [
         {
-          "name": "Tutti Frutti",
+          "name": "Le Tutti Frutti",
           "desc": {
-            "fr": "Sirop de coco, grenadine, jus d'orange ou d'ananas",
-            "en": "Coconut syrup, grenadine, orange or pineapple juice"
+            "fr": "Jus d'ananas ou d'orange, sirop de noix de coco, sirop de grenadine",
+            "en": "Pineapple or orange juice, coconut syrup, grenadine"
           },
-          "price": null,
+          "price": 8.5,
           "tags": []
         },
         {
-          "name": "Pod'pêche",
+          "name": "Le Virgin Mojito",
           "desc": {
-            "fr": "Sirop de pêche, ginger ale, citron",
-            "en": "Peach syrup, ginger ale, lemon"
+            "fr": "Menthe, citron vert, limonade",
+            "en": "Mint, lime, lemonade"
           },
-          "price": null,
+          "price": 8.5,
+          "tags": []
+        },
+        {
+          "name": "Le Pod'Pêche",
+          "desc": {
+            "fr": "Sirop de pêche, citron vert, ginger ale",
+            "en": "Peach syrup, lime, ginger ale"
+          },
+          "price": 8.5,
           "tags": []
         }
       ]
     },
     {
-      "id": "vins",
+      "id": "alcools",
       "title": {
-        "fr": "Vins",
-        "en": "Wines"
+        "fr": "Nos alcools",
+        "en": "Spirits & aperitifs"
+      },
+      "size": "4 cl",
+      "items": [
+        {
+          "name": "Fine de Bretagne « Gilles Leizour »",
+          "price": 7.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Chouchen",
+          "desc": {
+            "fr": "Apéritif breton aux notes de miel",
+            "en": "Breton honey aperitif (mead)"
+          },
+          "price": 5.5,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Kenavo",
+          "desc": {
+            "fr": "Pastis breton",
+            "en": "Breton pastis"
+          },
+          "price": 5.4,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Martini",
+          "desc": {
+            "fr": "Blanc ou rouge · 6 cl",
+            "en": "White or red · 6 cl"
+          },
+          "price": 5.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Limoncello",
+          "price": 5.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Pommeau de Bretagne",
+          "price": 6.5,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Get 27, Baileys",
+          "price": 6.5,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Calvados, Cognac, Armagnac",
+          "price": 7.5,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Vodka Poliakov, Gin Gibson's",
+          "price": 7.5,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Rhum Saint James (brun ou blanc)",
+            "en": "Saint James rum (dark or white)"
+          },
+          "price": 7.5,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whiskies-classiques",
+      "title": {
+        "fr": "Whiskies bretons : les classiques",
+        "en": "Breton whiskies: classics"
+      },
+      "size": "4 cl",
+      "items": [
+        {
+          "name": "Warenghem",
+          "desc": {
+            "fr": "Vieilli en fût de chêne",
+            "en": "Oak-aged"
+          },
+          "price": 6.4,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Armorik",
+          "desc": {
+            "fr": "Riche et fruité, jolies notes de torréfaction en fin de bouche",
+            "en": "Rich and fruity, lovely roasted notes on the finish"
+          },
+          "price": 7.4,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": {
+            "fr": "Eddu Tourbé",
+            "en": "Eddu Peated"
+          },
+          "desc": {
+            "fr": "Arômes fumés et de fruits à chair blanche",
+            "en": "Smoky, with white-fleshed fruit"
+          },
+          "price": 7.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Eddu Grey Rock",
+          "desc": {
+            "fr": "30 % de blé noir, notes d'épices et de gingembre",
+            "en": "30% buckwheat, spice and ginger notes"
+          },
+          "price": 7.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Eddu Grey Rock « Green »",
+          "desc": {
+            "fr": "Vieilli en fût de chêne breton",
+            "en": "Aged in Breton oak casks"
+          },
+          "price": 8.9,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whiskies-pepites",
+      "title": {
+        "fr": "Whiskies bretons : nos pépites (au blé noir)",
+        "en": "Breton whiskies: our gems (buckwheat)"
+      },
+      "size": "4 cl",
+      "items": [
+        {
+          "name": "Eddu « Silver »",
+          "desc": {
+            "fr": "Onctueux et fruité (pomme, abricot confit)",
+            "en": "Smooth and fruity (apple, candied apricot)"
+          },
+          "price": 9.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Eddu « Green »",
+          "desc": {
+            "fr": "Vieilli en fût de chêne, notes boisées et vanillées",
+            "en": "Oak-aged, woody and vanilla notes"
+          },
+          "price": 10.9,
+          "tags": [
+            "alcool"
+          ]
+        },
+        {
+          "name": "Eddu « Gold »",
+          "desc": {
+            "fr": "Vieilli en fût de chêne de cognac, aux notes épicées et de fruits secs",
+            "en": "Aged in cognac oak casks, spice and dried fruit notes"
+          },
+          "price": 11.9,
+          "tags": [
+            "alcool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "softs",
+      "title": {
+        "fr": "Nos sodas & jus",
+        "en": "Soft drinks & juices"
+      },
+      "sizes": [
+        "25 cl",
+        "33 cl"
+      ],
+      "items": [
+        {
+          "name": "Breizh Cola",
+          "prices": [
+            null,
+            4.5
+          ],
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Breizh Cola zéro",
+            "en": "Breizh Cola Zero"
+          },
+          "prices": [
+            null,
+            4.5
+          ],
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Jus de pomme",
+            "en": "Apple juice"
+          },
+          "prices": [
+            null,
+            4.5
+          ],
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Jus de pomme pétillant",
+            "en": "Sparkling apple juice"
+          },
+          "prices": [
+            null,
+            4.5
+          ],
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Limonade 1905",
+            "en": "Lemonade 1905"
+          },
+          "prices": [
+            null,
+            4.5
+          ],
+          "tags": []
+        },
+        {
+          "name": "Breizh Tea",
+          "prices": [
+            null,
+            4.5
+          ],
+          "tags": []
+        },
+        {
+          "name": "Diabolo",
+          "prices": [
+            4.3,
+            null
+          ],
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Jus Granini",
+            "en": "Granini juice"
+          },
+          "desc": {
+            "fr": "Orange ou ananas",
+            "en": "Orange or pineapple"
+          },
+          "prices": [
+            4.4,
+            null
+          ],
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Sirops à l'eau",
+            "en": "Syrup with water"
+          },
+          "desc": {
+            "fr": "Grenadine, menthe, fraise, citron, pêche",
+            "en": "Grenadine, mint, strawberry, lemon, peach"
+          },
+          "prices": [
+            2.3,
+            null
+          ],
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "eaux",
+      "title": {
+        "fr": "Nos eaux bretonnes",
+        "en": "Breton waters"
+      },
+      "sizes": [
+        "50 cl",
+        "1 L"
+      ],
+      "items": [
+        {
+          "name": {
+            "fr": "Plancoët plate",
+            "en": "Plancoët still"
+          },
+          "prices": [
+            3.5,
+            4.5
+          ],
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Plancoët pétillante",
+            "en": "Plancoët sparkling"
+          },
+          "prices": [
+            3.5,
+            4.5
+          ],
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "boissons-chaudes",
+      "title": {
+        "fr": "Nos boissons chaudes",
+        "en": "Hot drinks"
       },
       "items": [
         {
-          "name": "Chardonnay",
-          "price": null,
-          "tags": [
-            "alcool"
-          ],
-          "allergens": [
-            "sulfites"
-          ]
+          "name": {
+            "fr": "Café Malongo",
+            "en": "Malongo coffee"
+          },
+          "price": 2.2,
+          "tags": []
         },
         {
-          "name": "Jurançon",
-          "price": null,
-          "tags": [
-            "alcool"
-          ],
-          "allergens": [
-            "sulfites"
-          ]
+          "name": {
+            "fr": "Double expresso",
+            "en": "Double espresso"
+          },
+          "price": 4.1,
+          "tags": []
         },
         {
-          "name": "Côtes-du-Rhône",
-          "price": null,
-          "tags": [
-            "alcool"
-          ],
-          "allergens": [
-            "sulfites"
-          ]
+          "name": {
+            "fr": "Décaféiné",
+            "en": "Decaf"
+          },
+          "price": 2.3,
+          "tags": []
         },
         {
-          "name": "Pays d'Oc",
-          "price": null,
-          "tags": [
-            "alcool"
-          ],
-          "allergens": [
-            "sulfites"
-          ]
+          "name": {
+            "fr": "Café noisette",
+            "en": "Macchiato"
+          },
+          "price": 2.3,
+          "tags": []
         },
         {
-          "name": "Bordeaux",
-          "price": null,
+          "name": {
+            "fr": "Café crème",
+            "en": "White coffee"
+          },
+          "price": 3.9,
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Café viennois",
+            "en": "Viennese coffee (whipped cream)"
+          },
+          "price": 5.5,
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Chocolat chaud Valrhona",
+            "en": "Valrhona hot chocolate"
+          },
+          "desc": {
+            "fr": "Chantilly +1,40 €",
+            "en": "Whipped cream +€1.40"
+          },
+          "price": 5.5,
+          "tags": []
+        },
+        {
+          "name": {
+            "fr": "Thés & infusions",
+            "en": "Teas & herbal teas"
+          },
+          "price": 3.9,
+          "tags": []
+        },
+        {
+          "name": "Irish Coffee",
+          "desc": {
+            "fr": "Jameson",
+            "en": "Jameson"
+          },
+          "price": 8.9,
           "tags": [
             "alcool"
-          ],
-          "allergens": [
-            "sulfites"
           ]
         }
       ]
     }
   ],
-  "comingSoon": {
-    "fr": "Prix des boissons, softs, bières, cidres, cafés et digestifs : bientôt en ligne.",
-    "en": "Drink prices, soft drinks, beers, ciders, coffees and digestifs: coming soon."
+  "sulfitesNote": {
+    "fr": "Nos vins contiennent des sulfites, sauf mention contraire.",
+    "en": "Our wines contain sulphites unless stated otherwise."
   }
 }

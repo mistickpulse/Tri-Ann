@@ -19,7 +19,8 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
 {%- set dayKeys = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] -%}
 
 <section class="resto-hero{% if r.photos.length %} has-photo{% endif %}">
-  {%- if r.photos.length %}<img class="resto-hero-media" src="{{ r.photos[0].src }}" alt="{{ r.photos[0].alt | tr(lang) }}" width="1200" height="800" fetchpriority="high">{% endif %}
+  {%- set hp = r.photos[0] %}
+  {%- if hp %}<img class="resto-hero-media" src="{{ hp.src }}"{% if hp.srcSmall %} srcset="{{ hp.srcSmall }} 800w, {{ hp.src }} 1600w" sizes="100vw"{% endif %} alt="{{ hp.alt | tr(lang) }}" width="1600" height="900" fetchpriority="high"{% if hp.focus %} style="--pos: {{ hp.focus }}; --pos-m: {{ hp.focusMobile or hp.focus }}"{% endif %}>{% endif %}
   <div class="wrap resto-hero-content">
     <p class="eyebrow">{{ r.name }}</p>
     <h1>{{ r.city }}</h1>
@@ -94,7 +95,7 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
 {%- if r.photos.length > 1 %}
 <section class="band">
   <div class="wrap gallery">
-    {%- for ph in r.photos %}{% if not loop.first %}<img src="{{ ph.src }}" alt="{{ ph.alt | tr(lang) }}" loading="lazy">{% endif %}{% endfor %}
+    {%- for ph in r.photos %}{% if not loop.first %}<img src="{{ ph.src }}" alt="{{ ph.alt | tr(lang) }}" loading="lazy" width="800" height="600">{% endif %}{% endfor %}
   </div>
 </section>
 {%- endif %}

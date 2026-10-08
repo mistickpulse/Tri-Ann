@@ -94,6 +94,9 @@ button { font: inherit; color: inherit; }
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: 100svh; display: grid; align-items: end; color: #fff; overflow: hidden; }
 .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Cadrage des photos choisi sur la page de choix : --pos (ordinateur), --pos-m (téléphone) */
+.hero-media, .resto-hero-media { object-position: var(--pos, 50% 50%); }
+@media (max-width: 700px) { .hero-media, .resto-hero-media { object-position: var(--pos-m, var(--pos, 50% 50%)); } }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.25) 40%, rgba(10,8,7,.92) 100%); }
 .hero-content { position: relative; z-index: 1; padding-bottom: clamp(96px, 14vh, 140px); }
 .hero h1 { max-width: 15ch; }
@@ -288,7 +291,17 @@ dialog.filter-panel::backdrop { background: rgba(0,0,0,.65); backdrop-filter: bl
 /* Espace entre le nom et le prix (sans pointillés) */
 .dish-line::after { content: ""; flex: 1; order: 1; min-width: 16px; }
 .dish-price { order: 2; font-weight: 700; color: var(--accent-strong); white-space: nowrap; }
-.dish-line:not(:has(.dish-price))::after { display: none; }
+.dish-line:not(:has(.dish-price, .dish-prices))::after { display: none; }
+/* Boissons : une colonne de prix par contenance (alignée sur l'en-tête de section) */
+.dish-prices { order: 2; display: flex; gap: 6px; font-weight: 700; color: var(--accent-strong); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dish-prices > span { width: 4.6em; text-align: right; }
+.dish-line:has(.dish-prices) { flex-wrap: wrap; row-gap: 4px; }
+.dish-line:has(.dish-prices) .dish-name { flex: 1 1 13em; }
+.dish-line:has(.dish-prices)::after { display: none; }
+.dish-line .dish-prices { margin-left: auto; }
+.dish-prices.sizes { font-size: .85rem; font-weight: 600; color: var(--muted); }
+.size-label { font-size: .9rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+@media (max-width: 420px) { .dish-prices { gap: 2px; font-size: .9rem; } .dish-prices > span { width: 4.1em; } }
 .dish-desc { margin: 4px 0 0; color: var(--muted); font-size: .97rem; line-height: 1.55; max-width: 52ch; }
 .veg-mark { display: inline-flex; vertical-align: -2px; color: var(--ok); margin-left: 4px; }
 .dish-allergens { display: none; margin: 8px 0 0; color: var(--muted); font-size: .85rem; }
