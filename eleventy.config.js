@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import nunjucks from "nunjucks";
 
@@ -64,20 +64,40 @@ export default function (eleventyConfig) {
     for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
     return a;
   };
+  const plain = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  // Mots des avis liés aux événements (ligne « avis: » des fichiers src/content/events, ex. karaok)
+  const EVENT_WORDS = readdirSync("src/content/events")
+    .map((f) => readFileSync(`src/content/events/${f}`, "utf8").match(/^avis:\s*(.+)$/m)?.[1].trim())
+    .filter(Boolean)
+    .map(plain);
+  const aboutEvent = (rv) => EVENT_WORDS.some((w) => plain(rv.text).includes(w));
   eleventyConfig.addFilter("reviewQuotes", (data, restaurants, slugs) => {
     const out = [];
+    let eventQuotes = 0; // au plus 1 avis qui parle d'un événement (karaoké…) dans la liste
     for (const r of restaurants) {
       if (slugs && !slugs.includes(r.slug)) continue;
       const pool = (data?.places?.[r.placeId]?.reviews || []).map((rv) => ({ ...rv, label: r.city }));
       const fives = shuffle(pool.filter((rv) => rv.rating === 5));
       const fours = shuffle(pool.filter((rv) => rv.rating === 4));
-      const picked = [...fours.slice(0, 1), ...fives.slice(0, 3)];
-      // Pas assez de 5 étoiles : on complète avec d'autres 4 étoiles
-      picked.push(...fives.slice(3), ...fours.slice(1));
-      out.push(...picked.slice(0, 4));
+      // Un 4 étoiles, trois 5 étoiles ; s'il en manque, on complète avec les autres
+      const order = [...fours.slice(0, 1), ...fives.slice(0, 3), ...fives.slice(3), ...fours.slice(1)];
+      let n = 0;
+      for (const rv of order) {
+        if (n === 4) break;
+        if (aboutEvent(rv)) { if (eventQuotes) continue; eventQuotes++; }
+        out.push(rv);
+        n++;
+      }
     }
     return shuffle(out);
   });
+  // Avis trop longs : coupés à la fin d'un mot, avec « … »
+  const excerpt = (text, max = 220) => {
+    const s = String(text || "").replace(/\s+/g, " ").trim();
+    if (s.length <= max) return s;
+    return s.slice(0, max).replace(/[\s,;:.!?-]+\S*$/, "") + "…";
+  };
+  eleventyConfig.addFilter("excerpt", excerpt);
   eleventyConfig.addFilter("reviewDate", (iso, lang) =>
     iso ? new Date(iso).toLocaleDateString(lang === "en" ? "en-GB" : "fr-FR", { month: "long", year: "numeric" }) : "");
   eleventyConfig.addFilter("score", (n, lang) => (n ? (lang === "fr" ? n.toFixed(1).replace(".", ",") : n.toFixed(1)) : "–"));
@@ -117,14 +137,13 @@ export default function (eleventyConfig) {
     const svg = eventIconSvg(name);
     return svg ? new nunjucks.runtime.SafeString(`<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg}</svg>`) : "";
   });
-  const plain = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const eventReviews = (word, slugs, restaurants, reviews) => {
     if (!word) return [];
     const list = restaurants
       .filter((r) => slugs.includes(r.slug))
       .flatMap((r) => (reviews?.places?.[r.placeId]?.reviews || []).map((rv) => ({ ...rv, label: r.city })))
       .filter((rv) => rv.rating >= 4 && plain(rv.text).includes(plain(word)));
-    return shuffle(list).slice(0, 4).map((rv) => ({ ...rv, date: rv.date ? rv.date.slice(0, 10) : null }));
+    return shuffle(list).slice(0, 4).map((rv) => ({ rating: rv.rating, author: rv.author, label: rv.label, text: excerpt(rv.text, 110) }));
   };
   eleventyConfig.addFilter("calendarData", (events, restaurants, reviews) => {
     const all = restaurants.map((r) => r.slug);

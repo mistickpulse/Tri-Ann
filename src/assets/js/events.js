@@ -80,22 +80,25 @@
       root.querySelector("[data-cal-prev]").disabled = month <= new Date(today.getFullYear(), today.getMonth(), 1);
     }
 
-    // Avis Google qui parlent de l'événement (ex. karaoké), pour les restaurants affichés
+    // Avis Google qui parlent de l'événement (ex. karaoké) : petit bandeau, un avis à la fois
     function reviews(e) {
       const list = (e.reviews || []).filter((rv) => !filter || rv.label === restos[filter]?.city);
       if (!list.length) return "";
-      return `<div class="cal-reviews">
-        <p class="small muted">${lang === "en" ? "What our guests say" : "Ils en parlent"}</p>
-        <div class="quotes">${list.map((rv) => `
-          <article class="quote">
-            <div class="quote-head"><span class="stars" aria-label="${rv.rating}/5">${"★".repeat(rv.rating).padEnd(5, "☆")}</span><span class="google-tag">${GOOGLE} ${lang === "en" ? "Google review" : "Avis Google"}</span></div>
-            <p>${esc(rv.text)}</p>
-            <footer class="quote-author">
-              ${rv.photo ? `<img class="avatar" src="${esc(rv.photo)}" alt="" width="40" height="40" loading="lazy" referrerpolicy="no-referrer">` : `<span class="avatar" aria-hidden="true">${esc(rv.author.charAt(0).toUpperCase())}</span>`}
-              <span><b>${esc(rv.author)}</b><br>${esc(rv.label)}${rv.date ? " · " + esc(new Date(rv.date).toLocaleDateString(locale, { month: "long", year: "numeric" })) : ""}</span>
-            </footer>
-          </article>`).join("")}</div>
+      return `<div class="cal-ticker" data-ticker aria-label="${lang === "en" ? "Google reviews" : "Avis Google"}">
+        ${GOOGLE}
+        <div class="ticker-items">${list.map((rv, i) => `
+          <p class="ticker-item"${i ? " hidden" : ""}><span class="stars">${"★".repeat(rv.rating)}</span> « ${esc(rv.text)} » <span class="muted">· ${esc(rv.author)}, ${esc(rv.label)}</span></p>`).join("")}</div>
       </div>`;
+    }
+    let tickerTimer = null;
+    function startTickers() {
+      clearInterval(tickerTimer);
+      const items = [...detail.querySelectorAll(".ticker-item")];
+      if (items.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      let i = 0;
+      const next = () => { items[i].hidden = true; i = (i + 1) % items.length; items[i].hidden = false; };
+      tickerTimer = setInterval(next, 6000);
+      detail.querySelector("[data-ticker]").addEventListener("click", () => { next(); clearInterval(tickerTimer); tickerTimer = setInterval(next, 6000); });
     }
 
     function renderDetail() {
@@ -110,6 +113,7 @@
           ${selected >= today ? book(e.restaurants) : ""}
           ${reviews(e)}
         </article>`).join("");
+      startTickers();
     }
 
     // Liste de droite : uniquement les événements du mois affiché (à partir d'aujourd'hui pour le mois en cours)

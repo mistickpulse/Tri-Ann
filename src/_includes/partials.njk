@@ -87,7 +87,7 @@
   {%- for q in quotes %}
   <article class="quote">
     <div class="quote-head"><span class="stars" aria-label="{{ q.rating }}/5">{{ q.rating | stars }}</span><span class="google-tag">{{ googleLogo(18) }} {{ "Avis Google" if lang == "fr" else "Google review" }}</span></div>
-    <p>{{ q.text }}</p>
+    <p>{{ q.text | excerpt }}</p>
     <footer class="quote-author">
       {%- if q.photo %}<img class="avatar" src="{{ q.photo }}" alt="" width="40" height="40" loading="lazy" referrerpolicy="no-referrer">
       {%- else %}<span class="avatar" aria-hidden="true">{{ q.author | first | upper }}</span>{% endif %}
