@@ -3,3 +3,4 @@ _site/
 _sources/
 .DS_Store
 _choix/
+src/_data/googleReviews.json

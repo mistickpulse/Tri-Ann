@@ -9,10 +9,10 @@ pageKey: home
 eleventyComputed:
   title: "Tri-Ann · {{ 'home.title' | t(lang) }}"
   description: "{{ 'home.description' | t(lang) }}"
-scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
+scripts: ["/assets/js/events.js"]
 ---
 {%- from "icons.njk" import icon -%}
-{%- from "partials.njk" import restoCard, specialCard, reviewsBlock, eventsCalendar -%}
+{%- from "partials.njk" import restoCard, specialCard, reviewsBlock, quotesList, eventsCalendar with context -%}
 
 <section class="hero">
   {#- La vidéo remplacera l'image : <video autoplay muted loop playsinline poster="…"> #}
@@ -69,12 +69,12 @@ scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
 </section>
 
 <section class="band band-alt" id="restaurants" aria-labelledby="restos-title">
-  <div class="wrap" data-reviews data-lang="{{ lang }}">
+  <div class="wrap">
     <h2 id="restos-title">{{ "home.restosTitle" | t(lang) }}</h2>
     <div class="grid-cards">
       {%- for r in restaurants %}{{ restoCard(r, lang, site, true) }}{% endfor %}
     </div>
-    <div class="quotes" data-quotes aria-live="polite" aria-label="{{ 'reviews.title' | t(lang) }}"></div>
+    {{ quotesList(null, lang, restaurants) }}
     <div class="booking-note">
       {{ icon("phone", 20) }}
       <p><b>{{ "home.bookingAll" | t(lang) }}</b><br>

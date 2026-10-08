@@ -6,8 +6,13 @@
 <article class="resto-card" data-hours='{{ r.hours | json }}'>
   <h3><a href="{{ site.routes | route('restaurant', lang, r.slug) }}">{{ r.city }}</a></h3>
   {%- if withRating %}
-  <a class="rating-mini" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener" data-place="{{ r.placeId }}" data-label="{{ r.city }}">
-    <b data-score>–</b><span class="stars" data-stars aria-hidden="true">★★★★★</span><small class="muted"><span data-count></span> {{ "reviews.count" | t(lang) }} Google</small>
+  {%- set g = googleReviews.places[r.placeId] if (googleReviews and googleReviews.places) else null %}
+  <a class="rating-mini" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener">
+    {%- if g and g.rating %}
+    <b>{{ g.rating | score(lang) }}</b><span class="stars" aria-label="{{ g.rating }}/5">{{ g.rating | stars }}</span><small class="muted">{{ g.count }} {{ "reviews.count" | t(lang) }} Google</small>
+    {%- else %}
+    <b>G</b><small class="muted">{{ "Lire les avis Google" if lang == "fr" else "Read our Google reviews" }}</small>
+    {%- endif %}
   </a>
   {%- endif %}
   <p class="status" data-status data-lang="{{ lang }}"></p>
@@ -51,16 +56,34 @@
 {%- endmacro -%}
 
 {%- macro reviewsBlock(places, lang, restaurants) -%}
-<div class="reviews" data-reviews data-lang="{{ lang }}">
+<div class="reviews">
   <div class="ratings">
     {%- for r in restaurants %}{% if r.slug in places %}
-    <a class="rating" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener" data-place="{{ r.placeId }}" data-label="{{ r.city }}">
-      <span class="score" data-score>–</span>
-      <span><span class="stars" data-stars aria-hidden="true">★★★★★</span><b>{{ r.city }}</b><small class="muted"><span data-count></span> {{ "reviews.count" | t(lang) }} Google</small></span>
+    {%- set g = googleReviews.places[r.placeId] if (googleReviews and googleReviews.places) else null %}
+    <a class="rating" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener">
+      {%- if g and g.rating %}
+      <span class="score">{{ g.rating | score(lang) }}</span>
+      <span><span class="stars" aria-label="{{ g.rating }}/5">{{ g.rating | stars }}</span><b>{{ r.city }}</b><small class="muted">{{ g.count }} {{ "reviews.count" | t(lang) }} Google</small></span>
+      {%- else %}
+      <span class="score">G</span>
+      <span><b>{{ r.city }}</b><small class="muted">{{ "Lire les avis Google" if lang == "fr" else "Read our Google reviews" }}</small></span>
+      {%- endif %}
     </a>
     {%- endif %}{% endfor %}
   </div>
-  <div class="quotes" data-quotes aria-live="polite"></div>
+  {{ quotesList(places, lang, restaurants) }}
+</div>
+{%- endmacro -%}
+
+{%- macro quotesList(places, lang, restaurants) -%}
+<div class="quotes" aria-label="{{ 'reviews.title' | t(lang) }}">
+  {%- for q in googleReviews | reviewQuotes(restaurants, places) %}
+  <article class="quote">
+    <span class="stars" aria-label="{{ q.rating }}/5">{{ q.rating | stars }}</span>
+    <p>{{ q.text }}</p>
+    <footer>{{ q.author }} · {{ q.label }}{% if q.date %} · {{ q.date | reviewDate(lang) }}{% endif %}</footer>
+  </article>
+  {%- endfor %}
 </div>
 {%- endmacro -%}
 

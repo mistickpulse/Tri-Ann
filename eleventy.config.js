@@ -57,6 +57,20 @@ export default function (eleventyConfig) {
     return value[lang] || value.fr || "";
   });
 
+  // Avis Google enregistrés par scripts/fetch-reviews.mjs : 4 par restaurant, alternés
+  eleventyConfig.addFilter("reviewQuotes", (data, restaurants, slugs) => {
+    const lists = restaurants
+      .filter((r) => !slugs || slugs.includes(r.slug))
+      .map((r) => (data?.places?.[r.placeId]?.reviews || []).slice(0, 4).map((rv) => ({ ...rv, label: r.city })));
+    const out = [];
+    for (let i = 0; i < 4; i++) for (const l of lists) if (l[i]) out.push(l[i]);
+    return out;
+  });
+  eleventyConfig.addFilter("reviewDate", (iso, lang) =>
+    iso ? new Date(iso).toLocaleDateString(lang === "en" ? "en-GB" : "fr-FR", { month: "long", year: "numeric" }) : "");
+  eleventyConfig.addFilter("score", (n, lang) => (n ? (lang === "fr" ? n.toFixed(1).replace(".", ",") : n.toFixed(1)) : "–"));
+  eleventyConfig.addFilter("stars", (n) => "★".repeat(Math.round(n || 0)).padEnd(5, "☆"));
+
   eleventyConfig.addFilter("price", (value, lang) => {
     if (value == null || value === "") return "";
     const n = Number(value);

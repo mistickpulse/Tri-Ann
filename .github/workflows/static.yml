@@ -5,6 +5,9 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  # Chaque matin : mise à jour des avis Google (6 h, heure de Paris en hiver)
+  schedule:
+    - cron: "0 5 * * *"
 
 permissions:
   contents: read
@@ -31,6 +34,17 @@ jobs:
           cache: npm
       - name: Install
         run: npm ci
+      # Derniers avis connus, gardés d'un déploiement à l'autre (si Google ne répond pas, on les réutilise)
+      - name: Restore Google reviews
+        uses: actions/cache@v4
+        with:
+          path: src/_data/googleReviews.json
+          key: google-reviews-${{ github.run_id }}
+          restore-keys: google-reviews-
+      - name: Fetch Google reviews
+        env:
+          GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
+        run: node scripts/fetch-reviews.mjs
       - name: Build
         # Sous-dossier du dépôt sur github.io. Avec un nom de domaine perso : PATH_PREFIX: /
         env:

@@ -11,10 +11,10 @@ eleventyComputed:
   slug: "{{ p.resto.slug }}"
   title: "Crêperie Tri-Ann {{ p.resto.city }}"
   description: "{{ 'Crêperie bretonne Tri-Ann à ' if p.lang == 'fr' else 'Tri-Ann Breton crêperie in ' }}{{ p.resto.city }} ({{ p.resto.postalCode }}) : {{ p.resto.landmark[p.lang] }}. {{ p.resto.hours | hoursSummary(p.lang) }}."
-scripts: ["/assets/js/reviews.js", "/assets/js/events.js"]
+scripts: ["/assets/js/events.js"]
 ---
 {%- from "icons.njk" import icon -%}
-{%- from "partials.njk" import specialCard, reviewsBlock, mapsUrl, eventsCalendar, newsletterCta -%}
+{%- from "partials.njk" import specialCard, reviewsBlock, mapsUrl, eventsCalendar, newsletterCta with context -%}
 {%- set r = p.resto -%}
 {%- set dayKeys = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] -%}
 
