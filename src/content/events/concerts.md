@@ -9,5 +9,6 @@ recurring_en: Regularly, dates announced on our social media and here
 description: Concerts, scène ouverte et instruments à disposition. Suivez la page du restaurant pour connaître les prochaines dates.
 description_en: Concerts and open stage, instruments available. Follow the restaurant's page for upcoming dates.
 etablissements: [lagny-le-sec, saint-maximin]
-active: true
+# Désactivé : chaque concert est ajouté comme un événement daté (icon: guitar)
+active: false
 ---
