@@ -141,7 +141,7 @@ export default function (eleventyConfig) {
   const manualReviews = (manual, slug) =>
     (manual?.[slug] || [])
       .filter((m) => m.note && m.texte)
-      .map((m) => ({ rating: m.note, text: m.texte, author: m.auteur, photo: null, date: m.date || null }));
+      .map((m) => ({ rating: m.note, text: m.texte, author: m.auteur, photo: m.photo || null, date: m.date || null }));
   const eventReviews = (word, slugs, restaurants, reviews, manual) => {
     if (!word) return [];
     const list = restaurants
