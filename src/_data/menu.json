@@ -6,7 +6,7 @@
       "group": "plats",
       "title": { "fr": "Galettes de blé noir", "en": "Buckwheat galettes" },
       "intro": { "fr": "Notre pâte 100 % sarrasin est maturée 72 h, avec une farine de blé noir de Bretagne IGP moulue à la meule de pierre par le Moulin de la Fatigue. Les galettes sont tirées sur le billig et cuites au saindoux (au beurre sur demande, pour un plat végétarien ou sans porc). Elles sont toutes servies avec une salade verte et notre vinaigrette au sésame.", "en": "Our 100% buckwheat batter rests for 72 hours and is made with Brittany PGI buckwheat flour, stone-ground by the Moulin de la Fatigue. Galettes are cooked on the billig in lard (in butter on request, for a vegetarian or pork-free dish), and all come with a green salad and our sesame dressing." },
-      "image": "galette-sarasin.jpg",
+      "image": "photos/cat-galettes.jpg",
       "sections": [
         {
           "id": "galettes-aperitives",
@@ -361,7 +361,7 @@
       "group": "desserts",
       "title": { "fr": "Crêpes au froment", "en": "Sweet wheat crêpes" },
       "intro": { "fr": "Préparées à la minute. Chantilly, caramel beurre salé et meringue sont faits sur place par notre chef pâtissier, tout comme notre chocolat, à base de chocolat Valrhona.", "en": "Made to order. Whipped cream, salted butter caramel and meringue are made on site by our pastry chef, as is our chocolate sauce, made with Valrhona chocolate." },
-      "image": "crepe-dessert.png",
+      "image": "photos/cat-crepes.jpg",
       "sections": [
         {
           "id": "crepes-simples",
