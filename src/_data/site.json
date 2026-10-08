@@ -104,7 +104,7 @@
     "publicKey": "rSyNef6BemMVhqFTu",
     "serviceId": "service_yyznncj",
     "_info": "Un seul modèle EmailJS (formule gratuite) : le restaurant choisi est dans {{restaurant_label}}, l'équipe transfère en interne.",
-    "template": "A_CREER"
+    "template": "template_onjp74t"
   },
   "newsletter": {
     "provider": "Brevo",
