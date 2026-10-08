@@ -5,5 +5,5 @@ description: Galette de sarrasin gratinée à la mozzarella, sauce tomate, fleur
 description_en: Buckwheat galette topped with melted mozzarella, tomato sauce, serrano ham, mozzarella pearls, black olives, sun-dried tomatoes, two crispy parmesan wafers and fresh basil. Served with rocket and our homemade dressing.
 etablissements: [saint-maximin]
 image: /assets/img/speciales/verone.jpg
-active: true
+active: false
 ---
