@@ -25,7 +25,7 @@ scripts: ["https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js", "
     <form class="contact-form" data-contact-form
           data-public-key="{{ site.emailjs.publicKey }}"
           data-service="{{ site.emailjs.serviceId }}"
-          data-templates='{{ site.emailjs.templates | json }}'
+          data-template="{{ site.emailjs.template }}"
           data-msg-sending="{{ 'contact.sending' | t(lang) }}"
           data-msg-sent="{{ 'contact.sent' | t(lang) }}"
           data-msg-error="{{ 'contact.error' | t(lang) }}">
@@ -34,7 +34,7 @@ scripts: ["https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js", "
         <select name="restaurant" required>
           <option value="">{{ "contact.choose" | t(lang) }}</option>
           {%- for r in restaurants %}
-          <option value="{{ r.emailTemplate }}" data-label="{{ r.name }} – {{ r.city }}">{{ r.city }}</option>
+          <option value="{{ r.slug }}" data-label="{{ r.name }} – {{ r.city }}">{{ r.city }}</option>
           {%- endfor %}
         </select>
       </label>

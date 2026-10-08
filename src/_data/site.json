@@ -103,11 +103,8 @@
   "emailjs": {
     "publicKey": "rSyNef6BemMVhqFTu",
     "serviceId": "service_yyznncj",
-    "templates": {
-      "triann_moussy": "A_CREER",
-      "triann_lagny": "A_CREER",
-      "triann_saintmax": "A_CREER"
-    }
+    "_info": "Un seul modèle EmailJS (formule gratuite) : le restaurant choisi est dans {{restaurant_label}}, l'équipe transfère en interne.",
+    "template": "A_CREER"
   },
   "newsletter": {
     "provider": "Brevo",
