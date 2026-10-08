@@ -130,20 +130,24 @@
   </dialog>
 
   <dialog class="sheet newsletter-dialog" id="newsletter-dialog" aria-labelledby="newsletter-title">
-    <h2 id="newsletter-title">{{ "newsletter.title" | t(lang) }}</h2>
-    <p class="muted small">{{ "newsletter.text" | t(lang) }} {{ "newsletter.text" | rtag }}</p>
+    <header class="nl-head">
+      <span class="newsletter-ic">{{ icon("mail", 24) }}</span>
+      <h2 id="newsletter-title">{{ "newsletter.title" | t(lang) }}</h2>
+      <button class="icon-btn nl-close" type="button" data-close-dialog aria-label="{{ 'menu.close' | t(lang) }}">{{ icon("close", 20) }}</button>
+    </header>
+    <p class="muted">{{ "newsletter.text" | t(lang) }} {{ "newsletter.text" | rtag }}</p>
+    {#- Formulaire Brevo : mêmes champs que le code fourni par Brevo (EMAIL, piège à robots, langue) #}
     <form class="newsletter-form" method="POST" action="{{ site.newsletter.action }}" target="_blank" data-newsletter
           data-msg-sending="{{ 'newsletter.sending' | t(lang) }}" data-msg-ok="{{ 'newsletter.ok' | t(lang) }}" data-msg-error="{{ 'newsletter.error' | t(lang) }}">
-      <label class="field"><span>{{ "contact.email" | t(lang) }}</span><input type="email" name="EMAIL" autocomplete="email" required></label>
-      {#- Champs attendus par Brevo (piège à robots compris) #}
+      <label class="sr-only" for="nl-email">{{ "contact.email" | t(lang) }}</label>
+      <div class="nl-row">
+        <span class="nl-input">{{ icon("mail", 18) }}<input id="nl-email" type="email" name="EMAIL" autocomplete="email" placeholder="{{ 'votre@email.fr' if lang == 'fr' else 'your@email.com' }}" required></span>
+        <button class="btn btn-primary" type="submit">{{ "newsletter.submit" | t(lang) }}</button>
+      </div>
       <input type="text" name="email_address_check" value="" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="locale" value="{{ lang }}">
       <input type="hidden" name="html_type" value="simple">
-      <label class="check"><input type="checkbox" required> <span class="small">{{ "newsletter.consent" | t(lang) }} <a href="{{ site.routes | route('legal', lang) }}#{{ 'confidentialite' if lang == 'fr' else 'privacy' }}">{{ "newsletter.privacy" | t(lang) }}</a></span></label>
-      <div class="newsletter-actions">
-        <button class="btn btn-primary" type="submit">{{ "newsletter.submit" | t(lang) }}</button>
-        <button class="btn btn-ghost" type="button" data-close-dialog>{{ "menu.close" | t(lang) }}</button>
-      </div>
+      <label class="nl-consent"><input type="checkbox" required> <span>{{ "newsletter.consent" | t(lang) }} <a href="{{ site.routes | route('legal', lang) }}#{{ 'confidentialite' if lang == 'fr' else 'privacy' }}">{{ "newsletter.privacy" | t(lang) }}</a></span></label>
       <p class="form-status" role="status" data-newsletter-status></p>
     </form>
   </dialog>
