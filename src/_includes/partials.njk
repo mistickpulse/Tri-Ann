@@ -99,7 +99,7 @@
 <button class="icon-btn carousel-btn prev" type="button" data-carousel-prev aria-label="{{ 'Avis précédent' if lang == 'fr' else 'Previous review' }}">{{ icon("arrow", 18) }}</button>
 <button class="icon-btn carousel-btn next" type="button" data-carousel-next aria-label="{{ 'Avis suivant' if lang == 'fr' else 'Next review' }}">{{ icon("arrow", 18) }}</button>
 </div>
-<p class="muted small quotes-note">{{ "Une sélection d'avis Google. Tous les avis sont visibles sur Google en cliquant sur la note de chaque restaurant." if lang == "fr" else "A selection of Google reviews. All reviews can be read on Google by clicking each restaurant's rating." }}</p>{% endif %}
+<p class="muted small quotes-note">{{ "Tous les avis sont visibles sur Google en cliquant sur la note de chaque restaurant." if lang == "fr" else "All reviews can be read on Google by clicking each restaurant's rating." }}</p>{% endif %}
 {%- endmacro -%}
 
 {%- macro eventsCalendar(events, lang, restaurants, only) -%}
