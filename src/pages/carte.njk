@@ -16,7 +16,10 @@ scripts: ["/assets/js/menu.js"]
 {%- macro allergenList(ids, lang) -%}{{ ids | allergenNames(site.allergens, lang) }}{%- endmacro -%}
 
 {%- macro item(it, lang, sec, badges, restos) -%}
-{%- set unitPrice = (it.price if it.price != null else (sec.price if sec.price else null)) if badges != "drinks" else null -%}
+{%- set basePrice = it.price if it.price != null else (sec.price if sec.price else null) -%}
+{%- if it.prices %}{% set basePrice = it.prices | select | last %}{% endif -%}
+{#- Boissons : à emporter seulement si « takeaway: true » -#}
+{%- set unitPrice = basePrice if (badges != "drinks" or it.takeaway) else null -%}
 <li class="dish" data-tags="{{ (it.tags or []) | join(' ') }}" data-allergens="{{ it.allergens | allergenAttr }}"{% if unitPrice %} data-price="{{ unitPrice }}" data-name="{{ it.name | tr(lang) }}"{% endif %}{% if restos %} data-restos="{{ restos }}"{% endif %}{% if it.image %} data-thumb{% endif %}>
   {%- if it.image %}
   <img class="dish-thumb" src="{{ it.image }}" alt="{{ it.name | tr(lang) }}" loading="lazy" width="96" height="96">

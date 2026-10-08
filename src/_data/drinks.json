@@ -1,5 +1,5 @@
 {
-  "_info": "Recopié de la carte des boissons de Tri-Ann 3 (octobre 2026). size = contenance commune à la section ; sizes + prices = plusieurs contenances (null = pas proposé dans ce format).",
+  "_info": "Carte des boissons, la même dans les trois restaurants (octobre 2026). size = contenance commune à la section ; sizes + prices = plusieurs contenances (null = pas proposé dans ce format). takeaway: true = peut être ajouté à une commande à emporter (prix de la plus grande contenance).",
   "intro": {
     "fr": "Cidres bretons, bières, vins, cocktails maison et boissons chaudes.",
     "en": "Breton ciders, beers, wines, house cocktails and hot drinks."
@@ -1297,7 +1297,8 @@
             null,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "takeaway": true
         },
         {
           "name": {
@@ -1308,7 +1309,8 @@
             null,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "takeaway": true
         },
         {
           "name": {
@@ -1319,7 +1321,8 @@
             null,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "takeaway": true
         },
         {
           "name": {
@@ -1330,7 +1333,8 @@
             null,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "takeaway": true
         },
         {
           "name": {
@@ -1341,7 +1345,8 @@
             null,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "takeaway": true
         },
         {
           "name": "Breizh Tea",
@@ -1349,7 +1354,8 @@
             null,
             4.5
           ],
-          "tags": []
+          "tags": [],
+          "takeaway": true
         },
         {
           "name": "Diabolo",
