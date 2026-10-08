@@ -2,40 +2,72 @@
   "_info": "Avis Google recopiés à la main (ex. avis qui parlent du karaoké, que l'API Google ne renvoie pas). Clé = restaurant. Un avis n'est affiché que si « note » (4 ou 5) et « texte » (texte français d'origine, copié depuis Google) sont remplis. « traduction » sert seulement de repère.",
   "lagny-le-sec": [
     {
+      "auteur": "Justand Mirielle",
+      "date": "2026-09",
+      "note": 5,
+      "texte": "C'était notre première visite.\nAccueil très agréable du patron steph et son équipe (jeune homme au tee shirt rose au top).\n\nTres Joli lieu et crêpes très bonnes.\nÉtant sans gluten, ils ont réajusté ma crêpe déssert (j'ai apprécié le geste)\nCuisine ouverte : c'est \"rassurant\" de voir travailler les cuisinier.\nPetite remarque : Préférez servir le cidre avec une bolée de façon à garder le verre pour l'eau 😉 : ça fait plus Bretagne👍🏽\nNous y avons été jeudi = karaoké\nC'était sympa\n\nUne bonne soirée passée. Nous reviendrons certainement dans cette crêperie ou nous avons été bien reçu.\nPas de soucis pour se garer."
+    },
+    {
       "auteur": "Olivier Herve",
       "date": "2026-09",
-      "note": null,
-      "texte": "",
-      "traduction": "It was a very pleasant surprise! Lovely atmosphere, beautiful decor, and the food was excellent. The savory buckwheat crepe of the day with Serrano ham, salad, Emmental cheese, melon, and port was delicious. Thursday nights are karaoke night! A great place with attentive staff. I highly recommend it."
+      "note": 5,
+      "texte": "Ce fut une très belle surprise! Belle ambiance, belle décoration et on a très bien mangé. La galette du jour avec du serano, salade, emmental, melon et porto fut un délicieux.\nLes jeudi soir c'est karaoké !\nSuper endroit et des serveurs a l'écoute. Je recommande fortement."
     },
     {
       "auteur": "Mickael Pelestin",
       "date": "2026-08",
-      "note": null,
-      "texte": "",
-      "traduction": "If you want to eat really good crepes and be served by top-notch waiters, I recommend this place. Karaoke Thursdays are great! 👍"
+      "note": 5,
+      "texte": "Si vous voulez manger de très bonnes crêpes et être servi par des serveurs au top je vous conseille cette adresse.Les jeudis karaoké top👍"
     },
     {
       "auteur": "ValSen",
       "date": "2025-09",
-      "note": null,
-      "texte": "",
-      "traduction": "The crepes were delicious! The staff were friendly. Karaoke atmosphere! Very nice!"
+      "note": 5,
+      "texte": "Les crêpes étaient délicieuses ! Le personnel est avenant . Ambiance karaoke ! Très sympathique !"
+    },
+    {
+      "auteur": "Lola corpet",
+      "date": "2025-07",
+      "note": 5,
+      "texte": "… repas du jour + un dessert du jour assez copieux en + de la carte ! Une super ambiance surtout le jeudi avec leur Karaoke. Si vous voulez bien manger et être dans une ambiance chaleureuse c’est la bas qui faut aller et ne pas hésité"
     },
     {
       "auteur": "Emma SANTERRE",
       "date": "2025-06",
-      "note": null,
-      "texte": "",
-      "traduction": "Super friendly staff and an amazing karaoke night!! I had a fantastic time!! Excellent food, a real treat!! Highly recommended!"
-    },
-    {
-      "auteur": "Lydie HENRIET",
-      "date": "2025-06",
-      "note": null,
-      "texte": "",
-      "traduction": "Great atmosphere! Family-friendly karaoke, warm welcome, nice menu, never disappointed."
+      "note": 5,
+      "texte": "Personnel super sympa et soirée karaoké incoyable !! Je me suis super bien amusée !! Plats excellent un vrai régal !! Fortement recommandé !"
     }
   ],
-  "saint-maximin": []
+  "saint-maximin": [
+    {
+      "auteur": "Fatima Ali",
+      "date": "2025-12",
+      "note": 5,
+      "texte": "Nice and cozy place with a beautiful interior and very friendly staff. Quick service. Delicious crêpes both salée & sucrée! Would definitely recommend 10/10.\nWent there on a Thursday night and karaoke was a real mood changer. It was so fun with a fun,chill & cool ambiance. Superb 🙌🏻\n(Side note: could get a little bit noisy because of the large groups)"
+    },
+    {
+      "auteur": "Cyril “Kyrios” Guffroy",
+      "date": "2026-02",
+      "note": 5,
+      "texte": "Ça faisait plusieurs années que je n'étais pas sorti aussi satisfait d'un restaurant ! Les galettes sont excellentes, les prix sont très accessibles, Blé noir IGP, caramel maison, chantilly maison, glaces artisanales faites par un maître glacier, fruit & légume frais coupés chaque jour en cuisine. Les serveurs sont d'une extrême gentillesse et souriants. La bonne ambiance règne dans cette équipe et nous, en tant que client, nous le ressentons ! Ambiance très conviviale.\n\nLe jeudi soir c'est soirée karaoké, les serveurs chantent, font quelques pas de danse !\n\nUn super repas, merci à vous tous !"
+    },
+    {
+      "auteur": "Sandy_ Mrc",
+      "date": "2025-11",
+      "note": 5,
+      "texte": "Nous avons testé avec une amie hier soir , c’etait génial . Jeudi soir, soirée karaoké , tres bonne ambiance !\nL’équipe complète était d’une gentillesse et d’un accueil juste Parfait (Ambiance familial ) .\nLes galettes salées autant que la galette sucrée Était vraiment très bonne, les produits frais sont là, Très généreux au niveau des quantités. Le prix très raisonnable! Je reviendrai avec plaisir . Ça fait plaisir d’avoir ce genre de restaurant enfin sur la zone. Bravo Et merci à vous"
+    },
+    {
+      "auteur": "Claire Poulain",
+      "date": "2026-07",
+      "note": 5,
+      "texte": "Quelle surprise !\nOn a réservé au hasard pile un jour de Karaoke (tous les jeudis). Il y avait une ambiance chaleureuse, les gens semblaient habitués à ces soirées sans prise de tête où tout le monde chante et danse ensemble. C'est un endroit convivial où l'on mange très bien. Que ce soit en famille ou entre amis, je conseille fortement !\n\nPetit big up à Fabian et son animation dynamique !\nSûrement à bientôt !\nLes Dufour (allias les Tim1des)"
+    },
+    {
+      "auteur": "Emmy DUFOUR",
+      "date": "2026-01",
+      "note": 5,
+      "texte": "Excellente soirée au restaurant Tri Ann ! Une crêperie au top, avec de délicieuses crêpes dans une super ambiance. Ce soir c’était soirée karaoké, et on s’est vraiment éclatés ! L’équipe est accueillante, l’ambiance conviviale et festive, on s’est sentis comme à la maison. En plus, on repart avec une très belle vidéo en souvenir, ce qui rend l’expérience encore plus mémorable. On reviendra sans hésiter, merci pour ce super moment !"
+    }
+  ]
 }

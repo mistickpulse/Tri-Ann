@@ -142,13 +142,26 @@ export default function (eleventyConfig) {
     (manual?.[slug] || [])
       .filter((m) => m.note && m.texte)
       .map((m) => ({ rating: m.note, text: m.texte, author: m.auteur, photo: m.photo || null, date: m.date || null }));
+  // Extrait d'un avis qui commence à la phrase contenant le mot (ex. karaoké), avec « … » si on coupe
+  const aroundWord = (text, word, max) => {
+    // Phrases : coupées aux points et aux retours à la ligne (certains avis n'ont pas de ponctuation)
+    const sentences = String(text || "")
+      .split(/\n+/)
+      .flatMap((line) => line.trim().match(/[^.!?]+[.!?]*\s*/g) || [])
+      .map((x) => x.trim() + " ");
+    const i = sentences.findIndex((x) => plain(x).includes(plain(word)));
+    if (i <= 0) return excerpt(text, max);
+    return "… " + excerpt(sentences.slice(i).join(""), max);
+  };
   const eventReviews = (word, slugs, restaurants, reviews, manual) => {
     if (!word) return [];
     const list = restaurants
       .filter((r) => slugs.includes(r.slug))
       .flatMap((r) => [...(reviews?.places?.[r.placeId]?.reviews || []), ...manualReviews(manual, r.slug)].map((rv) => ({ ...rv, label: r.city })))
       .filter((rv) => rv.rating >= 4 && plain(rv.text).includes(plain(word)));
-    return shuffle(list).slice(0, 4).map((rv) => ({ rating: rv.rating, author: rv.author, label: rv.label, text: excerpt(rv.text, 110) }));
+    // Jusqu'à 4 avis par restaurant (les pages restaurant ne montrent que les leurs), mélangés
+    const perResto = Object.values(Object.groupBy(shuffle(list), (rv) => rv.label)).flatMap((l) => l.slice(0, 4));
+    return shuffle(perResto).map((rv) => ({ rating: rv.rating, author: rv.author, label: rv.label, text: aroundWord(rv.text, word, 130) }));
   };
   eleventyConfig.addFilter("calendarData", (events, restaurants, reviews, manual) => {
     const all = restaurants.map((r) => r.slug);
