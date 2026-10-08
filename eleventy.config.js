@@ -57,14 +57,26 @@ export default function (eleventyConfig) {
     return value[lang] || value.fr || "";
   });
 
-  // Avis Google enregistrés par scripts/fetch-reviews.mjs : 4 par restaurant, alternés
+  // Avis Google enregistrés par scripts/fetch-reviews.mjs : 4 par restaurant, uniquement 4 et 5 étoiles
+  // (un 4 étoiles quand il y en a, le reste en 5 étoiles), mélangés à chaque construction du site.
+  const shuffle = (list) => {
+    const a = [...list];
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  };
   eleventyConfig.addFilter("reviewQuotes", (data, restaurants, slugs) => {
-    const lists = restaurants
-      .filter((r) => !slugs || slugs.includes(r.slug))
-      .map((r) => (data?.places?.[r.placeId]?.reviews || []).slice(0, 4).map((rv) => ({ ...rv, label: r.city })));
     const out = [];
-    for (let i = 0; i < 4; i++) for (const l of lists) if (l[i]) out.push(l[i]);
-    return out;
+    for (const r of restaurants) {
+      if (slugs && !slugs.includes(r.slug)) continue;
+      const pool = (data?.places?.[r.placeId]?.reviews || []).map((rv) => ({ ...rv, label: r.city }));
+      const fives = shuffle(pool.filter((rv) => rv.rating === 5));
+      const fours = shuffle(pool.filter((rv) => rv.rating === 4));
+      const picked = [...fours.slice(0, 1), ...fives.slice(0, 3)];
+      // Pas assez de 5 étoiles : on complète avec d'autres 4 étoiles
+      picked.push(...fives.slice(3), ...fours.slice(1));
+      out.push(...picked.slice(0, 4));
+    }
+    return shuffle(out);
   });
   eleventyConfig.addFilter("reviewDate", (iso, lang) =>
     iso ? new Date(iso).toLocaleDateString(lang === "en" ? "en-GB" : "fr-FR", { month: "long", year: "numeric" }) : "");

@@ -6,7 +6,9 @@ import fs from "node:fs";
 
 const KEY = process.env.GOOGLE_PLACES_KEY;
 const OUT = "src/_data/googleReviews.json";
-const FIELDS = "rating,userRatingCount,reviews.rating,reviews.originalText,reviews.text,reviews.publishTime,reviews.authorAttribution.displayName";
+const FIELDS = "rating,userRatingCount,reviews.rating,reviews.originalText,reviews.text,reviews.publishTime,reviews.authorAttribution.displayName,reviews.authorAttribution.photoUri";
+// Google ne renvoie que 5 avis par restaurant : on garde ceux déjà vus pour avoir plus de choix (30 max, les plus récents)
+const KEEP = 30;
 
 const restaurants = JSON.parse(fs.readFileSync("src/_data/restaurants.json", "utf8"));
 const previous = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, "utf8")) : { places: {} };
@@ -26,19 +28,24 @@ for (const r of restaurants) {
     });
     if (!res.ok) throw new Error(`HTTP ${res.status} ${(await res.text()).slice(0, 200)}`);
     const d = await res.json();
+    const fresh = (d.reviews || [])
+      .map((rv) => ({
+        rating: rv.rating,
+        text: rv.originalText?.text || rv.text?.text || "",
+        author: rv.authorAttribution?.displayName || "Google",
+        photo: rv.authorAttribution?.photoUri || null,
+        date: rv.publishTime || null,
+      }))
+      .filter((rv) => rv.text);
+    // Fusion avec la réserve : un avis = un auteur + une date (le plus récent remplace l'ancien)
+    const pool = new Map((places[r.placeId]?.reviews || []).map((rv) => [rv.author + rv.date, rv]));
+    fresh.forEach((rv) => pool.set(rv.author + rv.date, rv));
     places[r.placeId] = {
       rating: d.rating ?? null,
       count: d.userRatingCount ?? null,
-      reviews: (d.reviews || [])
-        .map((rv) => ({
-          rating: rv.rating,
-          text: rv.originalText?.text || rv.text?.text || "",
-          author: rv.authorAttribution?.displayName || "Google",
-          date: rv.publishTime || null,
-        }))
-        .filter((rv) => rv.text),
+      reviews: [...pool.values()].sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, KEEP),
     };
-    console.log(`Avis Google : ${r.city} ${d.rating} (${d.userRatingCount} avis, ${places[r.placeId].reviews.length} textes)`);
+    console.log(`Avis Google : ${r.city} ${d.rating} (${d.userRatingCount} avis, ${fresh.length} nouveaux, ${places[r.placeId].reviews.length} en réserve)`);
   } catch (e) {
     console.log(`Avis Google : échec pour ${r.city} (${e.message}), avis précédents conservés.`);
   }

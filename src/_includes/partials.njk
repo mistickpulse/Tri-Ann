@@ -81,10 +81,15 @@
   <article class="quote">
     <span class="stars" aria-label="{{ q.rating }}/5">{{ q.rating | stars }}</span>
     <p>{{ q.text }}</p>
-    <footer>{{ q.author }} · {{ q.label }}{% if q.date %} · {{ q.date | reviewDate(lang) }}{% endif %}</footer>
+    <footer class="quote-author">
+      {%- if q.photo %}<img class="avatar" src="{{ q.photo }}" alt="" width="40" height="40" loading="lazy" referrerpolicy="no-referrer">
+      {%- else %}<span class="avatar" aria-hidden="true">{{ q.author | first | upper }}</span>{% endif %}
+      <span><b>{{ q.author }}</b><br>{{ q.label }}{% if q.date %} · {{ q.date | reviewDate(lang) }}{% endif %}</span>
+    </footer>
   </article>
   {%- endfor %}
 </div>
+{%- if (googleReviews | reviewQuotes(restaurants, places)).length %}<p class="muted small quotes-note">{{ "Une sélection d'avis Google. Tous les avis sont visibles sur Google en cliquant sur la note de chaque restaurant." if lang == "fr" else "A selection of Google reviews. All reviews can be read on Google by clicking each restaurant's rating." }}</p>{% endif %}
 {%- endmacro -%}
 
 {%- macro eventsCalendar(events, lang, restaurants, only) -%}
