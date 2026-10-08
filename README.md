@@ -43,4 +43,4 @@ Un événement peut avoir un picto avec `icon:` : `mic` (karaoké), `guitar` (co
 
 Le workflow `.github/workflows/static.yml` construit le site (`npm run build`, dossier `_site`) puis le publie sur GitHub Pages.
 Avant la construction, `scripts/fetch-reviews.mjs` récupère les avis Google avec la clé `GOOGLE_PLACES_KEY` (secret du dépôt) ; le workflow tourne aussi chaque matin pour les mettre à jour. Les avis sont publiés dans `/donnees/avis-google.json`.
-Le site est servi dans le sous-dossier `/Tri-Ann/` (variable `PATH_PREFIX`). Avec un nom de domaine personnalisé, passer `PATH_PREFIX` à `/` et mettre à jour `url` dans `src/_data/site.json`.
+Le site est servi à la racine de https://tri-ann.fr (variable `PATH_PREFIX: /`, domaine réglé dans GitHub → Settings → Pages). L'adresse mistickpulse.github.io/Tri-Ann redirige vers le domaine.

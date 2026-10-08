@@ -2,7 +2,7 @@
 // pour voir les avis en testant le site sur son ordinateur : npm run avis
 import fs from "node:fs";
 
-const URL = "https://mistickpulse.github.io/Tri-Ann/donnees/avis-google.json";
+const URL = "https://tri-ann.fr/donnees/avis-google.json";
 const OUT = "src/_data/googleReviews.json";
 
 const res = await fetch(URL, { cache: "no-store" });

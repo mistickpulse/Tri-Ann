@@ -46,9 +46,9 @@ jobs:
           GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
         run: node scripts/fetch-reviews.mjs
       - name: Build
-        # Sous-dossier du dépôt sur github.io. Avec un nom de domaine perso : PATH_PREFIX: /
+        # Site servi à la racine de tri-ann.fr (sur github.io sans domaine perso : PATH_PREFIX: /Tri-Ann/)
         env:
-          PATH_PREFIX: /Tri-Ann/
+          PATH_PREFIX: /
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
