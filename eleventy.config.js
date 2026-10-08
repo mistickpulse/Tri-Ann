@@ -137,15 +137,20 @@ export default function (eleventyConfig) {
     const svg = eventIconSvg(name);
     return svg ? new nunjucks.runtime.SafeString(`<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg}</svg>`) : "";
   });
-  const eventReviews = (word, slugs, restaurants, reviews) => {
+  // Avis recopiés à la main (src/_data/avisManuels.json) : affichés seulement si la note et le texte sont remplis
+  const manualReviews = (manual, slug) =>
+    (manual?.[slug] || [])
+      .filter((m) => m.note && m.texte)
+      .map((m) => ({ rating: m.note, text: m.texte, author: m.auteur, photo: null, date: m.date || null }));
+  const eventReviews = (word, slugs, restaurants, reviews, manual) => {
     if (!word) return [];
     const list = restaurants
       .filter((r) => slugs.includes(r.slug))
-      .flatMap((r) => (reviews?.places?.[r.placeId]?.reviews || []).map((rv) => ({ ...rv, label: r.city })))
+      .flatMap((r) => [...(reviews?.places?.[r.placeId]?.reviews || []), ...manualReviews(manual, r.slug)].map((rv) => ({ ...rv, label: r.city })))
       .filter((rv) => rv.rating >= 4 && plain(rv.text).includes(plain(word)));
     return shuffle(list).slice(0, 4).map((rv) => ({ rating: rv.rating, author: rv.author, label: rv.label, text: excerpt(rv.text, 110) }));
   };
-  eleventyConfig.addFilter("calendarData", (events, restaurants, reviews) => {
+  eleventyConfig.addFilter("calendarData", (events, restaurants, reviews, manual) => {
     const all = restaurants.map((r) => r.slug);
     const bi = (d, k) => (d[k] ? { fr: d[k], en: d[k + "_en"] || d[k] } : null);
     const list = (events || []).map(({ data: d }) => ({
@@ -160,7 +165,7 @@ export default function (eleventyConfig) {
       until: ymd(d.until),
       restaurants: !d.etablissements || d.etablissements.includes("tous") ? all : d.etablissements,
     }));
-    list.forEach((e, i) => (e.reviews = eventReviews(events[i].data.avis, e.restaurants, restaurants, reviews)));
+    list.forEach((e, i) => (e.reviews = eventReviews(events[i].data.avis, e.restaurants, restaurants, reviews, manual)));
     return JSON.stringify({
       restaurants: restaurants.map(({ slug, city, color, phone, phoneIntl }) => ({ slug, city, color, phone, phoneIntl })),
       events: list.filter((e) => e.date || e.weekly),

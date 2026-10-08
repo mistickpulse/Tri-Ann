@@ -138,7 +138,7 @@
     </div>
     {%- endif %}
   </aside>
-  <script type="application/json" data-calendar-data>{{ events | calendarData(restaurants, googleReviews) | safe }}</script>
+  <script type="application/json" data-calendar-data>{{ events | calendarData(restaurants, googleReviews, avisManuels) | safe }}</script>
   <noscript><p class="muted">{{ "calendar.noscript" | t(lang) }}</p></noscript>
 </div>
 {%- endmacro -%}
