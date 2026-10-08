@@ -157,5 +157,11 @@
   {%- for s in scripts %}
   <script src="{{ s }}" defer></script>
   {%- endfor %}
+  {#- Photo en grand (photos des spécialités : attribut data-zoom) #}
+  <dialog class="zoom" id="zoom-dialog" aria-label="{{ 'Photo' if lang == 'fr' else 'Photo' }}">
+    <button class="icon-btn zoom-close" type="button" data-close-dialog aria-label="{{ 'menu.close' | t(lang) }}">{{ icon("close", 22) }}</button>
+    <img src="" alt="" data-zoom-img>
+    <p class="zoom-caption" data-zoom-caption></p>
+  </dialog>
 </body>
 </html>

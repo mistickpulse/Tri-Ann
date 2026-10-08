@@ -201,3 +201,15 @@ document.querySelectorAll("[data-carousel]").forEach((box) => {
     if (visible && !hovered && !document.hidden && Date.now() > pausedUntil) go(1);
   }, 5000);
 });
+
+// Photo des spécialités en grand : clic sur l'image, fermeture par la croix, Échap ou clic à côté
+const zoom = document.getElementById("zoom-dialog");
+document.addEventListener("click", (e) => {
+  const img = e.target.closest("img[data-zoom]");
+  if (!img || !zoom) return;
+  e.preventDefault();
+  zoom.querySelector("[data-zoom-img]").src = img.currentSrc || img.src;
+  zoom.querySelector("[data-zoom-img]").alt = img.alt;
+  zoom.querySelector("[data-zoom-caption]").textContent = img.alt;
+  zoom.showModal();
+});

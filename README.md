@@ -14,6 +14,8 @@ npm start
 
 Le site est alors visible sur http://localhost:8081 et se recharge à chaque modification.
 
+La carte en PDF (plats et boissons, FR et EN) : `npm run build && npm run pdf` (fait automatiquement à chaque mise en ligne).
+
 Pour voir les avis Google en local : `npm run avis` (copie les avis du site publié dans `src/_data/googleReviews.json`), puis relancer `npm start`.
 
 ## Où modifier quoi

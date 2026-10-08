@@ -1,0 +1,138 @@
+---
+# Version imprimable de la carte, transformée en PDF par scripts/carte-pdf.mjs après la construction du site.
+# Mêmes données que la page Carte (menu.json, drinks.json), sans les spécialités du moment : le PDF est toujours à jour.
+# Deux PDF : les plats et les boissons, en français et en anglais
+versions:
+  - { lang: fr, part: plats, url: /carte/imprimable/plats/ }
+  - { lang: fr, part: boissons, url: /carte/imprimable/boissons/ }
+  - { lang: en, part: plats, url: /en/menu/printable/food/ }
+  - { lang: en, part: boissons, url: /en/menu/printable/drinks/ }
+pagination:
+  data: versions
+  size: 1
+  alias: v
+permalink: "{{ v.url }}"
+eleventyExcludeFromCollections: true
+---
+{%- set L = v.lang -%}
+{%- set P = v.part -%}
+{%- macro priceCell(v) -%}{{ v | price(L) if v != null else "–" }}{%- endmacro -%}
+{%- macro dish(it, sec) -%}
+<div class="dish">
+  <div class="line">
+    <span class="name">{{ it.name | tr(L) }}{% if it.tags and ("vege" in it.tags) %} <span class="veg" title="{{ 'Végétarien' if L == 'fr' else 'Vegetarian' }}">V</span>{% endif %}</span>
+    {%- if it.prices %}<span class="prices">{% for pr in it.prices %}<span>{{ priceCell(pr) }}</span>{% endfor %}</span>
+    {%- elif it.price != null %}<span class="price">{{ it.price | price(L) }}</span>{% endif %}
+  </div>
+  {%- if it.desc %}<p class="desc">{{ it.desc | tr(L) }}</p>{% endif %}
+  {%- if it.availability and not it.availability.all %}<p class="avail">{{ it.availability | tr(L) }}</p>{% endif %}
+</div>
+{%- endmacro -%}
+{%- macro section(sec) -%}
+<section class="sec">
+  {%- if sec.title %}
+  <header class="sec-head">
+    <h3>{{ sec.title | tr(L) }}</h3>
+    {%- if sec.sizes %}<span class="prices sizes">{% for z in sec.sizes %}<span>{{ z }}</span>{% endfor %}</span>
+    {%- elif sec.size %}<span class="size">{{ sec.size }}</span>
+    {%- elif sec.price %}<span class="badge">{{ sec.price | price(L) }}</span>
+    {%- elif sec.priceLabel %}<span class="badge">{{ sec.priceLabel | tr(L) }}</span>{% endif %}
+  </header>
+  {%- endif %}
+  {%- if sec.note %}<p class="note">{{ sec.note | tr(L) }}</p>{% endif %}
+  {%- if sec.type == "supplements" %}
+  {%- for it in sec.items %}<div class="dish"><div class="line"><span class="name light">{{ it.name | tr(L) }}</span><span class="price">{{ it.price | price(L) }}</span></div></div>{% endfor %}
+  {%- elif sec.type == "flavours" %}
+  {%- for g in sec.groups %}<p class="flavours"><b>{{ g.title | tr(L) }} :</b> {% for it in g.items %}{{ it.name | tr(L) }}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endfor %}
+  {%- else %}
+  {%- for it in sec.items %}{{ dish(it, sec) }}{% endfor %}
+  {%- endif %}
+</section>
+{%- endmacro -%}
+<!doctype html>
+<html lang="{{ L }}">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>{{ ("Carte Tri-Ann" if P == "plats" else "Boissons Tri-Ann") if L == "fr" else ("Tri-Ann menu" if P == "plats" else "Tri-Ann drinks") }}</title>
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("/assets/fonts/playfair-display-latin-700-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 100 900; src: url("/assets/fonts/inter-latin-wght-normal.woff2") format("woff2"); }
+  @page { size: A4; margin: 12mm 12mm 14mm; }
+  :root { --ink: #2a211b; --muted: #6b625b; --accent: #4f6875; --soft: #e7eef2; --line: #ddd3c7; --paper: #fbf8f3; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 9.6pt/1.4 "Inter", Arial, sans-serif; }
+  h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; margin: 0; }
+  .cover { display: grid; grid-template-columns: auto 1fr; gap: 14px 18px; align-items: center; padding-bottom: 12px; border-bottom: 2px solid var(--accent); }
+  .cover img { width: 64px; height: 64px; border-radius: 10px; }
+  .cover h1 { font-size: 26pt; line-height: 1; }
+  .cover p { margin: 4px 0 0; color: var(--muted); }
+  .restos { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 8.4pt; }
+  .restos div { background: var(--soft); border-radius: 8px; padding: 7px 9px; }
+  .restos b { display: block; font-size: 9.2pt; }
+  .cat { margin-top: 14px; }
+  .cat > h2 { font-size: 17pt; color: var(--accent); padding-bottom: 3px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+  .cat > .intro { margin: 3px 0 6px; color: var(--muted); font-size: 8.4pt; }
+  .cols { columns: 2; column-gap: 18px; }
+  .sec { break-inside: avoid-column; margin: 0 0 9px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line); margin: 6px 0 3px; padding-bottom: 2px; break-after: avoid; }
+  .sec-head h3 { font-size: 11pt; }
+  .badge { font-weight: 700; color: #fff; background: var(--accent); border-radius: 999px; padding: 0 7px; font-size: 8.6pt; white-space: nowrap; }
+  .size { color: var(--muted); font-size: 8pt; font-weight: 600; }
+  .note { margin: 2px 0 4px; color: var(--muted); font-size: 8pt; }
+  .dish { break-inside: avoid; padding: 2.5px 0; }
+  .line { display: flex; align-items: baseline; gap: 6px; }
+  .name { font-weight: 700; }
+  .name.light { font-weight: 400; }
+  .line::after { content: ""; flex: 1; order: 1; border-bottom: 1px dotted #c8bdb0; transform: translateY(-3px); min-width: 10px; }
+  .price, .prices { order: 2; font-weight: 700; color: var(--accent); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .prices { display: flex; gap: 2px; flex: none; }
+  .prices > span { flex: none; width: 44pt; text-align: right; }
+  .prices.sizes { color: var(--muted); font-size: 7.6pt; font-weight: 600; }
+  .sec-head .prices.sizes { order: 0; }
+  .desc { margin: 0; color: var(--muted); font-size: 8.3pt; line-height: 1.35; }
+  .avail { margin: 1px 0 0; font-size: 7.6pt; color: #8a6d1f; font-weight: 600; }
+  .veg { display: inline-block; font: 700 6.6pt/1 "Inter", sans-serif; color: #fff; background: #4f8a5b; border-radius: 3px; padding: 1.5px 3px; vertical-align: 1px; }
+  .flavours { margin: 2px 0 5px; font-size: 8.4pt; }
+  .foot { margin-top: 14px; padding-top: 8px; border-top: 2px solid var(--accent); font-size: 7.8pt; color: var(--muted); columns: 2; column-gap: 18px; }
+  .foot p { margin: 0 0 3px; break-inside: avoid; }
+</style>
+</head>
+<body>
+<header class="cover">
+  <img src="/assets/img/logo-96.jpg" alt="">
+  <div>
+    <h1>{{ ("La carte" if P == "plats" else "Les boissons") if L == "fr" else ("Our menu" if P == "plats" else "Drinks") }}</h1>
+    <p>{{ "Crêperie bretonne · galettes, crêpes, cidres et cocktails maison · tri-ann.fr" if L == "fr" else "Breton crêperie · galettes, crêpes, ciders and house cocktails · tri-ann.fr" }}</p>
+  </div>
+  <div class="restos">
+    {%- for r in restaurants %}<div><b>{{ r.name }} – {{ r.city }}</b>{{ r.street }}, {{ r.postalCode }} {{ r.city }}<br>{{ r.phone }}</div>{% endfor %}
+  </div>
+</header>
+
+{#- Pas de spécialités du moment dans le PDF : elles changent souvent et sont sur le site #}
+
+{%- if P == "plats" %}
+{%- for cat in menu.categories %}
+<section class="cat">
+  <h2>{{ cat.title | tr(L) }}</h2>
+  {%- if cat.intro %}<p class="intro">{{ cat.intro | tr(L) }}</p>{% endif %}
+  <div class="cols">{% for sec in cat.sections %}{{ section(sec) }}{% endfor %}</div>
+</section>
+{%- endfor %}
+
+{%- else %}
+<section class="cat">
+  <div class="cols">{% for sec in drinks.sections %}{{ section(sec) }}{% endfor %}</div>
+</section>
+{%- endif %}
+
+<footer class="foot">
+  {%- if P == "plats" %}{% for n in menu.footnotes %}{% if not loop.last %}<p>{{ n | tr(L) }}</p>{% endif %}{% endfor %}
+  {%- else %}<p>{{ drinks.sulfitesNote | tr(L) }}</p><p>{{ menu.footnotes | last | tr(L) }}</p><p>{{ "Prix nets en euros, service compris." if L == "fr" else "Net prices in euros, service included." }}</p>{% endif %}
+  <p><b>{{ "Allergènes : la liste détaillée de chaque plat est sur tri-ann.fr/carte. N'hésitez pas à demander à l'équipe." if L == "fr" else "Allergens: the detailed list for each dish is at tri-ann.fr/en/menu. Just ask our team." }}</b></p>
+  {%- if P == "plats" %}<p><span class="veg">V</span> {{ "Végétarien" if L == "fr" else "Vegetarian" }}</p>{% endif %}
+</footer>
+</body>
+</html>

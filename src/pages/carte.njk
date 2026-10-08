@@ -22,7 +22,7 @@ scripts: ["/assets/js/menu.js"]
 {%- set unitPrice = basePrice if (badges != "drinks" or it.takeaway) else null -%}
 <li class="dish" data-tags="{{ (it.tags or []) | join(' ') }}" data-allergens="{{ it.allergens | allergenAttr }}"{% if unitPrice %} data-price="{{ unitPrice }}" data-name="{{ it.name | tr(lang) }}"{% endif %}{% if restos %} data-restos="{{ restos }}"{% endif %}{% if it.image %} data-thumb{% endif %}>
   {%- if it.image %}
-  <img class="dish-thumb" src="{{ it.image }}" alt="{{ it.name | tr(lang) }}" loading="lazy" width="96" height="96">
+  <img class="dish-thumb" src="{{ it.image }}" alt="{{ it.name | tr(lang) }}" loading="lazy" width="96" height="96" data-zoom>
   <div class="dish-main">
   {%- endif %}
   <div class="dish-line">
@@ -98,6 +98,9 @@ scripts: ["/assets/js/menu.js"]
 
     <div class="takeaway-cta" data-takeaway-cta>
       <button class="btn btn-ghost" type="button" data-open-dialog="takeaway-dialog">{{ icon("bag", 18) }} {{ "takeaway.cta" | t(lang) }}</button>
+      {#- PDF généré à chaque mise en ligne par scripts/carte-pdf.mjs #}
+      <a class="btn btn-ghost" href="{{ '/carte-tri-ann-plats.pdf' if lang == 'fr' else '/en/tri-ann-menu-food.pdf' }}" download>{{ icon("book", 18) }} {{ "Carte des plats (PDF)" if lang == "fr" else "Food menu (PDF)" }}</a>
+      <a class="btn btn-ghost" href="{{ '/carte-tri-ann-boissons.pdf' if lang == 'fr' else '/en/tri-ann-menu-drinks.pdf' }}" download>{{ icon("book", 18) }} {{ "Carte des boissons (PDF)" if lang == "fr" else "Drinks menu (PDF)" }}</a>
     </div>
     <div class="takeaway-banner" data-takeaway-banner hidden>
       <div class="takeaway-banner-main">

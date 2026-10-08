@@ -533,14 +533,17 @@
             "en": "Dremmwel organic amber"
           },
           "desc": {
-            "fr": "Au blé noir, sans gluten",
-            "en": "Buckwheat beer, gluten-free"
+            "fr": "Au blé noir",
+            "en": "Buckwheat beer"
           },
           "price": 8.9,
           "tags": [
             "alcool"
           ],
-          "allergens": null
+          "allergens": [
+            "gluten"
+          ],
+          "inferred": true
         },
         {
           "name": "Sant Erwann Blonde",
@@ -982,14 +985,17 @@
         {
           "name": "Médicis",
           "desc": {
-            "fr": "Bière aux fruits rouges, rhum (2 cl), crème de fruits rouges, griottes",
+            "fr": "Bière aux fruits rouges, rhum (2 cl), liqueur de fruits rouges, cerises griottes",
             "en": "Red berry beer, rum (2 cl), red berry liqueur, morello cherries"
           },
           "price": 9.5,
           "tags": [
             "alcool"
           ],
-          "allergens": null
+          "allergens": [
+            "gluten"
+          ],
+          "inferred": true
         }
       ]
     },
@@ -1004,38 +1010,41 @@
         {
           "name": "Le Valériane",
           "desc": {
-            "fr": "Vodka (4 cl), liqueur rose et litchi, Schweppes et griottes",
-            "en": "Vodka (4 cl), rose & lychee liqueur, tonic, morello cherries"
+            "fr": "Vodka (4 cl), liqueur litchi & rose, Schweppes et cerises griottes",
+            "en": "Vodka (4 cl), lychee & rose liqueur, tonic, morello cherries"
           },
           "price": 10.5,
           "tags": [
             "alcool"
           ],
-          "allergens": null
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "L'Edelweiss",
           "desc": {
-            "fr": "Gin (4 cl), tonic, liqueur de violette, griottes",
+            "fr": "Gin (4 cl), tonic, liqueur de violette, cerises griottes",
             "en": "Gin (4 cl), tonic, violet liqueur, morello cherries"
           },
           "price": 10.4,
           "tags": [
             "alcool"
           ],
-          "allergens": null
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Le Maïwenn",
           "desc": {
-            "fr": "Gin (4 cl), liqueur d'ananas, liqueur de mangue, tonic, rondelle de citron",
-            "en": "Gin (4 cl), pineapple liqueur, mango liqueur, tonic, lemon slice"
+            "fr": "Gin (4 cl), liqueur mangue-ananas, tonic, rondelle de citron",
+            "en": "Gin (4 cl), mango-pineapple liqueur, tonic, lemon slice"
           },
           "price": 10.5,
           "tags": [
             "alcool"
           ],
-          "allergens": null
+          "allergens": [],
+          "inferred": true
         },
         {
           "name": "Le Passiflore",

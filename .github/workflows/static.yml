@@ -50,6 +50,9 @@ jobs:
         env:
           PATH_PREFIX: /
         run: npm run build
+      # Carte en PDF (français et anglais), à partir de la carte imprimable du site
+      - name: Menu PDF
+        run: npm run pdf
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

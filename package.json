@@ -5,7 +5,8 @@
   "scripts": {
     "start": "eleventy --serve --port=8081",
     "build": "eleventy",
-    "avis": "node scripts/avis-local.mjs"
+    "avis": "node scripts/avis-local.mjs",
+    "pdf": "node scripts/carte-pdf.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",

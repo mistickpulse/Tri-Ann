@@ -28,7 +28,7 @@
 
 {%- macro specialCard(s, lang) -%}
 <article class="special-card">
-  {%- if s.data.image %}<img src="{{ s.data.image }}" alt="" loading="lazy" width="600" height="450">{% endif %}
+  {%- if s.data.image %}<img src="{{ s.data.image }}" alt="{{ s.data.name }}" loading="lazy" width="600" height="450" data-zoom>{% endif %}
   <div class="body">
     <span class="tag">{{ ("specialTypes." + s.data.type) | t(lang) }}</span>
     <h3>{{ s.data.name }}</h3>
