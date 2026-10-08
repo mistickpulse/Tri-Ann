@@ -14,6 +14,8 @@ npm start
 
 Le site est alors visible sur http://localhost:8081 et se recharge à chaque modification.
 
+Pour voir les avis Google en local : `npm run avis` (copie les avis du site publié dans `src/_data/googleReviews.json`), puis relancer `npm start`.
+
 ## Où modifier quoi
 
 | Je veux changer… | Fichier |
@@ -40,4 +42,5 @@ Un événement peut avoir un picto avec `icon:` : `mic` (karaoké), `guitar` (co
 ## Mise en ligne
 
 Le workflow `.github/workflows/static.yml` construit le site (`npm run build`, dossier `_site`) puis le publie sur GitHub Pages.
+Avant la construction, `scripts/fetch-reviews.mjs` récupère les avis Google avec la clé `GOOGLE_PLACES_KEY` (secret du dépôt) ; le workflow tourne aussi chaque matin pour les mettre à jour. Les avis sont publiés dans `/donnees/avis-google.json`.
 Le site est servi dans le sous-dossier `/Tri-Ann/` (variable `PATH_PREFIX`). Avec un nom de domaine personnalisé, passer `PATH_PREFIX` à `/` et mettre à jour `url` dans `src/_data/site.json`.

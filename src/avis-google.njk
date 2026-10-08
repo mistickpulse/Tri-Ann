@@ -1,0 +1,7 @@
+---
+# Copie publique des avis Google enregistrés par le robot (scripts/fetch-reviews.mjs).
+# Sert à les récupérer en local pour tester : npm run avis
+permalink: /donnees/avis-google.json
+eleventyExcludeFromCollections: true
+---
+{{ (googleReviews or { places: {} }) | dump | safe }}
