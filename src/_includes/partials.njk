@@ -80,8 +80,11 @@
 {%- endmacro -%}
 
 {%- macro quotesList(places, lang, restaurants) -%}
-<div class="quotes" aria-label="{{ 'reviews.title' | t(lang) }}">
-  {%- for q in googleReviews | reviewQuotes(restaurants, places) %}
+{%- set quotes = googleReviews | reviewQuotes(restaurants, places) %}
+{%- if quotes.length %}
+<div class="quotes-carousel" data-carousel>
+<div class="quotes" aria-label="{{ 'reviews.title' | t(lang) }}" tabindex="0" data-carousel-track>
+  {%- for q in quotes %}
   <article class="quote">
     <div class="quote-head"><span class="stars" aria-label="{{ q.rating }}/5">{{ q.rating | stars }}</span><span class="google-tag">{{ googleLogo(18) }} {{ "Avis Google" if lang == "fr" else "Google review" }}</span></div>
     <p>{{ q.text }}</p>
@@ -93,7 +96,10 @@
   </article>
   {%- endfor %}
 </div>
-{%- if (googleReviews | reviewQuotes(restaurants, places)).length %}<p class="muted small quotes-note">{{ "Une sélection d'avis Google. Tous les avis sont visibles sur Google en cliquant sur la note de chaque restaurant." if lang == "fr" else "A selection of Google reviews. All reviews can be read on Google by clicking each restaurant's rating." }}</p>{% endif %}
+<button class="icon-btn carousel-btn prev" type="button" data-carousel-prev aria-label="{{ 'Avis précédent' if lang == 'fr' else 'Previous review' }}">{{ icon("arrow", 18) }}</button>
+<button class="icon-btn carousel-btn next" type="button" data-carousel-next aria-label="{{ 'Avis suivant' if lang == 'fr' else 'Next review' }}">{{ icon("arrow", 18) }}</button>
+</div>
+<p class="muted small quotes-note">{{ "Une sélection d'avis Google. Tous les avis sont visibles sur Google en cliquant sur la note de chaque restaurant." if lang == "fr" else "A selection of Google reviews. All reviews can be read on Google by clicking each restaurant's rating." }}</p>{% endif %}
 {%- endmacro -%}
 
 {%- macro eventsCalendar(events, lang, restaurants, only) -%}
@@ -132,7 +138,7 @@
     </div>
     {%- endif %}
   </aside>
-  <script type="application/json" data-calendar-data>{{ events | calendarData(restaurants) | safe }}</script>
+  <script type="application/json" data-calendar-data>{{ events | calendarData(restaurants, googleReviews) | safe }}</script>
   <noscript><p class="muted">{{ "calendar.noscript" | t(lang) }}</p></noscript>
 </div>
 {%- endmacro -%}

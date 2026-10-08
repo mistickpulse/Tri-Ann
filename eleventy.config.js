@@ -117,7 +117,16 @@ export default function (eleventyConfig) {
     const svg = eventIconSvg(name);
     return svg ? new nunjucks.runtime.SafeString(`<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg}</svg>`) : "";
   });
-  eleventyConfig.addFilter("calendarData", (events, restaurants) => {
+  const plain = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const eventReviews = (word, slugs, restaurants, reviews) => {
+    if (!word) return [];
+    const list = restaurants
+      .filter((r) => slugs.includes(r.slug))
+      .flatMap((r) => (reviews?.places?.[r.placeId]?.reviews || []).map((rv) => ({ ...rv, label: r.city })))
+      .filter((rv) => rv.rating >= 4 && plain(rv.text).includes(plain(word)));
+    return shuffle(list).slice(0, 4).map((rv) => ({ ...rv, date: rv.date ? rv.date.slice(0, 10) : null }));
+  };
+  eleventyConfig.addFilter("calendarData", (events, restaurants, reviews) => {
     const all = restaurants.map((r) => r.slug);
     const bi = (d, k) => (d[k] ? { fr: d[k], en: d[k + "_en"] || d[k] } : null);
     const list = (events || []).map(({ data: d }) => ({
@@ -132,6 +141,7 @@ export default function (eleventyConfig) {
       until: ymd(d.until),
       restaurants: !d.etablissements || d.etablissements.includes("tous") ? all : d.etablissements,
     }));
+    list.forEach((e, i) => (e.reviews = eventReviews(events[i].data.avis, e.restaurants, restaurants, reviews)));
     return JSON.stringify({
       restaurants: restaurants.map(({ slug, city, color, phone, phoneIntl }) => ({ slug, city, color, phone, phoneIntl })),
       events: list.filter((e) => e.date || e.weekly),

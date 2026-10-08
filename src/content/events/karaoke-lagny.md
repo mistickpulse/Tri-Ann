@@ -12,5 +12,7 @@ recurring_en: Every Thursday from 7:45 pm
 description: Dîner et micro ouvert, ambiance garantie !
 description_en: Dinner and open mic, great atmosphere guaranteed!
 etablissements: [lagny-le-sec, saint-maximin]
+# Avis Google affichés quand on clique sur l'événement : ceux qui contiennent ce mot (sans accents ni majuscules)
+avis: karaok
 active: true
 ---

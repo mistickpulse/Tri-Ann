@@ -113,6 +113,13 @@ button { font: inherit; color: inherit; }
 .quotes { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 18px 2px 6px; scrollbar-width: none; }
 .quotes::-webkit-scrollbar { display: none; }
 .quotes:empty { display: none; }
+.quotes-carousel { position: relative; }
+.carousel-btn { position: absolute; top: 50%; z-index: 1; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+.carousel-btn.prev { left: -14px; transform: translateY(-50%) rotate(180deg); }
+.carousel-btn.next { right: -14px; transform: translateY(-50%); }
+@media (hover: none) { .carousel-btn { display: none; } }
+.cal-reviews { margin-top: 14px; }
+.cal-reviews .quotes { padding-top: 8px; }
 .quote { flex: 0 0 min(340px, 86%); scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
 .quote p { margin: 0; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
 .quote footer { margin-top: auto; color: var(--muted); font-size: .88rem; }

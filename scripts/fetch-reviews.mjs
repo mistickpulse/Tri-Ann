@@ -9,6 +9,13 @@ const OUT = "src/_data/googleReviews.json";
 const FIELDS = "rating,userRatingCount,reviews.rating,reviews.originalText,reviews.text,reviews.publishTime,reviews.authorAttribution.displayName,reviews.authorAttribution.photoUri";
 // Google ne renvoie que 5 avis par restaurant : on garde ceux déjà vus pour avoir plus de choix (30 max, les plus récents)
 const KEEP = 30;
+// … sauf ceux qui parlent d'un événement (mot « avis: » des fichiers src/content/events), gardés sans limite
+const plain = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const EVENT_WORDS = fs.readdirSync("src/content/events")
+  .map((f) => fs.readFileSync(`src/content/events/${f}`, "utf8").match(/^avis:\s*(.+)$/m)?.[1].trim())
+  .filter(Boolean)
+  .map(plain);
+const aboutEvent = (rv) => EVENT_WORDS.some((w) => plain(rv.text).includes(w));
 
 const restaurants = JSON.parse(fs.readFileSync("src/_data/restaurants.json", "utf8"));
 const previous = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, "utf8")) : { places: {} };
@@ -43,7 +50,9 @@ for (const r of restaurants) {
     places[r.placeId] = {
       rating: d.rating ?? null,
       count: d.userRatingCount ?? null,
-      reviews: [...pool.values()].sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, KEEP),
+      reviews: [...pool.values()]
+        .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+        .filter((rv, i) => i < KEEP || aboutEvent(rv)),
     };
     console.log(`Avis Google : ${r.city} ${d.rating} (${d.userRatingCount} avis, ${fresh.length} nouveaux, ${places[r.placeId].reviews.length} en réserve)`);
   } catch (e) {

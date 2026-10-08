@@ -178,3 +178,26 @@ if (reviewBar) {
     try { sessionStorage.setItem("triann-relecture-fermee", "1"); } catch { /* navigation privée */ }
   });
 }
+
+// Avis Google : défilement automatique (pause au survol, au toucher ou au clavier), flèches et glissement au doigt
+document.querySelectorAll("[data-carousel]").forEach((box) => {
+  const track = box.querySelector("[data-carousel-track]");
+  const step = () => (track.firstElementChild?.getBoundingClientRect().width || 300) + 14;
+  const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+  const go = (dir) => track.scrollTo({ left: dir > 0 && atEnd() ? 0 : dir < 0 && track.scrollLeft < 8 ? track.scrollWidth : track.scrollLeft + dir * step(), behavior: "smooth" });
+  box.querySelector("[data-carousel-prev]").addEventListener("click", () => { go(-1); pause(); });
+  box.querySelector("[data-carousel-next]").addEventListener("click", () => { go(1); pause(); });
+
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let visible = false, pausedUntil = 0, hovered = false;
+  const pause = (ms = 8000) => (pausedUntil = Date.now() + ms);
+  box.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") hovered = true; });
+  box.addEventListener("pointerleave", () => { hovered = false; pause(2000); });
+  track.addEventListener("touchstart", () => pause(), { passive: true });
+  track.addEventListener("wheel", () => pause(), { passive: true });
+  box.addEventListener("focusin", () => pause(15000));
+  new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.4 }).observe(track);
+  setInterval(() => {
+    if (visible && !hovered && !document.hidden && Date.now() > pausedUntil) go(1);
+  }, 5000);
+});
