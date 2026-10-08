@@ -9,9 +9,9 @@
   {%- set g = googleReviews.places[r.placeId] if (googleReviews and googleReviews.places) else null %}
   <a class="rating-mini" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener">
     {%- if g and g.rating %}
-    <b>{{ g.rating | score(lang) }}</b><span class="stars" aria-label="{{ g.rating }}/5">{{ g.rating | stars }}</span><small class="muted">{{ g.count }} {{ "reviews.count" | t(lang) }} Google</small>
+    <b>{{ g.rating | score(lang) }}</b><span class="stars" aria-label="{{ g.rating }}/5">{{ g.rating | stars }}</span><small class="muted google-count">{{ googleLogo(14) }} {{ g.count }} {{ "reviews.count" | t(lang) }} Google</small>
     {%- else %}
-    <b>G</b><small class="muted">{{ "Lire les avis Google" if lang == "fr" else "Read our Google reviews" }}</small>
+    {{ googleLogo(18) }}<small class="muted">{{ "Lire les avis Google" if lang == "fr" else "Read our Google reviews" }}</small>
     {%- endif %}
   </a>
   {%- endif %}
@@ -63,9 +63,9 @@
     <a class="rating" href="https://search.google.com/local/reviews?placeid={{ r.placeId }}" target="_blank" rel="noopener">
       {%- if g and g.rating %}
       <span class="score">{{ g.rating | score(lang) }}</span>
-      <span><span class="stars" aria-label="{{ g.rating }}/5">{{ g.rating | stars }}</span><b>{{ r.city }}</b><small class="muted">{{ g.count }} {{ "reviews.count" | t(lang) }} Google</small></span>
+      <span><span class="stars" aria-label="{{ g.rating }}/5">{{ g.rating | stars }}</span><b>{{ r.city }}</b><small class="muted google-count">{{ googleLogo(14) }} {{ g.count }} {{ "reviews.count" | t(lang) }} Google</small></span>
       {%- else %}
-      <span class="score">G</span>
+      <span class="score">{{ googleLogo(26) }}</span>
       <span><b>{{ r.city }}</b><small class="muted">{{ "Lire les avis Google" if lang == "fr" else "Read our Google reviews" }}</small></span>
       {%- endif %}
     </a>
@@ -75,11 +75,15 @@
 </div>
 {%- endmacro -%}
 
+{%- macro googleLogo(size) -%}
+<svg class="google-logo" width="{{ size or 18 }}" height="{{ size or 18 }}" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
+{%- endmacro -%}
+
 {%- macro quotesList(places, lang, restaurants) -%}
 <div class="quotes" aria-label="{{ 'reviews.title' | t(lang) }}">
   {%- for q in googleReviews | reviewQuotes(restaurants, places) %}
   <article class="quote">
-    <span class="stars" aria-label="{{ q.rating }}/5">{{ q.rating | stars }}</span>
+    <div class="quote-head"><span class="stars" aria-label="{{ q.rating }}/5">{{ q.rating | stars }}</span><span class="google-tag">{{ googleLogo(18) }} {{ "Avis Google" if lang == "fr" else "Google review" }}</span></div>
     <p>{{ q.text }}</p>
     <footer class="quote-author">
       {%- if q.photo %}<img class="avatar" src="{{ q.photo }}" alt="" width="40" height="40" loading="lazy" referrerpolicy="no-referrer">
