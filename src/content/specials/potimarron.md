@@ -5,6 +5,5 @@ description: Galette de sarrasin gratinée à la tome fondue, poêlée de potima
 description_en: Buckwheat galette topped with melted tomme cheese, pan-fried red kuri squash and chestnuts, sautéed potatoes, mushroom cream, chives and crushed chestnuts. Served with a salad.
 etablissements: [moussy-le-neuf, lagny-le-sec]
 image: /assets/img/speciales/potimarron.jpg
-price: 15.90
 active: true
 ---
