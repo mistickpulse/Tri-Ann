@@ -103,6 +103,20 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("score", (n, lang) => (n ? (lang === "fr" ? n.toFixed(1).replace(".", ",") : n.toFixed(1)) : "–"));
   eleventyConfig.addFilter("stars", (n) => "★".repeat(Math.round(n || 0)).padEnd(5, "☆"));
 
+  // Liste de tous les plats et boissons pour l'outil de menus de l'espace équipe
+  eleventyConfig.addFilter("menuCatalog", (menu, drinks, specials) => {
+    const fr = (v) => (v == null ? "" : typeof v === "string" ? v : v.fr);
+    const out = [];
+    for (const s of specials || []) out.push({ g: "Spécialités du moment", n: s.data.name, d: s.data.description || "", p: s.data.price ?? null, a: s.data.allergens ?? null });
+    for (const c of menu.categories)
+      for (const sec of c.sections) {
+        if (sec.type === "flavours") { for (const g of sec.groups) for (const it of g.items) out.push({ g: `${fr(c.title)} · ${fr(g.title)}`, n: fr(it.name), d: "", p: null, a: it.allergens ?? null }); continue; }
+        for (const it of sec.items || []) out.push({ g: [fr(c.title), fr(sec.title)].filter(Boolean).join(" · "), n: fr(it.name), d: fr(it.desc), p: it.price ?? sec.price ?? null, a: it.allergens ?? null });
+      }
+    for (const sec of drinks.sections) for (const it of sec.items) out.push({ g: `Boissons · ${fr(sec.title)}`, n: fr(it.name), d: fr(it.desc), p: it.price ?? null, a: it.allergens ?? null });
+    return JSON.stringify(out).replace(/</g, "\\u003c");
+  });
+
   eleventyConfig.addFilter("price", (value, lang) => {
     if (value == null || value === "") return "";
     const n = Number(value);

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "eleventy --serve --port=8081",
-    "build": "eleventy",
+    "build": "eleventy && node scripts/chiffrer-admin.mjs",
     "avis": "node scripts/avis-local.mjs",
     "pdf": "node scripts/carte-pdf.mjs"
   },

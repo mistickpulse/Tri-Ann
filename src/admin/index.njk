@@ -1,0 +1,97 @@
+---
+# Porte d'entrée de l'espace admin. Le contenu (outil de menus) est chiffré avec le code secret
+# par scripts/chiffrer-admin.mjs : sans le code, il n'y a rien à lire dans cette page.
+permalink: /admin/
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tri-Ann · Espace équipe</title>
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32">
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("/assets/fonts/playfair-display-latin-700-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 100 900; src: url("/assets/fonts/inter-latin-wght-normal.woff2") format("woff2"); }
+  :root { --bg: #141110; --surface: #241f1c; --ink: #f1e9df; --muted: #b3a597; --line: #3a322c; --accent: #8fa8b5; --ko: #e08a7a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 16px; background: var(--bg); color: var(--ink); font: 400 1rem/1.5 "Inter", system-ui, sans-serif; }
+  form { width: min(380px, 100%); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: grid; gap: 14px; text-align: center; }
+  img { width: 64px; height: 64px; border-radius: 12px; justify-self: center; }
+  h1 { font: 700 1.6rem "Playfair Display", Georgia, serif; margin: 0; }
+  p { margin: 0; color: var(--muted); font-size: .92rem; }
+  input[type=password] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: .8em 1.1em; text-align: center; }
+  input[type=password]:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+  label { display: flex; gap: 8px; justify-content: center; align-items: center; color: var(--muted); font-size: .88rem; }
+  button { font: 700 1rem "Inter", sans-serif; color: #141110; background: var(--accent); border: 0; border-radius: 999px; padding: .85em; cursor: pointer; }
+  button:disabled { opacity: .6; cursor: wait; }
+  .err { color: var(--ko); min-height: 1.4em; font-weight: 600; }
+</style>
+</head>
+<body>
+<form id="login" autocomplete="off">
+  <img src="/assets/img/logo-96.jpg" alt="">
+  <h1>Espace équipe</h1>
+  <p>Entrez le code de l'équipe Tri-Ann.</p>
+  <input type="password" name="code" required autofocus aria-label="Code">
+  <label><input type="checkbox" name="remember" checked> Rester connecté sur cet appareil</label>
+  <button type="submit">Entrer</button>
+  <p class="err" role="alert" data-err></p>
+</form>
+{#- Rempli par scripts/chiffrer-admin.mjs : { s: sel, i: iv, c: contenu chiffré } en base64, ou null #}
+<script type="application/json" id="payload">__ADMIN_PAYLOAD__</script>
+<script>
+(() => {
+  const KEY = "triann-admin-cle";
+  const ITER = 600000; // doit rester identique à scripts/chiffrer-admin.mjs
+  const form = document.getElementById("login");
+  const err = form.querySelector("[data-err]");
+  let payload = null;
+  try { payload = JSON.parse(document.getElementById("payload").textContent); } catch { /* page non chiffrée (serveur local) */ }
+  const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const toB64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
+
+  if (!payload) { err.textContent = "Espace pas encore configuré."; form.querySelector("button").disabled = true; return; }
+
+  async function keyFromCode(code) {
+    const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(code), "PBKDF2", false, ["deriveKey"]);
+    return crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(payload.s), iterations: ITER, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, true, ["decrypt"]);
+  }
+  // Déchiffre l'outil (échoue si la clé est mauvaise), puis remplace la page par l'outil
+  const decrypt = async (key) => new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(payload.i) }, key, b64(payload.c)));
+  // Remplace la page seulement une fois celle-ci entièrement chargée (sinon le contenu s’ajouterait au lieu de remplacer)
+  const show = (html) => {
+    const go = () => { document.open(); document.write(html); document.close(); };
+    if (document.readyState === "complete") go(); else addEventListener("load", go, { once: true });
+  };
+
+  // Appareil déjà connu : on ouvre directement
+  try {
+    const saved = localStorage.getItem(KEY);
+    if (saved) crypto.subtle.importKey("raw", b64(saved), "AES-GCM", true, ["decrypt"]).then(decrypt).then(show).catch(() => localStorage.removeItem(KEY));
+  } catch { /* navigation privée */ }
+
+  let fails = 0;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector("button");
+    btn.disabled = true; err.textContent = "";
+    try {
+      const key = await keyFromCode(form.code.value);
+      const html = await decrypt(key);
+      if (form.remember.checked) try { localStorage.setItem(KEY, toB64(await crypto.subtle.exportKey("raw", key))); } catch { /* navigation privée */ }
+      show(html);
+    } catch {
+      fails++;
+      err.textContent = "Code incorrect.";
+      // Attente qui s'allonge à chaque erreur
+      await new Promise((r) => setTimeout(r, Math.min(fails, 10) * 1000));
+      btn.disabled = false; form.code.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>

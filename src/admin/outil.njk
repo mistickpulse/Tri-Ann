@@ -1,0 +1,326 @@
+---
+# Outil de création de menus (groupes, événements). Construit en clair dans _site/admin/_outil.html,
+# puis chiffré par scripts/chiffrer-admin.mjs et supprimé : il n'est jamais publié lisible.
+permalink: /admin/_outil.html
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tri-Ann · Menus</title>
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32">
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("/assets/fonts/playfair-display-latin-700-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 100 900; src: url("/assets/fonts/inter-latin-wght-normal.woff2") format("woff2"); }
+  :root { --bg: #141110; --bg2: #1c1816; --surface: #241f1c; --ink: #f1e9df; --muted: #b3a597; --line: #3a322c; --accent: #8fa8b5; --ko: #e08a7a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.5 "Inter", system-ui, sans-serif; }
+  button, input, select, textarea { font: inherit; }
+  .bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg2); border-bottom: 1px solid var(--line); }
+  .bar img { width: 36px; height: 36px; border-radius: 8px; }
+  .bar h1 { font: 700 1.2rem "Playfair Display", serif; margin: 0 auto 0 4px; }
+  .btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: .5em 1em; cursor: pointer; font-weight: 600; }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #141110; border-color: var(--accent); }
+  .btn.small { padding: .25em .7em; font-size: .85rem; }
+  .btn.danger { color: var(--ko); }
+  main { display: grid; grid-template-columns: minmax(340px, 480px) 1fr; gap: 20px; padding: 16px; align-items: start; }
+  main > * { min-width: 0; }
+  @media (max-width: 980px) { main { grid-template-columns: 1fr; } }
+  .editor { display: grid; gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; gap: 10px; }
+  .card h2 { margin: 0; font: 700 1.05rem "Playfair Display", serif; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  label.f { display: grid; gap: 4px; font-size: .82rem; color: var(--muted); font-weight: 600; }
+  input, select, textarea { width: 100%; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: .55em .7em; }
+  textarea { min-height: 64px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+  .course { border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: grid; gap: 8px; background: var(--bg2); }
+  .course-head { display: flex; gap: 6px; align-items: center; }
+  .course-head input { font-weight: 700; }
+  .items { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .items li { display: grid; grid-template-columns: 1fr 86px auto; gap: 6px; background: var(--surface); border-radius: 8px; padding: 8px; }
+  .items li textarea { grid-column: 1 / -1; min-height: 40px; font-size: .88rem; }
+  .items .tools { display: flex; gap: 4px; }
+  .items input[data-k="n"] { font-weight: 700; }
+  .course-note { font-size: .88rem; }
+  .toggles { display: grid; gap: 6px; }
+  .muted { color: var(--muted); font-size: .85rem; margin: 0; }
+  .check { display: flex; gap: 8px; align-items: center; font-size: .88rem; color: var(--muted); }
+  .check input { width: auto; }
+  .saved { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 260px; overflow: auto; }
+  .saved li { display: flex; gap: 6px; align-items: center; }
+  .saved li span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .preview-wrap { position: sticky; top: 72px; }
+  .help { margin: 0 0 8px; color: var(--muted); font-size: .85rem; }
+
+  /* Aperçu = le document remis au client (A4) */
+  .sheet { --ink2: #2a211b; --muted2: #6b625b; --acc: #4f6875; background: #fbf8f3; color: var(--ink2); width: 210mm; max-width: 100%; min-height: 297mm; margin: 0 auto; padding: 16mm 16mm 14mm; box-shadow: 0 20px 60px rgba(0,0,0,.5); display: flex; flex-direction: column; font-size: 10.5pt; }
+  .sheet header { display: flex; gap: 14px; align-items: center; padding-bottom: 10px; border-bottom: 2px solid var(--acc); }
+  .sheet header img { width: 58px; height: 58px; border-radius: 10px; }
+  .sheet header b { display: block; font: 700 14pt "Playfair Display", serif; }
+  .sheet header span { color: var(--muted2); font-size: 9pt; }
+  .sheet .title { text-align: center; margin: 14mm 0 2mm; font: 700 26pt/1.1 "Playfair Display", serif; color: var(--ink2); }
+  .sheet .meta { text-align: center; color: var(--muted2); margin: 0; }
+  .sheet .intro { text-align: center; max-width: 140mm; margin: 6mm auto 0; font-style: italic; color: var(--muted2); white-space: pre-line; }
+  .sheet .courses { margin: 10mm auto 0; width: 100%; max-width: 150mm; text-align: center; }
+  .sheet .course-t { font: 700 12pt "Playfair Display", serif; color: var(--acc); text-transform: uppercase; letter-spacing: .12em; margin: 7mm 0 2mm; }
+  .sheet .course-t::before, .sheet .course-t::after { content: "—"; margin: 0 .6em; color: #c8bdb0; }
+  .sheet .dish { margin: 0 0 2.5mm; }
+  .sheet .dish b { font-size: 11.5pt; }
+  .sheet .dish .ip { color: var(--acc); font-weight: 700; margin-left: .4em; }
+  .sheet .dish small { display: block; color: var(--muted2); font-size: 9pt; }
+  .sheet .dish em { display: block; color: #8a6d1f; font-size: 8pt; font-style: normal; }
+  .sheet .or { color: var(--muted2); font-style: italic; font-size: 9pt; margin: 0 0 2.5mm; }
+  .sheet .price { margin: 10mm auto 0; text-align: center; }
+  .sheet .price b { display: inline-block; font: 700 20pt "Playfair Display", serif; color: var(--acc); border: 2px solid var(--acc); border-radius: 999px; padding: 1mm 8mm; }
+  .sheet .price span { display: block; color: var(--muted2); font-size: 9pt; margin-top: 2mm; }
+  .sheet .mentions { margin-top: auto; padding-top: 8mm; color: var(--muted2); font-size: 8.5pt; white-space: pre-line; text-align: center; }
+  .sheet footer { margin-top: 4mm; padding-top: 3mm; border-top: 1px solid #ddd3c7; text-align: center; color: var(--muted2); font-size: 8.5pt; }
+
+  @media print {
+    @page { size: A4; margin: 0; }
+    html, body { background: #fbf8f3; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .bar, .editor, .help { display: none !important; }
+    main { display: block; padding: 0; }
+    .preview-wrap { position: static; }
+    .sheet { box-shadow: none; width: 210mm; min-height: 297mm; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="bar">
+  <img src="/assets/img/logo-96.jpg" alt="">
+  <h1>Menus · Espace équipe</h1>
+  <button class="btn" type="button" data-act="new">Nouveau</button>
+  <button class="btn" type="button" data-act="save">Enregistrer</button>
+  <button class="btn primary" type="button" data-act="print">Télécharger le PDF</button>
+  <button class="btn small" type="button" data-act="logout" title="Oublier le code sur cet appareil">Se déconnecter</button>
+</div>
+
+<main>
+  <div class="editor">
+    <section class="card">
+      <h2>Le menu</h2>
+      <label class="f">Modèle de départ
+        <select data-template>
+          <option value="">— Choisir un modèle —</option>
+          <option value="groupe">Menu groupe</option>
+          <option value="anniversaire">Menu anniversaire</option>
+          <option value="entreprise">Menu entreprise</option>
+          <option value="enfant">Menu enfant</option>
+        </select>
+      </label>
+      <label class="f">Restaurant
+        <select data-f="resto">{% for r in restaurants %}<option value="{{ r.slug }}">{{ r.name }} – {{ r.city }}</option>{% endfor %}</select>
+      </label>
+      <label class="f">Titre<input data-f="title" placeholder="Menu anniversaire"></label>
+      <div class="row">
+        <label class="f">Client<input data-f="client" placeholder="Famille Martin"></label>
+        <label class="f">Date<input data-f="date" type="date"></label>
+      </div>
+      <div class="row">
+        <label class="f">Nombre de personnes<input data-f="guests" type="number" min="1"></label>
+        <label class="f">Prix par personne (€, vide = pas de prix)<input data-f="price" type="number" min="0" step="0.1"></label>
+      </div>
+      <label class="f">Précision sous le prix<input data-f="priceNote" placeholder="Boissons non comprises"></label>
+      <label class="f">Petit mot d'introduction (facultatif)<textarea data-f="intro" placeholder="Nous sommes heureux de vous accueillir…"></textarea></label>
+    </section>
+
+    <section class="card">
+      <h2>Les plats</h2>
+      <p class="muted">Pour chaque étape, cherchez un plat de la carte ou écrivez un plat libre, puis Entrée. Plusieurs plats dans une étape = au choix.</p>
+      <div data-courses></div>
+      <button class="btn" type="button" data-act="add-course">+ Ajouter une étape</button>
+      <div class="toggles">
+        <label class="check"><input type="checkbox" data-f="showItemPrices"> Afficher le prix de chaque plat (prix vide = non affiché)</label>
+        <label class="check"><input type="checkbox" data-f="showDesc" checked> Afficher les descriptions</label>
+        <label class="check"><input type="checkbox" data-f="showAllergens"> Afficher les allergènes sous chaque plat</label>
+        <label class="check"><input type="checkbox" data-f="showOr" checked> Écrire « ou » entre les plats d'une même étape</label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Mentions</h2>
+      <textarea data-f="mentions"></textarea>
+    </section>
+
+    <section class="card">
+      <h2>Menus enregistrés <small class="muted">(sur cet appareil)</small></h2>
+      <ul class="saved" data-saved></ul>
+      <div class="row">
+        <button class="btn small" type="button" data-act="export">Exporter (fichier)</button>
+        <label class="btn small" style="text-align:center">Importer<input type="file" accept=".json" data-import hidden></label>
+      </div>
+    </section>
+  </div>
+
+  <div class="preview-wrap">
+    <p class="help">Aperçu du document remis au client. « Télécharger le PDF » ouvre l'impression : choisissez « Enregistrer au format PDF ».</p>
+    <article class="sheet" data-sheet></article>
+  </div>
+</main>
+
+<datalist id="catalog"></datalist>
+<script type="application/json" id="data-catalog">{{ menu | menuCatalog(drinks, collections.specials) | safe }}</script>
+<script type="application/json" id="data-restos">{{ restaurants | json | safe }}</script>
+<script type="application/json" id="data-allergens">{{ site.allergens | json | safe }}</script>
+<script>
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const CATALOG = JSON.parse($("#data-catalog").textContent);
+  const RESTOS = JSON.parse($("#data-restos").textContent);
+  const ALLERGENS = Object.fromEntries(JSON.parse($("#data-allergens").textContent).map((a) => [a.id, a.fr]));
+  const STORE = "triann-menus";
+  const label = (c) => `${c.n} — ${c.g}`;
+  $("#catalog").innerHTML = CATALOG.map((c) => `<option value="${esc(label(c))}">`).join("");
+
+  const MENTIONS = "Menu établi pour l'ensemble du groupe, à confirmer au plus tard 7 jours avant la date.\nMerci de nous signaler toute allergie ou régime particulier.\nPrix nets en euros, service compris.";
+  const TEMPLATES = {
+    groupe: { title: "Menu groupe", courses: ["Apéritif", "Galette", "Crêpe", "Boisson"], priceNote: "Boissons non comprises sauf mention" },
+    anniversaire: { title: "Menu anniversaire", courses: ["Apéritif", "Galette", "Dessert"], priceNote: "", intro: "Une attention particulière sera apportée au dessert… surprise, surprise 😉" },
+    entreprise: { title: "Menu entreprise", courses: ["Galette", "Crêpe", "Boisson chaude"], priceNote: "Boissons non comprises sauf mention" },
+    enfant: { title: "Menu enfant", courses: ["Plat", "Dessert", "Boisson"], priceNote: "" },
+  };
+  const blank = () => ({ id: Date.now().toString(36), resto: RESTOS[0].slug, title: "", client: "", date: "", guests: "", price: "", priceNote: "", intro: "", courses: [{ t: "Galette", items: [] }, { t: "Dessert", items: [] }], showAllergens: false, showItemPrices: false, showDesc: true, showOr: true, mentions: MENTIONS });
+  let m = blank();
+
+  // ---------- Éditeur ----------
+  const fields = document.querySelectorAll("[data-f]");
+  function fill() {
+    fields.forEach((el) => { const k = el.dataset.f; if (el.type === "checkbox") el.checked = !!m[k]; else el.value = m[k] ?? ""; });
+    renderCourses(); render();
+  }
+  fields.forEach((el) => el.addEventListener("input", () => { m[el.dataset.f] = el.type === "checkbox" ? el.checked : el.value; render(); }));
+
+  const coursesEl = $("[data-courses]");
+  function renderCourses() {
+    coursesEl.innerHTML = m.courses.map((c, i) => `
+      <div class="course" data-i="${i}">
+        <div class="course-head">
+          <input value="${esc(c.t)}" data-course-title aria-label="Nom de l'étape">
+          <button class="btn small" type="button" data-up title="Monter">↑</button>
+          <button class="btn small" type="button" data-down title="Descendre">↓</button>
+          <button class="btn small danger" type="button" data-del-course title="Supprimer l'étape">✕</button>
+        </div>
+        <input class="course-note" value="${esc(c.note || "")}" data-course-note placeholder="Note facultative (ex. au choix, à partager)">
+        <ul class="items">${c.items.map((it, j) => `<li data-j="${j}">
+          <input value="${esc(it.n)}" data-k="n" aria-label="Nom du plat">
+          <input value="${it.p ?? ""}" data-k="p" type="number" min="0" step="0.1" placeholder="Prix" aria-label="Prix (vide = pas de prix)">
+          <span class="tools"><button class="btn small" type="button" data-item-up title="Monter">↑</button><button class="btn small danger" type="button" data-del-item="${j}" title="Retirer">✕</button></span>
+          <textarea data-k="d" placeholder="Description / ingrédients (facultatif)">${esc(it.d)}</textarea>
+        </li>`).join("")}</ul>
+        <input list="catalog" placeholder="Ajouter un plat (recherche ou texte libre) puis Entrée" data-add-item>
+      </div>`).join("");
+  }
+  coursesEl.addEventListener("input", (e) => {
+    const box = e.target.closest(".course"); if (!box) return;
+    const c = m.courses[+box.dataset.i];
+    if (e.target.matches("[data-course-title]")) { c.t = e.target.value; render(); }
+    if (e.target.matches("[data-course-note]")) { c.note = e.target.value; render(); }
+    const li = e.target.closest("li[data-j]");
+    if (li && e.target.dataset.k) { const it = c.items[+li.dataset.j]; const k = e.target.dataset.k; it[k] = k === "p" ? (e.target.value === "" ? null : Number(e.target.value)) : e.target.value; render(); }
+    // Choix dans la liste de la carte : ajout direct
+    if (e.target.matches("[data-add-item]")) {
+      const hit = CATALOG.find((x) => label(x) === e.target.value);
+      if (hit) { c.items.push({ n: hit.n, d: hit.d, a: hit.a, p: hit.p }); renderCourses(); render(); coursesEl.querySelector(`.course[data-i="${box.dataset.i}"] [data-add-item]`).focus(); }
+    }
+  });
+  coursesEl.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" || !e.target.matches("[data-add-item]")) return;
+    e.preventDefault();
+    const v = e.target.value.trim(); if (!v) return;
+    const box = e.target.closest(".course");
+    m.courses[+box.dataset.i].items.push({ n: v, d: "", a: null, p: null });
+    renderCourses(); render();
+    coursesEl.querySelector(`.course[data-i="${box.dataset.i}"] [data-add-item]`).focus();
+  });
+  coursesEl.addEventListener("click", (e) => {
+    const box = e.target.closest(".course"); if (!box) return;
+    const i = +box.dataset.i, cs = m.courses;
+    if (e.target.matches("[data-del-item]")) cs[i].items.splice(+e.target.dataset.delItem, 1);
+    else if (e.target.matches("[data-item-up]")) { const j = +e.target.closest("li").dataset.j; if (j > 0) [cs[i].items[j - 1], cs[i].items[j]] = [cs[i].items[j], cs[i].items[j - 1]]; else return; }
+    else if (e.target.matches("[data-del-course]")) cs.splice(i, 1);
+    else if (e.target.matches("[data-up]") && i > 0) [cs[i - 1], cs[i]] = [cs[i], cs[i - 1]];
+    else if (e.target.matches("[data-down]") && i < cs.length - 1) [cs[i + 1], cs[i]] = [cs[i], cs[i + 1]];
+    else return;
+    renderCourses(); render();
+  });
+
+  $("[data-template]").addEventListener("change", (e) => {
+    const t = TEMPLATES[e.target.value]; if (!t) return;
+    const keep = { resto: m.resto, client: m.client, date: m.date, guests: m.guests };
+    m = { ...blank(), ...keep, title: t.title, priceNote: t.priceNote, intro: t.intro || "", courses: t.courses.map((x) => ({ t: x, items: [] })) };
+    e.target.value = ""; fill();
+  });
+
+  // ---------- Aperçu ----------
+  const fmtPrice = (v) => (v === "" || v == null ? "" : Number(v).toFixed(2).replace(".", ",") + " €");
+  const fmtDate = (d) => (d ? new Date(d + "T12:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "");
+  function render() {
+    const r = RESTOS.find((x) => x.slug === m.resto) || RESTOS[0];
+    const meta = [m.client, fmtDate(m.date), m.guests ? `${m.guests} personne${m.guests > 1 ? "s" : ""}` : ""].filter(Boolean).join(" · ");
+    const courses = m.courses.filter((c) => c.t || c.items.length).map((c) => `
+      <div class="course-t">${esc(c.t)}</div>${c.note ? `<p class="or">${esc(c.note)}</p>` : ""}
+      ${c.items.map((it, j) => `${j && m.showOr !== false ? `<p class="or">ou</p>` : ""}<div class="dish"><b>${esc(it.n)}</b>${m.showItemPrices && it.p != null && it.p !== "" ? ` <span class="ip">${fmtPrice(it.p)}</span>` : ""}${m.showDesc !== false && it.d ? `<small>${esc(it.d)}</small>` : ""}${m.showAllergens && it.a && it.a.length ? `<em>Allergènes : ${it.a.map((a) => esc(ALLERGENS[a] || a)).join(", ")}</em>` : ""}</div>`).join("") || `<p class="or">…</p>`}`).join("");
+    $("[data-sheet]").innerHTML = `
+      <header><img src="/assets/img/logo-96.jpg" alt=""><div><b>${esc(r.name)} – ${esc(r.city)}</b><span>${esc(r.street)}, ${esc(r.postalCode)} ${esc(r.city)} · ${esc(r.phone)}</span></div></header>
+      <h2 class="title">${esc(m.title || "Notre menu")}</h2>
+      ${meta ? `<p class="meta">${esc(meta)}</p>` : ""}
+      ${m.intro ? `<p class="intro">${esc(m.intro)}</p>` : ""}
+      <div class="courses">${courses}</div>
+      ${m.price !== "" ? `<div class="price"><b>${fmtPrice(m.price)}</b><span>par personne${m.priceNote ? " · " + esc(m.priceNote) : ""}</span></div>` : ""}
+      <div class="mentions">${esc(m.mentions)}</div>
+      <footer>Crêperie bretonne Tri-Ann · tri-ann.fr</footer>`;
+    document.title = ["Menu", m.title, m.client, m.date].filter(Boolean).join(" - ");
+  }
+
+  // ---------- Enregistrement (sur l'appareil) ----------
+  const load = () => { try { return JSON.parse(localStorage.getItem(STORE) || "[]"); } catch { return []; } };
+  const store = (list) => { try { localStorage.setItem(STORE, JSON.stringify(list)); } catch { alert("Impossible d'enregistrer sur cet appareil (navigation privée ?)."); } };
+  function renderSaved() {
+    const list = load().sort((a, b) => (b.saved || "").localeCompare(a.saved || ""));
+    $("[data-saved]").innerHTML = list.length ? list.map((x) => `<li><span>${esc(x.title || "Sans titre")}${x.client ? " · " + esc(x.client) : ""}${x.date ? " · " + esc(x.date) : ""}</span>
+      <button class="btn small" type="button" data-open="${x.id}">Ouvrir</button><button class="btn small" type="button" data-copy="${x.id}">Dupliquer</button><button class="btn small danger" type="button" data-remove="${x.id}">✕</button></li>`).join("") : `<li class="muted">Aucun menu enregistré.</li>`;
+  }
+  $("[data-saved]").addEventListener("click", (e) => {
+    const list = load(), b = e.target.closest("button"); if (!b) return;
+    const id = b.dataset.open || b.dataset.copy || b.dataset.remove, x = list.find((y) => y.id === id); if (!x) return;
+    if (b.dataset.open) { m = { ...blank(), ...structuredClone(x) }; fill(); }
+    if (b.dataset.copy) { m = { ...structuredClone(x), id: Date.now().toString(36), client: "", date: "", guests: "" }; fill(); }
+    if (b.dataset.remove && confirm(`Supprimer « ${x.title || "Sans titre"} » ?`)) { store(list.filter((y) => y.id !== id)); renderSaved(); }
+  });
+
+  document.querySelector(".bar").addEventListener("click", (e) => {
+    const act = e.target.closest("[data-act]")?.dataset.act;
+    if (act === "new" && confirm("Commencer un nouveau menu ? (pensez à enregistrer celui-ci)")) { m = blank(); fill(); }
+    if (act === "save") { const list = load().filter((y) => y.id !== m.id); list.push({ ...m, saved: new Date().toISOString() }); store(list); renderSaved(); e.target.textContent = "Enregistré ✓"; setTimeout(() => (e.target.textContent = "Enregistrer"), 1500); }
+    if (act === "print") window.print();
+    if (act === "logout") { try { localStorage.removeItem("triann-admin-cle"); } catch {} location.reload(); }
+  });
+  $("[data-act=add-course]").addEventListener("click", () => { m.courses.push({ t: "Nouvelle étape", items: [] }); renderCourses(); render(); });
+
+  // Export / import d'un fichier (pour passer d'un appareil à l'autre)
+  $("[data-act=export]").addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(load(), null, 2)], { type: "application/json" }));
+    a.download = `menus-tri-ann-${new Date().toISOString().slice(0, 10)}.json`; a.click();
+  });
+  $("[data-import]").addEventListener("change", async (e) => {
+    try {
+      const incoming = JSON.parse(await e.target.files[0].text());
+      const list = load(); for (const x of incoming) if (x && x.id && !list.some((y) => y.id === x.id)) list.push(x);
+      store(list); renderSaved(); alert(`${incoming.length} menu(s) importé(s).`);
+    } catch { alert("Fichier non reconnu."); }
+    e.target.value = "";
+  });
+
+  fill(); renderSaved();
+})();
+</script>
+</body>
+</html>

@@ -49,6 +49,8 @@ jobs:
         # Site servi à la racine de tri-ann.fr (sur github.io sans domaine perso : PATH_PREFIX: /Tri-Ann/)
         env:
           PATH_PREFIX: /
+          # Code de l'espace équipe (/admin/) : sert à chiffrer l'outil de menus, jamais publié
+          ADMIN_CODE: ${{ secrets.ADMIN_CODE }}
         run: npm run build
       # Carte en PDF (français et anglais), à partir de la carte imprimable du site
       - name: Menu PDF
