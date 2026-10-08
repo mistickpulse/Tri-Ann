@@ -8,5 +8,5 @@ image: /assets/img/speciales/pimprenelle.jpg
 allergens: [gluten, oeufs, soja, lait, sulfites]
 # Allergènes déduits des ingrédients : à valider en cuisine
 allergensInferred: true
-active: true
+active: false
 ---
