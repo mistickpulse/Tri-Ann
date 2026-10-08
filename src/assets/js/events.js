@@ -148,6 +148,7 @@
       const [y, m, d] = b.dataset.day.split("-").map(Number);
       selected = new Date(y, m - 1, d);
       renderGrid(); renderDetail();
+      root.querySelector(".cal-side").scrollTo({ top: 0, behavior: "smooth" });
     });
     upcoming.addEventListener("click", (e) => {
       const b = e.target.closest("[data-goto]");

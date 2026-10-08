@@ -452,7 +452,12 @@ html:has(body.page-menu), body.page-menu, .page-menu .menu-body, .page-menu .men
 
 /* ---------- Calendrier des événements ---------- */
 .calendar { display: grid; gap: 24px; margin-top: 8px; }
-@media (min-width: 960px) { .calendar { grid-template-columns: 1.7fr 1fr; align-items: start; } }
+@media (min-width: 960px) {
+  /* Liste de droite à la hauteur du calendrier, avec défilement interne */
+  .calendar { grid-template-columns: 1.7fr 1fr; align-items: stretch; }
+  .cal-side { contain: size; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  .cal-cell { min-height: 92px; }
+}
 .cal-main, .cal-side { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: clamp(16px, 3vw, 24px); }
 .cal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .cal-head [data-cal-prev] .ic { transform: rotate(180deg); }
