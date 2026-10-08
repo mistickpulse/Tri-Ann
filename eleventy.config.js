@@ -113,7 +113,8 @@ export default function (eleventyConfig) {
         if (sec.type === "flavours") { for (const g of sec.groups) for (const it of g.items) out.push({ g: `${fr(c.title)} · ${fr(g.title)}`, n: fr(it.name), d: "", p: null, a: it.allergens ?? null }); continue; }
         for (const it of sec.items || []) out.push({ g: [fr(c.title), fr(sec.title)].filter(Boolean).join(" · "), n: fr(it.name), d: fr(it.desc), p: it.price ?? sec.price ?? null, a: it.allergens ?? null });
       }
-    for (const sec of drinks.sections) for (const it of sec.items) out.push({ g: `Boissons · ${fr(sec.title)}`, n: fr(it.name), d: fr(it.desc), p: it.price ?? null, a: it.allergens ?? null });
+    // Boissons à plusieurs contenances : prix de la plus petite
+    for (const sec of drinks.sections) for (const it of sec.items) out.push({ g: `Boissons · ${fr(sec.title)}`, n: fr(it.name), d: fr(it.desc), p: it.price ?? (it.prices || []).find((x) => x != null) ?? null, a: it.allergens ?? null });
     return JSON.stringify(out).replace(/</g, "\\u003c");
   });
 
