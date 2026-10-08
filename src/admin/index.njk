@@ -48,11 +48,23 @@ eleventyExcludeFromCollections: true
   const ITER = 600000; // doit rester identique à scripts/chiffrer-admin.mjs
   const form = document.getElementById("login");
   const err = form.querySelector("[data-err]");
+  // Remplace la page seulement une fois celle-ci entièrement chargée (sinon le contenu s’ajouterait au lieu de remplacer)
+  const show = (html) => {
+    const go = () => { document.open(); document.write(html); document.close(); };
+    if (document.readyState === "complete") go(); else addEventListener("load", go, { once: true });
+  };
   let payload = null;
   try { payload = JSON.parse(document.getElementById("payload").textContent); } catch { /* page non chiffrée (serveur local) */ }
   const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
   const toB64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
 
+  // Serveur local (npm start) : la page n'est pas chiffrée, on ouvre directement l'outil sans code
+  const local = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+  if (!payload && local && document.getElementById("payload").textContent.trim() === "__ADMIN_PAYLOAD__") {
+    fetch("/admin/_outil.html").then((r) => (r.ok ? r.text() : Promise.reject())).then((html) => show(html))
+      .catch(() => { err.textContent = "Outil introuvable : lancer le site avec npm start."; });
+    return;
+  }
   if (!payload) { err.textContent = "Espace pas encore configuré."; form.querySelector("button").disabled = true; return; }
 
   async function keyFromCode(code) {
@@ -61,11 +73,6 @@ eleventyExcludeFromCollections: true
   }
   // Déchiffre l'outil (échoue si la clé est mauvaise), puis remplace la page par l'outil
   const decrypt = async (key) => new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(payload.i) }, key, b64(payload.c)));
-  // Remplace la page seulement une fois celle-ci entièrement chargée (sinon le contenu s’ajouterait au lieu de remplacer)
-  const show = (html) => {
-    const go = () => { document.open(); document.write(html); document.close(); };
-    if (document.readyState === "complete") go(); else addEventListener("load", go, { once: true });
-  };
 
   // Appareil déjà connu : on ouvre directement
   try {
