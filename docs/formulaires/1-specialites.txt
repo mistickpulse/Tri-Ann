@@ -12,7 +12,7 @@ Spécialité salée (galette)
 
 - Nom :
 - Ingrédients / description :
-- Prix :
+- Prix (seulement si ce n'est pas 15,90 €) :
 - Remplace la spécialité salée actuelle ? Oui / Non
 - Photo jointe ? Oui / Non
 
@@ -21,7 +21,7 @@ Spécialité sucrée (crêpe)
 
 - Nom :
 - Ingrédients / description :
-- Prix :
+- Prix (seulement si ce n'est pas 11,90 €) :
 - Remplace la spécialité sucrée actuelle ? Oui / Non
 - Photo jointe ? Oui / Non
 
