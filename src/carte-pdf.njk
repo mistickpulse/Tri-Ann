@@ -30,9 +30,9 @@ eleventyExcludeFromCollections: true
 {%- endmacro -%}
 {%- macro section(sec) -%}
 <section class="sec">
-  {%- if sec.title %}
+  {%- if sec.title or sec.price or sec.priceLabel or sec.sizes or sec.size %}
   <header class="sec-head">
-    <h3>{{ sec.title | tr(L) }}</h3>
+    {%- if sec.title %}<h3>{{ sec.title | tr(L) }}</h3>{% else %}<span></span>{% endif %}
     {%- if sec.sizes %}<span class="prices sizes">{% for z in sec.sizes %}<span>{{ z }}</span>{% endfor %}</span>
     {%- elif sec.size %}<span class="size">{{ sec.size }}</span>
     {%- elif sec.price %}<span class="badge">{{ sec.price | price(L) }}</span>

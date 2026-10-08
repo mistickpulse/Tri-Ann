@@ -294,6 +294,7 @@
       "sections": [
         {
           "id": "salades-liste",
+          "title": { "fr": "Nos salades composées", "en": "Our main-course salads" },
           "price": 12.9,
           "items": [
             {

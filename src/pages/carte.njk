@@ -46,9 +46,9 @@ scripts: ["/assets/js/menu.js"]
 
 {%- macro section(sec, lang, badges) -%}
 <section class="menu-section" id="{{ sec.id }}"{% if sec.noTakeaway %} data-no-takeaway{% endif %}>
-  {%- if sec.title %}
+  {%- if sec.title or sec.price or sec.priceLabel or sec.sizes or sec.size %}
   <header class="menu-section-head">
-    <h3>{{ sec.title | tr(lang) }}</h3>
+    {%- if sec.title %}<h3>{{ sec.title | tr(lang) }}</h3>{% else %}<span></span>{% endif %}
     {%- if sec.sizes %}<span class="dish-prices sizes">{% for z in sec.sizes %}<span>{{ z }}</span>{% endfor %}</span>
     {%- elif sec.size %}<span class="size-label">{{ sec.size }}</span>
     {%- elif sec.price %}<span class="section-price">{{ sec.price | price(lang) }}</span>{% elif sec.priceLabel %}<span class="section-price">{{ sec.priceLabel | tr(lang) }}</span>{% endif %}
