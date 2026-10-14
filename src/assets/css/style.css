@@ -374,6 +374,9 @@ address { font-style: normal; margin-bottom: .6em; }
 .field-row { display: grid; gap: 16px; }
 @media (min-width: 640px) { .field-row { grid-template-columns: 1fr 1fr; } }
 .contact-form .btn { justify-self: start; }
+.contact-form .btn:disabled { opacity: .45; cursor: not-allowed; }
+.group-fields { display: grid; gap: 16px; }
+.confirm-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
 .hp { position: absolute; left: -9999px; }
 .form-status { min-height: 1.5em; margin: 0; font-weight: 600; }
 .form-status.is-ok { color: var(--ok); }

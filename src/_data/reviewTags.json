@@ -35,6 +35,9 @@
     "contact.rules",
     "resto.booking",
     "footer.tagline",
-    "menu.cocktails-biere"
+    "menu.cocktails-biere",
+    "contact.groupTooSmall",
+    "contact.confirmText",
+    "contact.bookingByPhone"
   ]
 }

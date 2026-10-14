@@ -512,8 +512,8 @@
       "en": "Your phone (optional)"
     },
     "subject": {
-      "fr": "Objet",
-      "en": "Subject"
+      "fr": "Objet de la demande",
+      "en": "Reason for contacting us"
     },
     "message": {
       "fr": "Message",
@@ -538,6 +538,76 @@
     "error": {
       "fr": "L'envoi a échoué. Réessayez ou appelez directement le restaurant.",
       "en": "Sending failed. Please try again or call the restaurant."
+    },
+    "guests": {
+      "fr": "Nombre de personnes",
+      "en": "Number of people"
+    },
+    "guestsShort": {
+      "fr": "pers.",
+      "en": "people"
+    },
+    "date": {
+      "fr": "Date souhaitée",
+      "en": "Preferred date"
+    },
+    "groupTooSmall": {
+      "fr": "Les demandes de groupe commencent à 15 personnes. En dessous, réservez directement par téléphone auprès du restaurant.",
+      "en": "Group requests start at 15 people. For smaller parties, please book by phone with the restaurant."
+    },
+    "confirmTitle": {
+      "fr": "Ce n'est pas une réservation",
+      "en": "This is not a booking"
+    },
+    "confirmText": {
+      "fr": "Ce formulaire ne permet pas de réserver une table : une demande de réservation envoyée ici ne sera pas prise en compte. Pour réserver, appelez le restaurant.",
+      "en": "This form cannot be used to book a table: booking requests sent here will not be handled. To book, please call the restaurant."
+    },
+    "confirmCancel": {
+      "fr": "Annuler",
+      "en": "Cancel"
+    },
+    "confirmSend": {
+      "fr": "J'ai compris, envoyer mon message",
+      "en": "Understood, send my message"
+    },
+    "chooseSubject": {
+      "fr": "Choisissez un objet",
+      "en": "Choose a reason"
+    },
+    "subjects": {
+      "question": {
+        "fr": "Une question",
+        "en": "A question"
+      },
+      "groupe": {
+        "fr": "Réservation de groupe (15 personnes ou plus)",
+        "en": "Group booking (15 people or more)"
+      },
+      "reservation": {
+        "fr": "Réserver une table (moins de 15 personnes)",
+        "en": "Book a table (fewer than 15 people)"
+      },
+      "evenement": {
+        "fr": "Privatisation ou événement",
+        "en": "Private hire or event"
+      },
+      "emploi": {
+        "fr": "Candidature / emploi",
+        "en": "Job application"
+      },
+      "partenariat": {
+        "fr": "Partenariat, fournisseur ou presse",
+        "en": "Partnership, supplier or press"
+      },
+      "autre": {
+        "fr": "Autre",
+        "en": "Other"
+      }
+    },
+    "bookingByPhone": {
+      "fr": "Les réservations de moins de 15 personnes se font uniquement par téléphone : appelez directement le restaurant. Ce formulaire ne peut pas être envoyé pour une réservation.",
+      "en": "Bookings for fewer than 15 people are by phone only: please call the restaurant directly. This form cannot be sent for a booking."
     }
   },
   "footer": {

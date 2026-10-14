@@ -28,7 +28,9 @@ scripts: ["https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js", "
           data-template="{{ site.emailjs.template }}"
           data-msg-sending="{{ 'contact.sending' | t(lang) }}"
           data-msg-sent="{{ 'contact.sent' | t(lang) }}"
-          data-msg-error="{{ 'contact.error' | t(lang) }}">
+          data-msg-error="{{ 'contact.error' | t(lang) }}"
+          data-msg-too-small="{{ 'contact.groupTooSmall' | t(lang) }}"
+          data-guests-label="{{ 'contact.guestsShort' | t(lang) }}">
       <label class="field">
         <span>{{ "contact.restaurant" | t(lang) }} *</span>
         <select name="restaurant" required>
@@ -43,7 +45,23 @@ scripts: ["https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js", "
         <label class="field"><span>{{ "contact.email" | t(lang) }} *</span><input type="email" name="reply_to" autocomplete="email" required></label>
       </div>
       <label class="field"><span>{{ "contact.phone" | t(lang) }}</span><input type="tel" name="phone" autocomplete="tel"></label>
-      <label class="field"><span>{{ "contact.subject" | t(lang) }} *</span><input name="subject" required maxlength="120"></label>
+      <label class="field">
+        <span>{{ "contact.subject" | t(lang) }} *</span>
+        <select name="request_type" required>
+          <option value="">{{ "contact.chooseSubject" | t(lang) }}</option>
+          {%- for key in ["question", "groupe", "reservation", "evenement", "emploi", "partenariat", "autre"] %}
+          <option value="{{ key }}">{{ ("contact.subjects." + key) | t(lang) }}</option>
+          {%- endfor %}
+        </select>
+      </label>
+      <p class="disclaimer" data-booking-phone hidden>{{ icon("phone", 18) }} <span>{{ "contact.bookingByPhone" | t(lang) }} {{ "contact.bookingByPhone" | rtag }}</span></p>
+      <div class="group-fields" data-group-fields hidden>
+        <div class="field-row">
+          <label class="field"><span>{{ "contact.guests" | t(lang) }} *</span><input type="number" name="guests" min="15" max="500" step="1" inputmode="numeric" disabled></label>
+          <label class="field"><span>{{ "contact.date" | t(lang) }} *</span><input type="date" name="date" disabled></label>
+        </div>
+        <p class="disclaimer" data-group-too-small hidden>{{ icon("info", 18) }} <span>{{ "contact.groupTooSmall" | t(lang) }} {{ "contact.groupTooSmall" | rtag }}</span></p>
+      </div>
       <label class="field"><span>{{ "contact.message" | t(lang) }} *</span><textarea name="message" rows="6" required maxlength="3000"></textarea></label>
       {#- Piège à robots : champ invisible qu'un humain ne remplit pas #}
       <label class="hp" aria-hidden="true">Site web<input name="website" tabindex="-1" autocomplete="off"></label>
@@ -52,6 +70,19 @@ scripts: ["https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js", "
       <button class="btn btn-primary btn-lg" type="submit">{{ icon("mail", 18) }} {{ "contact.send" | t(lang) }}</button>
       <p class="form-status" role="status" data-status-msg></p>
     </form>
+
+    {#- Confirmation avant l'envoi d'une question : le formulaire ne sert pas à réserver #}
+    <dialog class="sheet" id="contact-confirm" aria-labelledby="contact-confirm-title" data-contact-confirm>
+      <h2 id="contact-confirm-title">{{ "contact.confirmTitle" | t(lang) }}</h2>
+      <p>{{ "contact.confirmText" | t(lang) }} {{ "contact.confirmText" | rtag }}</p>
+      {%- for r in restaurants %}
+      <a class="sheet-row" href="tel:{{ r.phoneIntl }}"><b>{{ r.city }}</b><span>{{ r.phone }}</span></a>
+      {%- endfor %}
+      <form method="dialog" class="confirm-actions">
+        <button class="btn btn-ghost" value="cancel">{{ "contact.confirmCancel" | t(lang) }}</button>
+        <button class="btn btn-primary" value="send">{{ icon("mail", 18) }} {{ "contact.confirmSend" | t(lang) }}</button>
+      </form>
+    </dialog>
   </div>
 
   <aside class="contact-aside">
