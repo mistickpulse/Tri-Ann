@@ -515,6 +515,44 @@
       "fr": "Objet",
       "en": "Subject"
     },
+    "subjectChoose": {
+      "fr": "Choisissez l'objet de votre message",
+      "en": "Choose the subject of your message"
+    },
+    "subjects": {
+      "group": {
+        "fr": "Menu de groupe (15 personnes ou plus)",
+        "en": "Group menu (15 people or more)"
+      },
+      "menu": {
+        "fr": "Question sur la carte",
+        "en": "Question about the menu"
+      },
+      "allergies": {
+        "fr": "Allergies et régimes alimentaires",
+        "en": "Allergies and dietary needs"
+      },
+      "other": {
+        "fr": "Autre question",
+        "en": "Other question"
+      }
+    },
+    "guests": {
+      "fr": "Nombre de personnes",
+      "en": "Number of people"
+    },
+    "guestsChoose": {
+      "fr": "Choisissez",
+      "en": "Choose"
+    },
+    "guestsMore": {
+      "fr": "Plus de 40",
+      "en": "More than 40"
+    },
+    "groupTooSmall": {
+      "fr": "Les menus de groupe sont réservés aux groupes de 15 personnes ou plus. En dessous, appelez directement le restaurant pour réserver :",
+      "en": "Group menus are for groups of 15 people or more. For smaller groups, please call the restaurant directly to book:"
+    },
     "message": {
       "fr": "Message",
       "en": "Message"

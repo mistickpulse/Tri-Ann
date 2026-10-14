@@ -370,10 +370,37 @@ address { font-style: normal; margin-bottom: .6em; }
 .contact-form { display: grid; gap: 16px; margin-top: 20px; }
 .field { display: grid; gap: 6px; font-weight: 600; }
 .field input, .field select, .field textarea { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .75em .9em; }
+/* Flèche maison (chevron fin), à la place de celle du navigateur */
+.field select, .mini-select-btn {
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  padding-right: 2.6em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238fa8b5' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .9em center; background-size: 18px;
+}
+.field select:hover, .mini-select-btn:hover { border-color: var(--accent); }
+/* Nombre de personnes : petit menu sur la même ligne que son libellé */
+.field[data-guests]:not([hidden]) { display: flex; align-items: center; gap: 12px; }
+.field[data-guests] select, .mini-select-btn { width: auto; min-width: 8.5em; font-size: .95rem; padding: .45em 2.2em .45em .75em; background-position: right .6em center; background-size: 15px; }
+/* Sur ordinateur, liste maison de hauteur limitée (contact.js) ; le vrai menu reste caché derrière pour l'envoi */
+.mini-select { position: relative; }
+.mini-select > select { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.mini-select-btn { font: inherit; font-size: .95rem; color: var(--ink); background-color: var(--surface); border: 1px solid var(--line); border-radius: 8px; text-align: left; }
+.mini-select-btn:disabled { cursor: not-allowed; opacity: .6; }
+.mini-select-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.mini-select-list { position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; min-width: 100%; max-height: 9rem; overflow-y: auto; margin: 0; padding: 3px; list-style: none; background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 10px 28px rgba(0, 0, 0, .45); font-size: .9rem; font-weight: 500; line-height: 1.35; scrollbar-width: thin; }
+.mini-select-list li { padding: .2em .7em; border-radius: 5px; cursor: pointer; }
+.mini-select-list li:hover, .mini-select-list li:focus { background: var(--accent-soft); outline: none; }
+.mini-select-list li[aria-selected="true"] { color: var(--accent-strong); font-weight: 700; }
+.field select:disabled { cursor: not-allowed; opacity: .6; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
 .field-row { display: grid; gap: 16px; }
 @media (min-width: 640px) { .field-row { grid-template-columns: 1fr 1fr; } }
 .contact-form .btn { justify-self: start; }
+.contact-form .btn-primary:disabled { background: var(--surface-2); color: var(--muted); border-color: var(--line); cursor: not-allowed; }
+.group-warning { border: 1px solid var(--ko); border-radius: var(--radius); padding: 14px 16px; background: var(--surface); }
+.group-warning p { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 12px; font-weight: 600; }
+.group-warning p svg { flex: none; margin-top: 3px; color: var(--ko); }
+.group-warning ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .hp { position: absolute; left: -9999px; }
 .form-status { min-height: 1.5em; margin: 0; font-weight: 600; }
 .form-status.is-ok { color: var(--ok); }
