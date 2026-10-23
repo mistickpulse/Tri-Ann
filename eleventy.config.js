@@ -107,14 +107,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("menuCatalog", (menu, drinks, specials) => {
     const fr = (v) => (v == null ? "" : typeof v === "string" ? v : v.fr);
     const out = [];
-    for (const s of specials || []) out.push({ g: "Spécialités du moment", n: s.data.name, d: s.data.description || "", p: s.data.price ?? null, a: s.data.allergens ?? null });
+    // v = taux de TVA proposé dans l'outil de factures : 10 % (repas, boissons sans alcool), 20 % (alcool)
+    for (const s of specials || []) out.push({ g: "Spécialités du moment", n: s.data.name, d: s.data.description || "", p: s.data.price ?? null, a: s.data.allergens ?? null, v: s.data.type === "cocktail" ? 20 : 10 });
     for (const c of menu.categories)
       for (const sec of c.sections) {
         if (sec.type === "flavours") { for (const g of sec.groups) for (const it of g.items) out.push({ g: `${fr(c.title)} · ${fr(g.title)}`, n: fr(it.name), d: "", p: null, a: it.allergens ?? null }); continue; }
-        for (const it of sec.items || []) out.push({ g: [fr(c.title), fr(sec.title)].filter(Boolean).join(" · "), n: fr(it.name), d: fr(it.desc), p: it.price ?? sec.price ?? null, a: it.allergens ?? null });
+        for (const it of sec.items || []) out.push({ g: [fr(c.title), fr(sec.title)].filter(Boolean).join(" · "), n: fr(it.name), d: fr(it.desc), p: it.price ?? sec.price ?? null, a: it.allergens ?? null, v: 10 });
       }
     // Boissons à plusieurs contenances : prix de la plus petite
-    for (const sec of drinks.sections) for (const it of sec.items) out.push({ g: `Boissons · ${fr(sec.title)}`, n: fr(it.name), d: fr(it.desc), p: it.price ?? (it.prices || []).find((x) => x != null) ?? null, a: it.allergens ?? null });
+    const NO_ALCOHOL = ["softs", "eaux", "boissons-chaudes", "sans-alcool"];
+    for (const sec of drinks.sections) for (const it of sec.items) out.push({ g: `Boissons · ${fr(sec.title)}`, n: fr(it.name), d: fr(it.desc), p: it.price ?? (it.prices || []).find((x) => x != null) ?? null, a: it.allergens ?? null, v: NO_ALCOHOL.includes(sec.id) ? 10 : 20 });
     return JSON.stringify(out).replace(/</g, "\\u003c");
   });
 

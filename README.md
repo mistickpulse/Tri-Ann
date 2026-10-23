@@ -17,6 +17,7 @@ Le site est alors visible sur http://localhost:8081 et se recharge à chaque mod
 La carte en PDF (plats et boissons, FR et EN) : `npm run build && npm run pdf` (fait automatiquement à chaque mise en ligne).
 
 Espace équipe (outil de menus) : https://tri-ann.fr/admin/ — sans lien sur le site. L'outil (`src/admin/outil.njk`) est chiffré à la construction avec le secret GitHub `ADMIN_CODE` (`scripts/chiffrer-admin.mjs`) ; changer le code = changer ce secret puis relancer la mise en ligne. Les menus sont enregistrés sur chaque appareil (export/import en fichier possible).
+L'onglet « Factures » (`src/_includes/admin-factures.njk`) fait des factures aux mentions légales : le restaurant choisi remplit la société (SIRET, RCS, TVA, adresse du siège : `src/_data/restaurants.json` → `company`). Numéro = date de la facture + compteur du jour par société (2026-10-23-01), factures enregistrées sur l'appareil comme les menus. Les IBAN ne sont jamais dans le dépôt (public) : secret GitHub `ADMIN_BANQUES` en ligne, fichier `prive/banques.json` (ignoré par git) en local, même format, voir `src/_data/banques.js`. Ils n'apparaissent que dans la page chiffrée.
 
 Pour voir les avis Google en local : `npm run avis` (copie les avis du site publié dans `src/_data/googleReviews.json`), puis relancer `npm start`.
 

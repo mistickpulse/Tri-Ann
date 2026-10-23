@@ -51,6 +51,8 @@ jobs:
           PATH_PREFIX: /
           # Code de l'espace équipe (/admin/) : sert à chiffrer l'outil de menus, jamais publié
           ADMIN_CODE: ${{ secrets.ADMIN_CODE }}
+          # IBAN des restaurants pour l'outil de factures (JSON, voir src/_data/banques.js), seulement dans la page chiffrée
+          ADMIN_BANQUES: ${{ secrets.ADMIN_BANQUES }}
         run: npm run build
       # Carte en PDF (français et anglais), à partir de la carte imprimable du site
       - name: Menu PDF

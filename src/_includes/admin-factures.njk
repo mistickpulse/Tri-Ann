@@ -1,0 +1,375 @@
+{#- Outil de factures de l'espace équipe, inclus dans src/admin/outil.njk (chiffré avec lui).
+    Les infos de la société (SIRET, RCS, TVA…) viennent de src/_data/restaurants.json → company. -#}
+<style>
+  .fx-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .fx-lines li { display: grid; grid-template-columns: 1fr 58px 84px 82px auto; gap: 6px; align-items: center; background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  .fx-lines li > input:first-child { font-weight: 700; }
+  .fx-head { display: grid; grid-template-columns: 1fr 58px 84px 82px 30px; gap: 6px; font-size: .75rem; color: var(--muted); font-weight: 600; padding: 0 9px; }
+  .fx-warn { border: 1px dashed var(--ko); color: var(--ko); border-radius: 10px; padding: 8px 12px; font-size: .88rem; margin: 0; }
+  .fx-num { border: 1px dashed var(--accent); border-radius: 10px; padding: 8px 12px; font-size: .9rem; margin: 0; }
+  .fx-num b { color: var(--accent); }
+  @media (max-width: 700px) {
+    .fx-head { display: none; }
+    .fx-lines li { grid-template-columns: 1fr 1fr 1fr auto; }
+    .fx-lines li > input:first-child { grid-column: 1 / -1; }
+  }
+  [data-fx-pro][hidden], [data-fx-unpaid][hidden], [data-fx-paid][hidden] { display: none; }
+
+  /* La facture (A4) */
+  .invoice { --ink2: #2a211b; --muted2: #6b625b; --acc: #4f6875; background: #fff; color: var(--ink2); width: 210mm; min-height: 297mm; margin: 0 auto; padding: 14mm 15mm 12mm; box-shadow: 0 20px 60px rgba(0,0,0,.5); display: flex; flex-direction: column; font-size: 9.5pt; line-height: 1.45; }
+  .invoice .top { display: flex; justify-content: space-between; gap: 10mm; align-items: flex-start; }
+  .invoice .brand { display: flex; gap: 12px; align-items: center; }
+  .invoice .brand img { width: 52px; height: 52px; border-radius: 10px; }
+  .invoice .brand b { display: block; font: 700 13pt "Playfair Display", serif; }
+  .invoice .brand span { display: block; color: var(--muted2); font-size: 8.5pt; }
+  .invoice .doc { text-align: right; }
+  .invoice .doc h2 { margin: 0; font: 700 22pt/1 "Playfair Display", serif; color: var(--acc); letter-spacing: .04em; }
+  .invoice .doc p { margin: 2mm 0 0; }
+  .invoice .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 9mm; }
+  .invoice .party { border: 1px solid #ddd3c7; border-radius: 3mm; padding: 4mm 5mm; white-space: pre-line; }
+  .invoice .party small { display: block; text-transform: uppercase; letter-spacing: .1em; font-size: 7.5pt; color: var(--muted2); margin-bottom: 1mm; font-weight: 700; }
+  .invoice .party b { font-size: 10.5pt; }
+  .invoice .infos { display: flex; flex-wrap: wrap; gap: 2mm 8mm; margin-top: 6mm; color: var(--muted2); }
+  .invoice .infos b { color: var(--ink2); }
+  .invoice table { width: 100%; border-collapse: collapse; margin-top: 6mm; }
+  .invoice th { text-align: left; font-size: 8pt; text-transform: uppercase; letter-spacing: .06em; color: #fff; background: var(--acc); padding: 2mm 2.5mm; }
+  .invoice td { padding: 2mm 2.5mm; border-bottom: 1px solid #e8e0d6; vertical-align: top; }
+  .invoice .n { text-align: right; white-space: nowrap; }
+  .invoice .totals { margin: 5mm 0 0 auto; width: 88mm; border-collapse: collapse; }
+  .invoice .totals td { padding: 1.4mm 2.5mm; border-bottom: 1px solid #eee6dc; }
+  .invoice .totals .grand td { font-weight: 700; font-size: 11pt; background: #f1ece5; border-bottom: 0; }
+  .invoice .totals .due td { font-weight: 700; color: var(--acc); }
+  .invoice .pay { margin-top: 6mm; padding: 3mm 4mm; background: #f6f2ec; border-radius: 3mm; }
+  .invoice .iban { margin-top: 2mm; padding-top: 2mm; border-top: 1px solid #e3dacf; display: flex; flex-wrap: wrap; gap: 1mm 6mm; }
+  .invoice .iban > b { flex-basis: 100%; }
+  .invoice .note { margin-top: 4mm; white-space: pre-line; }
+  .invoice .legal { margin-top: auto; padding-top: 8mm; color: var(--muted2); font-size: 7.5pt; text-align: center; }
+  .invoice .legal p { margin: 0 0 1mm; }
+
+  @media print {
+    .view-factures .invoice { box-shadow: none; width: 210mm; min-height: 297mm; margin: 0; zoom: 1 !important; }
+    html:has(body[data-view="factures"]), body[data-view="factures"] { background: #fff; }
+  }
+</style>
+
+<main class="view-factures">
+  <div class="editor">
+    <section class="card">
+      <h2>La facture</h2>
+      <label class="f">Restaurant
+        <select data-fx="resto">{% for r in restaurants %}<option value="{{ r.slug }}">{{ r.name }} – {{ r.city }} ({{ r.company.name }})</option>{% endfor %}</select>
+      </label>
+      <p class="fx-warn" data-fx-company hidden></p>
+      <p class="fx-num" data-fx-numinfo></p>
+      <div class="row">
+        <label class="f">Date de la facture<input data-fx="date" type="date"></label>
+        <label class="f">Date du repas / de la prestation<input data-fx="serviceDate" type="date"></label>
+      </div>
+      <label class="f">Type d'opération
+        <select data-fx="category">
+          <option>Prestation de services</option>
+          <option>Livraison de biens</option>
+          <option>Mixte (biens et services)</option>
+        </select>
+      </label>
+      <p class="muted">Repas sur place = prestation de services. Vente à emporter seule = livraison de biens.</p>
+    </section>
+
+    <section class="card">
+      <h2>Le client</h2>
+      <label class="f">Type de client
+        <select data-fx="kind"><option value="part">Particulier</option><option value="pro">Professionnel (entreprise, association, mairie…)</option></select>
+      </label>
+      <label class="f">Nom ou raison sociale<input data-fx="client" placeholder="Famille Martin / SARL Dupont"></label>
+      <label class="f">Adresse<textarea data-fx="address" placeholder="12 rue des Lilas&#10;77230 Moussy-le-Neuf"></textarea></label>
+      <div class="row" data-fx-pro hidden>
+        <label class="f">SIREN du client<input data-fx="siren" inputmode="numeric" placeholder="123 456 789"></label>
+        <label class="f">N° TVA du client (si connu)<input data-fx="vat" placeholder="FR12345678901"></label>
+      </div>
+      <label class="f" data-fx-pro hidden>Référence / bon de commande du client (facultatif)<input data-fx="ref"></label>
+    </section>
+
+    <section class="card">
+      <h2>Ce qui est facturé</h2>
+      <label class="f">Partir d'un menu enregistré (facultatif)
+        <select data-fx-from-menu></select>
+      </label>
+      <label class="f">Les prix saisis sont
+        <select data-fx="priceMode"><option value="ttc">TTC (prix de la carte)</option><option value="ht">HT</option></select>
+      </label>
+      <div class="fx-head"><span>Désignation</span><span>Qté</span><span>Prix unit.</span><span>TVA</span><span></span></div>
+      <ul class="fx-lines" data-fx-lines></ul>
+      <input list="catalog" placeholder="Ajouter une ligne (plat de la carte ou texte libre) puis Entrée" data-fx-add>
+      <p class="muted">TVA : 10 % pour les repas et boissons sans alcool, 20 % pour les boissons alcoolisées. Une remise = une ligne avec un prix négatif.</p>
+    </section>
+
+    <section class="card">
+      <h2>Paiement</h2>
+      <label class="check"><input type="checkbox" data-fx="paid"> Déjà payée (facture acquittée)</label>
+      <div class="row" data-fx-paid>
+        <label class="f">Payée le<input data-fx="paidDate" type="date"></label>
+        <label class="f">Moyen de paiement
+          <select data-fx="payMode"><option>carte bancaire</option><option>espèces</option><option>chèque</option><option>virement</option><option>titres-restaurant</option><option>chèques-vacances</option></select>
+        </label>
+      </div>
+      <div class="row" data-fx-unpaid>
+        <label class="f">À payer avant le<input data-fx="due" type="date"></label>
+        <label class="f">Acompte déjà versé (€)<input data-fx="deposit" type="number" min="0" step="0.01"></label>
+      </div>
+      <label class="f">Note sur la facture (facultatif)<textarea data-fx="note" placeholder="Repas de fin d'année du 12 décembre, 24 personnes"></textarea></label>
+    </section>
+
+    <section class="card">
+      <h2>Infos de la société</h2>
+      <p class="muted">SIRET, RCS et TVA sont remplis automatiquement. Pour <b data-fx-co-name></b>, saisir une fois le capital et l'IBAN (enregistrés sur cet appareil).</p>
+      <label class="f">Capital social (€)<input data-fx-co="capital" type="number" min="0" step="1" placeholder="ex. 5000"></label>
+      <label class="f">IBAN<input data-fx-co="iban" autocomplete="off" spellcheck="false" placeholder="FR76 …"></label>
+      <div class="row">
+        <label class="f">BIC<input data-fx-co="bic" autocomplete="off" spellcheck="false"></label>
+        <label class="f">Banque (facultatif)<input data-fx-co="bank"></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Factures enregistrées <small class="muted">(sur cet appareil)</small></h2>
+      <p class="muted">Les numéros se suivent par restaurant : faites les factures d'un restaurant toujours sur le même appareil, ou importez le fichier avant d'en faire une nouvelle.</p>
+      <ul class="saved" data-fx-saved></ul>
+      <div class="row">
+        <button class="btn small" type="button" data-fx-act="export">Exporter (fichier)</button>
+        <label class="btn small" style="text-align:center">Importer<input type="file" accept=".json" data-fx-import hidden></label>
+      </div>
+    </section>
+  </div>
+
+  <div class="preview-wrap">
+    <p class="help">Aperçu de la facture. « Télécharger le PDF » enregistre la facture (et lui donne son numéro), puis ouvre l'impression : choisissez « Enregistrer au format PDF ».</p>
+    <article class="invoice" data-fx-sheet></article>
+  </div>
+</main>
+
+<script>
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const CATALOG = JSON.parse($("#data-catalog").textContent);
+  const RESTOS = JSON.parse($("#data-restos").textContent);
+  const BANQUES = JSON.parse($("#data-banques").textContent);
+  const STORE = "triann-factures", SOCIETES = "triann-factures-societes";
+  const label = (c) => `${c.n} — ${c.g}`;
+  const today = () => new Date().toLocaleDateString("sv-SE");
+  // Numéro = date de la facture + compteur du jour sur 2 chiffres (2026-10-23-01), une série par société
+  const prefix = (date) => `${date || today()}-`;
+
+  const load = () => { try { return JSON.parse(localStorage.getItem(STORE) || "[]"); } catch { return []; } };
+  const store = (list) => { try { localStorage.setItem(STORE, JSON.stringify(list)); return true; } catch { alert("Impossible d'enregistrer sur cet appareil (navigation privée ?)."); return false; } };
+  // Capital, IBAN et BIC par restaurant : IBAN fournis à la construction (src/_data/banques.js),
+  // et ce que l'équipe saisit sur l'appareil (prioritaire quand ce n'est pas vide)
+  const saisies = () => { try { return JSON.parse(localStorage.getItem(SOCIETES) || "{}"); } catch { return {}; } };
+  const societe = (slug) => {
+    const own = Object.fromEntries(Object.entries(saisies()[slug] || {}).filter(([, v]) => v));
+    return { ...(BANQUES[slug] || {}), ...own };
+  };
+  const nextNumber = (slug, date) => {
+    const p = prefix(date);
+    const max = Math.max(0, ...load().filter((x) => x.resto === slug && x.num?.startsWith(p)).map((x) => parseInt(x.num.slice(p.length), 10) || 0));
+    return p + String(max + 1).padStart(2, "0");
+  };
+  const sameNum = (a, b) => a.num === b.num && a.resto === b.resto;
+  const fmtIban = (v) => String(v || "").replace(/\s+/g, "").toUpperCase().replace(/(.{4})(?=.)/g, "$1 ");
+
+  const blank = () => ({ id: Date.now().toString(36), num: "", resto: RESTOS[0].slug, date: today(), serviceDate: today(), category: "Prestation de services", kind: "part", client: "", address: "", siren: "", vat: "", ref: "", priceMode: "ttc", lines: [], paid: true, paidDate: today(), payMode: "carte bancaire", due: "", deposit: "", note: "" });
+  let f = blank();
+
+  // ---------- Éditeur ----------
+  const fields = document.querySelectorAll("[data-fx]");
+  function fill() {
+    fields.forEach((el) => { const k = el.dataset.fx; if (el.type === "checkbox") el.checked = !!f[k]; else el.value = f[k] ?? ""; });
+    $("[data-fx=resto]").disabled = $("[data-fx=date]").disabled = !!f.num;
+    renderLines(); render();
+  }
+  fields.forEach((el) => el.addEventListener("input", () => { f[el.dataset.fx] = el.type === "checkbox" ? el.checked : el.value; render(); }));
+  document.querySelectorAll("[data-fx-co]").forEach((el) => el.addEventListener("input", () => {
+    const all = saisies(); (all[f.resto] ??= {})[el.dataset.fxCo] = el.value.trim();
+    try { localStorage.setItem(SOCIETES, JSON.stringify(all)); } catch { /* navigation privée */ }
+    render();
+  }));
+
+  const linesEl = $("[data-fx-lines]");
+  function renderLines() {
+    linesEl.innerHTML = f.lines.map((l, i) => `<li data-i="${i}">
+      <input value="${esc(l.n)}" data-k="n" aria-label="Désignation">
+      <input value="${esc(l.q)}" data-k="q" type="number" step="any" placeholder="Qté" aria-label="Quantité">
+      <input value="${esc(l.p)}" data-k="p" type="number" step="0.01" placeholder="Prix" aria-label="Prix unitaire">
+      <select data-k="v" aria-label="Taux de TVA">${[10, 20, 5.5].map((v) => `<option value="${v}"${Number(l.v) === v ? " selected" : ""}>${String(v).replace(".", ",")} %</option>`).join("")}</select>
+      <button class="btn small danger" type="button" data-del="${i}" title="Retirer">✕</button>
+    </li>`).join("") || `<li class="muted" style="display:block">Aucune ligne pour l'instant.</li>`;
+  }
+  linesEl.addEventListener("input", (e) => {
+    const li = e.target.closest("li[data-i]"); if (!li || !e.target.dataset.k) return;
+    const k = e.target.dataset.k;
+    f.lines[+li.dataset.i][k] = k === "n" ? e.target.value : e.target.value === "" ? "" : Number(e.target.value);
+    render();
+  });
+  linesEl.addEventListener("click", (e) => {
+    if (!e.target.matches("[data-del]")) return;
+    f.lines.splice(+e.target.dataset.del, 1); renderLines(); render();
+  });
+  const addInput = $("[data-fx-add]");
+  const addLine = (l) => { f.lines.push({ q: 1, v: 10, ...l }); renderLines(); render(); addInput.value = ""; addInput.focus(); };
+  addInput.addEventListener("input", () => {
+    const hit = CATALOG.find((x) => label(x) === addInput.value);
+    if (hit) addLine({ n: hit.n, p: hit.p ?? "", v: hit.v ?? 10 });
+  });
+  addInput.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    const v = addInput.value.trim(); if (v) addLine({ n: v, p: "" });
+  });
+
+  // Ligne tirée d'un menu de l'outil de menus (même appareil)
+  const menuSelect = $("[data-fx-from-menu]");
+  const savedMenus = () => { try { return JSON.parse(localStorage.getItem("triann-menus") || "[]"); } catch { return []; } };
+  function renderMenuChoices() {
+    const list = savedMenus().sort((a, b) => (b.saved || "").localeCompare(a.saved || ""));
+    menuSelect.innerHTML = `<option value="">${list.length ? "— Choisir un menu —" : "Aucun menu enregistré sur cet appareil"}</option>` +
+      list.map((x) => `<option value="${esc(x.id)}">${esc([x.title || "Sans titre", x.client, x.date].filter(Boolean).join(" · "))}</option>`).join("");
+  }
+  menuSelect.addEventListener("change", () => {
+    const x = savedMenus().find((y) => y.id === menuSelect.value); menuSelect.value = ""; if (!x) return;
+    if (!f.num && x.resto) f.resto = x.resto;
+    if (!f.client && x.client) f.client = x.client;
+    if (x.date) f.serviceDate = x.date;
+    f.lines.push({ n: `${x.title || "Menu"}${x.priceNote ? ` (${x.priceNote})` : ""}`, q: Number(x.guests) || 1, p: x.price === "" || x.price == null ? "" : Number(x.price), v: 10 });
+    fill();
+  });
+
+  // ---------- Calculs (en centimes) ----------
+  const cents = (v) => Math.round(Number(v || 0) * 100);
+  function totals(x = f) {
+    const rates = {};
+    const lines = x.lines.filter((l) => l.n || l.p !== "").map((l) => {
+      const r = Number(l.v) || 0, gross = Math.round(Number(l.q || 0) * cents(l.p));
+      let ht, ttc;
+      if (x.priceMode === "ht") { ht = gross; ttc = ht + Math.round(ht * r / 100); } else { ttc = gross; ht = Math.round(ttc / (1 + r / 100)); }
+      (rates[r] ??= { ht: 0, ttc: 0 }); rates[r].ht += ht; rates[r].ttc += ttc;
+      return { ...l, r, ht, ttc, puht: x.priceMode === "ht" ? cents(l.p) : cents(l.p) / (1 + r / 100) };
+    });
+    const ht = lines.reduce((s, l) => s + l.ht, 0), ttc = lines.reduce((s, l) => s + l.ttc, 0);
+    const deposit = x.paid ? 0 : cents(x.deposit);
+    return { lines, rates, ht, ttc, tva: ttc - ht, deposit, due: ttc - deposit };
+  }
+  const eur = (c) => (c / 100).toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const pct = (r) => String(r).replace(".", ",") + " %";
+  const fmtDate = (d) => (d ? new Date(d + "T12:00").toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) : "");
+
+  // ---------- Aperçu ----------
+  function render() {
+    const r = RESTOS.find((x) => x.slug === f.resto) || RESTOS[0], co = r.company;
+    const so = societe(r.slug);
+    const capital = so.capital || co.capital || "";
+    document.querySelectorAll("[data-fx-co]").forEach((el) => { if (document.activeElement !== el) el.value = so[el.dataset.fxCo] || ""; });
+    $("[data-fx-co-name]").textContent = co.name;
+    const missing = [!capital && "le capital social", !co.form && "la forme juridique", !so.iban && "l'IBAN (paiement par virement)"].filter(Boolean);
+    const warn = $("[data-fx-company]");
+    warn.hidden = !missing.length;
+    warn.textContent = missing.length ? `À compléter pour ${co.name} dans « Infos de la société » : ${missing.join(", ")}.` : "";
+    $("[data-fx-numinfo]").innerHTML = f.num ? `Facture n° <b>${esc(f.num)}</b> (numéro attribué : restaurant et date verrouillés)` : `Numéro attribué à l'enregistrement : <b>${esc(nextNumber(f.resto, f.date))}</b>`;
+    document.querySelectorAll("[data-fx-pro]").forEach((el) => (el.hidden = f.kind !== "pro"));
+    $("[data-fx-paid]").hidden = !f.paid;
+    $("[data-fx-unpaid]").hidden = f.paid;
+
+    const t = totals();
+    const legalName = `${co.name}${co.form ? ", " + co.form : ""}${capital ? ` au capital de ${Number(capital).toLocaleString("fr-FR")} €` : ""}`;
+    const seller = [`<b>${esc(legalName)}</b>`, esc(co.seat), `SIRET ${esc(co.siret)}`, `RCS ${esc(co.rcs)} ${esc(co.siren)}`, `N° TVA : ${esc(co.vat)}`].join("\n");
+    const buyer = [`<b>${esc(f.client || "Nom du client")}</b>`, esc(f.address),
+      f.kind === "pro" && f.siren ? `SIREN ${esc(f.siren)}` : "", f.kind === "pro" && f.vat ? `N° TVA : ${esc(f.vat)}` : ""].filter(Boolean).join("\n");
+    const pay = f.paid
+      ? `Facture acquittée le ${esc(fmtDate(f.paidDate))} par ${esc(f.payMode)}.`
+      : `À régler ${f.due ? `avant le <b>${esc(fmtDate(f.due))}</b>` : "à réception"}. Moyens acceptés : carte bancaire, espèces, chèque, virement.`;
+    const iban = so.iban && (!f.paid || f.payMode === "virement")
+      ? `<div class="iban"><b>Virement bancaire</b><span>Titulaire : ${esc(co.name)}</span><span>IBAN : <b>${esc(fmtIban(so.iban))}</b></span>${so.bic ? `<span>BIC : ${esc(so.bic.toUpperCase())}</span>` : ""}${so.bank ? `<span>Banque : ${esc(so.bank)}</span>` : ""}${f.num || !f.paid ? `<span>Référence à indiquer : ${esc(f.num || nextNumber(f.resto, f.date))}</span>` : ""}</div>` : "";
+
+    $("[data-fx-sheet]").innerHTML = `
+      <div class="top">
+        <div class="brand"><img src="/assets/img/logo-96.jpg" alt=""><div><b>Crêperie ${esc(r.name)}</b><span>${esc(r.street)}, ${esc(r.postalCode)} ${esc(r.city)}</span><span>${esc(r.phone)} · tri-ann.fr</span></div></div>
+        <div class="doc"><h2>FACTURE</h2><p>N° <b>${esc(f.num || nextNumber(f.resto, f.date))}</b></p><p>Date : ${esc(fmtDate(f.date))}</p></div>
+      </div>
+      <div class="parties">
+        <div class="party"><small>Vendeur</small>${seller}</div>
+        <div class="party"><small>Facturé à</small>${buyer}</div>
+      </div>
+      <div class="infos">
+        ${f.serviceDate ? `<span>Date de la prestation : <b>${esc(fmtDate(f.serviceDate))}</b></span>` : ""}
+        <span>Opération : <b>${esc(f.category)}</b></span>
+        ${f.kind === "pro" && f.ref ? `<span>Votre référence : <b>${esc(f.ref)}</b></span>` : ""}
+      </div>
+      <table>
+        <thead><tr><th>Désignation</th><th class="n">Qté</th><th class="n">Prix unit. HT</th><th class="n">TVA</th><th class="n">Total HT</th><th class="n">Total TTC</th></tr></thead>
+        <tbody>${t.lines.map((l) => `<tr><td>${esc(l.n)}</td><td class="n">${esc(String(l.q).replace(".", ","))}</td><td class="n">${eur(Math.round(l.puht))}</td><td class="n">${pct(l.r)}</td><td class="n">${eur(l.ht)}</td><td class="n">${eur(l.ttc)}</td></tr>`).join("") || `<tr><td colspan="6" style="color:#9a9088">Ajoutez des lignes dans l'éditeur.</td></tr>`}</tbody>
+      </table>
+      <table class="totals">
+        <tr><td>Total HT</td><td class="n">${eur(t.ht)}</td></tr>
+        ${Object.entries(t.rates).sort((a, b) => a[0] - b[0]).map(([r, v]) => `<tr><td>TVA ${pct(r)} (sur ${eur(v.ht)} HT)</td><td class="n">${eur(v.ttc - v.ht)}</td></tr>`).join("")}
+        <tr class="grand"><td>Total TTC</td><td class="n">${eur(t.ttc)}</td></tr>
+        ${t.deposit ? `<tr><td>Acompte déjà versé</td><td class="n">− ${eur(t.deposit)}</td></tr><tr class="due"><td>Reste à payer</td><td class="n">${eur(t.due)}</td></tr>` : ""}
+      </table>
+      <div class="pay">${pay}${iban}</div>
+      ${f.note ? `<div class="note">${esc(f.note)}</div>` : ""}
+      <div class="legal">
+        <p>Pas d'escompte pour paiement anticipé. En cas de retard de paiement : pénalités au taux de 3 fois le taux d'intérêt légal${f.kind === "pro" ? " et indemnité forfaitaire de 40 € pour frais de recouvrement" : ""}.</p>
+        <p>${esc(legalName)} · ${esc(co.seat)} · SIRET ${esc(co.siret)} · RCS ${esc(co.rcs)} · TVA ${esc(co.vat)}</p>
+      </div>`;
+    if (document.body.dataset.view === "factures") document.title = ["Facture", f.num, f.client].filter(Boolean).join(" - ");
+  }
+
+  // ---------- Enregistrement ----------
+  function save() {
+    const list = load();
+    if (!f.num) f.num = nextNumber(f.resto, f.date);
+    else if (list.some((y) => sameNum(y, f) && y.id !== f.id)) { alert(`Le numéro ${f.num} existe déjà.`); return false; }
+    const ok = store([...list.filter((y) => y.id !== f.id), { ...f, saved: new Date().toISOString() }]);
+    fill(); renderSaved(); return ok;
+  }
+  function renderSaved() {
+    const list = load().sort((a, b) => (b.num || "").localeCompare(a.num || ""));
+    $("[data-fx-saved]").innerHTML = list.length ? list.map((x) => `<li><span>${esc(x.num)} · ${esc(RESTOS.find((r) => r.slug === x.resto)?.city || "")} · ${esc(x.client || "Sans nom")} · ${eur(totals(x).ttc)}</span>
+      <button class="btn small" type="button" data-open="${esc(x.id)}">Ouvrir</button><button class="btn small" type="button" data-copy="${esc(x.id)}">Dupliquer</button><button class="btn small danger" type="button" data-remove="${esc(x.id)}">✕</button></li>`).join("") : `<li class="muted">Aucune facture enregistrée.</li>`;
+  }
+  $("[data-fx-saved]").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    const list = load(), id = b.dataset.open || b.dataset.copy || b.dataset.remove, x = list.find((y) => y.id === id); if (!x) return;
+    if (b.dataset.open) { f = { ...blank(), ...structuredClone(x) }; fill(); }
+    if (b.dataset.copy) { f = { ...blank(), ...structuredClone(x), id: Date.now().toString(36), num: "", date: today() }; fill(); }
+    if (b.dataset.remove && confirm(`Supprimer la facture ${x.num} ?\nUne facture remise au client ne doit pas être supprimée : les numéros doivent se suivre sans trou. Pour l'annuler, faites plutôt un avoir.`)) { store(list.filter((y) => y.id !== id)); renderSaved(); render(); }
+  });
+
+  document.querySelector(".bar").addEventListener("click", (e) => {
+    const act = e.target.closest("[data-fx-act]")?.dataset.fxAct;
+    if (act === "new" && confirm("Commencer une nouvelle facture ? (pensez à enregistrer celle-ci)")) { f = blank(); fill(); }
+    if (act === "save" && save()) { e.target.textContent = "Enregistrée ✓"; setTimeout(() => (e.target.textContent = "Enregistrer"), 1500); }
+    if (act === "print") {
+      if (!f.lines.length) return alert("Ajoutez au moins une ligne.");
+      if (!f.num && !confirm(`La facture va recevoir le numéro ${nextNumber(f.resto, f.date)}. Continuer ?`)) return;
+      if (save()) window.print();
+    }
+  });
+
+  $("[data-fx-act=export]").addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(load(), null, 2)], { type: "application/json" }));
+    a.download = `factures-tri-ann-${today()}.json`; a.click();
+  });
+  $("[data-fx-import]").addEventListener("change", async (e) => {
+    try {
+      const incoming = JSON.parse(await e.target.files[0].text());
+      const list = load(); let n = 0;
+      for (const x of incoming) if (x && x.id && x.num && !list.some((y) => y.id === x.id || sameNum(y, x))) { list.push(x); n++; }
+      store(list); renderSaved(); render(); alert(`${n} facture(s) importée(s).`);
+    } catch { alert("Fichier non reconnu."); }
+    e.target.value = "";
+  });
+
+  addEventListener("triann:view", (e) => { if (e.detail === "factures") { renderMenuChoices(); render(); } });
+  renderMenuChoices(); fill(); renderSaved();
+})();
+</script>

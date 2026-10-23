@@ -1,5 +1,5 @@
 ---
-# Outil de création de menus (groupes, événements). Construit en clair dans _site/admin/_outil.html,
+# Espace équipe : outil de menus (groupes, événements) et outil de factures (src/_includes/admin-factures.njk). Construit en clair dans _site/admin/_outil.html,
 # puis chiffré par scripts/chiffrer-admin.mjs et supprimé : il n'est jamais publié lisible.
 permalink: /admin/_outil.html
 eleventyExcludeFromCollections: true
@@ -10,7 +10,7 @@ eleventyExcludeFromCollections: true
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Tri-Ann · Menus</title>
+<title>Tri-Ann · Espace équipe</title>
 <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32">
 <style>
   @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("/assets/fonts/playfair-display-latin-700-normal.woff2") format("woff2"); }
@@ -37,6 +37,7 @@ eleventyExcludeFromCollections: true
   label.f { display: grid; gap: 4px; font-size: .82rem; color: var(--muted); font-weight: 600; }
   input, select, textarea { width: 100%; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: .55em .7em; }
   textarea { min-height: 64px; resize: vertical; }
+  input, select, textarea, .row > * { min-width: 0; }
   input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
   .course { border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: grid; gap: 8px; background: var(--bg2); }
   .course-head { display: flex; gap: 6px; align-items: center; }
@@ -58,10 +59,29 @@ eleventyExcludeFromCollections: true
   .saved li { display: flex; gap: 6px; align-items: center; }
   .saved li span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .preview-wrap { position: sticky; top: 72px; }
+  /* Téléphone : barre compacte qui ne reste pas collée, aperçu sous l'éditeur */
+  @media (max-width: 700px) {
+    .bar { position: static; padding: 8px 12px; gap: 6px; }
+    .bar img { width: 30px; height: 30px; }
+    .bar h1 { font-size: 1rem; }
+    .bar .btn { padding: .45em .6em; font-size: .8rem; white-space: nowrap; }
+    .bar [data-act="logout"] { order: 1; }
+    .tabs { flex-basis: 100%; order: 2; margin: 0; }
+    .bar .only-menus, .bar .only-factures { order: 3; flex: 1; }
+    .tabs button { flex: 1; }
+    main { padding: 12px; gap: 14px; }
+    .preview-wrap { position: static; }
+  }
   .help { margin: 0 0 8px; color: var(--muted); font-size: .85rem; }
+  .tabs { display: flex; gap: 4px; margin-right: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .tabs button { border: 0; background: none; color: var(--muted); border-radius: 999px; padding: .35em .9em; cursor: pointer; font-weight: 600; }
+  .tabs button[aria-pressed="true"] { background: var(--accent); color: #141110; }
+  /* Une seule vue à la fois : menus ou factures */
+  body:not([data-view="factures"]) .view-factures, body:not([data-view="factures"]) .only-factures,
+  body[data-view="factures"] .view-menus, body[data-view="factures"] .only-menus { display: none !important; }
 
   /* Aperçu = le document remis au client (A4) */
-  .sheet { --ink2: #2a211b; --muted2: #6b625b; --acc: #4f6875; background: #fbf8f3; color: var(--ink2); width: 210mm; max-width: 100%; min-height: 297mm; margin: 0 auto; padding: 16mm 16mm 14mm; box-shadow: 0 20px 60px rgba(0,0,0,.5); display: flex; flex-direction: column; font-size: 10.5pt; }
+  .sheet { --ink2: #2a211b; --muted2: #6b625b; --acc: #4f6875; background: #fbf8f3; color: var(--ink2); width: 210mm; min-height: 297mm; margin: 0 auto; padding: 16mm 16mm 14mm; box-shadow: 0 20px 60px rgba(0,0,0,.5); display: flex; flex-direction: column; font-size: 10.5pt; }
   .sheet header { display: flex; gap: 14px; align-items: center; padding-bottom: 10px; border-bottom: 2px solid var(--acc); }
   .sheet header img { width: 58px; height: 58px; border-radius: 10px; }
   .sheet header b { display: block; font: 700 14pt "Playfair Display", serif; }
@@ -93,21 +113,25 @@ eleventyExcludeFromCollections: true
     .bar, .editor, .help { display: none !important; }
     main { display: block; padding: 0; }
     .preview-wrap { position: static; }
-    .sheet { box-shadow: none; width: 210mm; min-height: 297mm; margin: 0; }
+    .sheet { box-shadow: none; width: 210mm; min-height: 297mm; margin: 0; zoom: 1 !important; }
   }
 </style>
 </head>
 <body>
 <div class="bar">
   <img src="/assets/img/logo-96.jpg" alt="">
-  <h1>Menus · Espace équipe</h1>
-  <button class="btn" type="button" data-act="new">Nouveau</button>
-  <button class="btn" type="button" data-act="save">Enregistrer</button>
-  <button class="btn primary" type="button" data-act="print">Télécharger le PDF</button>
+  <h1>Espace équipe</h1>
+  <nav class="tabs" aria-label="Outil"><button type="button" data-view="menus">Menus</button><button type="button" data-view="factures">Factures</button></nav>
+  <button class="btn only-menus" type="button" data-act="new">Nouveau</button>
+  <button class="btn only-menus" type="button" data-act="save">Enregistrer</button>
+  <button class="btn primary only-menus" type="button" data-act="print">Télécharger le PDF</button>
+  <button class="btn only-factures" type="button" data-fx-act="new">Nouvelle facture</button>
+  <button class="btn only-factures" type="button" data-fx-act="save">Enregistrer</button>
+  <button class="btn primary only-factures" type="button" data-fx-act="print">Télécharger le PDF</button>
   <button class="btn small" type="button" data-act="logout" title="Oublier le code sur cet appareil">Se déconnecter</button>
 </div>
 
-<main>
+<main class="view-menus">
   <div class="editor">
     <section class="card">
       <h2>Le menu</h2>
@@ -176,6 +200,7 @@ eleventyExcludeFromCollections: true
 <datalist id="catalog"></datalist>
 <script type="application/json" id="data-catalog">{{ menu | menuCatalog(drinks, collections.specials) | safe }}</script>
 <script type="application/json" id="data-restos">{{ restaurants | json | safe }}</script>
+<script type="application/json" id="data-banques">{{ banques | json | safe }}</script>
 <script type="application/json" id="data-allergens">{{ site.allergens | json | safe }}</script>
 <script>
 (() => {
@@ -351,7 +376,37 @@ eleventyExcludeFromCollections: true
     e.target.value = "";
   });
 
+  addEventListener("triann:view", (e) => { if (e.detail === "menus") render(); });
   fill(); renderSaved();
+})();
+</script>
+
+{% include "admin-factures.njk" %}
+
+<script>
+// Choix de l'outil (menus / factures), retenu sur l'appareil
+(() => {
+  const KEY = "triann-admin-vue";
+  const show = (v) => {
+    document.body.dataset.view = v;
+    document.querySelectorAll(".tabs [data-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === v)));
+    try { localStorage.setItem(KEY, v); } catch { /* navigation privée */ }
+    dispatchEvent(new CustomEvent("triann:view", { detail: v }));
+    scrollTo(0, 0);
+  };
+  // L'aperçu garde la mise en page A4 et se réduit pour tenir dans la largeur (téléphone, petit écran)
+  const fit = () => document.querySelectorAll(".preview-wrap").forEach((w) => {
+    const s = w.querySelector(".sheet, .invoice");
+    if (!s || !w.clientWidth) return;
+    s.style.zoom = "";
+    s.style.zoom = Math.min(1, w.clientWidth / s.offsetWidth);
+  });
+  addEventListener("resize", fit);
+  addEventListener("triann:view", fit);
+  document.querySelector(".tabs").addEventListener("click", (e) => { const v = e.target.closest("[data-view]")?.dataset.view; if (v) show(v); });
+  let start = "menus";
+  try { start = localStorage.getItem(KEY) === "factures" ? "factures" : "menus"; } catch { /* navigation privée */ }
+  show(start);
 })();
 </script>
 </body>
