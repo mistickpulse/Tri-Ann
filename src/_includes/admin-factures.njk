@@ -121,7 +121,7 @@
 
     <section class="card">
       <h2>Infos de la société</h2>
-      <p class="muted">SIRET, RCS et TVA sont remplis automatiquement. Pour <b data-fx-co-name></b>, saisir une fois le capital et l'IBAN (enregistrés sur cet appareil).</p>
+      <p class="muted">Remplies automatiquement pour <b data-fx-co-name></b>. À modifier seulement si une info change (enregistré sur cet appareil).</p>
       <label class="f">Capital social (€)<input data-fx-co="capital" type="number" min="0" step="1" placeholder="ex. 5000"></label>
       <label class="f">IBAN<input data-fx-co="iban" autocomplete="off" spellcheck="false" placeholder="FR76 …"></label>
       <div class="row">
@@ -267,7 +267,7 @@
     const r = RESTOS.find((x) => x.slug === f.resto) || RESTOS[0], co = r.company;
     const so = societe(r.slug);
     const capital = so.capital || co.capital || "";
-    document.querySelectorAll("[data-fx-co]").forEach((el) => { if (document.activeElement !== el) el.value = so[el.dataset.fxCo] || ""; });
+    document.querySelectorAll("[data-fx-co]").forEach((el) => { if (document.activeElement !== el) el.value = so[el.dataset.fxCo] || (el.dataset.fxCo === "capital" ? co.capital : "") || ""; });
     $("[data-fx-co-name]").textContent = co.name;
     const missing = [!capital && "le capital social", !co.form && "la forme juridique", !so.iban && "l'IBAN (paiement par virement)"].filter(Boolean);
     const warn = $("[data-fx-company]");

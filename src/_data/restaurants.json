@@ -108,7 +108,7 @@
       "siret": "812 944 767 00019",
       "rcs": "Meaux",
       "vat": "FR76812944767",
-      "capital": "",
+      "capital": "8000",
       "seat": "ZAE La Barogne, 6 rue du Bonneret, 77230 Moussy-le-Neuf"
     },
     "color": "#8fa8b5"
@@ -198,7 +198,7 @@
       "siret": "848 107 983 00019",
       "rcs": "Compiègne",
       "vat": "FR90848107983",
-      "capital": "",
+      "capital": "9000",
       "seat": "ZAC Baranfosse, rue de la Briqueterie, 60330 Lagny-le-Sec"
     },
     "color": "#e0a06a"
@@ -326,7 +326,7 @@
       "siret": "942 859 414 00016",
       "rcs": "Compiègne",
       "vat": "FR54942859414",
-      "capital": "",
+      "capital": "9000",
       "seat": "192 rue Louis Saint-Just, 60740 Saint-Maximin"
     },
     "color": "#b9a2e0"
