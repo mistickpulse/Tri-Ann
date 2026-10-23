@@ -99,19 +99,15 @@
       </label>
       <div class="fx-head"><span>Désignation</span><span>Qté</span><span>Prix unit.</span><span>TVA</span><span></span></div>
       <ul class="fx-lines" data-fx-lines></ul>
-      <input list="catalog" placeholder="Ajouter une ligne (plat de la carte ou texte libre) puis Entrée" data-fx-add>
+      <input data-suggest autocomplete="off" placeholder="Ajouter une ligne (plat de la carte ou texte libre) puis Entrée" data-fx-add>
       <p class="muted">TVA : 10 % pour les repas et boissons sans alcool, 20 % pour les boissons alcoolisées. Une remise = une ligne avec un prix négatif.</p>
     </section>
 
     <section class="card">
       <h2>Paiement</h2>
-      <label class="check"><input type="checkbox" data-fx="paid"> Déjà payée (facture acquittée)</label>
-      <div class="row" data-fx-paid>
-        <label class="f">Payée le<input data-fx="paidDate" type="date"></label>
-        <label class="f">Moyen de paiement
-          <select data-fx="payMode"><option>carte bancaire</option><option>espèces</option><option>chèque</option><option>virement</option><option>titres-restaurant</option><option>chèques-vacances</option></select>
-        </label>
-      </div>
+      <p class="muted">Paiement par virement uniquement : l'IBAN du restaurant est imprimé sur la facture.</p>
+      <label class="check"><input type="checkbox" data-fx="paid"> Virement déjà reçu (facture acquittée)</label>
+      <label class="f" data-fx-paid>Virement reçu le<input data-fx="paidDate" type="date"></label>
       <div class="row" data-fx-unpaid>
         <label class="f">À payer avant le<input data-fx="due" type="date"></label>
         <label class="f">Acompte déjà versé (€)<input data-fx="deposit" type="number" min="0" step="0.01"></label>
@@ -177,7 +173,7 @@
   const sameNum = (a, b) => a.num === b.num && a.resto === b.resto;
   const fmtIban = (v) => String(v || "").replace(/\s+/g, "").toUpperCase().replace(/(.{4})(?=.)/g, "$1 ");
 
-  const blank = () => ({ id: Date.now().toString(36), num: "", resto: RESTOS[0].slug, date: today(), serviceDate: today(), category: "Prestation de services", kind: "part", client: "", address: "", siren: "", vat: "", ref: "", priceMode: "ttc", lines: [], paid: true, paidDate: today(), payMode: "carte bancaire", due: "", deposit: "", note: "" });
+  const blank = () => ({ id: Date.now().toString(36), num: "", resto: RESTOS[0].slug, date: today(), serviceDate: today(), category: "Prestation de services", kind: "part", client: "", address: "", siren: "", vat: "", ref: "", priceMode: "ttc", lines: [], paid: false, paidDate: today(), due: "", deposit: "", note: "" });
   let f = blank();
 
   // ---------- Éditeur ----------
@@ -269,7 +265,7 @@
     const capital = so.capital || co.capital || "";
     document.querySelectorAll("[data-fx-co]").forEach((el) => { if (document.activeElement !== el) el.value = so[el.dataset.fxCo] || (el.dataset.fxCo === "capital" ? co.capital : "") || ""; });
     $("[data-fx-co-name]").textContent = co.name;
-    const missing = [!capital && "le capital social", !co.form && "la forme juridique", !so.iban && "l'IBAN (paiement par virement)"].filter(Boolean);
+    const missing = [!capital && "le capital social", !co.form && "la forme juridique", !so.iban && "l'IBAN (seul moyen de paiement)"].filter(Boolean);
     const warn = $("[data-fx-company]");
     warn.hidden = !missing.length;
     warn.textContent = missing.length ? `À compléter pour ${co.name} dans « Infos de la société » : ${missing.join(", ")}.` : "";
@@ -284,9 +280,9 @@
     const buyer = [`<b>${esc(f.client || "Nom du client")}</b>`, esc(f.address),
       f.kind === "pro" && f.siren ? `SIREN ${esc(f.siren)}` : "", f.kind === "pro" && f.vat ? `N° TVA : ${esc(f.vat)}` : ""].filter(Boolean).join("\n");
     const pay = f.paid
-      ? `Facture acquittée le ${esc(fmtDate(f.paidDate))} par ${esc(f.payMode)}.`
-      : `À régler ${f.due ? `avant le <b>${esc(fmtDate(f.due))}</b>` : "à réception"}. Moyens acceptés : carte bancaire, espèces, chèque, virement.`;
-    const iban = so.iban && (!f.paid || f.payMode === "virement")
+      ? `Facture acquittée : virement reçu le ${esc(fmtDate(f.paidDate))}.`
+      : `À régler par virement bancaire uniquement, ${f.due ? `avant le <b>${esc(fmtDate(f.due))}</b>` : "à réception de la facture"}.`;
+    const iban = so.iban
       ? `<div class="iban"><b>Virement bancaire</b><span>Titulaire : ${esc(co.name)}</span><span>IBAN : <b>${esc(fmtIban(so.iban))}</b></span>${so.bic ? `<span>BIC : ${esc(so.bic.toUpperCase())}</span>` : ""}${so.bank ? `<span>Banque : ${esc(so.bank)}</span>` : ""}${f.num || !f.paid ? `<span>Référence à indiquer : ${esc(f.num || nextNumber(f.resto, f.date))}</span>` : ""}</div>` : "";
 
     $("[data-fx-sheet]").innerHTML = `

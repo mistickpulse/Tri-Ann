@@ -73,6 +73,15 @@ eleventyExcludeFromCollections: true
     .preview-wrap { position: static; }
   }
   .help { margin: 0 0 8px; color: var(--muted); font-size: .85rem; }
+  /* Liste des plats de la carte sous les champs « Ajouter un plat / une ligne » */
+  .suggest { position: fixed; z-index: 20; margin: 0; padding: 4px; list-style: none; overflow-y: auto; background: var(--surface); border: 1px solid var(--accent); border-radius: 10px; box-shadow: 0 14px 40px rgba(0,0,0,.55); }
+  .suggest li { display: grid; grid-template-columns: 1fr auto; gap: 0 12px; align-items: center; padding: 8px 10px; border-radius: 7px; cursor: pointer; }
+  .suggest li b { font-weight: 650; }
+  .suggest li small { grid-column: 1; color: var(--muted); font-size: .8rem; }
+  .suggest li span { grid-row: 1 / span 2; grid-column: 2; color: var(--accent); font-weight: 700; white-space: nowrap; }
+  .suggest li[aria-selected="true"] { background: var(--bg2); outline: 1px solid var(--line); }
+  .suggest li.free { display: block; color: var(--muted); font-size: .88rem; border-top: 1px solid var(--line); border-radius: 0 0 7px 7px; }
+  .suggest li.free b { color: var(--ink); }
   .tabs { display: flex; gap: 4px; margin-right: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
   .tabs button { border: 0; background: none; color: var(--muted); border-radius: 999px; padding: .35em .9em; cursor: pointer; font-weight: 600; }
   .tabs button[aria-pressed="true"] { background: var(--accent); color: #141110; }
@@ -197,7 +206,6 @@ eleventyExcludeFromCollections: true
   </div>
 </main>
 
-<datalist id="catalog"></datalist>
 <script type="application/json" id="data-catalog">{{ menu | menuCatalog(drinks, collections.specials) | safe }}</script>
 <script type="application/json" id="data-restos">{{ restaurants | json | safe }}</script>
 <script type="application/json" id="data-banques">{{ banques | json | safe }}</script>
@@ -211,7 +219,6 @@ eleventyExcludeFromCollections: true
   const ALLERGENS = Object.fromEntries(JSON.parse($("#data-allergens").textContent).map((a) => [a.id, a.fr]));
   const STORE = "triann-menus";
   const label = (c) => `${c.n} — ${c.g}`;
-  $("#catalog").innerHTML = CATALOG.map((c) => `<option value="${esc(label(c))}">`).join("");
 
   const MENTIONS = "Menu établi pour l'ensemble du groupe, à confirmer au plus tard 7 jours avant la date.\nMerci de nous signaler toute allergie ou régime particulier.\nPrix nets en euros, service compris.";
   const TEMPLATES = {
@@ -253,7 +260,7 @@ eleventyExcludeFromCollections: true
           <span class="tools"><button class="btn small" type="button" data-item-up title="Monter">↑</button><button class="btn small danger" type="button" data-del-item="${j}" title="Retirer">✕</button></span>
           <textarea data-k="d" placeholder="Description / ingrédients (facultatif)">${esc(it.d)}</textarea>
         </li>`).join("")}</ul>
-        <input list="catalog" placeholder="Ajouter un plat (recherche ou texte libre) puis Entrée" data-add-item>
+        <input data-suggest autocomplete="off" placeholder="Ajouter un plat (recherche ou texte libre) puis Entrée" data-add-item>
       </div>`).join("");
   }
   coursesEl.addEventListener("input", (e) => {
@@ -383,6 +390,73 @@ eleventyExcludeFromCollections: true
 
 {% include "admin-factures.njk" %}
 
+<ul class="suggest" role="listbox" hidden></ul>
+<script>
+// Liste des plats de la carte pour les champs [data-suggest] (onglets Menus et Factures).
+// Choisir un plat écrit « Nom — Rubrique » dans le champ et déclenche son événement input, que chaque outil traite.
+(() => {
+  const CATALOG = JSON.parse(document.getElementById("data-catalog").textContent);
+  const box = document.querySelector(".suggest");
+  const plain = (s) => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const price = (p) => (p == null || p === "" ? "" : Number(p).toFixed(2).replace(".", ",") + " €");
+  let input = null, hits = [], active = -1;
+
+  const close = () => { box.hidden = true; hits = []; active = -1; input?.setAttribute("aria-expanded", "false"); };
+  function place() {
+    if (!input || box.hidden) return;
+    const r = input.getBoundingClientRect();
+    const below = innerHeight - r.bottom - 12, above = r.top - 12;
+    const up = below < 220 && above > below;
+    Object.assign(box.style, { left: r.left + "px", width: r.width + "px", maxHeight: Math.min(340, up ? above : below) + "px", top: up ? "" : r.bottom + 4 + "px", bottom: up ? innerHeight - r.top + 4 + "px" : "" });
+  }
+  function open(el) {
+    input = el;
+    const words = plain(el.value).split(/\s+/).filter(Boolean);
+    if (!words.length) return close();
+    // Plats de la carte, puis en dernier : ajouter le texte tapé tel quel (ligne libre)
+    // (ceux dont le nom contient les mots tapés d'abord)
+    const inName = (c) => words.every((w) => plain(c.n).includes(w));
+    const found = CATALOG.filter((c) => { const t = plain(c.n + " " + c.g); return words.every((w) => t.includes(w)); });
+    hits = [...found.filter(inName), ...found.filter((c) => !inName(c))].slice(0, 40).concat({ free: el.value.trim() });
+    active = 0;
+    box.innerHTML = hits.map((c, i) => c.free != null
+      ? `<li role="option" class="free" data-i="${i}" aria-selected="${i === active}">Ajouter « <b>${esc(c.free)}</b> » tel quel</li>`
+      : `<li role="option" data-i="${i}" aria-selected="${i === active}"><b>${esc(c.n)}</b><small>${esc(c.g)}</small><span>${price(c.p)}</span></li>`).join("");
+    box.hidden = false; el.setAttribute("aria-expanded", "true");
+    place();
+  }
+  function pick(i) {
+    const c = hits[i], el = input; if (!c || !el) return;
+    close();
+    // Ligne libre : même effet qu'Entrée dans le champ
+    if (c.free != null) return el.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    el.value = `${c.n} — ${c.g}`;
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+  function move(d) {
+    if (!hits.length) return;
+    active = (active + d + hits.length) % hits.length;
+    box.querySelectorAll("li").forEach((li, i) => li.setAttribute("aria-selected", String(i === active)));
+    box.children[active].scrollIntoView({ block: "nearest" });
+  }
+
+  document.addEventListener("input", (e) => { if (e.target.matches?.("[data-suggest]") && e.isTrusted) open(e.target); });
+  document.addEventListener("focusin", (e) => { if (e.target.matches?.("[data-suggest]")) open(e.target); });
+  document.addEventListener("focusout", (e) => { if (e.target === input) setTimeout(() => { if (document.activeElement !== input) close(); }, 120); });
+  // Avant les outils : Entrée sur un plat de la liste le choisit (sinon le texte libre est ajouté comme avant)
+  document.addEventListener("keydown", (e) => {
+    if (box.hidden || e.target !== input) return;
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); move(e.key === "ArrowDown" ? 1 : -1); }
+    else if (e.key === "Escape") close();
+    else if (e.key === "Enter" && active >= 0) { e.preventDefault(); e.stopImmediatePropagation(); pick(active); }
+  }, true);
+  box.addEventListener("mousedown", (e) => { e.preventDefault(); const li = e.target.closest("li[data-i]"); if (li) pick(+li.dataset.i); });
+  box.addEventListener("mousemove", (e) => { const li = e.target.closest("li[data-i]"); if (li && +li.dataset.i !== active) { active = +li.dataset.i; box.querySelectorAll("li").forEach((x, i) => x.setAttribute("aria-selected", String(i === active))); } });
+  addEventListener("scroll", place, true);
+  addEventListener("resize", place);
+})();
+</script>
 <script>
 // Choix de l'outil (menus / factures), retenu sur l'appareil
 (() => {
